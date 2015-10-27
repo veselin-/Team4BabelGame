@@ -36,5 +36,7 @@ public class SentenceSlotHandler : MonoBehaviour, IDropHandler
         sym.GetComponent<CanvasGroup>().blocksRaycasts = true;
         DragHandler.SymbolBeingDragged.transform.SetParent(transform);
 
+
+
     }
 }

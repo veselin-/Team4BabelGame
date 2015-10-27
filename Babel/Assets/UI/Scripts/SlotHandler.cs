@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine.EventSystems;
 
@@ -31,7 +32,17 @@ public class SlotHandler : MonoBehaviour, IDropHandler {
             DragHandler.SymbolBeingDragged.transform.SetParent(transform);
         }
 
-        
+        Transform[] names = GameObject.FindGameObjectWithTag("Book").GetComponentsInChildren<Transform>();
+
+        foreach (Transform tra in names)
+        {
+            if (tra.name == DragHandler.SymbolBeingDragged.transform.name)
+            {
+                Destroy(DragHandler.SymbolBeingDragged);
+                break;
+            }
+        }
+
 
 
     }

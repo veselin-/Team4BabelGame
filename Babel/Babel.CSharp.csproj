@@ -80,6 +80,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Characters\Player\Scripts\DemoPlayerMovement.cs" />
+    <Compile Include="Assets\Characters\SideKick\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Characters\SideKick\Scripts\ExploreState.cs" />
+    <Compile Include="Assets\Characters\SideKick\Scripts\IState.cs" />
+    <Compile Include="Assets\Characters\SideKick\Scripts\InteractiWithNearestState.cs" />
+    <Compile Include="Assets\Core\Configuration\Constants.cs" />
+    <Compile Include="Assets\Core\InteractableObjects\IInteractable.cs" />
+    <Compile Include="Assets\Core\InteractableObjects\IObstacle.cs" />
+    <Compile Include="Assets\Core\LevelMaster\RoomManager.cs" />
+    <Compile Include="Assets\Core\NavMesh\NavMeshExtention.cs" />
+    <Compile Include="Assets\Environment\Doors\SlidingDemoDoor\Scripts\DoorMovement.cs" />
+    <Compile Include="Assets\Environment\Levers\LeverExample\Scripts\LeverPulls.cs" />
+    <Compile Include="Assets\Environment\Prototypes\CameraViews\CameraFollow.cs" />
+    <Compile Include="Assets\Environment\Prototypes\CameraViews\CameraManager.cs" />
+    <Compile Include="Assets\Environment\Prototypes\CameraViews\ChangeCameras.cs" />
+    <Compile Include="Assets\Environment\Prototypes\CameraViews\InteractiveCam.cs" />
     <Compile Include="Assets\UI\Scripts\DragHandler.cs" />
     <Compile Include="Assets\UI\Scripts\SentenceSlotHandler.cs" />
     <Compile Include="Assets\UI\Scripts\SlotHandler.cs" />
@@ -89,16 +105,19 @@
     <None Include="Assets\Characters\Player\Materials\empty.txt" />
     <None Include="Assets\Characters\Player\Models\empty.txt" />
     <None Include="Assets\Characters\Player\Prefabs\empty.txt" />
-    <None Include="Assets\Characters\Player\Scripts\empty.txt" />
     <None Include="Assets\Characters\Player\Textures\empty.txt" />
     <None Include="Assets\Characters\SideKick\Animations\empty.txt" />
     <None Include="Assets\Characters\SideKick\Materials\empty.txt" />
     <None Include="Assets\Characters\SideKick\Models\empty.txt" />
     <None Include="Assets\Characters\SideKick\Prefabs\empty.txt" />
-    <None Include="Assets\Characters\SideKick\Scripts\empty.txt" />
     <None Include="Assets\Characters\SideKick\Textures\empty.txt" />
     <None Include="Assets\Core\Language\empty.txt" />
     <None Include="Assets\Editor\empty.txt" />
+    <None Include="Assets\Environment\Doors\SlidingDemoDoor\Animations\empty.txt" />
+    <None Include="Assets\Environment\Doors\SlidingDemoDoor\Materials\empty.txt" />
+    <None Include="Assets\Environment\Doors\SlidingDemoDoor\Models\empty.txt" />
+    <None Include="Assets\Environment\Doors\SlidingDemoDoor\Prefabs\empty.txt" />
+    <None Include="Assets\Environment\Doors\SlidingDemoDoor\Textures\empty.txt" />
     <None Include="Assets\Environment\Floors\FloorExample\Animations\empty.txt" />
     <None Include="Assets\Environment\Floors\FloorExample\Materials\empty.txt" />
     <None Include="Assets\Environment\Floors\FloorExample\Models\empty.txt" />

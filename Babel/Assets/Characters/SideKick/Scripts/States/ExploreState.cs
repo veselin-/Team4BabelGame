@@ -1,40 +1,48 @@
-﻿using System;
-using Assets.Core.Configuration;
-using Assets.Core.LevelMaster;
-using Assets.Core.NavMesh;
+﻿using Assets.Core.NavMesh;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Characters.SideKick.Scripts.States
 {
     public class ExploreState : IState
     {
+        public Transform[] Waypoints {
+            set {
+                _waypoints = value;
+                PickWaypoint();
+            }
+            get { return _waypoints; }
+        }
+        private Transform[] _waypoints;
+
         private readonly float _movementSpeed;
         private readonly NavMeshAgent _agent;
-        private readonly RoomManager _rm;
         
-        public ExploreState(NavMeshAgent navAgent, float movementSpped)
+        public ExploreState(NavMeshAgent navAgent, float movementSpeed)
         {
-            _movementSpeed = movementSpped;
+            _movementSpeed = movementSpeed;
             _agent = navAgent;
-            var gameMaster = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster);
-            if (gameMaster == null || gameMaster.GetComponent<RoomManager>() == null)
-                throw new Exception("We need a roommanager in this level, to runs the AI");
-            _rm = gameMaster.GetComponent<RoomManager>();
         }
 
         public void ExecuteState()
         {
+            // Make sure we go back to default speed
             _agent.speed = _movementSpeed;
+
+            // Continue only if we have reached taget, or the room numner has changes 
             if (!_agent.HasReachedTarget()) return;
-            // Pick random waypoint
-            var waypoints = _rm.GetCurrnetWaypoints();
-            var a = UnityEngine.Random.Range(0, waypoints.Length);
-            _agent.SetDestination(waypoints[a].transform.position);
+            PickWaypoint();
         }
 
         public bool IsDoneExecuting()
         {
             return true;
         }
+
+        private void PickWaypoint()
+        {
+            _agent.destination = Waypoints[Random.Range(0, Waypoints.Length)].position;
+        }
     }
 }
+

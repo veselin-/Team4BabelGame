@@ -20,7 +20,7 @@ public class pickUpItem : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "PUKatana" && Item.pressed == true)
+        if (col.tag == "Player" && Item.pressed == true)
         {
             KatanaUsed();
         }

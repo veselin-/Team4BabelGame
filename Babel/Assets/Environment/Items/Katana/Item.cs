@@ -18,6 +18,5 @@ public class Item : MonoBehaviour {
     void OnMouseDown()
     {
         pressed = true;
-        Debug.Log("THIS IS NOW PICKED UP");
     }
 }

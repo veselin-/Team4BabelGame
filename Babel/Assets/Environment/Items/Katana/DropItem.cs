@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DeliverItem : MonoBehaviour {
+public class DropItem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

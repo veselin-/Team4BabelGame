@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Assets.Characters.SideKick.Scripts;
+using Assets.Characters.SideKick.Scripts.States;
 using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
 using UnityEngine;
@@ -17,13 +18,6 @@ namespace Assets.Characters.Player.Scripts
 	
         // Update is called once per frame
         void Update () {
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                var state = new InteractiWithNearestState(SideKick.GetComponent<NavMeshAgent>(), Constants.Tags.Lever);
-                SideKick.GetComponent<EnemyMovement>().AssignNewState(state);
-            }
-
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 pos = Input.mousePosition;

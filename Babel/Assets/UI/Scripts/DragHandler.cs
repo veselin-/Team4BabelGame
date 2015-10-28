@@ -37,12 +37,42 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
+        //If the object is dragged from the book to anywhere but the sentence slots it should be returned. 
+       // If the object is dragged from the sentence slots to anywhere but another sentence slot it should be destroyed.
         SymbolBeingDragged = null;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if (transform.parent == _startParent)
+
+        if (_startParent.tag == "SentenceSlot")
         {
-            transform.position = _startPosition;
+
+            if (transform.parent == _startParent)
+            {
+                Destroy(gameObject);
+            }
+
+            if (transform.parent.tag != "SentenceSlot")
+            {
+                Destroy(gameObject);
+            }
+            
         }
+
+
+        if (_startParent.tag == "BookSlot")
+        {
+
+            if (transform.parent == _startParent)
+            {
+                transform.position = _startPosition;
+            }
+
+
+
+        }
+
+
+
+
+
     }
 }

@@ -18,23 +18,7 @@ public class pickUpItem : MonoBehaviour {
 	    
 	}
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player" && Item.pressed == true)
-        {
-            KatanaUsed();
-        }
-    }
-
-    void OnMouseDown()
-    {
-       if (katanaUse == true)
-        {
-            Item.pressed = false;
-            KatanaDropped();
-        }
-    }
-
+    
     void KatanaUsed()
     {
         katanaDrop.SetActive(false);

@@ -1,14 +1,13 @@
-using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
+namespace Assets.Standard_Assets.Characters.ThirdPersonCharacter.Scripts
 {
     [RequireComponent(typeof (NavMeshAgent))]
-    [RequireComponent(typeof (ThirdPersonCharacter))]
+    [RequireComponent(typeof (UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter))]
     public class AICharacterControl : MonoBehaviour
     {
         public NavMeshAgent agent { get; private set; } // the navmesh agent required for the path finding
-        public ThirdPersonCharacter character { get; private set; } // the character we are controlling
+        public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target; // target to aim for
 
         // Use this for initialization
@@ -16,7 +15,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
             agent = GetComponentInChildren<NavMeshAgent>();
-            character = GetComponent<ThirdPersonCharacter>();
+            character = GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
 
 	        agent.updateRotation = false;
 	        agent.updatePosition = true;

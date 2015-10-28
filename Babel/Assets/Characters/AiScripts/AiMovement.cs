@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
-using Assets.Characters.SideKick.Scripts.States;
+using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
 using Assets.Core.LevelMaster;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace Assets.Characters.SideKick.Scripts
+namespace Assets.Characters.AiScripts
 {
     public class AiMovement : MonoBehaviour
     {
@@ -16,8 +15,10 @@ namespace Assets.Characters.SideKick.Scripts
         public float MovementSpeed;
         [Range(0, 10)]
         public float StrollSpeed;
+
+        public float TimeBeforeStolling;
         #endregion
-        
+
         private IState _currentState;
         private NavMeshAgent _agent;
         private RoomManager _rm;

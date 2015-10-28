@@ -1,5 +1,5 @@
-﻿using Assets.Characters.SideKick.Scripts;
-using Assets.Characters.SideKick.Scripts.States;
+﻿using Assets.Characters.AiScripts;
+using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Assets.UI.Scripts
 
         public void GoHereAndStay()
         {
-            var state = new GoSomewhereAndWaitState(_sideKick.GetComponent<NavMeshAgent>(), _player.transform.position, 5f);
+            var state = new GoSomewhereAndWaitState(_sideKick.GetComponent<NavMeshAgent>(), _player.transform.position);
             _sideKick.GetComponent<AiMovement>().AssignNewState(state);
         }
 
@@ -26,6 +26,12 @@ namespace Assets.UI.Scripts
         public void FollowMe()
         {
             var state = new FollowThisState(_sideKick.GetComponent<NavMeshAgent>(), _player.gameObject);
+            _sideKick.GetComponent<AiMovement>().AssignNewState(state);
+        }
+
+        public void PickupNearstStick()
+        {
+            var state = new PickupItemState(_sideKick.GetComponent<NavMeshAgent>(), Constants.Tags.Stick);
             _sideKick.GetComponent<AiMovement>().AssignNewState(state);
         }
 

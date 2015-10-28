@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets.Characters.SideKick.Scripts;
+using Assets.Characters.AiScripts;
 using UnityEngine;
 
 namespace Assets.Core.LevelMaster

@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Characters.SideKick.Scripts.States
+namespace Assets.Characters.AiScripts.States
 {
     public class ExploreState : IState
     {
@@ -17,7 +17,8 @@ namespace Assets.Characters.SideKick.Scripts.States
 
         private readonly float _movementSpeed;
         private readonly NavMeshAgent _agent;
-        
+        public float WaitingTime { get; set; }
+
         public ExploreState(NavMeshAgent navAgent, float movementSpeed)
         {
             _movementSpeed = movementSpeed;

@@ -10,7 +10,7 @@ namespace Assets.Characters.SideKick.Scripts.States
         private readonly float _waitingTime;
 
         private float _waitUntill;
-        private int _state;
+        private State _state;
 
         public GoSomewhereAndWaitState(NavMeshAgent navAgent, Vector3 position, float waitingTime)
         {
@@ -23,20 +23,20 @@ namespace Assets.Characters.SideKick.Scripts.States
         {
             switch (_state)
             {
-                case 0:
+                case State.Neutral:
                     _agent.SetDestination(_goalPosition);
-                    _state = 1;
+                    _state = State.GoSomewhere;
                     return;
-                case 1:
+                case State.GoSomewhere:
                     if (_agent.HasReachedTarget())
                     {
                         _waitUntill = Time.time + _waitingTime;
-                        _state = 2;
+                        _state = State.WaitSomeTime;
                     }
                     return;
-                case 2:
+                case State.WaitSomeTime:
                     if (Time.time > _waitUntill)
-                        _state = 3;
+                        _state = State.Done;
                     return;
                 default:
                     return;
@@ -45,7 +45,12 @@ namespace Assets.Characters.SideKick.Scripts.States
 
         public bool IsDoneExecuting()
         {
-            return _state == 3;
+            return _state == State.Done;
+        }
+
+        enum State
+        {
+            Neutral, GoSomewhere, WaitSomeTime, Done
         }
     }
 }

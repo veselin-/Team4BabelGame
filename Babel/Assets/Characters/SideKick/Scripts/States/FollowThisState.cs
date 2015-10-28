@@ -5,8 +5,8 @@ namespace Assets.Characters.SideKick.Scripts.States
     public class FollowThisState : IState
     {
 
-        private GameObject _target;
-        private NavMeshAgent _agent;
+        private readonly GameObject _target;
+        private readonly NavMeshAgent _agent;
 
         public FollowThisState(NavMeshAgent agent, GameObject itemToFollow)
         {

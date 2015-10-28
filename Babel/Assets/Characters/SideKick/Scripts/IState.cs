@@ -2,10 +2,8 @@
 {
     public interface IState
     {
-
         void ExecuteState();
 
         bool IsDoneExecuting();
-
     }
 }

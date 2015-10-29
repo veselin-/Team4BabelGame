@@ -8,8 +8,8 @@ namespace Assets.Characters.AiScripts
 {
     public class PickupHandler : MonoBehaviour
     {
-        private readonly Dictionary<string, MeshRenderer> _pickUps 
-            = new Dictionary<string, MeshRenderer>();
+        private readonly Dictionary<string, GameObject> _pickUps 
+            = new Dictionary<string, GameObject>();
         private GameObject _currentPickup;
 
         public GameObject CurrentPickup {
@@ -36,10 +36,9 @@ namespace Assets.Characters.AiScripts
                 throw new Exception("You need to have a child called 'Pickups', for this script to work!");
             foreach (Transform pickUp in pickups)
             {
-                _pickUps.Add(pickUp.name, pickUp.GetComponent<MeshRenderer>());
+                _pickUps.Add(pickUp.name, pickUp.gameObject);
             }
             UpdateDict();
-
         }
 
         #region  Picking up stuff
@@ -55,9 +54,9 @@ namespace Assets.Characters.AiScripts
         public void UpdateDict()
         {
             foreach (var mr in _pickUps.Values)
-                mr.enabled = false;
+                mr.SetActive(false);
             if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup.tag)) return;
-            _pickUps[_currentPickup.tag].enabled = true;
+            _pickUps[_currentPickup.tag].SetActive(true);
         }
 
         public void DropCurrent()

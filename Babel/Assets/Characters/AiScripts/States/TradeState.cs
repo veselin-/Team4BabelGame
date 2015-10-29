@@ -9,12 +9,14 @@ namespace Assets.Characters.AiScripts.States
         private PickupHandler _pickupHandler;
         private State _state;
         private float _waitUntil;
-        private NavMeshAgent _agent;
+        private readonly NavMeshAgent _agent;
+        private readonly NavMeshAgent _otherAgent;
 
-        public TradeState(NavMeshAgent agent)
+        public TradeState(NavMeshAgent agent, NavMeshAgent otherAgent)
         {
             _pickupHandler = agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder();
             _agent = agent;
+            _otherAgent = otherAgent;
         }
 
         public void ExecuteState()
@@ -24,14 +26,18 @@ namespace Assets.Characters.AiScripts.States
                 case State.Neutral:
                     _waitUntil = Time.time + WaitingTime;
                     _state = State.Waiting;
-                    _pickupHandler.InTradingMode = true;
                     _agent.destination = _agent.transform.position;
                     return;
                 case State.Waiting:
+
+                    if (Vector3.Distance(_agent.transform.position, _otherAgent.transform.position) < 2)
+                    {
+                        _agent.gameObject.GetComponent<PickupHandler>().InitiateTrade(_otherAgent.gameObject.GetComponent<PickupHandler>());
+                        _state = State.Done;
+                    }
                     if (Time.time > _waitUntil)
                     {
                         _state = State.Done;
-                        _pickupHandler.InTradingMode = false;
                     }
                     return;
                 default:

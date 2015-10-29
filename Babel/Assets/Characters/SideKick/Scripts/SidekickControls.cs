@@ -51,7 +51,13 @@ namespace Assets.Characters.SideKick.Scripts
 
         public void GoIntoTradeMode()
         {
-            var state = new TradeState(_sideKickAgent);
+            var state = new TradeState(_sideKickAgent, _player.GetComponent<NavMeshAgent>());
+            _sideKickMovement.AssignNewState(state);
+        }
+
+        public void KeyHole()
+        {
+            var state = new InteractWithNearestState(_sideKickAgent, Constants.Tags.Keyhole);
             _sideKickMovement.AssignNewState(state);
         }
     }

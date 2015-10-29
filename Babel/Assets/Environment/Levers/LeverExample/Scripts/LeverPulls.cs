@@ -20,10 +20,11 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
             return _hasBeenPulled;
         }
 
-        public void Interact()
+        public string Interact(string pickup)
         {
             if(!_hasBeenPulled)
                 StartCoroutine(ChangeColor());
+            return pickup;
         }
 
         IEnumerator ChangeColor()

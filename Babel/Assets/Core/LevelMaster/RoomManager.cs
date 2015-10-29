@@ -6,6 +6,7 @@ namespace Assets.Core.LevelMaster
 {
     public class RoomManager : MonoBehaviour
     {
+        public Transform[] Room0Waypoints;
         public Transform[] Room1Waypoints;
         public Transform[] Room2Waypoints;
 
@@ -24,9 +25,12 @@ namespace Assets.Core.LevelMaster
             switch (CurrentRoom)
             {
                 case 0:
-                    waypoints = Room1Waypoints;
+                    waypoints = Room0Waypoints;
                     break;
                 case 1:
+                    waypoints = Room1Waypoints;
+                    break;
+                case 2:
                     waypoints = Room2Waypoints;
                     break;
                 default:

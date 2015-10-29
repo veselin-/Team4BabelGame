@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Core.Configuration;
 using UnityEngine;
 
 namespace Assets.Characters.AiScripts
 {
     public class PickupHandler : MonoBehaviour
     {
-
-        public bool InTradingMode;
-
         private readonly Dictionary<string, MeshRenderer> _pickUps 
             = new Dictionary<string, MeshRenderer>();
+        private string _currentPickup;
+
+        public string CurrentPickup {
+            get
+            {
+                return _currentPickup;
+            }
+            set
+            {
+                _currentPickup = value;
+                UpdateDict();
+            }
+        }
 
         // Use this for initialization
         void Start ()
@@ -28,48 +37,42 @@ namespace Assets.Characters.AiScripts
             {
                 _pickUps.Add(pickUp.name, pickUp.GetComponent<MeshRenderer>());
             }
-            NoPickup();
+            UpdateDict();
+
         }
 
+        #region  Picking up stuff
         public void PickUpItem(GameObject pickup)
         {
-            if (!_pickUps.ContainsKey(pickup.tag))
-                throw new Exception("This object cannot be shown on the player, problem?");
-
-            PickUpItem(pickup.tag);
+            string pickupItemName = null;
+            if (pickup != null)
+                pickupItemName = pickup.tag;
+            
+            CurrentPickup = pickupItemName;
         }
 
-        private void PickUpItem(string pickup)
-        {
-            NoPickup();
-            if (pickup == null || !_pickUps.ContainsKey(pickup)) return;
-            _pickUps[pickup].enabled = true;
-        }
-
-        public void NoPickup()
+        public void UpdateDict()
         {
             foreach (var mr in _pickUps.Values)
                 mr.enabled = false;
+            if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup)) return;
+            _pickUps[_currentPickup].enabled = true;
         }
+        
+        #endregion
 
+        #region Trading
         public string Trade(string tradeItem)
         {
-            var currentItem = _pickUps.Values.FirstOrDefault(i => i.enabled);
-            PickUpItem(tradeItem);
-            return currentItem == null ? null : currentItem.name;
+            var old = CurrentPickup;
+            CurrentPickup = tradeItem;
+            return old;
         }
 
         public void InitiateTrade(PickupHandler other)
         {
-            if(!other.InTradingMode) return;
-            var currentItem = _pickUps.Values.FirstOrDefault(i => i.enabled);
-            PickUpItem(other.Trade(currentItem == null ? null : currentItem.name));
+            CurrentPickup = other.Trade(CurrentPickup);
         }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag != Constants.Tags.SideKick) return;
-            InitiateTrade(other.GetComponent<PickupHandler>());
-        }
+        #endregion
     }
 }

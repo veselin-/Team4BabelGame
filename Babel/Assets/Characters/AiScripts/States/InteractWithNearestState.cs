@@ -44,10 +44,14 @@ namespace Assets.Characters.AiScripts.States
                     return;
                 case State.GoToLever:
                     if (_agent.HasReachedTarget())
-                        _state = State.PullLever;
+                        _state = Vector3.Distance(_intaractableGoal.transform.position, _agent.transform.position) < 3 ? 
+                            State.PullLever : State.Done;
                     return;
                 case State.PullLever:
-                    _intaractableGoal.GetComponent<IInteractable>().Interact();
+                    var puh = _agent.gameObject.GetComponent<PickupHandler>();
+                    var returnItem = _intaractableGoal.GetComponent<IInteractable>().Interact(puh.CurrentPickup);
+                    puh.CurrentPickup = returnItem;
+
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;
                     return;

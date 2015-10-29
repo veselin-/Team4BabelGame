@@ -6,7 +6,7 @@ public class CurrencyControl : MonoBehaviour {
 
     public static int addMoney = 0;
     int currencyAmount;
-    public int addMoneyTest;
+    //public int addMoneyTest;
     public Text amountText;
 	// Use this for initialization
     void Awake()
@@ -23,23 +23,23 @@ public class CurrencyControl : MonoBehaviour {
         currencyAmount += addMoney;
     }
 
-    public void EarnMoney()
+    public void EarnCurrency(int earned)
     {
-        currencyAmount += addMoneyTest;
+        currencyAmount += earned;
         PlayerPrefs.SetInt("CurrencyAmount", currencyAmount);
         amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
 
     }
 
-    public void SpendMoney()
+    public void ButtonForBuying(int cost)
     {
-        if (PlayerPrefs.GetInt("CurrencyAmount", currencyAmount) <= 0)
+        if (PlayerPrefs.GetInt("CurrencyAmount", currencyAmount) - cost < 0)
         {
-            Debug.Log("YOU HAVE TO EARN MORE MONEY BITCH!");
+            Debug.Log("YOU NEED " + cost + " (currency) TO BUY THIS");
         }
         else
         {
-            currencyAmount -= addMoneyTest;
+            currencyAmount -= cost;
             PlayerPrefs.SetInt("CurrencyAmount", currencyAmount);
             amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
         }

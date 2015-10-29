@@ -6,6 +6,6 @@ namespace Assets.Core.InteractableObjects
     {
         bool HasBeenActivated();
 
-        string Interact(string pickup);
+        GameObject Interact(GameObject pickup);
     }
 }

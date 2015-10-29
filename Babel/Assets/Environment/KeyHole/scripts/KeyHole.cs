@@ -18,9 +18,9 @@ public class KeyHole : MonoBehaviour, IInteractable {
         return _hasBeenPulled;
     }
 
-    public string Interact(string pickup)
+    public GameObject Interact(GameObject pickup)
     {
-        if (pickup != Constants.Tags.Key || _hasBeenPulled)
+        if (pickup == null || pickup.tag != Constants.Tags.Key || _hasBeenPulled)
             return pickup;
 
         StartCoroutine(ChangeColor());

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Characters.AiScripts
 {
@@ -9,14 +10,14 @@ namespace Assets.Characters.AiScripts
     {
         private readonly Dictionary<string, MeshRenderer> _pickUps 
             = new Dictionary<string, MeshRenderer>();
-        private string _currentPickup;
+        private GameObject _currentPickup;
 
-        public string CurrentPickup {
+        public GameObject CurrentPickup {
             get
             {
                 return _currentPickup;
             }
-            set
+            private set
             {
                 _currentPickup = value;
                 UpdateDict();
@@ -44,25 +45,32 @@ namespace Assets.Characters.AiScripts
         #region  Picking up stuff
         public void PickUpItem(GameObject pickup)
         {
-            string pickupItemName = null;
-            if (pickup != null)
-                pickupItemName = pickup.tag;
-            
-            CurrentPickup = pickupItemName;
+            DropCurrent();
+            CurrentPickup = pickup;
+
+            if(CurrentPickup != null)
+                CurrentPickup.SetActive(false);
         }
 
         public void UpdateDict()
         {
             foreach (var mr in _pickUps.Values)
                 mr.enabled = false;
-            if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup)) return;
-            _pickUps[_currentPickup].enabled = true;
+            if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup.tag)) return;
+            _pickUps[_currentPickup.tag].enabled = true;
+        }
+
+        public void DropCurrent()
+        {
+            if(CurrentPickup == null) return;
+            CurrentPickup.transform.position = transform.position;
+            CurrentPickup.SetActive(true);
         }
         
         #endregion
 
         #region Trading
-        public string Trade(string tradeItem)
+        public GameObject Trade(GameObject tradeItem)
         {
             var old = CurrentPickup;
             CurrentPickup = tradeItem;

@@ -50,7 +50,7 @@ namespace Assets.Characters.AiScripts.States
                 case State.PullLever:
                     var puh = _agent.gameObject.GetComponent<PickupHandler>();
                     var returnItem = _intaractableGoal.GetComponent<IInteractable>().Interact(puh.CurrentPickup);
-                    puh.CurrentPickup = returnItem;
+                    puh.PickUpItem(returnItem);
 
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;

@@ -20,7 +20,7 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
             return _hasBeenPulled;
         }
 
-        public string Interact(string pickup)
+        public GameObject Interact(GameObject pickup)
         {
             if(!_hasBeenPulled)
                 StartCoroutine(ChangeColor());

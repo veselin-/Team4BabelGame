@@ -25,8 +25,8 @@ namespace Assets.Environment.Doors.SlidingDemoDoor.Scripts
         void Start ()
         {
             // Sliding positions
-            _startPosition = transform.position;
-            _endPosistion = new Vector3(_startPosition.x, _startPosition.y, _startPosition.z - 3);
+            _startPosition = transform.localPosition;
+            _endPosistion = new Vector3(_startPosition.x, _startPosition.y, _startPosition.z - transform.localScale.z);
 
             // Get all IInteractables
             _interactables = new List<IInteractable>();
@@ -38,7 +38,7 @@ namespace Assets.Environment.Doors.SlidingDemoDoor.Scripts
 
         void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _doorIsOpen ? _endPosistion : _startPosition, Time.deltaTime * MovementSpeed);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, _doorIsOpen ? _endPosistion : _startPosition, Time.deltaTime * MovementSpeed);
         }
 
         IEnumerator CheckForInputs()

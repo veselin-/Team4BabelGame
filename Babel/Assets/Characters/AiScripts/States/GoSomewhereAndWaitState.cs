@@ -1,23 +1,23 @@
 ﻿using Assets.Core.NavMesh;
 using UnityEngine;
 
-namespace Assets.Characters.SideKick.Scripts.States
+namespace Assets.Characters.AiScripts.States
 {
     public class GoSomewhereAndWaitState : IState
     {
         private readonly NavMeshAgent _agent;
         private readonly Vector3 _goalPosition;
-        private readonly float _waitingTime;
 
         private float _waitUntill;
         private State _state;
 
-        public GoSomewhereAndWaitState(NavMeshAgent navAgent, Vector3 position, float waitingTime)
+        public GoSomewhereAndWaitState(NavMeshAgent navAgent, Vector3 position)
         {
             _agent = navAgent;
             _goalPosition = position;
-            _waitingTime = waitingTime;
         }
+
+        public float WaitingTime { get; set; }
 
         public void ExecuteState()
         {
@@ -30,7 +30,7 @@ namespace Assets.Characters.SideKick.Scripts.States
                 case State.GoSomewhere:
                     if (_agent.HasReachedTarget())
                     {
-                        _waitUntill = Time.time + _waitingTime;
+                        _waitUntill = Time.time + WaitingTime;
                         _state = State.WaitSomeTime;
                     }
                     return;

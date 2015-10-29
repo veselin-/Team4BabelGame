@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections;
-using Assets.Characters.SideKick.Scripts.States;
+using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
 using Assets.Core.LevelMaster;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace Assets.Characters.SideKick.Scripts
+namespace Assets.Characters.AiScripts
 {
     public class AiMovement : MonoBehaviour
     {
         #region Public Fields
-        [Header("Movent speeds")]
+        [Header("Movent")]
         [Range(0, 10)]
         public float MovementSpeed;
         [Range(0, 10)]
         public float StrollSpeed;
+
+        public float TimeBeforeStolling;
         #endregion
-        
+
         private IState _currentState;
         private NavMeshAgent _agent;
         private RoomManager _rm;
@@ -51,6 +52,7 @@ namespace Assets.Characters.SideKick.Scripts
                 if (_currentState == null || _currentState.IsDoneExecuting())
                     _currentState = _exploreState;
 
+                _currentState.WaitingTime = TimeBeforeStolling;
                 _currentState.ExecuteState();
                 yield return new WaitForSeconds(0.1f);
             }
@@ -64,6 +66,14 @@ namespace Assets.Characters.SideKick.Scripts
         public void RoomChanged()
         {
             _exploreState.Waypoints = _rm.GetCurrnetWaypoints();
+        }
+
+        public PickupHandler FindPickUpHandeder()
+        {
+            Transform root = transform;
+            while (root.parent != null)
+                root = root.parent;
+            return root.GetComponentInChildren<PickupHandler>();
         }
     }
 }

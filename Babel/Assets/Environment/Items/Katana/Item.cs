@@ -1,22 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Assets.Core.InteractableObjects;
 
-public class Item : MonoBehaviour {
+public class Item : MonoBehaviour, ICollectable {
 
-    public static bool pressed = false;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnMouseDown()
+    public GameObject PickUp()
     {
-        pressed = true;
+        gameObject.SetActive(false);
+        return gameObject;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Core.Configuration;
 
 public class CombineSymbols : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CombineSymbols : MonoBehaviour
     public Text text;
 
     public GameObject SymbolPrefab;
+
+    private GameObject databaseManager;
 
     // Use this for initialization
 
@@ -32,6 +35,8 @@ public class CombineSymbols : MonoBehaviour
 
 
     void Start () {
+
+        databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager);
 	
 	}
 	
@@ -52,7 +57,7 @@ public class CombineSymbols : MonoBehaviour
 
         if (Slot1.GetComponent<SentenceSlotHandler>().symbol && Slot2.GetComponent<SentenceSlotHandler>().symbol)
         {
-            if (Slot1.GetComponentInChildren<IDHolder>().ID == Slot2.GetComponentInChildren<IDHolder>().ID)
+            if (Slot1.GetComponentInChildren<SyllableHandler>().ID == Slot2.GetComponentInChildren<SyllableHandler>().ID)
             {
                 text.text = "Invalid combination. The two syllables must be different.";
                
@@ -62,6 +67,7 @@ public class CombineSymbols : MonoBehaviour
                 GameObject newSymbol = Instantiate(SymbolPrefab);
                 newSymbol.transform.SetParent(transform);
                 newSymbol.GetComponent<SymbolHandler>().SetSyllables(Slot1.transform.GetChild(0).gameObject, Slot2.transform.GetChild(0).gameObject);
+                newSymbol.GetComponent<SymbolHandler>().PlaySound();
             }
         }
         else

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using Assets.Core.Configuration;
 
@@ -68,6 +69,10 @@ public class CombineSymbols : MonoBehaviour
                 newSymbol.transform.SetParent(transform);
                 newSymbol.GetComponent<SymbolHandler>().SetSyllables(Slot1.transform.GetChild(0).gameObject, Slot2.transform.GetChild(0).gameObject);
                 newSymbol.GetComponent<SymbolHandler>().PlaySound();
+                List<int> SyllableSequence = new List<int> { Slot1.GetComponentInChildren<SyllableHandler>().ID , Slot2.GetComponentInChildren<SyllableHandler>().ID };
+                databaseManager.GetComponent<DatabaseManager>().AddWord(CreateNewSymbol.SymbolID, SyllableSequence);
+                databaseManager.GetComponent<DatabaseManager>().SaveWordsDB();
+
             }
         }
         else

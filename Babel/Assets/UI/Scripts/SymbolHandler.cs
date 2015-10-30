@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class SymbolHandler : DragHandler
 {
 
+    public int ID;
+
     public Image Image1;
     public Image Image2;
-
-    public float SyllableAudioSpacing = 0f;
 
     // Use this for initialization
     void Start () {

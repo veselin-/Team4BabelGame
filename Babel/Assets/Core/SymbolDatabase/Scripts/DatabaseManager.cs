@@ -52,10 +52,10 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         return null;
     }
 
-    // Returns the word of the database with the given ID
+    // Returns the word of the database with the given ID if it is active
     public Word GetWord(int id)
     {
-        if (WordsDatabase.ContainsKey(id))
+        if (WordsDatabase.ContainsKey(id) && WordsDatabase[id].IsActive)
         {
             return WordsDatabase[id];
         }
@@ -182,7 +182,6 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         Dictionary<int, Word> tempDict = new Dictionary<int, Word>();
         foreach (Word word in container.Words)
         {
-            if(word.IsActive)
             tempDict.Add(word.id, word);
         }
         return tempDict;

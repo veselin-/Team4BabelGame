@@ -2,25 +2,11 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public abstract class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static GameObject SymbolBeingDragged;
     private Vector3 _startPosition;
     public static Transform _startParent;
-
-
-    // Use this for initialization
-    void Start()
-    {
-        
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -29,6 +15,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         _startPosition = transform.position;
         _startParent = transform.parent;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -45,20 +32,15 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if (_startParent.tag == "SentenceSlot")
         {
-
             if (transform.parent == _startParent)
             {
                 Destroy(gameObject);
             }
-
             if (transform.parent.tag != "SentenceSlot")
             {
                 Destroy(gameObject);
             }
-            
         }
-
-
         if (_startParent.tag == "BookSlot")
         {
 
@@ -66,14 +48,6 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             {
                 transform.position = _startPosition;
             }
-
-
-
         }
-
-
-
-
-
     }
 }

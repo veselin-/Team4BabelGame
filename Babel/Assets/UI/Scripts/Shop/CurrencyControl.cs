@@ -4,8 +4,8 @@ using System.Collections;
 
 public class CurrencyControl : MonoBehaviour {
 
-    public static int addMoney = 0;
-    int currencyAmount;
+    //public static int addMoney = 0;
+    public static int currencyAmount;
     //public int addMoneyTest;
     public Text amountText;
 	// Use this for initialization
@@ -15,19 +15,20 @@ public class CurrencyControl : MonoBehaviour {
     }
 
 	void Start () {
-        amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        currencyAmount += addMoney;
+        //currencyAmount += addMoney;
+        amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
     }
 
     public void EarnCurrency(int earned)
     {
         currencyAmount += earned;
         PlayerPrefs.SetInt("CurrencyAmount", currencyAmount);
-        amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
+        //amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
 
     }
 
@@ -41,7 +42,7 @@ public class CurrencyControl : MonoBehaviour {
         {
             currencyAmount -= cost;
             PlayerPrefs.SetInt("CurrencyAmount", currencyAmount);
-            amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
+            //amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
         }
     }
 }

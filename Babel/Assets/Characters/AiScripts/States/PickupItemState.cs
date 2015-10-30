@@ -49,7 +49,7 @@ namespace Assets.Characters.AiScripts.States
                     if(_pickupGoal.GetComponent<ICollectable>() == null)
                         throw new Exception("You cannot make the AI pick up an item, without it having a ICollectable script attached!");
                     var pickup = _pickupGoal.GetComponent<ICollectable>().PickUp();
-                    _agent.gameObject.GetComponent<PickupHandler>().PickUpItem(pickup);
+                    _agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder().PickUpItem(pickup);
                     _state = State.Done;
                     return;
                 default:

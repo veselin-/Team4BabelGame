@@ -15,6 +15,15 @@ namespace Assets.Core.Configuration
             public const string Key = "Key";
             public const string Torch = "Torch";
             public const string Bottle = "Bottle";
+            public const string Floor = "Floor";
+            public const string Keyhole = "Keyhole";
+        }
+
+        public class XmlFiles
+        {
+            public const string Alphabet = "Alphabet.xml";
+            public const string Words = "Words.xml";
+            public const string Sentences = "Sentences.xml";
         }
     }
 }

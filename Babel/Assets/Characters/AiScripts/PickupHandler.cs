@@ -1,42 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Characters.AiScripts
 {
     public class PickupHandler : MonoBehaviour
     {
-        private Dictionary<string, MeshRenderer> _pickUps = new Dictionary<string, MeshRenderer>(); 
+        private readonly Dictionary<string, GameObject> _pickUps 
+            = new Dictionary<string, GameObject>();
+        private GameObject _currentPickup;
+
+        public GameObject CurrentPickup {
+            get
+            {
+                return _currentPickup;
+            }
+            private set
+            {
+                _currentPickup = value;
+                UpdateDict();
+            }
+        }
 
         // Use this for initialization
         void Start ()
         {
-            var pickups = transform.Find("Pickups");
+            Transform root = transform;
+            while (root.parent != null)
+                root = root.parent;
+
+            var pickups = root.FindChild("Pickups");
             if(pickups == null)
                 throw new Exception("You need to have a child called 'Pickups', for this script to work!");
             foreach (Transform pickUp in pickups)
             {
-                _pickUps.Add(pickUp.name, pickUp.GetComponent<MeshRenderer>());
+                _pickUps.Add(pickUp.name, pickUp.gameObject);
             }
-            NoPickup();
+            UpdateDict();
         }
 
+        #region  Picking up stuff
         public void PickUpItem(GameObject pickup)
         {
-            if (!_pickUps.ContainsKey(pickup.tag))
-                throw new Exception("This object cannot be shown on the player, problem?");
+            DropCurrent();
+            CurrentPickup = pickup;
 
-            NoPickup();
-            _pickUps[pickup.tag].enabled = true;
+            if(CurrentPickup != null)
+                CurrentPickup.SetActive(false);
         }
 
-        public void NoPickup()
+        public void UpdateDict()
         {
             foreach (var mr in _pickUps.Values)
-            {
-                mr.enabled = false;
-            }
+                mr.SetActive(false);
+            if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup.tag)) return;
+            _pickUps[_currentPickup.tag].SetActive(true);
         }
 
+        public void DropCurrent()
+        {
+            if(CurrentPickup == null) return;
+            CurrentPickup.transform.position = transform.position;
+            CurrentPickup.SetActive(true);
+        }
+        
+        #endregion
+
+        #region Trading
+        public GameObject Trade(GameObject tradeItem)
+        {
+            var old = CurrentPickup;
+            CurrentPickup = tradeItem;
+            return old;
+        }
+
+        public void InitiateTrade(PickupHandler other)
+        {
+            CurrentPickup = other.Trade(CurrentPickup);
+        }
+        #endregion
     }
 }

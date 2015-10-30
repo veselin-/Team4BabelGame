@@ -17,18 +17,19 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         LoadData();
     }
 
-    // Adds the word to the predefined id and name
+    // Adds the word to the predefined id and name and sets it active
     public void AddWord(int id, List<int> syllableSequence)
     {
         if (WordsDatabase.ContainsKey(id))
         {
             Word word = WordsDatabase[id];
             word.SyllableSequence = syllableSequence;
+            word.IsActive = true;
             WordsDatabase[id] = word;
         }
     }
 
-    // Adds the sentence to the end of the database
+    // Adds the sentence to the predefined id 
     public void AddSentence(int id, List<int> wordSequence)
     {
         if (SentencesDatabase.ContainsKey(id))
@@ -51,10 +52,10 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         return null;
     }
 
-    // Returns the word of the database with the given ID
+    // Returns the word of the database with the given ID if it is active
     public Word GetWord(int id)
     {
-        if (WordsDatabase.ContainsKey(id))
+        if (WordsDatabase.ContainsKey(id) && WordsDatabase[id].IsActive)
         {
             return WordsDatabase[id];
         }
@@ -152,9 +153,9 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         charStream.Close();
 
         Dictionary<int, Syllable> tempDict = new Dictionary<int, Syllable>();
-        foreach (Syllable character in container.Syllables)
+        foreach (Syllable syllable in container.Syllables)
         {
-            tempDict.Add(character.id, character);
+                tempDict.Add(syllable.id, syllable);
         }
         return tempDict;
     }
@@ -254,6 +255,8 @@ public class Word
     public string Name;
 
     public List<int> SyllableSequence;
+
+    public bool IsActive;
 }
 
 [XmlRoot("WordsCollection")]

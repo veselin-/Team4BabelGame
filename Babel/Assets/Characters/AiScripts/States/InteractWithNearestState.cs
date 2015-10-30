@@ -44,7 +44,7 @@ namespace Assets.Characters.AiScripts.States
                     return;
                 case State.GoToLever:
                     if (_agent.HasReachedTarget())
-                        _state = Vector3.Distance(_intaractableGoal.transform.position, _agent.transform.position) < 3 ? 
+                        _state = Vector3.Distance(_intaractableGoal.transform.position, _agent.transform.position) < 8 ? 
                             State.PullLever : State.Done;
                     return;
                 case State.PullLever:

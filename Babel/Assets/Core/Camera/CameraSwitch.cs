@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CameraSwitch : MonoBehaviour {
@@ -20,7 +20,7 @@ public class CameraSwitch : MonoBehaviour {
 		{
 			if(!switchImmediately)
 			{
-				cameraController.LerpSpeed = LerpSpeed;
+				cameraController.FollowSpeed = LerpSpeed;
 				cameraController.cameraSwitcher = true;
 				cameraController.nextCamera = attachedCamera;
 			}

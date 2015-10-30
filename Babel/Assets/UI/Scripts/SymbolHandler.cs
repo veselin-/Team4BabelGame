@@ -2,13 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class SymbolHandler : MonoBehaviour
+public class SymbolHandler : DragHandler
 {
 
     public Image Image1;
     public Image Image2;
-    public AudioSource Audio1;
-    public AudioSource Audio2;
 
     public float SyllableAudioSpacing = 0f;
 
@@ -25,8 +23,7 @@ public class SymbolHandler : MonoBehaviour
    public void PlaySound()
    {
 
-        Audio1.Play();
-        Audio2.PlayDelayed(Audio1.clip.length + SyllableAudioSpacing);
+        //AudioManager.Play(ID);
 
    }
 
@@ -35,8 +32,6 @@ public class SymbolHandler : MonoBehaviour
         Image1.sprite = syl1.GetComponent<Image>().sprite;
         Image2.sprite = syl2.GetComponent<Image>().sprite;
 
-        Audio1.clip = syl1.GetComponent<AudioSource>().clip;
-        Audio2.clip = syl2.GetComponent<AudioSource>().clip;
     }
 
 }

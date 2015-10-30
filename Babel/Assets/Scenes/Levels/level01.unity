@@ -89,6 +89,49 @@ NavMeshSettings:
 GameObject:
   m_PrefabParentObject: {fileID: 163670, guid: d4b2cac003360fa4981a4282b5646569, type: 2}
   m_PrefabInternal: {fileID: 1784369657}
+--- !u!1 &183616954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 183616956}
+  - 208: {fileID: 183616955}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!208 &183616955
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 183616954}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: .5, y: .5, z: .5}
+  m_MoveThreshold: .100000001
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: .5
+--- !u!4 &183616956
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 183616954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.06999993, y: 1.60000002, z: -1.69000006}
+  m_LocalScale: {x: .666463792, y: 5.04765224, z: 4.93327713}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &234759495
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +318,10 @@ Prefab:
       propertyPath: m_Name
       value: leverStairs
       objectReference: {fileID: 0}
+    - target: {fileID: 11466452, guid: d4b2cac003360fa4981a4282b5646569, type: 2}
+      propertyPath: obstacle
+      value: 
+      objectReference: {fileID: 183616954}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4b2cac003360fa4981a4282b5646569, type: 2}
   m_IsPrefabParent: 0
@@ -933,6 +980,7 @@ MonoBehaviour:
   Interactables:
   - {fileID: 689191598}
   MovementSpeed: 5
+  obstacle: {fileID: 183616954}
 --- !u!1 &885651345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,7 +1386,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 436558, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.5799999
+      value: 12.8999996
       objectReference: {fileID: 0}
     - target: {fileID: 436558, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1346,7 +1394,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 436558, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.51999998
+      value: -1.97000003
       objectReference: {fileID: 0}
     - target: {fileID: 436558, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1371,6 +1419,14 @@ Prefab:
     - target: {fileID: 128416, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
       propertyPath: m_TagString
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 436558, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 9.01212025
+      objectReference: {fileID: 0}
+    - target: {fileID: 436558, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 4.38030195
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19ce6a4e456d75841ac36f9a4bc83d9b, type: 2}
@@ -2349,7 +2405,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 497842, guid: 5f828f56384c84b48a6d827eb337168d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.57999992
+      value: 7.42000008
       objectReference: {fileID: 0}
     - target: {fileID: 497842, guid: 5f828f56384c84b48a6d827eb337168d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2357,7 +2413,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497842, guid: 5f828f56384c84b48a6d827eb337168d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.55000019
+      value: -5.69000006
       objectReference: {fileID: 0}
     - target: {fileID: 497842, guid: 5f828f56384c84b48a6d827eb337168d, type: 2}
       propertyPath: m_LocalRotation.x

@@ -19,7 +19,8 @@ namespace Assets.Environment.Stairs.Scripts
         private Vector3 _startPosition;
         private Vector3 _endPosistion;
         private bool _stairIsShown;
-    
+
+        public GameObject obstacle;
 
         // Use this for initialization
         void Start ()
@@ -48,6 +49,7 @@ namespace Assets.Environment.Stairs.Scripts
                 if (_interactables.All(i => i.HasBeenActivated()))
                 {
                     _stairIsShown = true;
+                    obstacle.SetActive(false);
                     //GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<RoomManager>().SetCurrentRoom(1);
                 }   
                 yield return new WaitForSeconds(0.2f);

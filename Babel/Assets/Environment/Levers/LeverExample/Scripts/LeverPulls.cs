@@ -6,7 +6,6 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
 {
     public class LeverPulls : MonoBehaviour, IInteractable
     {
-
         private Color _oldColor;
         private bool _hasBeenPulled;
 

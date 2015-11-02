@@ -19,14 +19,9 @@ public class SymbolLoader : MonoBehaviour
 
 	    foreach (GameObject s in Signs)
 	    {
-	        if (databaseManager.GetSign(s.GetComponent<SymbolHandler>().ID) != null)
-	        {
-	            s.SetActive(true);
-	        }
-	        else
-	        {
-                s.SetActive(false);
-            }
+
+            s.GetComponent<SymbolHandler>().UpdateSymbol();
+
 	    }
 
 

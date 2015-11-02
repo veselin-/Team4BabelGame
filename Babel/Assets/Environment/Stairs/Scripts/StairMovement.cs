@@ -44,14 +44,19 @@ namespace Assets.Environment.Stairs.Scripts
 
         IEnumerator CheckForInputs()
         {
-            while (!_stairIsShown)
+            while (true)
             {
                 if (_interactables.All(i => i.HasBeenActivated()))
                 {
                     _stairIsShown = true;
                     obstacle.SetActive(false);
                     //GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<RoomManager>().SetCurrentRoom(1);
-                }   
+                }
+                else
+                {
+                    _stairIsShown = false;
+                    obstacle.SetActive(true);
+                }
                 yield return new WaitForSeconds(0.2f);
             }
         }

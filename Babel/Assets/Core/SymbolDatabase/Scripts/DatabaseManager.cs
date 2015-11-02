@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using Assets.Core.Configuration;
+using System.Collections;
 
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
 {
@@ -11,6 +12,9 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     private Dictionary<int, Word> WordsDatabase;
     private Dictionary<int, Sentence> SentencesDatabase;
 
+    private bool AlphabetDBLoaded = false;
+    private bool WordsDBLoaded = false;
+    private bool SentencesDBLoaded = false;
 
     void Awake()
     {
@@ -127,19 +131,24 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
 
     public void LoadData()
     {
-        AlphabetDatabase = LoadAlphabetDB();
-        WordsDatabase = LoadWordsDB();
-        SentencesDatabase = LoadSentencesDB();
+        StartCoroutine("LoadAlphabetDB");
+        StartCoroutine("LoadWordsDB");
+        StartCoroutine("LoadSentencesDB");
+       
+    }
+
+    public bool DatabasesLoaded()
+    {
+        return (AlphabetDBLoaded && WordsDBLoaded && SentencesDBLoaded);
     }
 
 
-    private Dictionary<int, Syllable> LoadAlphabetDB()
+    private IEnumerator LoadAlphabetDB()
     {
         WWW alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
         WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
 
-        while (!alphabetData.isDone)
-        { }
+        yield return alphabetData;
 
         if (!File.Exists(alphabetPath.url))
         {
@@ -152,22 +161,21 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         var container = charSerializer.Deserialize(charStream) as AlphabetContainer;
         charStream.Close();
 
-        Dictionary<int, Syllable> tempDict = new Dictionary<int, Syllable>();
+        AlphabetDatabase = new Dictionary<int, Syllable>();
         foreach (Syllable syllable in container.Syllables)
         {
-                tempDict.Add(syllable.id, syllable);
+                AlphabetDatabase.Add(syllable.id, syllable);
         }
-        return tempDict;
+        AlphabetDBLoaded = true;
     }
 
 
-    private Dictionary<int, Word> LoadWordsDB()
+    private IEnumerator LoadWordsDB()
     {
         WWW wordsPath = GetFilePath(Constants.XmlFiles.Words);
         WWW wordsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Words);
 
-        while (!wordsData.isDone)
-        { }
+        yield return wordsData;
 
         if (!File.Exists(wordsPath.url))
         {
@@ -179,21 +187,20 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         var container = charSerializer.Deserialize(charStream) as WordsContainer;
         charStream.Close();
 
-        Dictionary<int, Word> tempDict = new Dictionary<int, Word>();
+        WordsDatabase = new Dictionary<int, Word>();
         foreach (Word word in container.Words)
         {
-            tempDict.Add(word.id, word);
+            WordsDatabase.Add(word.id, word);
         }
-        return tempDict;
-
+        WordsDBLoaded = true;
     }
 
-    private Dictionary<int, Sentence> LoadSentencesDB()
+    private IEnumerator LoadSentencesDB()
     {
         WWW sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
         WWW sentencesData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Sentences);
-        while (!sentencesData.isDone)
-        { }
+
+        yield return sentencesData;
 
         if (!File.Exists(sentencesPath.url))
         {
@@ -205,13 +212,13 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         var container = charSerializer.Deserialize(charStream) as SentencesContainer;
         charStream.Close();
 
-        Dictionary<int, Sentence> tempDict = new Dictionary<int, Sentence>();
+        SentencesDatabase = new Dictionary<int, Sentence>();
         foreach (Sentence sentence in container.Sentences)
         {
-            tempDict.Add(sentence.id, sentence);
+            SentencesDatabase.Add(sentence.id, sentence);
         }
-        return tempDict;
 
+        SentencesDBLoaded = true;
     }
 
     private WWW GetFilePath(string fileName)

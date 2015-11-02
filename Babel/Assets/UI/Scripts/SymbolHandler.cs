@@ -20,7 +20,7 @@ public class SymbolHandler : DragHandler
         databaseManager =
             GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
-        Word w = databaseManager.GetWord(ID);
+        Sign w = databaseManager.GetSign(ID);
 
         Syllable s1 = databaseManager.GetSyllable(w.SyllableSequence[0]);
         Syllable s2 = databaseManager.GetSyllable(w.SyllableSequence[1]);

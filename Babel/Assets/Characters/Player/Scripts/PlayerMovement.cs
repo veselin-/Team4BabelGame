@@ -1,4 +1,5 @@
-﻿using Assets.Characters.AiScripts;
+﻿using System.Linq;
+using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
@@ -22,16 +23,13 @@ namespace Assets.Characters.Player.Scripts
         void Update () {
             if (!Input.GetMouseButtonDown(0)) return;
 
+            // Find all object in ray, and sort them by distance to object.
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray, 100);
+            hits = hits.OrderBy(h => h.distance).ToArray();
 
-            IState state = null;
-
-            foreach (var hit in hits)
-            {
-                state = GameObjectToState(hit.transform.gameObject, hit);
-                if(state != null) break;
-            }
+            var state = hits.Select(hit => GameObjectToState(hit.transform.gameObject, hit))
+                    .FirstOrDefault(s => s != null);
 
             if (state != null)
                 _ai.AssignNewState(state);
@@ -43,7 +41,6 @@ namespace Assets.Characters.Player.Scripts
             if (other.GetComponent<IInteractable>() != null)
             {
                return new InteractWithNearestState(_agent, hit.transform.gameObject);
-
             }
             if (other.GetComponent<ICollectable>() != null)
             {

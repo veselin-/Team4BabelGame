@@ -7,16 +7,16 @@ public interface IDatabaseManager
     void LoadData();
     bool DatabasesLoaded();
 
-    void AddWord(int id, List<int> syllableSequence);
-    void AddSentence(int id, List<int> wordSequence);
+    void AddSign(int id, List<int> syllableSequence);
+    void AddSentence(int id, List<int> signSequence);
 
     Syllable GetSyllable(int id);
-    Word GetWord(int id);
+    Sign GetSign(int id);
     Sentence GetSentence(int id);
 
     void SaveAllDB();
     void SaveAlphabetDB();
-    void SaveWordsDB();
+    void SaveSignsDB();
     void SaveSentencesDB();
 
     Sprite GetImage(string fileName);

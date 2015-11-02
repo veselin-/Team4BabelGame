@@ -11,6 +11,8 @@ public class CombineSymbols : MonoBehaviour
 
     public GameObject Slot2;
 
+    public GameObject Slot3;
+
     public Text text;
 
     public GameObject SymbolPrefab;
@@ -70,8 +72,8 @@ public class CombineSymbols : MonoBehaviour
                // newSymbol.GetComponent<SymbolHandler>().SetSyllables(Slot1.transform.GetChild(0).gameObject, Slot2.transform.GetChild(0).gameObject);
                 newSymbol.GetComponent<SymbolHandler>().PlaySound();
                 List<int> SyllableSequence = new List<int> { Slot1.GetComponentInChildren<SyllableHandler>().ID , Slot2.GetComponentInChildren<SyllableHandler>().ID };
-                databaseManager.GetComponent<DatabaseManager>().AddWord(CreateNewSymbol.SymbolID, SyllableSequence);
-                databaseManager.GetComponent<DatabaseManager>().SaveWordsDB();
+                databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, SyllableSequence);
+                databaseManager.GetComponent<DatabaseManager>().SaveSignsDB();
 
             }
         }

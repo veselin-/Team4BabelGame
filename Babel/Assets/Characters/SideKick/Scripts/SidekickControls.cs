@@ -13,6 +13,7 @@ namespace Assets.Characters.SideKick.Scripts
         private GameObject _sideKick;
         private NavMeshAgent _sideKickAgent;
         private AiMovement _sideKickMovement;
+        private PickupHandler _sidekickPickupHandler;
         private GameObject _player;
 
         // Use this for initialization
@@ -22,6 +23,7 @@ namespace Assets.Characters.SideKick.Scripts
             _sideKickAgent = _sideKick.GetComponent<NavMeshAgent>();
             _sideKickMovement = _sideKick.GetComponent<AiMovement>();
             _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
+            _sidekickPickupHandler = _sideKick.GetComponent<PickupHandler>();
         }
 
         #endregion
@@ -31,8 +33,11 @@ namespace Assets.Characters.SideKick.Scripts
         {
             switch (i)
             {
+                case 1:
+                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Brazier, _sidekickPickupHandler.CurrentPickup));
+                    return;
                 case 6:
-                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Lever));
+                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Lever, _sidekickPickupHandler.CurrentPickup));
                     return;
                 case 9:
                     _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Stick));
@@ -57,7 +62,7 @@ namespace Assets.Characters.SideKick.Scripts
                     _sideKickMovement.AssignNewState(new TradeState(_sideKickAgent, _player.GetComponent<NavMeshAgent>()));
                     return;
                 case 21:
-                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Keyhole));
+                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Keyhole, _sidekickPickupHandler.CurrentPickup));
                     return;
                 default:
                     throw new Exception("That action is not implemented yet!");

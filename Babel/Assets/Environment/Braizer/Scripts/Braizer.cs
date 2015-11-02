@@ -1,4 +1,5 @@
-﻿using Assets.Core.Configuration;
+﻿using System.Linq;
+using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Assets.Environment.Braizer.Scripts
         public GameObject TorchPrefab;
         public GameObject StickPrefab;
         public bool StartLighted;
+
+        public GameObject[] InteractPoint;
 
         public bool OnFire {
             set { _psystem.enableEmission = value; }
@@ -30,7 +33,7 @@ namespace Assets.Environment.Braizer.Scripts
 
         public GameObject Interact(GameObject pickup)
         {
-            if (pickup == null) return null;
+            if (!CanThisBeInteractedWith(pickup)) return pickup;
 
             if (OnFire && pickup.tag == Constants.Tags.Stick)
             {
@@ -40,12 +43,24 @@ namespace Assets.Environment.Braizer.Scripts
 
             if (!OnFire && pickup.tag == Constants.Tags.Torch)
             {
-                Destroy(pickup);
                 OnFire = true;
-                return Instantiate(StickPrefab);
+                return pickup;
             }
 
             return pickup;
+        }
+
+        public bool CanThisBeInteractedWith(GameObject pickup)
+        {
+            if (pickup == null) return false;
+            return OnFire && pickup.tag == Constants.Tags.Stick || 
+                !OnFire && pickup.tag == Constants.Tags.Torch;
+        }
+
+        Vector3 IInteractable.InteractPosition(Vector3 ai)
+        {
+            return InteractPoint.OrderBy(g => Vector3.Distance(g.transform.position, ai)).
+                ToArray()[0].transform.position;
         }
     }
 }

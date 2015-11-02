@@ -76,4 +76,9 @@ public class SymbolHandler : DragHandler
 
     }
 
+    public override void InitializeSyllable()
+    {
+        
+    }
+
 }

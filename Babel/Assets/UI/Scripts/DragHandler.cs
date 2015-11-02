@@ -8,6 +8,11 @@ public abstract class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
     private Vector3 _startPosition;
     public static Transform _startParent;
 
+    void Start()
+    {
+        InitializeSyllable();
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         SymbolBeingDragged = gameObject;
@@ -50,4 +55,8 @@ public abstract class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
             }
         }
     }
+
+   public abstract void InitializeSyllable();
+
+
 }

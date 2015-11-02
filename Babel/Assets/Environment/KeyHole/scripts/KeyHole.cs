@@ -3,7 +3,10 @@ using Assets.Core.Configuration;
 using UnityEngine;
 using Assets.Core.InteractableObjects;
 
-public class KeyHole : MonoBehaviour, IInteractable {
+public class KeyHole : MonoBehaviour, IInteractable
+{
+
+    public GameObject InteractPositionObject;
 
     private bool _hasBeenPulled;
     private Color _oldColor;
@@ -20,11 +23,19 @@ public class KeyHole : MonoBehaviour, IInteractable {
 
     public GameObject Interact(GameObject pickup)
     {
-        if (pickup == null || pickup.tag != Constants.Tags.Key || _hasBeenPulled)
-            return pickup;
+        if (!CanThisBeInteractedWith(pickup)) return pickup;
 
         StartCoroutine(ChangeColor());
         return null;
+    }
+
+    public bool CanThisBeInteractedWith(GameObject pickup)
+    {
+        return pickup != null && pickup.tag == Constants.Tags.Key && !_hasBeenPulled;
+    }
+
+    public Vector3 InteractPosition (Vector3 ai){
+        return InteractPositionObject.transform.position;
     }
 
     IEnumerator ChangeColor()
@@ -33,6 +44,5 @@ public class KeyHole : MonoBehaviour, IInteractable {
         _hasBeenPulled = true;
         yield return new WaitForSeconds(5);
         GetComponent<Renderer>().material.color = _oldColor;
-        _hasBeenPulled = false;
     }
 }

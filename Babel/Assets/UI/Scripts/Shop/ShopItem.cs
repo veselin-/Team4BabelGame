@@ -4,11 +4,13 @@ using System.Collections;
 
 public class ShopItem : MonoBehaviour {
 
-    public Image buyButton;
+    public GameObject inventoryCan, item;
+    public Image buyButton, itemImg;
     public Sprite purchased;
     public Text costText;
     public int cost;
-    bool isBought = false;
+
+    //private Image itemImage;
 
 	// Use this for initialization
 	void Start () {
@@ -22,15 +24,15 @@ public class ShopItem : MonoBehaviour {
 
     public void BuyThisItem()
     {
-        if (isBought)
+        if (item.activeSelf == true)
         {
-            Debug.Log("GO TO INVENTORY SCREEN");
+            inventoryCan.SetActive(true);
         }
-        else if(CurrencyControl.currencyAmount >= cost && isBought == false)
+        else if(CurrencyControl.currencyAmount >= cost)
         {
             buyButton.sprite = purchased;
-            isBought = true;
-            Debug.Log("SET ACTIVE IN INVENTORY SCREEN");
+            item.SetActive(true);
+            //itemImg.gameObject.SetActive(true);
             CurrencyControl.currencyAmount = CurrencyControl.currencyAmount - cost;
             PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount);
         }

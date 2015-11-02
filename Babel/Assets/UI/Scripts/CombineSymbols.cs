@@ -11,6 +11,8 @@ public class CombineSymbols : MonoBehaviour
 
     public GameObject Slot2;
 
+    public GameObject Slot3;
+
     public Text text;
 
     public GameObject SymbolPrefab;
@@ -55,31 +57,54 @@ public class CombineSymbols : MonoBehaviour
             Destroy(transform.GetChild(0).gameObject);
         }
 
+        List<int> syllableIDs = new List<int>();
 
-        if (Slot1.GetComponent<SentenceSlotHandler>().symbol && Slot2.GetComponent<SentenceSlotHandler>().symbol)
+        if(Slot1.GetComponent<SentenceSlotHandler>().symbol)
+            syllableIDs.Add(Slot1.GetComponentInChildren<SyllableHandler>().ID);
+
+        if (Slot2.GetComponent<SentenceSlotHandler>().symbol)
+            syllableIDs.Add(Slot2.GetComponentInChildren<SyllableHandler>().ID);
+
+        if (Slot3.GetComponent<SentenceSlotHandler>().symbol)
+            syllableIDs.Add(Slot3.GetComponentInChildren<SyllableHandler>().ID);
+
+
+        if (syllableIDs.Count < 2)
         {
-            if (Slot1.GetComponentInChildren<SyllableHandler>().ID == Slot2.GetComponentInChildren<SyllableHandler>().ID)
-            {
-                text.text = "Invalid combination. The two syllables must be different.";
-               
-            }
-            else
-            {
-                GameObject newSymbol = Instantiate(SymbolPrefab);
-                newSymbol.transform.SetParent(transform);
-               // newSymbol.GetComponent<SymbolHandler>().SetSyllables(Slot1.transform.GetChild(0).gameObject, Slot2.transform.GetChild(0).gameObject);
-                newSymbol.GetComponent<SymbolHandler>().PlaySound();
-                List<int> SyllableSequence = new List<int> { Slot1.GetComponentInChildren<SyllableHandler>().ID , Slot2.GetComponentInChildren<SyllableHandler>().ID };
-                databaseManager.GetComponent<DatabaseManager>().AddWord(CreateNewSymbol.SymbolID, SyllableSequence);
-                databaseManager.GetComponent<DatabaseManager>().SaveWordsDB();
+            text.text = "Invalid combination. A sign must be at least two syllables.";
+            return;
+        }
 
+        if (syllableIDs.Count == 2)
+        {
+            if (syllableIDs[0] == syllableIDs[1])
+            {
+                text.text = "Invalid combination. The syllables must be different.";
+                return;
             }
         }
-        else
+
+        if (syllableIDs.Count == 3)
         {
-            text.text = "Invalid combination. There must be two syllables chosen.";
-            
+            if (syllableIDs[0] == syllableIDs[1] || syllableIDs[0] == syllableIDs[2] || syllableIDs[1] == syllableIDs[2])
+            {
+                text.text = "Invalid combination. The syllables must be different.";
+                return;
+            }
         }
+
+        databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
+        databaseManager.GetComponent<DatabaseManager>().SaveSignsDB();
+
+        GameObject newSymbol = Instantiate(SymbolPrefab);
+
+        newSymbol.transform.SetParent(transform);
+
+        newSymbol.GetComponent<SymbolHandler>().ID = CreateNewSymbol.SymbolID;
+
+        newSymbol.GetComponent<SymbolHandler>().UpdateSymbol();
+
+
     }
 
 }

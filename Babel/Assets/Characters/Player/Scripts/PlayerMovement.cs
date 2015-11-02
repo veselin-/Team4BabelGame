@@ -40,7 +40,7 @@ namespace Assets.Characters.Player.Scripts
             Debug.Log(other.tag);
             if (other.GetComponent<IInteractable>() != null)
             {
-               return new InteractWithNearestState(_agent, hit.transform.gameObject);
+               return new InteractWithNearestState(_agent, other);
             }
             if (other.GetComponent<ICollectable>() != null)
             {

@@ -45,4 +45,9 @@ public class CurrencyControl : MonoBehaviour {
             //amountText.text = "" + PlayerPrefs.GetInt("CurrencyAmount", currencyAmount);
         }
     }
+
+    public void OpenInventory(GameObject can)
+    {
+        can.SetActive(true);
+    }
 }

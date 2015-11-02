@@ -9,11 +9,11 @@ using System.Collections;
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
 {
     private Dictionary<int, Syllable> AlphabetDatabase;
-    private Dictionary<int, Word> WordsDatabase;
+    private Dictionary<int, Sign> SignsDatabase;
     private Dictionary<int, Sentence> SentencesDatabase;
 
     private bool AlphabetDBLoaded = false;
-    private bool WordsDBLoaded = false;
+    private bool SignsDBLoaded = false;
     private bool SentencesDBLoaded = false;
 
     void Awake()
@@ -21,25 +21,25 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         DontDestroyOnLoad(transform.gameObject);
     }
 
-    // Adds the word to the predefined id and name and sets it active
-    public void AddWord(int id, List<int> syllableSequence)
+    // Adds the sign to the predefined id and name and sets it active
+    public void AddSign(int id, List<int> syllableSequence)
     {
-        if (WordsDatabase.ContainsKey(id))
+        if (SignsDatabase.ContainsKey(id))
         {
-            Word word = WordsDatabase[id];
-            word.SyllableSequence = syllableSequence;
-            word.IsActive = true;
-            WordsDatabase[id] = word;
+            Sign sign = SignsDatabase[id];
+            sign.SyllableSequence = syllableSequence;
+            sign.IsActive = true;
+            SignsDatabase[id] = sign;
         }
     }
 
     // Adds the sentence to the predefined id 
-    public void AddSentence(int id, List<int> wordSequence)
+    public void AddSentence(int id, List<int> signSequence)
     {
         if (SentencesDatabase.ContainsKey(id))
         {
             Sentence sentence = SentencesDatabase[id];
-            sentence.WordSequence = wordSequence;
+            sentence.signSequence = signSequence;
             SentencesDatabase[id] = sentence;
         }
     }
@@ -56,12 +56,12 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         return null;
     }
 
-    // Returns the word of the database with the given ID if it is active
-    public Word GetWord(int id)
+    // Returns the sign of the database with the given ID if it is active
+    public Sign GetSign(int id)
     {
-        if (WordsDatabase.ContainsKey(id) && WordsDatabase[id].IsActive)
+        if (SignsDatabase.ContainsKey(id) && SignsDatabase[id].IsActive)
         {
-            return WordsDatabase[id];
+            return SignsDatabase[id];
         }
         return null;
     }
@@ -79,7 +79,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     public void SaveAllDB()
     {
         SaveAlphabetDB();
-        SaveWordsDB();
+        SaveSignsDB();
         SaveSentencesDB();
     }
 
@@ -96,16 +96,16 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         stream.Close();
     }
 
-    public void SaveWordsDB()
+    public void SaveSignsDB()
     {
-        WWW wordsPath = GetFilePath(Constants.XmlFiles.Words);
+        WWW signsPath = GetFilePath(Constants.XmlFiles.Signs);
 
-        WordsContainer wordsContainer = new WordsContainer();
-        wordsContainer.Words = new List<Word>(WordsDatabase.Values);
+        signsContainer signsContainer = new signsContainer();
+        signsContainer.Signs = new List<Sign>(SignsDatabase.Values);
 
-        var serializer = new XmlSerializer(typeof(WordsContainer));
-        var stream = new FileStream(wordsPath.url, FileMode.Create);
-        serializer.Serialize(stream, wordsContainer);
+        var serializer = new XmlSerializer(typeof(signsContainer));
+        var stream = new FileStream(signsPath.url, FileMode.Create);
+        serializer.Serialize(stream, signsContainer);
         stream.Close();
     }
 
@@ -131,24 +131,24 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
 
     public void LoadData()
     {
-        StartCoroutine("LoadAlphabetDB");
-        StartCoroutine("LoadWordsDB");
-        StartCoroutine("LoadSentencesDB");
-       
+        LoadAlphabetDB();
+        LoadsignsDB();
+        LoadSentencesDB();
     }
 
     public bool DatabasesLoaded()
     {
-        return (AlphabetDBLoaded && WordsDBLoaded && SentencesDBLoaded);
+        return (AlphabetDBLoaded && SignsDBLoaded && SentencesDBLoaded);
     }
 
 
-    private IEnumerator LoadAlphabetDB()
+    private void LoadAlphabetDB()
     {
         WWW alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
         WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
 
-        yield return alphabetData;
+        while(!alphabetData.isDone)
+        { }
 
         if (!File.Exists(alphabetPath.url))
         {
@@ -170,37 +170,39 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     }
 
 
-    private IEnumerator LoadWordsDB()
+    private void LoadsignsDB()
     {
-        WWW wordsPath = GetFilePath(Constants.XmlFiles.Words);
-        WWW wordsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Words);
+        WWW signsPath = GetFilePath(Constants.XmlFiles.Signs);
+        WWW signsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Signs);
 
-        yield return wordsData;
+        while (!signsData.isDone)
+        { }
 
-        if (!File.Exists(wordsPath.url))
+        if (!File.Exists(signsPath.url))
         {
-            File.WriteAllBytes(wordsPath.url, wordsData.bytes);
+            File.WriteAllBytes(signsPath.url, signsData.bytes);
         }
 
-        var charSerializer = new XmlSerializer(typeof(WordsContainer));
-        var charStream = new FileStream(wordsPath.url, FileMode.Open);
-        var container = charSerializer.Deserialize(charStream) as WordsContainer;
+        var charSerializer = new XmlSerializer(typeof(signsContainer));
+        var charStream = new FileStream(signsPath.url, FileMode.Open);
+        var container = charSerializer.Deserialize(charStream) as signsContainer;
         charStream.Close();
 
-        WordsDatabase = new Dictionary<int, Word>();
-        foreach (Word word in container.Words)
+        SignsDatabase = new Dictionary<int, Sign>();
+        foreach (Sign sign in container.Signs)
         {
-            WordsDatabase.Add(word.id, word);
+            SignsDatabase.Add(sign.id, sign);
         }
-        WordsDBLoaded = true;
+        SignsDBLoaded = true;
     }
 
-    private IEnumerator LoadSentencesDB()
+    private void LoadSentencesDB()
     {
         WWW sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
         WWW sentencesData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Sentences);
 
-        yield return sentencesData;
+        while (!sentencesData.isDone)
+        { }
 
         if (!File.Exists(sentencesPath.url))
         {
@@ -254,7 +256,7 @@ public class AlphabetContainer
     public List<Syllable> Syllables = new List<Syllable>();
 }
 
-public class Word
+public class Sign
 {
     [XmlAttribute("id")]
     public int id;
@@ -266,12 +268,12 @@ public class Word
     public bool IsActive;
 }
 
-[XmlRoot("WordsCollection")]
-public class WordsContainer
+[XmlRoot("SignsCollection")]
+public class signsContainer
 {
-    [XmlArray("Words")]
-    [XmlArrayItem("Word")]
-    public List<Word> Words = new List<Word>();
+    [XmlArray("Signs")]
+    [XmlArrayItem("Sign")]
+    public List<Sign> Signs = new List<Sign>();
 }
 
 
@@ -280,7 +282,7 @@ public class Sentence
     [XmlAttribute("id")]
     public int id;
 
-    public List<int> WordSequence;
+    public List<int> signSequence;
 }
 
 [XmlRoot("SentencesCollection")]

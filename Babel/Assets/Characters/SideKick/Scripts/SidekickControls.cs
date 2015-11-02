@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
@@ -28,6 +29,10 @@ namespace Assets.Characters.SideKick.Scripts
 
         #endregion
 
+        public void ReachToSentence(List<int> signs)
+        {
+            
+        }
 
         public void ExecuteAction(int i)
         {

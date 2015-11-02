@@ -11,6 +11,8 @@ public class CombineSymbols : MonoBehaviour
 
     public GameObject Slot2;
 
+    public GameObject Slot3;
+
     public Text text;
 
     public GameObject SymbolPrefab;

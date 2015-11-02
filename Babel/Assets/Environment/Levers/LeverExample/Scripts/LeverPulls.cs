@@ -8,6 +8,8 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
     {
         private Color _oldColor;
         private bool _hasBeenPulled;
+        public bool timelimit = false;
+        public int secForLever = 5;
 
         void Start()
         {
@@ -30,9 +32,12 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
         {
             GetComponent<Renderer>().material.color = Color.red;
             _hasBeenPulled = true;
-            yield return new WaitForSeconds(5);
-            GetComponent<Renderer>().material.color = _oldColor;
-            _hasBeenPulled = false;
+            if (timelimit)
+            {
+                yield return new WaitForSeconds(secForLever);
+                GetComponent<Renderer>().material.color = _oldColor;
+                _hasBeenPulled = false;
+            }
         }
     }
 }

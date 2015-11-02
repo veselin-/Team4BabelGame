@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ActivateSentence : MonoBehaviour {
+public class ActivateSentence : MonoBehaviour
+{
+
+    public GameObject[] SentenceSlots;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +43,7 @@ public class ActivateSentence : MonoBehaviour {
        Debug.Log(sentence[0]);
         Debug.Log(sentence[1]);
         Debug.Log(sentence[2]);
+        Debug.Log(sentence[3]);
         return null;
    } 
 

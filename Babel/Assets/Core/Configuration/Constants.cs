@@ -18,6 +18,7 @@ namespace Assets.Core.Configuration
             public const string Floor = "Floor";
             public const string Keyhole = "Keyhole";
             public const string DatabaseManager = "DatabaseManager";
+            public const string Sign = "Sign";
         }
 
         public class XmlFiles

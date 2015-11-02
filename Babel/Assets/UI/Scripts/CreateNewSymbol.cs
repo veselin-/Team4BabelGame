@@ -4,7 +4,7 @@ using System.Collections;
 public class CreateNewSymbol : MonoBehaviour
 {
 
-    public static int SymbolID;
+    public static int SymbolID = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -15,4 +15,9 @@ public class CreateNewSymbol : MonoBehaviour
 	void Update () {
 	
 	}
+
+   public void NextSymbol()
+    {
+        SymbolID++;
+    }
 }

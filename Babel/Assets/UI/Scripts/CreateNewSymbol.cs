@@ -6,10 +6,15 @@ public class CreateNewSymbol : MonoBehaviour
 
     public static int SymbolID = 0;
 
+    private DatabaseManager db;
+
 	// Use this for initialization
 	void Start () {
-	
-	}
+
+        db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
+        db.LoadData();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

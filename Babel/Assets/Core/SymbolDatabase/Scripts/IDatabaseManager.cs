@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public interface IDatabaseManager
 {
 
+    void LoadData();
+
     void AddWord(int id, List<int> syllableSequence);
     void AddSentence(int id, List<int> wordSequence);
 

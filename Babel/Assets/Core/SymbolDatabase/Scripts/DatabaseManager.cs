@@ -11,10 +11,10 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     private Dictionary<int, Word> WordsDatabase;
     private Dictionary<int, Sentence> SentencesDatabase;
 
-    // Use this for initialization
+
     void Awake()
     {
-        LoadData();
+        DontDestroyOnLoad(transform.gameObject);
     }
 
     // Adds the word to the predefined id and name and sets it active
@@ -125,7 +125,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         return (Sprite)Resources.Load(fileName, typeof(Sprite));
     }
 
-    private void LoadData()
+    public void LoadData()
     {
         AlphabetDatabase = LoadAlphabetDB();
         WordsDatabase = LoadWordsDB();

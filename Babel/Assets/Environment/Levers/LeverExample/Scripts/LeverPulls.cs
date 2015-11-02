@@ -8,8 +8,14 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
     {
         private Color _oldColor;
         private bool _hasBeenPulled;
-        public bool timelimit = false;
-        public int secForLever = 5;
+        public bool Timelimit = false;
+        public int SecForLever = 5;
+        public GameObject PlayerPos;
+
+        public Vector3 InteractPosition(Vector3 ai)
+        {
+            return PlayerPos.transform.position;
+        }
 
         void Start()
         {
@@ -23,18 +29,23 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
 
         public GameObject Interact(GameObject pickup)
         {
-            if(!_hasBeenPulled)
+            if(CanThisBeInteractedWith(pickup))
                 StartCoroutine(ChangeColor());
             return pickup;
+        }
+
+        public bool CanThisBeInteractedWith(GameObject pickup)
+        {
+            return !_hasBeenPulled;
         }
 
         IEnumerator ChangeColor()
         {
             GetComponent<Renderer>().material.color = Color.red;
             _hasBeenPulled = true;
-            if (timelimit)
+            if (Timelimit)
             {
-                yield return new WaitForSeconds(secForLever);
+                yield return new WaitForSeconds(SecForLever);
                 GetComponent<Renderer>().material.color = _oldColor;
                 _hasBeenPulled = false;
             }

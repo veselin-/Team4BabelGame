@@ -131,10 +131,9 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
 
     public void LoadData()
     {
-        StartCoroutine("LoadAlphabetDB");
-        StartCoroutine("LoadsignsDB");
-        StartCoroutine("LoadSentencesDB");
-       
+        LoadAlphabetDB();
+        LoadsignsDB();
+        LoadSentencesDB();
     }
 
     public bool DatabasesLoaded()
@@ -143,12 +142,13 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     }
 
 
-    private IEnumerator LoadAlphabetDB()
+    private void LoadAlphabetDB()
     {
         WWW alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
         WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
 
-        yield return alphabetData;
+        while(!alphabetData.isDone)
+        { }
 
         if (!File.Exists(alphabetPath.url))
         {
@@ -170,12 +170,13 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     }
 
 
-    private IEnumerator LoadsignsDB()
+    private void LoadsignsDB()
     {
         WWW signsPath = GetFilePath(Constants.XmlFiles.Signs);
         WWW signsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Signs);
 
-        yield return signsData;
+        while (!signsData.isDone)
+        { }
 
         if (!File.Exists(signsPath.url))
         {
@@ -195,12 +196,13 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         SignsDBLoaded = true;
     }
 
-    private IEnumerator LoadSentencesDB()
+    private void LoadSentencesDB()
     {
         WWW sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
         WWW sentencesData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Sentences);
 
-        yield return sentencesData;
+        while (!sentencesData.isDone)
+        { }
 
         if (!File.Exists(sentencesPath.url))
         {

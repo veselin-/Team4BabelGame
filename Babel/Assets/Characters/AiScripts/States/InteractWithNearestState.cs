@@ -40,14 +40,14 @@ namespace Assets.Characters.AiScripts.States
             {
                 case State.Neutral:
                     _agent.SetDestination(_intaractableGoal.transform.position);
-                    _state = State.GoToLever;
+                    _state = State.GoToIntactable;
                     return;
-                case State.GoToLever:
+                case State.GoToIntactable:
                     if (_agent.HasReachedTarget())
-                        _state = Vector3.Distance(_intaractableGoal.transform.position, _agent.transform.position) < 1 ? 
-                            State.PullLever : State.Done;
+                        _state = Vector3.Distance(_intaractableGoal.transform.position, _agent.transform.position) < 2 ? 
+                            State.Interact : State.Done;
                     return;
-                case State.PullLever:
+                case State.Interact:
                     var puh = _agent.gameObject.GetComponent<PickupHandler>();
                     var returnItem = _intaractableGoal.GetComponent<IInteractable>().Interact(puh.CurrentPickup);
                     puh.PickUpItem(returnItem);
@@ -71,7 +71,7 @@ namespace Assets.Characters.AiScripts.States
 
         enum State
         {
-            Neutral, GoToLever, PullLever, WaitSomeTime, Done
+            Neutral, GoToIntactable, Interact, WaitSomeTime, Done
         }
     }
 }

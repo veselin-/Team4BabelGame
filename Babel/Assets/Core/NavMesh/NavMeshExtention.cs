@@ -4,12 +4,9 @@ namespace Assets.Core.NavMesh
 {
     public static class NavMeshExtention {
 
-        public static bool HasReachedTarget(this NavMeshAgent mNavMeshAgent)
+        public static bool HasReachedTarget(this NavMeshAgent agent)
         {
-            return mNavMeshAgent.remainingDistance < 1f;
-            //if (mNavMeshAgent.pathPending) return false;
-            //return mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance &&
-            //       (!mNavMeshAgent.hasPath || mNavMeshAgent.velocity.sqrMagnitude < 1f);
+            return agent.remainingDistance < 0.2;
         }
     }
 }

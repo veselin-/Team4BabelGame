@@ -14,10 +14,15 @@ public class AchievementHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(LeverPulls.leverpulls == 7 && !PlayerPrefsBool.GetBool(achievement.name))
+
+	}
+
+    public void RefreshAchievements()
+    {
+        if (LeverPulls.leverpulls == 7 && !PlayerPrefsBool.GetBool(achievement.name))
         {
             PlayerPrefsBool.SetBool(achievement.name, true);
             achievement.SetActive(true);
         }
-	}
+    }
 }

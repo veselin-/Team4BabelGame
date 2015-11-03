@@ -8,7 +8,7 @@ public class LoadDB : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
-        db.LoadData();
+        
     }
 	
 	// Update is called once per frame

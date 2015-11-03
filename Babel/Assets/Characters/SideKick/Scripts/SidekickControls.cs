@@ -28,7 +28,6 @@ namespace Assets.Characters.SideKick.Scripts
             _sidekickPickupHandler = _sideKick.GetComponent<PickupHandler>();
             _dbManager =
                 GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
-            //_dbManager.LoadData();
         }
 
         #endregion

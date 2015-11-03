@@ -6,6 +6,8 @@ public class UIControl : MonoBehaviour
 
     public Animator SignBook;
     public Animator SignCreation;
+    public Animator Shop;
+    public Animator Customization;
     public Animator MainMenu;
 
 
@@ -35,6 +37,24 @@ public class UIControl : MonoBehaviour
     public void SignCreationExit()
     {
         SignCreation.SetTrigger("SignCreationExit");
+    }
+
+    public void ShopEnter()
+    {
+        Shop.SetTrigger("Enter");
+    }
+    public void ShopExit()
+    {
+        Shop.SetTrigger("Exit");
+    }
+
+    public void CustomizationEnter()
+    {
+        Customization.SetTrigger("Enter");
+    }
+    public void CustomizationExit()
+    {
+        Customization.SetTrigger("Exit");
     }
 
 }

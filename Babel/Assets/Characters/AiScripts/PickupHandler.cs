@@ -64,6 +64,8 @@ namespace Assets.Characters.AiScripts
             if(CurrentPickup == null) return;
             CurrentPickup.transform.position = transform.position;
             CurrentPickup.SetActive(true);
+            CurrentPickup = null;
+            UpdateDict();
         }
         
         #endregion

@@ -16,6 +16,7 @@ namespace Assets.Characters.SideKick.Scripts
         private AiMovement _sideKickMovement;
         private PickupHandler _sidekickPickupHandler;
         private GameObject _player;
+        private DatabaseManager _dbManager;
 
         // Use this for initialization
         void Start()
@@ -25,13 +26,18 @@ namespace Assets.Characters.SideKick.Scripts
             _sideKickMovement = _sideKick.GetComponent<AiMovement>();
             _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
             _sidekickPickupHandler = _sideKick.GetComponent<PickupHandler>();
+            _dbManager =
+                GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+            _dbManager.LoadData();
         }
 
         #endregion
 
-        public void ReachToSentence(List<int> signs)
+        public void RespondToSentence(List<int> signs)
         {
-            
+            var id = _dbManager.GetSentenceBySeq(signs);
+            if (id > 0)
+                ExecuteAction(id);
         }
 
         public void ExecuteAction(int i)
@@ -56,6 +62,9 @@ namespace Assets.Characters.SideKick.Scripts
                     return;
                 case 12:
                     _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Bottle));
+                    return;
+                case 13:
+                    _sidekickPickupHandler.DropCurrent();
                     return;
                 case 17:
                     _sideKickMovement.AssignNewState(new GoSomewhereAndWaitState(_sideKickAgent,

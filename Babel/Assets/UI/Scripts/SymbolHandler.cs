@@ -21,7 +21,8 @@ public class SymbolHandler : DragHandler
         databaseManager =
             GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
-        UpdateSymbol();
+
+      //  UpdateSymbol();
 
     }
 

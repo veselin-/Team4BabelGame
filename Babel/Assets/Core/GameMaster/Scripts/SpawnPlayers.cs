@@ -26,6 +26,7 @@ namespace Assets.Core.GameMaster.Scripts
             sidekick.GetComponent<PlayerMovement>().enabled = false;
 
             player.GetComponent<SidekickControls>().enabled = false;
+            player.name = Constants.Tags.Player;
         }
 
         // Update is called once per frame

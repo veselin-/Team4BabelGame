@@ -13,13 +13,10 @@ namespace Assets.Core.GameMaster.Scripts
         public Transform SidekickSpawnPoint;
         
         // Use this for initialization
-        void Start ()
+        void Awake ()
         {
-            var sidekick = Instantiate(CharactorPrefab);
-            var player = Instantiate(CharactorPrefab);
-
-            sidekick.transform.position = SidekickSpawnPoint.position;
-            player.transform.position = PlayerSpawnPoint.position;
+            var sidekick = (GameObject) Instantiate(CharactorPrefab, SidekickSpawnPoint.position, Quaternion.identity);
+            var player = (GameObject) Instantiate(CharactorPrefab, PlayerSpawnPoint.position, Quaternion.identity);
 
             sidekick.tag = Constants.Tags.SideKick;
             sidekick.name = Constants.Tags.SideKick;

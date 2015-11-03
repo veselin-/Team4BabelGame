@@ -12,8 +12,6 @@ public class CreateNewSymbol : MonoBehaviour
 	void Awake () {
 
         db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
-        db.LoadData();
-
     }
 	
 	// Update is called once per frame

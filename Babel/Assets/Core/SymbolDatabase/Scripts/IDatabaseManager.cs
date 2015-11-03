@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public interface IDatabaseManager
 {
-
-    void LoadData();
     bool DatabasesLoaded();
 
     void AddSign(int id, List<int> syllableSequence);

@@ -20,6 +20,7 @@ namespace Assets.Core.Configuration
             public const string DatabaseManager = "DatabaseManager";
             public const string Brazier = "Brazier";
             public const string Sign = "Sign";
+            public const string ExceptionImage = "ExceptionImage";
         }
 
         public class XmlFiles
@@ -27,6 +28,11 @@ namespace Assets.Core.Configuration
             public const string Alphabet = "Alphabet.xml";
             public const string Signs = "Signs.xml";
             public const string Sentences = "Sentences.xml";
+        }
+
+        public class ShopItems
+        {
+            public const string Hat = "Hat";
         }
     }
 }

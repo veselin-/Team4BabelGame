@@ -6,6 +6,8 @@ using System.IO;
 using Assets.Core.Configuration;
 using System.Collections;
 using System.Linq;
+using System;
+using UnityEngine.UI;
 
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
 {
@@ -17,10 +19,26 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     private bool SignsDBLoaded = false;
     private bool SentencesDBLoaded = false;
 
+    public GameObject ExceptionImage;
+
+    private 
+
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        try
+        {
+          LoadData();
+          DontDestroyOnLoad(transform.gameObject);
+        }
+        catch (Exception e)
+        {
+            if(ExceptionImage != null)
+            ExceptionImage.SetActive(true);
+            Debug.Log("Couldn't load database. Probably an error in the XML");
+        }
+       
     }
+
 
     // Adds the sign to the predefined id and name and sets it active
     public void AddSign(int id, List<int> syllableSequence)
@@ -81,9 +99,14 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     // Returns the sentence of the database with the given ID
     public int GetSentenceBySeq(List<int> signSequence)
     {
-        Sentence sentence = SentencesDatabase.SingleOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
+        if (signSequence.Count > 0)
+        {
+            Sentence sentence =
+                SentencesDatabase.SingleOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
 
-        return sentence != null ? sentence.id : -1;
+            return sentence != null ? sentence.id : -1;
+        }
+        return -1;
     }
 
 public void SaveAllDB()
@@ -139,7 +162,7 @@ public void SaveAllDB()
         return (Sprite)Resources.Load(fileName, typeof(Sprite));
     }
 
-    public void LoadData()
+    private void LoadData()
     {
         LoadAlphabetDB();
         LoadsignsDB();

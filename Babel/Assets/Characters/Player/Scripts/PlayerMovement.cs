@@ -4,6 +4,7 @@ using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Characters.Player.Scripts
 {
@@ -23,6 +24,7 @@ namespace Assets.Characters.Player.Scripts
         void Update () {
             if (!Input.GetMouseButtonDown(0)) return;
 
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             // Find all object in ray, and sort them by distance to object.
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray, 100);
@@ -37,7 +39,6 @@ namespace Assets.Characters.Player.Scripts
 
         IState GameObjectToState(GameObject other, RaycastHit hit)
         {
-            Debug.Log(other.tag);
             if (other.GetComponent<IInteractable>() != null)
             {
                return new InteractWithNearestState(_agent, other);

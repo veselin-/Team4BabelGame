@@ -41,6 +41,7 @@ public class ActivateSentence : MonoBehaviour
            if (slot.GetComponent<SentenceSlotHandler>().symbol)
            {
                sentence.Add(slot.transform.GetComponentInChildren<SymbolHandler>().ID);
+                Destroy(slot.transform.GetChild(0).gameObject, 2f);
            }
            else
            {

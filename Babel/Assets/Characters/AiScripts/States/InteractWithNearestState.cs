@@ -28,7 +28,6 @@ namespace Assets.Characters.AiScripts.States
                 var path = new NavMeshPath();
                 agnet.CalculatePath(dest.InteractPosition(_agent.transform.position), path);
 
-                Debug.Log(i.name + path.status);
                 if (path.status != NavMeshPathStatus.PathComplete) continue;
 
                 _intaractableGoal = dest;

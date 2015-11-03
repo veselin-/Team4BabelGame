@@ -42,6 +42,15 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 		narrative = speechList.speechList;
 		GetNextSpeech ();
+
+
+		//bubble resize depending on the text length
+		Debug.Log ("Image  " + PlayerSpeechBubble.image.rectTransform.rect.width);
+		Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
+
+		//float textWidth = _PlayerText.rectTransform.rect.width + 10;
+		//PlayerSpeechBubble.image.rectTransform.rect.width = textWidth;
+
 	}
 	
 	// Update is called once per frame

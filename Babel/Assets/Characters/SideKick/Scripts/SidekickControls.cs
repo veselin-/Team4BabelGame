@@ -39,6 +39,7 @@ namespace Assets.Characters.SideKick.Scripts
             switch (i)
             {
                 case 1:
+                case 4:
                     _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Brazier, _sidekickPickupHandler.CurrentPickup));
                     return;
                 case 6:
@@ -62,6 +63,9 @@ namespace Assets.Characters.SideKick.Scripts
                     return;
                 case 18:
                     _sideKickMovement.AssignNewState(new FollowThisState(_sideKickAgent, _player.gameObject));
+                    return;
+                case 19:
+                    _sideKickMovement.AssignNewState(new WaitState(_sideKickAgent));
                     return;
                 case 20:
                     _sideKickMovement.AssignNewState(new TradeState(_sideKickAgent, _player.GetComponent<NavMeshAgent>()));

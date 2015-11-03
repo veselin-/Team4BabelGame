@@ -44,14 +44,14 @@ public class ActivateSentence : MonoBehaviour
            }
            else
            {
-               sentence.Add(-1);
+              // sentence.Add(-1);
            }
        }
-       Debug.Log(sentence[0]);
-        Debug.Log(sentence[1]);
-        Debug.Log(sentence[2]);
-        Debug.Log(sentence[3]);
-        return null;
+       //Debug.Log(sentence[0]);
+       // Debug.Log(sentence[1]);
+       // Debug.Log(sentence[2]);
+       // Debug.Log(sentence[3]);
+        return sentence;
    } 
 
 }

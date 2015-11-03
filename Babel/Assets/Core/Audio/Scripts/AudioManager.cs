@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.Configuration;
 using UnityEngine.Audio;
 
 #if UNITY_EDITOR
@@ -37,6 +38,7 @@ public class AudioManager : MonoBehaviour {
 	private int _currentSignalSeconds = 0;
 
 	private AudioSource Player;
+    private DatabaseManager databaseManager;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +47,8 @@ public class AudioManager : MonoBehaviour {
 		{
 			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		}
+
+	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
 		LoadSavedValues ();
 
@@ -242,6 +246,23 @@ public class AudioManager : MonoBehaviour {
 		//FemaleSyllabusList[index].Stop();
 		//GetFemaleSyllabusByName (name).Stop ();
 	}
+
+    public void StartPlayCoroutine(int id)
+    {
+        StartCoroutine(FemaleSignPlay(id));
+    }
+
+    IEnumerator FemaleSignPlay(int id)
+    {
+       Sign s = databaseManager.GetSign(id);
+
+        foreach (int i in s.SyllableSequence)
+        {
+            FemaleSyllabusSoundPlay(i);
+            yield return new WaitForSeconds(FemaleSyllabusList[i].length);
+        }
+
+    }
 
 	/*
 	private AudioSource GetFemaleSyllabusByName(string name)

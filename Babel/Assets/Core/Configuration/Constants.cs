@@ -21,6 +21,7 @@ namespace Assets.Core.Configuration
             public const string Brazier = "Brazier";
             public const string Sign = "Sign";
             public const string ExceptionImage = "ExceptionImage";
+            public const string AudioManager = "AudioManager";
         }
 
         public class XmlFiles

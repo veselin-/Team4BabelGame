@@ -19,6 +19,8 @@ public class CombineSymbols : MonoBehaviour
 
     private GameObject databaseManager;
 
+    private AudioManager audioManager;
+
     // Use this for initialization
 
     public GameObject symbol
@@ -40,8 +42,10 @@ public class CombineSymbols : MonoBehaviour
     void Start () {
 
         databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager);
-	
-	}
+
+        audioManager = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -104,7 +108,7 @@ public class CombineSymbols : MonoBehaviour
 
         newSymbol.GetComponent<SymbolHandler>().UpdateSymbol();
 
-
+        audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
@@ -15,6 +16,7 @@ namespace Assets.Characters.SideKick.Scripts
         private AiMovement _sideKickMovement;
         private PickupHandler _sidekickPickupHandler;
         private GameObject _player;
+        private DatabaseManager _dbManager;
 
         // Use this for initialization
         void Start()
@@ -24,16 +26,26 @@ namespace Assets.Characters.SideKick.Scripts
             _sideKickMovement = _sideKick.GetComponent<AiMovement>();
             _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
             _sidekickPickupHandler = _sideKick.GetComponent<PickupHandler>();
+            _dbManager =
+                GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+            //_dbManager.LoadData();
         }
 
         #endregion
 
+        public void RespondToSentence(List<int> signs)
+        {
+            var id = _dbManager.GetSentenceBySeq(signs);
+            if (id > 0)
+                ExecuteAction(id);
+        }
 
         public void ExecuteAction(int i)
         {
             switch (i)
             {
                 case 1:
+                case 4:
                     _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Brazier, _sidekickPickupHandler.CurrentPickup));
                     return;
                 case 6:
@@ -51,12 +63,18 @@ namespace Assets.Characters.SideKick.Scripts
                 case 12:
                     _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Bottle));
                     return;
+                case 13:
+                    _sidekickPickupHandler.DropCurrent();
+                    return;
                 case 17:
                     _sideKickMovement.AssignNewState(new GoSomewhereAndWaitState(_sideKickAgent,
                         _player.transform.position));
                     return;
                 case 18:
                     _sideKickMovement.AssignNewState(new FollowThisState(_sideKickAgent, _player.gameObject));
+                    return;
+                case 19:
+                    _sideKickMovement.AssignNewState(new WaitState(_sideKickAgent));
                     return;
                 case 20:
                     _sideKickMovement.AssignNewState(new TradeState(_sideKickAgent, _player.GetComponent<NavMeshAgent>()));

@@ -34,15 +34,13 @@ public class ActivateSentence : MonoBehaviour
   public List<int> GetSentence()
    {
 
-       GameObject[] symbols = GameObject.FindGameObjectsWithTag("SentenceSlot");
-
        List<int> sentence = new List<int>();
 
-       foreach (GameObject slot in symbols)
+       foreach (GameObject slot in SentenceSlots)
        {
            if (slot.GetComponent<SentenceSlotHandler>().symbol)
            {
-               sentence.Add(slot.transform.GetComponentInChildren<Transform>().GetSiblingIndex());
+               sentence.Add(slot.transform.GetComponentInChildren<SymbolHandler>().ID);
            }
            else
            {

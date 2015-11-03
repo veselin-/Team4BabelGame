@@ -47,8 +47,10 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		//bubble resize depending on the text length
 		Debug.Log ("Image  " + PlayerSpeechBubble.image.rectTransform.rect.width);
 		Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
-
-		//float textWidth = _PlayerText.rectTransform.rect.width + 10;
+		//_PlayerText.h
+		float textWidth = _PlayerText.rectTransform.rect.width + 10;
+		Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
+		imageWidth.width = textWidth;
 		//PlayerSpeechBubble.image.rectTransform.rect.width = textWidth;
 
 	}
@@ -60,6 +62,15 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekick.transform.position);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+
+		//Debug.Log (_PlayerText.);
+
+		/*
+		Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
+		float textWidth = _PlayerText.rectTransform.rect.width + 10;
+		Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
+		imageWidth.width = textWidth;
+		*/
 	}
 
 	public void GetNextSpeech()

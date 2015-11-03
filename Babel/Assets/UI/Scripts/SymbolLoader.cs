@@ -10,10 +10,13 @@ public class SymbolLoader : MonoBehaviour
     private GameObject[] Signs;
 
 	// Use this for initialization
-	void OnEnable ()
+	void Start ()
 	{
 
+
 	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+
+        databaseManager.LoadData();
 
 	    Signs = GameObject.FindGameObjectsWithTag(Constants.Tags.Sign);
 

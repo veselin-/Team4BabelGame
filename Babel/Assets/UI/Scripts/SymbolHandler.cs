@@ -21,7 +21,8 @@ public class SymbolHandler : DragHandler
         databaseManager =
             GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
-        UpdateSymbol();
+
+      //  UpdateSymbol();
 
     }
 
@@ -74,6 +75,11 @@ public class SymbolHandler : DragHandler
         }
 
 
+    }
+
+    public override void InitializeSyllable()
+    {
+        
     }
 
 }

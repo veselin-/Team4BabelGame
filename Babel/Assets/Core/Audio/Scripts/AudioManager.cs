@@ -18,18 +18,25 @@ public class AudioManager : MonoBehaviour {
 	public AudioSource[] MaleSyllabusList;
 	public AudioSource[] FemaleSyllabusList;
 
-	public AudioSource[] AmbienceSignals;
+	public AudioSource[] SignalSounds;
 
-	public int MinSnapTransition = 1;
-	public int MaxSnapTransition = 3;
-	public int MinSnapPlayingTime = 10;
-	public int MaxSnapPlayingTime = 20;
-	public int MinSignalChange = 10;
-	public int MaxSignalChange = 20;
+	public int MinSnapShotTransition = 5;
+	public int MaxSnapShotTransition = 20;
+	public int MinSnapShotPlayingTime = 7;
+	public int MaxSnapShotPlayingTime = 15;
+	public int MinSignalSoundChange = 7;
+	public int MaxSignalSoundChange = 15;
 
 	[SerializeField]
 	private int _currentSnapshot = 0;
+	[SerializeField]
+	private int _currentSnapshotSeconds = 0;
+	[SerializeField]
 	private int _currentSignal = 0;
+	[SerializeField]
+	private int _currentSignalSeconds = 0;
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -46,24 +53,25 @@ public class AudioManager : MonoBehaviour {
 
 	IEnumerator RandomAmbienceSignals()
 	{
-		int nextTransition = Random.Range (MinSignalChange, MaxSignalChange);
+		int nextTransition = Random.Range (MinSignalSoundChange, MaxSignalSoundChange);
+		_currentSignalSeconds = nextTransition;
 		yield return new WaitForSeconds (nextTransition);
 
-		int randomAmbientSignal = Random.Range (0, AmbienceSignals.Length);
+		int randomAmbientSignal = Random.Range (0, SignalSounds.Length);
 		while(_currentSignal == randomAmbientSignal)
 		{
-			randomAmbientSignal = Random.Range (0, AmbienceSignals.Length);
+			randomAmbientSignal = Random.Range (0, SignalSounds.Length);
 			yield return null;
 		}
 		_currentSignal = randomAmbientSignal;
-		AmbienceSignals [_currentSignal].Play ();
+		SignalSounds [_currentSignal].Play ();
 
 		StartCoroutine (RandomAmbienceSignals ());
 	}
 
 	IEnumerator RandomAmbience()
 	{
-		int randomTransition = Random.Range (MinSnapTransition, MaxSnapTransition);
+		int randomTransition = Random.Range (MinSnapShotTransition, MaxSnapShotTransition);
 		int randomSnap = Random.Range (0, AmbientSnapshots.Length);
 		//AmbientSnapshots[0].name;
 
@@ -88,7 +96,8 @@ public class AudioManager : MonoBehaviour {
 
 		MusicMixer.TransitionToSnapshots (AmbientSnapshots, weights, randomTransition);
 
-		int nextTransition = Random.Range (MinSnapPlayingTime, MaxSnapPlayingTime);
+		int nextTransition = Random.Range (MinSnapShotPlayingTime, MaxSnapShotPlayingTime);
+		_currentSnapshotSeconds = nextTransition;
 		yield return new WaitForSeconds(nextTransition);
 
 		//randomTransition = Random.Range (MinSnapTransition, MaxSnapTransition);

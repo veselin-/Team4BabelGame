@@ -9,7 +9,7 @@ public class CreateNewSymbol : MonoBehaviour
     private DatabaseManager db;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
         db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
         db.LoadData();

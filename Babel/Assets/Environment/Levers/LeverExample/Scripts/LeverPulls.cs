@@ -11,6 +11,7 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
         public bool Timelimit = false;
         public int SecForLever = 5;
         public GameObject PlayerPos;
+        public static int leverpulls = 0;
 
         public Vector3 InteractPosition(Vector3 ai)
         {
@@ -43,6 +44,11 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
         {
             GetComponent<Renderer>().material.color = Color.red;
             _hasBeenPulled = true;
+            if(leverpulls < 7)
+            {
+                leverpulls += 1;
+            }
+            Debug.Log(leverpulls);
             if (Timelimit)
             {
                 yield return new WaitForSeconds(SecForLever);

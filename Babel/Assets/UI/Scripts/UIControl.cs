@@ -28,4 +28,13 @@ public class UIControl : MonoBehaviour
         SignBook.SetTrigger("SignBookExit");
     }
 
+    public void SignCreationEnter()
+    {
+        SignCreation.SetTrigger("SignCreationEnter");
+    }
+    public void SignCreationExit()
+    {
+        SignCreation.SetTrigger("SignCreationExit");
+    }
+
 }

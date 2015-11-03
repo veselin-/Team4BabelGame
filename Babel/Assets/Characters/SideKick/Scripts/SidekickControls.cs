@@ -87,7 +87,7 @@ namespace Assets.Characters.SideKick.Scripts
                     _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Keyhole, _sidekickPickupHandler.CurrentPickup));
                     return;
                 default:
-                    throw new Exception("That action is not implemented yet!");
+                    return;
             }   
             
         }

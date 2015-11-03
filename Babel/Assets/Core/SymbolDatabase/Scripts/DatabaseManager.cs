@@ -34,6 +34,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             if(ExceptionImage != null)
             ExceptionImage.SetActive(true);
+            Debug.Log("Couldn't load database. Probably an error in the XML");
         }
        
     }
@@ -98,9 +99,14 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     // Returns the sentence of the database with the given ID
     public int GetSentenceBySeq(List<int> signSequence)
     {
-        Sentence sentence = SentencesDatabase.SingleOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
+        if (signSequence.Count > 0)
+        {
+            Sentence sentence =
+                SentencesDatabase.SingleOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
 
-        return sentence != null ? sentence.id : -1;
+            return sentence != null ? sentence.id : -1;
+        }
+        return -1;
     }
 
 public void SaveAllDB()

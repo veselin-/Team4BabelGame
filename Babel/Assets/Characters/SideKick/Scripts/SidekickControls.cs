@@ -57,6 +57,9 @@ namespace Assets.Characters.SideKick.Scripts
                 case 12:
                     _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Bottle));
                     return;
+                case 13:
+                    _sidekickPickupHandler.DropCurrent();
+                    return;
                 case 17:
                     _sideKickMovement.AssignNewState(new GoSomewhereAndWaitState(_sideKickAgent,
                         _player.transform.position));

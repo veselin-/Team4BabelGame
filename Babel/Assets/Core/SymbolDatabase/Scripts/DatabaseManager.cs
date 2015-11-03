@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using Assets.Core.Configuration;
 using System.Collections;
+using System.Linq;
 
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
 {
@@ -39,7 +40,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         if (SentencesDatabase.ContainsKey(id))
         {
             Sentence sentence = SentencesDatabase[id];
-            sentence.signSequence = signSequence;
+            sentence.SignSequence = signSequence;
             SentencesDatabase[id] = sentence;
         }
     }
@@ -67,7 +68,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     }
 
     // Returns the sentence of the database with the given ID
-    public Sentence GetSentence(int id)
+    public Sentence GetSentenceById(int id)
     {
         if (SentencesDatabase.ContainsKey(id))
         {
@@ -76,7 +77,16 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         return null;
     }
 
-    public void SaveAllDB()
+
+    // Returns the sentence of the database with the given ID
+    public int GetSentenceBySeq(List<int> signSequence)
+    {
+        Sentence sentence = SentencesDatabase.SingleOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
+
+        return sentence != null ? sentence.id : -1;
+    }
+
+public void SaveAllDB()
     {
         SaveAlphabetDB();
         SaveSignsDB();
@@ -282,7 +292,7 @@ public class Sentence
     [XmlAttribute("id")]
     public int id;
 
-    public List<int> signSequence;
+    public List<int> SignSequence;
 }
 
 [XmlRoot("SentencesCollection")]

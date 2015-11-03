@@ -12,7 +12,8 @@ public interface IDatabaseManager
 
     Syllable GetSyllable(int id);
     Sign GetSign(int id);
-    Sentence GetSentence(int id);
+    Sentence GetSentenceById(int id);
+    int GetSentenceBySeq(List<int> signSequence);
 
     void SaveAllDB();
     void SaveAlphabetDB();

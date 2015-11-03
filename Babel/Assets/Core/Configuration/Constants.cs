@@ -29,5 +29,10 @@ namespace Assets.Core.Configuration
             public const string Signs = "Signs.xml";
             public const string Sentences = "Sentences.xml";
         }
+
+        public class ShopItems
+        {
+            public const string Hat = "Hat";
+        }
     }
 }

@@ -28,32 +28,30 @@ public class ActivateSentence : MonoBehaviour
     {
         var sentence = GetSentence();
         if(_sidekick == null) return;
-        _sidekick.ReachToSentence(sentence);
+        _sidekick.RespondToSentence(sentence);
     }
 
   public List<int> GetSentence()
    {
 
-       GameObject[] symbols = GameObject.FindGameObjectsWithTag("SentenceSlot");
-
        List<int> sentence = new List<int>();
 
-       foreach (GameObject slot in symbols)
+       foreach (GameObject slot in SentenceSlots)
        {
            if (slot.GetComponent<SentenceSlotHandler>().symbol)
            {
-               sentence.Add(slot.transform.GetComponentInChildren<Transform>().GetSiblingIndex());
+               sentence.Add(slot.transform.GetComponentInChildren<SymbolHandler>().ID);
            }
            else
            {
-               sentence.Add(-1);
+              // sentence.Add(-1);
            }
        }
-       Debug.Log(sentence[0]);
-        Debug.Log(sentence[1]);
-        Debug.Log(sentence[2]);
-        Debug.Log(sentence[3]);
-        return null;
+       //Debug.Log(sentence[0]);
+       // Debug.Log(sentence[1]);
+       // Debug.Log(sentence[2]);
+       // Debug.Log(sentence[3]);
+        return sentence;
    } 
 
 }

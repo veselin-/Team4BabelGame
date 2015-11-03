@@ -16,6 +16,7 @@ namespace Assets.Characters.SideKick.Scripts
         private AiMovement _sideKickMovement;
         private PickupHandler _sidekickPickupHandler;
         private GameObject _player;
+        private DatabaseManager _dbManager;
 
         // Use this for initialization
         void Start()
@@ -25,13 +26,21 @@ namespace Assets.Characters.SideKick.Scripts
             _sideKickMovement = _sideKick.GetComponent<AiMovement>();
             _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
             _sidekickPickupHandler = _sideKick.GetComponent<PickupHandler>();
+
+            var db = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager);
+            if (db != null)
+                _dbManager = db.GetComponent<DatabaseManager>();
+            else
+                Debug.Log("No dbmanager in scene!! - Problem?");
         }
 
         #endregion
 
-        public void ReachToSentence(List<int> signs)
+        public void RespondToSentence(List<int> signs)
         {
-            
+            var id = _dbManager.GetSentenceBySeq(signs);
+            if (id > 0)
+                ExecuteAction(id);
         }
 
         public void ExecuteAction(int i)

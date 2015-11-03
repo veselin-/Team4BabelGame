@@ -32,6 +32,7 @@ namespace Assets.Characters.SideKick.Scripts
                 _dbManager = db.GetComponent<DatabaseManager>();
             else
                 Debug.Log("No dbmanager in scene!! - Problem?");
+
         }
 
         #endregion

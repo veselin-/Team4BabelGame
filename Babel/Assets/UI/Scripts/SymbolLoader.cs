@@ -16,7 +16,7 @@ public class SymbolLoader : MonoBehaviour
 
 	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
-        databaseManager.LoadData();
+
 
 	    Signs = GameObject.FindGameObjectsWithTag(Constants.Tags.Sign);
 

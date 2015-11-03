@@ -32,6 +32,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
         catch (Exception e)
         {
+            if(ExceptionImage != null)
             ExceptionImage.SetActive(true);
         }
        

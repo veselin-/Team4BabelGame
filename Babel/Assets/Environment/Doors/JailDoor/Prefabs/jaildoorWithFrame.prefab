@@ -26,6 +26,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 436644}
+  - 65: {fileID: 6517390}
   m_Layer: 0
   m_Name: jaildoorWithFrame
   m_TagString: Untagged
@@ -75,8 +76,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.6280003, y: 3.01399994, z: 1.40999997}
+  m_LocalRotation: {x: 0, y: 2.98023224e-08, z: 0, w: 1}
+  m_LocalPosition: {x: 10.6279984, y: 3.01399994, z: 1.41000748}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 436644}
@@ -100,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 47.1046448, y: 1.52661657, z: 27.5028763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423276}
@@ -213,6 +214,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119364}
   m_Mesh: {fileID: 4300000, guid: a1d59419a79643f438e57709044c9630, type: 3}
+--- !u!65 &6517390
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2062912, y: 4.8670764, z: .485531807}
+  m_Center: {x: 9.55570984, y: 1.9335382, z: 1.34110832}
 --- !u!95 &9520736
 Animator:
   serializedVersion: 3

@@ -37,7 +37,6 @@ namespace Assets.Characters.Player.Scripts
 
         IState GameObjectToState(GameObject other, RaycastHit hit)
         {
-            Debug.Log(other.tag);
             if (other.GetComponent<IInteractable>() != null)
             {
                return new InteractWithNearestState(_agent, other);

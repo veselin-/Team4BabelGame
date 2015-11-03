@@ -26,9 +26,13 @@ namespace Assets.Characters.SideKick.Scripts
             _sideKickMovement = _sideKick.GetComponent<AiMovement>();
             _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
             _sidekickPickupHandler = _sideKick.GetComponent<PickupHandler>();
-            _dbManager =
-                GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
-            //_dbManager.LoadData();
+
+            var db = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager);
+            if (db != null)
+                _dbManager = db.GetComponent<DatabaseManager>();
+            else
+                Debug.Log("No dbmanager in scene!! - Problem?");
+
         }
 
         #endregion

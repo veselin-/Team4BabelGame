@@ -28,7 +28,7 @@ public class ActivateSentence : MonoBehaviour
     {
         var sentence = GetSentence();
         if(_sidekick == null) return;
-        _sidekick.ReachToSentence(sentence);
+        _sidekick.RespondToSentence(sentence);
     }
 
   public List<int> GetSentence()

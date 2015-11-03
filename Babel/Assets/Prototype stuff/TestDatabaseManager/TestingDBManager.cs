@@ -13,7 +13,6 @@ public class TestingDBManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
-        db.LoadData();
         GameObject.Find("Image0").GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(0).ImageName);
         GameObject.Find("Image1").GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(1).ImageName);
         GameObject.Find("Image2").GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(2).ImageName);
@@ -42,6 +41,14 @@ public class TestingDBManager : MonoBehaviour {
         var t3 = db.GetSentenceBySeq(list3);
 
         if(t1 == -1 && t2 == -1 && t3 == -1)
+        {
+
+        }
+
+
+        var uu = db.GetSign(0);
+
+        if(uu == null)
         {
 
         }

@@ -395,15 +395,15 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!1 &2079989551
+--- !u!1 &1111286889
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 2079989553}
-  - 114: {fileID: 2079989552}
+  - 4: {fileID: 1111286891}
+  - 114: {fileID: 1111286890}
   m_Layer: 0
   m_Name: SCENELOADER
   m_TagString: Untagged
@@ -411,25 +411,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2079989552
+--- !u!114 &1111286890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079989551}
+  m_GameObject: {fileID: 1111286889}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f96fb41c804b290478447882fd188155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSplashScreen: 3
+  NextSplashScreen: 1
   SplashScreenStay: 2
---- !u!4 &2079989553
+--- !u!4 &1111286891
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079989551}
+  m_GameObject: {fileID: 1111286889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.14200497, y: 10.8879366, z: -14.6339855}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -447,7 +447,7 @@ GameObject:
   - 222: {fileID: 2103585092}
   - 114: {fileID: 2103585091}
   m_Layer: 5
-  m_Name: Team4Logo
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7f4681c19718b79438312dcba5df0b94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ef8fd3b228191a4e9fa96eb7a46ede0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -501,5 +501,5 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -100, y: 0}
   m_Pivot: {x: .5, y: .5}

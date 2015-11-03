@@ -24,10 +24,10 @@ namespace Assets.Characters.AiScripts.States
             foreach (var i in interactables)
             {
                 var dest = i.GetComponent<IInteractable>();
+                if(!dest.CanThisBeInteractedWith(pickup)) continue;
                 var path = new NavMeshPath();
                 agnet.CalculatePath(dest.InteractPosition(_agent.transform.position), path);
 
-                Debug.Log(i.name + path.status);
                 if (path.status != NavMeshPathStatus.PathComplete) continue;
 
                 _intaractableGoal = dest;

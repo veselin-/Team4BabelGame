@@ -4,9 +4,10 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour {
 
-	public GameObject SettingsPanel;
+	public GameObject SettingsPanel, CreditsPanel, AchievementsPanel;
 	public Text SoundText, MusicText, VoicesText, SoundFXText;
 
+	private Animator menuAnim;
 
 	AudioManager _audioManager;
 
@@ -14,7 +15,7 @@ public class MainMenuManager : MonoBehaviour {
 	void Start () {
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 		SettingsPanel.SetActive (false);
-
+		menuAnim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -22,17 +23,44 @@ public class MainMenuManager : MonoBehaviour {
 	
 	}
 
+	public void StartBtnPress()
+	{
+		Application.LoadLevel ("LevelSelect");
+	}
+
 	public void SettingsBtnPress()
 	{
 		InitTextFields ();
 		SettingsPanel.SetActive (true);
 	}
-	
-	public void BackBtnPress()
+
+	public void SettingsBackBtnPress()
 	{
 		SettingsPanel.SetActive (false);
 	}
 
+	public void CreditsBtnPress()
+	{
+		menuAnim.SetBool ("Credits", true);
+		CreditsPanel.SetActive (true);
+	}
+
+	public void CreditsBackBtnPress()
+	{
+		menuAnim.SetBool ("Credits", false);
+		CreditsPanel.SetActive (false);
+	}
+
+	public void AchievementsBtnPress()
+	{
+		AchievementsPanel.SetActive (true);
+	}
+
+	public void AchievementsBackBtnPress()
+	{
+		AchievementsPanel.SetActive (false);
+	}
+	
 	private void InitTextFields()
 	{
 		GetSoundText ();

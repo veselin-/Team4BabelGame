@@ -12,7 +12,7 @@ public class ShopItem : MonoBehaviour{
 
 	void Start () {
         costText.text = "" + cost;
-        //PlayerPrefsBool.SetBool(item.name, false);
+        PlayerPrefsBool.SetBool(item.name, false);
         IsBought();
     }
 

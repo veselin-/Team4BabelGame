@@ -1,4 +1,5 @@
-﻿using Assets.Characters.Player.Scripts;
+﻿using Assets.Characters.AiScripts;
+using Assets.Characters.Player.Scripts;
 using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
 using UnityEngine;
@@ -22,8 +23,13 @@ namespace Assets.Core.GameMaster.Scripts
             sidekick.name = Constants.Tags.SideKick;
             sidekick.GetComponent<PlayerMovement>().enabled = false;
 
+            sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
+            sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 5;
+            sidekick.GetComponent<Renderer>().material.color = Color.magenta;
+
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
+            player.GetComponent<Renderer>().material.color = Color.green;
         }
 
         // Update is called once per frame

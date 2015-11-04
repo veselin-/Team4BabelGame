@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &104750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 427310}
+  - 135: {fileID: 13539302}
+  - 114: {fileID: 11412874}
+  m_Layer: 0
+  m_Name: AddNewSign
+  m_TagString: AddNewSign
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &115738
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +98,18 @@ GameObject:
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!4 &427310
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6941421, y: 1.69414258, z: 1.69414258}
+  m_Children: []
+  m_Father: {fileID: 473238}
+  m_RootOrder: 4
 --- !u!4 &437742
 Transform:
   m_ObjectHideFlags: 1
@@ -143,6 +172,7 @@ Transform:
   - {fileID: 453006}
   - {fileID: 437742}
   - {fileID: 465386}
+  - {fileID: 427310}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2303864
@@ -176,6 +206,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196714}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11412874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61214b45af0f2414eba189b8ba757589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 2
 --- !u!114 &11464048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +237,18 @@ MonoBehaviour:
   - {fileID: 115738}
   - {fileID: 159328}
   - {fileID: 194104}
+--- !u!135 &13539302
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13632142
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -47,7 +47,7 @@ namespace Assets.Characters.Player.Scripts
         {
             if (other.GetComponent<IInteractable>() != null)
             {
-               return new InteractWithNearestState(_agent, other);
+                return new InteractWithNearestState(_agent, other);
             }
             if (other.GetComponent<ICollectable>() != null)
             {
@@ -59,7 +59,9 @@ namespace Assets.Characters.Player.Scripts
             }
             if (other.tag == Constants.Tags.AddNewSign)
             {
+                Debug.Log("Clicked on the trigger");
                 _uiControl.SignCreationEnter();
+
                 other.GetComponent<NewSign>().SetSignID();
                 return new GoSomewhereAndWaitState(_agent, hit.point);
             }

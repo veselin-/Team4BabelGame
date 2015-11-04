@@ -21,9 +21,11 @@ namespace Assets.Core.GameMaster.Scripts
             sidekick.tag = Constants.Tags.SideKick;
             sidekick.name = Constants.Tags.SideKick;
             sidekick.GetComponent<PlayerMovement>().enabled = false;
+            sidekick.GetComponent<Renderer>().material.color = Color.magenta;
 
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
+            player.GetComponent<Renderer>().material.color = Color.green;
         }
 
         // Update is called once per frame

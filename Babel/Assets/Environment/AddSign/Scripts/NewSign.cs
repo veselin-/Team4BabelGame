@@ -16,7 +16,7 @@ public class NewSign : MonoBehaviour
 
     void Update()
     {
-        if (databaseManager.GetSign(ID).IsActive)
+        if (databaseManager.GetSign(ID) != null)
         {
             this.gameObject.SetActive(false);
         }

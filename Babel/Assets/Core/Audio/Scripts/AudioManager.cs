@@ -254,13 +254,18 @@ public class AudioManager : MonoBehaviour {
 
     IEnumerator FemaleSignPlay(int id)
     {
-       Sign s = databaseManager.GetSign(id);
+        //if (databaseManager.GetSign(id) != null)
+        //{
+        //    Sign s = databaseManager.GetSign(id);
 
-        foreach (int i in s.SyllableSequence)
-        {
-            FemaleSyllabusSoundPlay(i);
-            yield return new WaitForSeconds(FemaleSyllabusList[i].length);
-        }
+        //    foreach (int i in s.SyllableSequence)
+        //    {
+        //        FemaleSyllabusSoundPlay(i);
+        //        yield return new WaitForSeconds(FemaleSyllabusList[i].length);
+        //    }
+        //}
+        yield return new WaitForSeconds(1);
+
 
     }
 

@@ -22,6 +22,8 @@ namespace Assets.Core.Configuration
             public const string Sign = "Sign";
             public const string ExceptionImage = "ExceptionImage";
             public const string AudioManager = "AudioManager";
+            public const string AddNewSign = "AddNewSign";
+            public const string GameUI = "GameUI";
         }
 
         public class XmlFiles

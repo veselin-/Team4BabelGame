@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.Configuration;
 using UnityEngine.EventSystems;
 
 public abstract class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static GameObject SymbolBeingDragged;
-    private Vector3 _startPosition;
+    protected Vector3 _startPosition;
     public static Transform _startParent;
+
+    protected AudioManager audioManager;
 
     void Start()
     {
+
+        audioManager = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+
         InitializeSyllable();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        SymbolBeingDragged = gameObject;
-        
-        _startPosition = transform.position;
-        _startParent = transform.parent;
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-    }
+    public abstract void OnBeginDrag(PointerEventData eventData);
+ 
 
     public void OnDrag(PointerEventData eventData)
     {

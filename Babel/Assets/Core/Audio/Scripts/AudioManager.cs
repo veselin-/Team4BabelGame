@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour {
 			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		}
 
-	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+//	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
 		LoadSavedValues ();
 

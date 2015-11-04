@@ -1784,6 +1784,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &166834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22421314}
+  - 222: {fileID: 22292674}
+  - 114: {fileID: 11455818}
+  m_Layer: 5
+  m_Name: ExceptionImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &167928
 GameObject:
   m_ObjectHideFlags: 1
@@ -3092,7 +3109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryCan: {fileID: 161880}
-  item: {fileID: 110080}
+  item: {fileID: 176548}
   buyButton: {fileID: 11414158}
   itemImg: {fileID: 11487112}
   purchased: {fileID: 21300000, guid: 5e42929df63fb02488a0ffc1284ad7f7, type: 3}
@@ -5646,6 +5663,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11455818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 827c9cd4a3943534f909ac6473e17288, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11456074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6443,7 +6487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryCan: {fileID: 161880}
-  item: {fileID: 162196}
+  item: {fileID: 126154}
   buyButton: {fileID: 11435430}
   itemImg: {fileID: 11474762}
   purchased: {fileID: 21300000, guid: 5e42929df63fb02488a0ffc1284ad7f7, type: 3}
@@ -9706,6 +9750,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145902}
+--- !u!222 &22292674
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166834}
 --- !u!222 &22293424
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -10133,6 +10183,7 @@ RectTransform:
   - {fileID: 22429480}
   - {fileID: 22492850}
   - {fileID: 22408548}
+  - {fileID: 22421314}
   - {fileID: 22485760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -10282,6 +10333,23 @@ RectTransform:
   m_AnchorMax: {x: .709340394, y: .601000011}
   m_AnchoredPosition: {x: -1, y: .459991455}
   m_SizeDelta: {x: 0, y: -2}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22421314
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22416544}
+  m_RootOrder: 7
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 890.380005, y: 666}
+  m_SizeDelta: {x: 193, y: 154}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22421988
 RectTransform:
@@ -11799,7 +11867,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22416544}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 890.380005, y: 666}

@@ -28,8 +28,11 @@ public class SymbolLoader : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+        //This is baaaaaad!!!
+        Signs = GameObject.FindGameObjectsWithTag(Constants.Tags.Sign);
+
+    }
 
 
     public void UpdateBook()

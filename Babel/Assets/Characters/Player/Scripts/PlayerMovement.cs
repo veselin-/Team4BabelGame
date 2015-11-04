@@ -13,11 +13,15 @@ namespace Assets.Characters.Player.Scripts
         private NavMeshAgent _agent;
         private AiMovement _ai;
 
+        private UIControl _uiControl;
+
         // Use this for initialization
         void Start ()
         {
             _agent = GetComponent<NavMeshAgent>();
             _ai = GetComponent<AiMovement>();
+
+            _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UIControl>();
         }
 	
         // Update is called once per frame
@@ -50,6 +54,12 @@ namespace Assets.Characters.Player.Scripts
             }
             if(other.tag == Constants.Tags.Floor)
             {
+                return new GoSomewhereAndWaitState(_agent, hit.point);
+            }
+            if (other.tag == Constants.Tags.AddNewSign)
+            {
+                _uiControl.SignCreationEnter();
+                other.GetComponent<NewSign>().SetSignID();
                 return new GoSomewhereAndWaitState(_agent, hit.point);
             }
             return null;

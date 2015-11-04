@@ -43,6 +43,7 @@ public class SentenceSlotHandler : MonoBehaviour, IDropHandler
             sym = Instantiate(DragHandler.SymbolBeingDragged);
             sym.transform.SetParent(DragHandler._startParent);
             sym.transform.name = DragHandler.SymbolBeingDragged.transform.name;
+            sym.transform.localScale = Vector3.one;
             //Need to set the blockraycasts flag to true again.
             sym.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }

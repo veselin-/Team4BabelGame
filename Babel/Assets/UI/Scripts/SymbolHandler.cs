@@ -70,7 +70,16 @@ public class SymbolHandler : DragHandler
         Sign s = databaseManager.GetSign(ID);
 
         if (s == null)
+        {
+            SetSyllables(null, null, null);
+            Image1.color = Color.clear;
+            Image2.color = Color.clear;
+            Image3.color = Color.clear;
+        
+
             return;
+        }
+           
 
 
         if (s.SyllableSequence.Count == 2)

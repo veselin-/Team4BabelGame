@@ -102,7 +102,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         if (signSequence.Count > 0)
         {
             Sentence sentence =
-                SentencesDatabase.SingleOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
+                SentencesDatabase.FirstOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
 
             return sentence != null ? sentence.id : -1;
         }

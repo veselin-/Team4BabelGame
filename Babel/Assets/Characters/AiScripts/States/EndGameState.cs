@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Characters.AiScripts.States
 {
-    public class EndGameState : MonoBehaviour, IState
+    public class EndGameState : IState
     {
 
         private State _state;

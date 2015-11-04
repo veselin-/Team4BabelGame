@@ -102,7 +102,10 @@ public class CombineSymbols : MonoBehaviour
 
         GameObject newSymbol = Instantiate(SymbolPrefab);
 
+    
         newSymbol.transform.SetParent(transform);
+
+        newSymbol.transform.localScale = Vector3.one;
 
         newSymbol.GetComponent<SymbolHandler>().ID = CreateNewSymbol.SymbolID;
 

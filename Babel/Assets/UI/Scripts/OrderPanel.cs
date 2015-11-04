@@ -29,6 +29,9 @@ namespace Assets.UI.Scripts
                 sk.Happines += 0.2f;
                 if (sk.Happines > 1)
                     sk.Happines = 1;
+            } else if (i == -4)
+            {
+                GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>().ResetSavedSigns();
             }
 
             _sidekickControls.ExecuteAction(i);

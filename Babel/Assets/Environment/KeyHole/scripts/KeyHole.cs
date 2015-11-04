@@ -26,6 +26,7 @@ public class KeyHole : MonoBehaviour, IInteractable
         if (!CanThisBeInteractedWith(pickup)) return pickup;
 
         StartCoroutine(ChangeColor());
+        Destroy(pickup);
         return null;
     }
 

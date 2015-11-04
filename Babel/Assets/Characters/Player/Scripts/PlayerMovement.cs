@@ -29,7 +29,8 @@ namespace Assets.Characters.Player.Scripts
             if (!Input.GetMouseButtonDown(0)) return;
             var ts = Input.touches;
 
-            if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))) return;
+            if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))
+                || EventSystem.current.IsPointerOverGameObject()) return;
             // Find all object in ray, and sort them by distance to object.
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray, 100);

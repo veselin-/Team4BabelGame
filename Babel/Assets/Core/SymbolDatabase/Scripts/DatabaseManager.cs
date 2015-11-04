@@ -18,6 +18,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     private bool AlphabetDBLoaded = false;
     private bool SignsDBLoaded = false;
     private bool SentencesDBLoaded = false;
+    //bool fuckyou = true;
 
     public GameObject ExceptionImage;
 
@@ -32,8 +33,8 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
         catch (Exception e)
         {
-               //if(ExceptionImage != null)
-               //ExceptionImage.SetActive(true);
+            if (ExceptionImage != null)
+                ExceptionImage.SetActive(true);
             Debug.Log("Couldn't load database. Probably an error in the XML");
         }
        
@@ -174,34 +175,30 @@ public void SaveAllDB()
         return (AlphabetDBLoaded && SignsDBLoaded && SentencesDBLoaded);
     }
 
-
     private void LoadAlphabetDB()
     {
         WWW alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
-      //  WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
+        WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
 
-        WWW alphabetData = alphabetPath;
+        //WWW alphabetData = alphabetPath;
 
         while (!alphabetData.isDone)
         {
-            
+
         }
+        if (!File.Exists(alphabetPath.url))
+        {
 
-        
-
-        //if (!File.Exists(alphabetPath.url))
-        //{
-
-        //    File.WriteAllBytes(Application.persistentDataPath + Constants.XmlFiles.Alphabet, alphabetData.bytes);
-        //    ExceptionImage.SetActive(true);
-        //}
+            File.WriteAllBytes(Application.persistentDataPath + Constants.XmlFiles.Alphabet, alphabetData.bytes);
+            //ExceptionImage.SetActive(true);
+        }
 
         var charSerializer = new XmlSerializer(typeof(AlphabetContainer));
 
-        string escapeURL = WWW.EscapeURL(alphabetPath.url);
+        //string escapeURL = WWW.EscapeURL(alphabetPath.url);
 
         var charStream = new FileStream(alphabetPath.url, FileMode.Open);
-        ExceptionImage.SetActive(true);
+
         var container = charSerializer.Deserialize(charStream) as AlphabetContainer;
 
         charStream.Close();
@@ -218,16 +215,16 @@ public void SaveAllDB()
     private void LoadsignsDB()
     {
         WWW signsPath = GetFilePath(Constants.XmlFiles.Signs);
-      //  WWW signsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Signs);
-        WWW signsData = signsPath;
+        WWW signsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Signs);
+        //WWW signsData = signsPath;
 
         while (!signsData.isDone)
         { }
 
-        //if (!File.Exists(signsPath.url))
-        //{
-        //    File.WriteAllBytes(signsPath.url, signsData.bytes);
-        //}
+        if (!File.Exists(signsPath.url))
+        {
+            File.WriteAllBytes(signsPath.url, signsData.bytes);
+        }
 
         var charSerializer = new XmlSerializer(typeof(signsContainer));
         var charStream = new FileStream(signsPath.url, FileMode.Open);
@@ -245,16 +242,16 @@ public void SaveAllDB()
     private void LoadSentencesDB()
     {
         WWW sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
-        //WWW sentencesData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Sentences);
-        WWW sentencesData = sentencesPath;
+        WWW sentencesData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Sentences);
+        //WWW sentencesData = sentencesPath;
 
         while (!sentencesData.isDone)
         { }
 
-        //if (!File.Exists(sentencesPath.url))
-        //{
-        //    File.WriteAllBytes(sentencesPath.url, sentencesData.bytes);
-        //}
+        if (!File.Exists(sentencesPath.url))
+        {
+            File.WriteAllBytes(sentencesPath.url, sentencesData.bytes);
+        }
 
         var charSerializer = new XmlSerializer(typeof(SentencesContainer));
         var charStream = new FileStream(sentencesPath.url, FileMode.Open);
@@ -272,62 +269,34 @@ public void SaveAllDB()
 
     private WWW GetFilePath(string fileName)
     {
-
-#if UNITY_ANDROID && !UNITY_EDITOR //For running in Android
-      //   if(ExceptionImage != null)
-      //   ExceptionImage.SetActive(true);
-        WWW www = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);       
-
+    #if UNITY_ANDROID && !UNITY_EDITOR //For running in Android
+            WWW www = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);       
+    #endif
+    #if UNITY_EDITOR // For running in Unity
+            WWW www = new WWW(Application.streamingAssetsPath + "/" + fileName);
 #endif
-#if UNITY_EDITOR // For running in Unity
-        WWW www = new WWW(Application.streamingAssetsPath + "/" + fileName);
-
-#endif
-        if (www.isDone == true)
-        {
-
-            File.WriteAllBytes(Application.persistentDataPath + fileName, www.bytes);
-            // ExceptionImage.SetActive(true);
-        }
-        //float time = Time.deltaTime;
-        //if (time > 10)
+        //while (fuckyou)
         //{
-                    
+        //    StartCoroutine(GetShitDone(www, fileName));
         //}
-       new WaitForSeconds(10f);
-
-        return www;
+        //    if (www.isDone)
+        //    {
+        //        File.WriteAllBytes(Application.streamingAssetsPath + "/" + fileName, www.bytes);
+        //    //ExceptionImage.SetActive(true);
+        //    }
+        //if (www.error == null)
+        //{
+        //    ExceptionImage.SetActive(true);
+        //}
+    return www;
     }
 
-    //private WWW FilePathLoad(string fileName)
+    //IEnumerator GetShitDone(WWW www, string path)
     //{
-    //    return StartCoroutine(LoadFilePath(fileName));
+    //    yield return www;
+    //    File.WriteAllBytes(Application.persistentDataPath + path, www.bytes);
+    //    //fuckyou = false;
     //}
-
-//    IEnumerator LoadFilePath(string fileName)
-//    {
-
-
-//#if UNITY_ANDROID && !UNITY_EDITOR //For running in Android
-//      //   if(ExceptionImage != null)
-//      //   ExceptionImage.SetActive(true);
-//        WWW www = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);       
-
-//#endif
-//#if UNITY_EDITOR // For running in Unity
-//        WWW www = new WWW(Application.streamingAssetsPath + "/" + fileName);
-
-//#endif
-//        if (www.isDone == true)
-//        {
-
-//            File.WriteAllBytes(Application.persistentDataPath + fileName, www.bytes);
-//            // ExceptionImage.SetActive(true);
-//        }
-//        yield return www;
-//    }
-
-
 }
 
 public class Syllable

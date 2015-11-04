@@ -20,7 +20,7 @@ namespace Assets.Environment.Braizer.Scripts
 
         private ParticleSystem _psystem;
 
-        void Start()
+        void Awake()
         {
             _psystem = GetComponent<ParticleSystem>();
             OnFire = StartLighted;

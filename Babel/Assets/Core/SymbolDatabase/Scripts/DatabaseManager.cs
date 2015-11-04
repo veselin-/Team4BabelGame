@@ -18,6 +18,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     private bool AlphabetDBLoaded = false;
     private bool SignsDBLoaded = false;
     private bool SentencesDBLoaded = false;
+    //bool fuckyou = true;
 
     public GameObject ExceptionImage;
 
@@ -32,9 +33,8 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
         catch (Exception e)
         {
-            if(ExceptionImage != null)
-            ExceptionImage.SetActive(true);
-            Debug.Log("Couldn't load database. Probably an error in the XML");
+
+            Debug.Log("Couldn't load database. Probably an error in the XML" + e);
         }
        
     }
@@ -118,39 +118,44 @@ public void SaveAllDB()
 
     public void SaveAlphabetDB()
     {
-        WWW alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
+        var alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
 
         AlphabetContainer alphabetContainer = new AlphabetContainer();
         alphabetContainer.Syllables = new List<Syllable>(AlphabetDatabase.Values);
 
         var serializer = new XmlSerializer(typeof(AlphabetContainer));
-        var stream = new FileStream(alphabetPath.url, FileMode.Create);
+
+        var stream = new MemoryStream();
         serializer.Serialize(stream, alphabetContainer);
+
+        
         stream.Close();
     }
 
     public void SaveSignsDB()
     {
-        WWW signsPath = GetFilePath(Constants.XmlFiles.Signs);
+        var signsPath = GetFilePath(Constants.XmlFiles.Signs);
 
         signsContainer signsContainer = new signsContainer();
         signsContainer.Signs = new List<Sign>(SignsDatabase.Values);
 
         var serializer = new XmlSerializer(typeof(signsContainer));
-        var stream = new FileStream(signsPath.url, FileMode.Create);
+
+        var stream = new MemoryStream();
         serializer.Serialize(stream, signsContainer);
+        File.WriteAllBytes(signsPath, stream.ToArray());
         stream.Close();
     }
 
     public void SaveSentencesDB()
     {
-        WWW sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
+        var sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
 
         SentencesContainer sentencesContainer = new SentencesContainer();
         sentencesContainer.Sentences = new List<Sentence>(SentencesDatabase.Values);
 
         var serializer = new XmlSerializer(typeof(SentencesContainer));
-        var stream = new FileStream(sentencesPath.url, FileMode.Create);
+        var stream = new FileStream(sentencesPath, FileMode.Create);
         serializer.Serialize(stream, sentencesContainer);
         stream.Close();
     }
@@ -174,27 +179,36 @@ public void SaveAllDB()
         return (AlphabetDBLoaded && SignsDBLoaded && SentencesDBLoaded);
     }
 
-
     private void LoadAlphabetDB()
     {
-        WWW alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
-        WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
+        var alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
+        //WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
 
-        while(!alphabetData.isDone)
-        { }
+        //WWW alphabetData = alphabetPath;
 
-        if (!File.Exists(alphabetPath.url))
+
+        if (!File.Exists(alphabetPath))
         {
-
-            File.WriteAllBytes(alphabetPath.url, alphabetData.bytes);
+            TextAsset bindata = Resources.Load("Alphabet") as TextAsset;
+            if(bindata == null)
+                ExceptionImage.SetActive(true);
+            else 
+                File.WriteAllBytes(alphabetPath, bindata.bytes);
+            //ExceptionImage.SetActive(true);
         }
 
         var charSerializer = new XmlSerializer(typeof(AlphabetContainer));
-        var charStream = new FileStream(alphabetPath.url, FileMode.Open);
-        var container = charSerializer.Deserialize(charStream) as AlphabetContainer;
-        charStream.Close();
 
+        //string escapeURL = WWW.EscapeURL(alphabetPath.url);
+
+        var bytes = File.ReadAllBytes(alphabetPath);
+        var charStream = new MemoryStream(bytes);//new FileStream(alphabetPath.url, FileMode.Open);
+
+        var container = charSerializer.Deserialize(charStream) as AlphabetContainer;
+
+        charStream.Close();
         AlphabetDatabase = new Dictionary<int, Syllable>();
+
         foreach (Syllable syllable in container.Syllables)
         {
                 AlphabetDatabase.Add(syllable.id, syllable);
@@ -205,19 +219,20 @@ public void SaveAllDB()
 
     private void LoadsignsDB()
     {
-        WWW signsPath = GetFilePath(Constants.XmlFiles.Signs);
-        WWW signsData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Signs);
-
-        while (!signsData.isDone)
-        { }
-
-        if (!File.Exists(signsPath.url))
+        var signsPath = GetFilePath(Constants.XmlFiles.Signs);
+        if (!File.Exists(signsPath))
         {
-            File.WriteAllBytes(signsPath.url, signsData.bytes);
+            TextAsset bindata = Resources.Load("Signs") as TextAsset;
+            if (bindata == null)
+                ExceptionImage.SetActive(true);
+            else
+                File.WriteAllBytes(signsPath, bindata.bytes);
+            //ExceptionImage.SetActive(true);
         }
 
         var charSerializer = new XmlSerializer(typeof(signsContainer));
-        var charStream = new FileStream(signsPath.url, FileMode.Open);
+        var bytes = File.ReadAllBytes(signsPath);
+        var charStream = new MemoryStream(bytes);
         var container = charSerializer.Deserialize(charStream) as signsContainer;
         charStream.Close();
 
@@ -231,19 +246,21 @@ public void SaveAllDB()
 
     private void LoadSentencesDB()
     {
-        WWW sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
-        WWW sentencesData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Sentences);
-
-        while (!sentencesData.isDone)
-        { }
-
-        if (!File.Exists(sentencesPath.url))
+        var sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
+        if (!File.Exists(sentencesPath))
         {
-            File.WriteAllBytes(sentencesPath.url, sentencesData.bytes);
+            TextAsset bindata = Resources.Load("Sentences") as TextAsset;
+            if (bindata == null)
+                ExceptionImage.SetActive(true);
+            else
+                File.WriteAllBytes(sentencesPath, bindata.bytes);
+            //ExceptionImage.SetActive(true);
         }
 
+        
         var charSerializer = new XmlSerializer(typeof(SentencesContainer));
-        var charStream = new FileStream(sentencesPath.url, FileMode.Open);
+        var bytes = File.ReadAllBytes(sentencesPath);
+        var charStream = new MemoryStream(bytes);
         var container = charSerializer.Deserialize(charStream) as SentencesContainer;
         charStream.Close();
 
@@ -256,19 +273,46 @@ public void SaveAllDB()
         SentencesDBLoaded = true;
     }
 
-    private WWW GetFilePath(string fileName)
+    private string GetFilePath(string fileName)
     {
 
-#if UNITY_ANDROID && !UNITY_EDITOR //For running in Android
-           return new WWW(Application.persistentDataPath + "/"+fileName);          
-#endif
-#if UNITY_EDITOR // For running in Unity
-        return new WWW(Application.streamingAssetsPath + "/" + fileName);
-#endif
+        return Application.persistentDataPath + "/" + fileName;
+
+        WWW www = new WWW("fml!");
+    #if UNITY_ANDROID//For running in Android
+            www = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);       
+    #endif
+    #if UNITY_EDITOR // For running in Unity
+            www = new WWW(Application.streamingAssetsPath + "/" + fileName);
+    #endif
+
+        if (www.url == Application.streamingAssetsPath + "/" + fileName)
+        {
+            ExceptionImage.SetActive(true);
+        }
+
+        //while (fuckyou)
+        //{
+        //    StartCoroutine(GetShitDone(www, fileName));
+        //}
+        //    if (www.isDone)
+        //    {
+        //        File.WriteAllBytes(Application.streamingAssetsPath + "/" + fileName, www.bytes);
+        //    //ExceptionImage.SetActive(true);
+        //    }
+        //if (www.error == null)
+        //{
+        //    ExceptionImage.SetActive(true);
+        //}
 
     }
 
-
+    //IEnumerator GetShitDone(WWW www, string path)
+    //{
+    //    yield return www;
+    //    File.WriteAllBytes(Application.persistentDataPath + path, www.bytes);
+    //    //fuckyou = false;
+    //}
 }
 
 public class Syllable

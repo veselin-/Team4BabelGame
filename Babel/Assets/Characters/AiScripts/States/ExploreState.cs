@@ -50,4 +50,3 @@ namespace Assets.Characters.AiScripts.States
         }
     }
 }
-

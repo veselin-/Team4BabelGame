@@ -13,18 +13,24 @@ namespace Assets.Characters.Player.Scripts
         private NavMeshAgent _agent;
         private AiMovement _ai;
 
+        private UIControl _uiControl;
+
         // Use this for initialization
         void Start ()
         {
             _agent = GetComponent<NavMeshAgent>();
             _ai = GetComponent<AiMovement>();
+
+            _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UIControl>();
         }
 	
         // Update is called once per frame
         void Update () {
             if (!Input.GetMouseButtonDown(0)) return;
+            var ts = Input.touches;
 
-            if (EventSystem.current.IsPointerOverGameObject()) return;
+            if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))
+                || EventSystem.current.IsPointerOverGameObject()) return;
             // Find all object in ray, and sort them by distance to object.
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray, 100);
@@ -49,6 +55,12 @@ namespace Assets.Characters.Player.Scripts
             }
             if(other.tag == Constants.Tags.Floor)
             {
+                return new GoSomewhereAndWaitState(_agent, hit.point);
+            }
+            if (other.tag == Constants.Tags.AddNewSign)
+            {
+                _uiControl.SignCreationEnter();
+                other.GetComponent<NewSign>().SetSignID();
                 return new GoSomewhereAndWaitState(_agent, hit.point);
             }
             return null;

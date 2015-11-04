@@ -1,4 +1,5 @@
-﻿using Assets.Characters.SideKick.Scripts;
+﻿using Assets.Characters.AiScripts;
+using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
 using UnityEngine;
 
@@ -16,6 +17,20 @@ namespace Assets.UI.Scripts
 	
         public void DoOrder(int i)
         {
+            if (i == -2)
+            {
+                var sk = _sidekickControls.gameObject.GetComponent<AiMovement>();
+                sk.Happines -= 0.2f;
+                if (sk.Happines < 0)
+                    sk.Happines = 0;
+            } else if (i == -3)
+            {
+                var sk = _sidekickControls.gameObject.GetComponent<AiMovement>();
+                sk.Happines += 0.2f;
+                if (sk.Happines > 1)
+                    sk.Happines = 1;
+            }
+
             _sidekickControls.ExecuteAction(i);
         }
     }

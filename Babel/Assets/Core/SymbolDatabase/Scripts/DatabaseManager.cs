@@ -179,6 +179,14 @@ public void SaveAllDB()
         return (AlphabetDBLoaded && SignsDBLoaded && SentencesDBLoaded);
     }
 
+    public void ResetSavedSigns()
+    {
+        var signsPath = GetFilePath(Constants.XmlFiles.Signs);
+        var bindata = (TextAsset) Resources.Load("Signs");
+        File.WriteAllBytes(signsPath, bindata.bytes);
+        LoadData();
+    }
+
     private void LoadAlphabetDB()
     {
         var alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);

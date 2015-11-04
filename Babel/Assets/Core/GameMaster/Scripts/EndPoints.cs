@@ -27,7 +27,8 @@ namespace Assets.Core.GameMaster.Scripts
             {
                 yield return new WaitForSeconds(0.5f);
             }
-            Application.LoadLevel(NextLevelName);
+			GameObject.FindObjectOfType<EndLevelScreen> ().GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
+            //Application.LoadLevel(NextLevelName);
         }
 
 

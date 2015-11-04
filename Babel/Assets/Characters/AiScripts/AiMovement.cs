@@ -19,6 +19,8 @@ namespace Assets.Characters.AiScripts
         public float TimeBeforeStolling;
         #endregion
 
+        public float Happines { get; set; }
+
         private IState _currentState;
         private NavMeshAgent _agent;
         private RoomManager _rm;
@@ -28,7 +30,8 @@ namespace Assets.Characters.AiScripts
         void Start ()
         {
             _agent = GetComponent<NavMeshAgent>();
-            
+            Happines = 1;
+
             // Room manager 
             var gm = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster);
             if(gm == null || gm.GetComponent<RoomManager>() == null)
@@ -49,10 +52,10 @@ namespace Assets.Characters.AiScripts
                 _agent.speed = MovementSpeed;
 
                 // Default state
-                if (_currentState == null || _currentState.IsDoneExecuting())
+                if (_currentState == null || _currentState.IsDoneExecuting() || Happines < 0.1f)
                     _currentState = _exploreState;
 
-                _currentState.WaitingTime = TimeBeforeStolling;
+                _currentState.WaitingTime = TimeBeforeStolling * Happines;
                 _currentState.ExecuteState();
                 yield return new WaitForSeconds(0.1f);
             }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.Configuration;
 using UnityEngine.Audio;
 
 #if UNITY_EDITOR
@@ -15,8 +16,8 @@ public class AudioManager : MonoBehaviour {
 
 	public AudioMixerSnapshot[] AmbientSnapshots;
 
-	public AudioSource[] MaleSyllabusList;
-	public AudioSource[] FemaleSyllabusList;
+	public AudioClip[] MaleSyllabusList;
+	public AudioClip[] FemaleSyllabusList;
 
 	public AudioSource[] SignalSounds;
 
@@ -36,11 +37,22 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private int _currentSignalSeconds = 0;
 
+	private AudioSource Player;
+    private DatabaseManager databaseManager;
 
 	// Use this for initialization
 	void Start () {
 
-		//int randomTransition = Random.Range (MinSnapTransition, MaxSnapTransition);
+		if(GameObject.FindGameObjectWithTag("Player") != null)
+		{
+			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+		}
+
+	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+
+		LoadSavedValues ();
+
+		//Start random ambience sound
 		StartCoroutine (RandomAmbience());
 		StartCoroutine (RandomAmbienceSignals());
 
@@ -49,6 +61,91 @@ public class AudioManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	private void LoadSavedValues()
+	{
+		// if it doesnt have "Sound" it doesnt have any of the sound keys set so set them all
+		if(!PlayerPrefs.HasKey("Sound"))
+		{
+			PlayerPrefs.SetString("Sound", "On");
+			PlayerPrefs.SetString("Music", "On");
+			PlayerPrefs.SetString("Voices", "On");
+			PlayerPrefs.SetString("SoundFX", "On");
+		}
+		
+		// checking saved states 
+		if (PlayerPrefs.GetString ("Sound").Equals ("On")) {
+			AudioListener.pause = false;
+		} else {
+			AudioListener.pause = true;
+		}
+		
+		if (PlayerPrefs.GetString ("Music").Equals ("On")) {
+			MasterMixer.SetFloat ("AmbienceV", 0f);
+		} else {
+			MasterMixer.SetFloat ("AmbienceV", -80f);
+		}
+		
+		if (PlayerPrefs.GetString ("Voices").Equals ("On")) {
+			MasterMixer.SetFloat ("VoicesV", 0f);
+		} else {
+			MasterMixer.SetFloat ("VoicesV", -80f);
+		}
+		
+		if (PlayerPrefs.GetString ("SoundFX").Equals ("On")) {
+			MasterMixer.SetFloat ("SFXV", 0f);
+		} else {
+			MasterMixer.SetFloat ("SFXV", -80f);
+		}
+	}
+
+	public void SetSoundOnOff()
+	{
+		if (PlayerPrefs.GetString ("Sound").Equals ("On")) {
+			AudioListener.pause = true;
+			PlayerPrefs.SetString("Sound", "Off");
+		} else {
+			AudioListener.pause = false;
+			PlayerPrefs.SetString("Sound", "On");
+		}
+		//Debug.Log (PlayerPrefs.GetString ("Sound"));
+	}
+
+	public void SetMusicOnOff()
+	{
+		if (PlayerPrefs.GetString ("Music").Equals ("On")) {
+			MasterMixer.SetFloat ("AmbienceV", -80f);
+			PlayerPrefs.SetString ("Music", "Off");
+		} else {
+			MasterMixer.SetFloat ("AmbienceV", 0f);
+			PlayerPrefs.SetString ("Music", "On");
+		}
+		//Debug.Log (PlayerPrefs.GetString ("Music"));
+	}
+
+	public void SetVoicesOnOff()
+	{
+		if (PlayerPrefs.GetString ("Voices").Equals ("On")) {
+			MasterMixer.SetFloat ("VoicesV", -80f);
+			PlayerPrefs.SetString ("Voices", "Off");
+		} else {
+			MasterMixer.SetFloat ("VoicesV", 0f);
+			PlayerPrefs.SetString ("Voices", "On");
+		}
+		//Debug.Log (PlayerPrefs.GetString ("Voices"));
+	}
+
+	public void SetSoundFXOnOff()
+	{
+		if (PlayerPrefs.GetString ("SoundFX").Equals ("On")) {
+			MasterMixer.SetFloat ("SFXV", -80f);
+			PlayerPrefs.SetString ("SoundFX", "Off");
+		} else {
+			MasterMixer.SetFloat ("SFXV", 0f);
+			PlayerPrefs.SetString ("SoundFX", "On");
+		}
+		//Debug.Log (PlayerPrefs.GetString ("SoundFX"));
 	}
 
 	IEnumerator RandomAmbienceSignals()
@@ -106,17 +203,20 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	// male voices ------------------------------
-	public void MaleSyllabusSoundPlay(string name)
+	public void MaleSyllabusSoundPlay(int index)
 	{
-		GetMaleSyllabusByName (name).Play ();
+		//MaleSyllabusList [index].Play ();
+		//GetMaleSyllabusByName (name).Play ();
 	}
 	
-	public void MaleSyllabusSoundStop(string name)
+	public void MaleSyllabusSoundStop(int index)
 	{
-		GetMaleSyllabusByName (name).Stop ();
+		//MaleSyllabusList [index].Stop ();
+		//GetMaleSyllabusByName (name).Stop ();
 	}
 
-	public AudioSource GetMaleSyllabusByName(string name)
+	/*
+	private AudioSource GetMaleSyllabusByName(string name)
 	{
 		foreach(AudioSource s in MaleSyllabusList)
 		{
@@ -127,20 +227,45 @@ public class AudioManager : MonoBehaviour {
 		}
 		return null;
 	}
+	*/
 	//--------------------------------------------
 
 	// female voices -----------------------------
-	public void FemaleSyllabusSoundPlay(string name)
+	public void FemaleSyllabusSoundPlay(int index)
 	{
-		GetFemaleSyllabusByName (name).Play ();
+		Player.clip = FemaleSyllabusList [index];
+		Player.Play ();
+		//FemaleSyllabusList[index].Play();
+		//GetFemaleSyllabusByName (name).Play ();
 	}
 	
-	public void FemaleSyllabusSoundStop(string name)
+	public void FemaleSyllabusSoundStop(int index)
 	{
-		GetFemaleSyllabusByName (name).Stop ();
+		Player.clip = FemaleSyllabusList [index];
+		Player.Stop ();
+		//FemaleSyllabusList[index].Stop();
+		//GetFemaleSyllabusByName (name).Stop ();
 	}
-	
-	public AudioSource GetFemaleSyllabusByName(string name)
+
+    public void StartPlayCoroutine(int id)
+    {
+        StartCoroutine(FemaleSignPlay(id));
+    }
+
+    IEnumerator FemaleSignPlay(int id)
+    {
+       Sign s = databaseManager.GetSign(id);
+
+        foreach (int i in s.SyllableSequence)
+        {
+            FemaleSyllabusSoundPlay(i);
+            yield return new WaitForSeconds(FemaleSyllabusList[i].length);
+        }
+
+    }
+
+	/*
+	private AudioSource GetFemaleSyllabusByName(string name)
 	{
 		foreach(AudioSource s in FemaleSyllabusList)
 		{
@@ -151,6 +276,7 @@ public class AudioManager : MonoBehaviour {
 		}
 		return null;
 	}
+	*/
 	//--------------------------------------------
 
 

@@ -20,12 +20,8 @@ public class SymbolLoader : MonoBehaviour
 
 	    Signs = GameObject.FindGameObjectsWithTag(Constants.Tags.Sign);
 
-	    foreach (GameObject s in Signs)
-	    {
 
-            s.GetComponent<SymbolHandler>().UpdateSymbol();
-
-	    }
+        UpdateBook();
 
 
 	}
@@ -34,4 +30,15 @@ public class SymbolLoader : MonoBehaviour
 	void Update () {
 	
 	}
+
+
+    public void UpdateBook()
+    {
+        foreach (GameObject s in Signs)
+        {
+
+            s.GetComponent<SymbolHandler>().UpdateSymbol();
+
+        }
+    }
 }

@@ -22,6 +22,6 @@ public class CurrencyControl : MonoBehaviour {
 
     public void OpenInventory(GameObject can)
     {
-        can.transform.position = new Vector3(0,0,0);
+        can.SetActive(true);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Core.Configuration;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SymbolHandler : DragHandler
@@ -32,6 +33,18 @@ public class SymbolHandler : DragHandler
         //AudioManager.Play(ID);
 
    }
+
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        SymbolBeingDragged = gameObject;
+
+        _startPosition = transform.position;
+        _startParent = transform.parent;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        audioManager.StartPlayCoroutine(ID);
+
+    }
 
     public void SetSyllables(string syl1, string syl2)
     {

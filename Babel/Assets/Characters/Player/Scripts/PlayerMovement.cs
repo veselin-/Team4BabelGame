@@ -4,6 +4,7 @@ using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Characters.Player.Scripts
 {
@@ -22,7 +23,9 @@ namespace Assets.Characters.Player.Scripts
         // Update is called once per frame
         void Update () {
             if (!Input.GetMouseButtonDown(0)) return;
+            var ts = Input.touches;
 
+            if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))) return;
             // Find all object in ray, and sort them by distance to object.
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray, 100);

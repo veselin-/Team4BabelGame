@@ -1,4 +1,5 @@
-﻿using Assets.Characters.Player.Scripts;
+﻿using Assets.Characters.AiScripts;
+using Assets.Characters.Player.Scripts;
 using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace Assets.Core.GameMaster.Scripts
             sidekick.tag = Constants.Tags.SideKick;
             sidekick.name = Constants.Tags.SideKick;
             sidekick.GetComponent<PlayerMovement>().enabled = false;
+            sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
+            sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 5;
 
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;

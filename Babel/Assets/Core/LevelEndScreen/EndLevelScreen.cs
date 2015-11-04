@@ -6,6 +6,7 @@ public class EndLevelScreen : MonoBehaviour {
 
 	public GameObject EndLevelCanvas;
 	public Text orbsTxt; 
+	public string NextLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +28,7 @@ public class EndLevelScreen : MonoBehaviour {
 		Application.LoadLevel ("MainMenu");
 	}
 
-	public void NextLevelBtn(string NextLevel)
+	public void NextLevelBtn()
 	{
 		Application.LoadLevel (NextLevel);
 	}

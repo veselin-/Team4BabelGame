@@ -5,7 +5,7 @@ public class LevelSelector : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Time.timeScale = 1f;
 	}
 	
 

@@ -11,13 +11,14 @@ namespace Assets.Core.GameMaster.Scripts
 
         public GameObject[] Endpoints;
         public string NextLevelName;
-
+		public GameObject endLevel;
         private bool isSidekickHere;
         private bool isPlayerHere;
 
         // Use this for initialization
         void Start ()
         {
+			Time.timeScale = 1f;
             StartCoroutine(ShouldRoomChange());
         }
 
@@ -27,7 +28,8 @@ namespace Assets.Core.GameMaster.Scripts
             {
                 yield return new WaitForSeconds(0.5f);
             }
-			GameObject.FindObjectOfType<EndLevelScreen> ().GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
+			endLevel.GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
+			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
             //Application.LoadLevel(NextLevelName);
         }
 

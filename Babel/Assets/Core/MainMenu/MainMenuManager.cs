@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1f;
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 		SettingsPanel.SetActive (false);
 		menuAnim = GetComponent<Animator> ();

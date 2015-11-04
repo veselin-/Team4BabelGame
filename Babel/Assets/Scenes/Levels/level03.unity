@@ -85,6 +85,10 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: 5bca95064bf15a140b0240459efc65ab, type: 2}
+--- !u!1 &52303091 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 196714, guid: f7735661ec331c34ca38a5594dd5f97d, type: 2}
+  m_PrefabInternal: {fileID: 2120611522}
 --- !u!1 &53788094
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +119,7 @@ Transform:
   - {fileID: 552744126}
   - {fileID: 1735363792}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &66232374
 Prefab:
   m_ObjectHideFlags: 0
@@ -721,6 +725,24 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 421640, guid: 50e91137ae7678444865bca108083993, type: 2}
   m_PrefabInternal: {fileID: 286599284}
+--- !u!1 &286599287 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 175790, guid: 50e91137ae7678444865bca108083993, type: 2}
+  m_PrefabInternal: {fileID: 286599284}
+--- !u!114 &286599288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 286599287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ed91cf9fe5afb4b8eaa5d597903e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactables:
+  - {fileID: 52303091}
+  MovementSpeed: 50
 --- !u!1001 &305124346
 Prefab:
   m_ObjectHideFlags: 0
@@ -2987,6 +3009,24 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 421640, guid: 50e91137ae7678444865bca108083993, type: 2}
   m_PrefabInternal: {fileID: 1119258456}
+--- !u!1 &1119258459 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 175790, guid: 50e91137ae7678444865bca108083993, type: 2}
+  m_PrefabInternal: {fileID: 1119258456}
+--- !u!114 &1119258460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119258459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ed91cf9fe5afb4b8eaa5d597903e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactables:
+  - {fileID: 52303091}
+  MovementSpeed: 50
 --- !u!1001 &1133301575
 Prefab:
   m_ObjectHideFlags: 0
@@ -3152,7 +3192,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 5
 --- !u!1 &1266512707
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,7 +3222,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
 --- !u!114 &1266512709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3782,7 +3822,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
 --- !u!1001 &1764361855
 Prefab:
   m_ObjectHideFlags: 0

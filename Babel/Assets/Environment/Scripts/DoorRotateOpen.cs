@@ -22,7 +22,7 @@ namespace Assets.Environment.Scripts
         private Vector3 _endRotation;
         private bool _objectIsShown;
 
-        public GameObject obstacle;
+        //public GameObject obstacle;
         //public int moveValue = 0;
         private float degreeValue = 89;
 
@@ -58,13 +58,13 @@ namespace Assets.Environment.Scripts
                 if (_interactables.All(i => i.HasBeenActivated()))
                 {
                     _objectIsShown = true;
-                    obstacle.SetActive(false);
+                    //obstacle.SetActive(false);
                     //GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<RoomManager>().SetCurrentRoom(1);
                 }
                 else
                 {
                     _objectIsShown = false;
-                    obstacle.SetActive(true);
+                    //obstacle.SetActive(true);
                 }
                 yield return new WaitForSeconds(0.2f);
             }

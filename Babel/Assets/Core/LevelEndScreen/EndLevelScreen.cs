@@ -37,4 +37,9 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		orbsTxt.text = "Orbs " + PlayerPrefs.GetInt ("CurrencyAmount").ToString();
 	}
+
+    void OnEnable()
+    {
+        UpdateOrbsUI();
+    }
 }

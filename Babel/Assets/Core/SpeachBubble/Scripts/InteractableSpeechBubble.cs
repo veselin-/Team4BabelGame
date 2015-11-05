@@ -25,6 +25,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	public List<SpeechHolder> narrative;
 	public int ConversationCounter = 0;
 
+	private bool _hasSpeech = false;
+	public Vector2 bubbleOffset;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
@@ -57,10 +59,18 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, player.transform.position);
+
+		if(!_hasSpeech)
+		{
+			return;
+		}
+
+		Vector3 playerOffset = player.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
+		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
 
-		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekick.transform.position);
+		Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
+		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 
 		//Debug.Log (_PlayerText.);
@@ -71,6 +81,22 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
 		imageWidth.width = textWidth;
 		*/
+	}
+
+	private void RandomBubblePos()
+	{
+		int rand = Random.Range (0, 1);
+		switch(rand)
+		{
+		case 0:
+			bubbleOffset.x = -bubbleOffset.x; 
+			Debug.Log(bubbleOffset);
+			break;
+		case 1:
+			bubbleOffset.x = -bubbleOffset.x;
+			Debug.Log(bubbleOffset);
+			break;
+		}
 	}
 
 	public void GetNextSpeech()
@@ -97,12 +123,14 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			} else {
 				SideKickSpeechBubble.gameObject.SetActive (false);
 			}
-
+			_hasSpeech = true;
 			ConversationCounter++;
+			//RandomBubblePos();
 		} else {
 			NarrativeSpeechBubble.gameObject.SetActive (false);
 			PlayerSpeechBubble.gameObject.SetActive (false);
 			SideKickSpeechBubble.gameObject.SetActive (false);
+			_hasSpeech = false;
 		}
 
 	}

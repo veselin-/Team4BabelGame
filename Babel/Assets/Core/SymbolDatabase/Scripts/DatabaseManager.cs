@@ -184,6 +184,7 @@ public void SaveAllDB()
         PlayerPrefsBool.SetBool("SideKickHat", false);
         PlayerPrefsBool.SetBool("PlayerHat", false);
         PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount * 0);
+        PlayerPrefsBool.SetBool("SevenElever", false);
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);
         var bindata = (TextAsset) Resources.Load("Signs");
         File.WriteAllBytes(signsPath, bindata.bytes);

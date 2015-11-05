@@ -14,7 +14,7 @@ namespace Assets.Core.Configuration
             public const string Stick = "Stick";
             public const string Key = "Key";
             public const string Torch = "Torch";
-            public const string Bottle = "Bottle";
+            public const string Bucket = "Bucket";
             public const string Floor = "Floor";
             public const string Keyhole = "Keyhole";
             public const string DatabaseManager = "DatabaseManager";

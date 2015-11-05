@@ -56,21 +56,28 @@ public class CombineSymbols : MonoBehaviour
         //If two different syllables are present in the two slots it should create a new prefab with the two syllables pictures and sounds. TYhen it should play the sounds in order.
     {
         //Destroy any preexisting symbols.
-        if (symbol)
-        {
-            Destroy(transform.GetChild(0).gameObject);
-        }
+        ClearCurrentSign();
 
         List<int> syllableIDs = new List<int>();
 
-        if(Slot1.GetComponent<SentenceSlotHandler>().symbol)
+        if (Slot1.GetComponent<SentenceSlotHandler>().symbol)
+        {
             syllableIDs.Add(Slot1.GetComponentInChildren<SyllableHandler>().ID);
+            Destroy(Slot1.transform.GetChild(0).gameObject);
+        }
 
         if (Slot2.GetComponent<SentenceSlotHandler>().symbol)
+        {
             syllableIDs.Add(Slot2.GetComponentInChildren<SyllableHandler>().ID);
-
+            Destroy(Slot2.transform.GetChild(0).gameObject);
+        }
+           
         if (Slot3.GetComponent<SentenceSlotHandler>().symbol)
+        {
             syllableIDs.Add(Slot3.GetComponentInChildren<SyllableHandler>().ID);
+            Destroy(Slot2.transform.GetChild(0).gameObject);
+        }
+            
 
 
         if (syllableIDs.Count < 2)
@@ -112,6 +119,15 @@ public class CombineSymbols : MonoBehaviour
         newSymbol.GetComponent<SymbolHandler>().UpdateSymbol();
 
         audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
+    }
+
+    public void ClearCurrentSign()
+    {
+        if (symbol)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+
     }
 
 }

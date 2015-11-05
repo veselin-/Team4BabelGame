@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour {
 			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		}
 
-//	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
 		LoadSavedValues ();
 
@@ -233,7 +233,7 @@ public class AudioManager : MonoBehaviour {
 	// female voices -----------------------------
 	public void FemaleSyllabusSoundPlay(int index)
 	{
-		Player.clip = FemaleSyllabusList [0];
+		Player.clip = FemaleSyllabusList [index];
 		Player.Play ();
 		//FemaleSyllabusList[index].Play();
 		//GetFemaleSyllabusByName (name).Play ();
@@ -254,16 +254,16 @@ public class AudioManager : MonoBehaviour {
 
     IEnumerator FemaleSignPlay(int id)
     {
-        //if (databaseManager.GetSign(id) != null)
-        //{
-        //    Sign s = databaseManager.GetSign(id);
+        if (databaseManager.GetSign(id) != null)
+        {
+            Sign s = databaseManager.GetSign(id);
 
-        //    foreach (int i in s.SyllableSequence)
-        //    {
-        //        FemaleSyllabusSoundPlay(i);
-        //        yield return new WaitForSeconds(FemaleSyllabusList[i].length);
-        //    }
-        //}
+            foreach (int i in s.SyllableSequence)
+            {
+                FemaleSyllabusSoundPlay(i);
+                yield return new WaitForSeconds(FemaleSyllabusList[i].length);
+            }
+        }
         yield return new WaitForSeconds(1);
 
 

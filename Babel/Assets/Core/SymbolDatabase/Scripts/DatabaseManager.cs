@@ -29,7 +29,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         try
         {
           LoadData();
-          DontDestroyOnLoad(transform.gameObject);
+          //DontDestroyOnLoad(transform.gameObject);
         }
         catch (Exception e)
         {
@@ -181,6 +181,9 @@ public void SaveAllDB()
 
     public void ResetSavedSigns()
     {
+        PlayerPrefsBool.SetBool("SideKickHat", false);
+        PlayerPrefsBool.SetBool("PlayerHat", false);
+        PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount * 0);
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);
         var bindata = (TextAsset) Resources.Load("Signs");
         File.WriteAllBytes(signsPath, bindata.bytes);

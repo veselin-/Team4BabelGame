@@ -8,7 +8,7 @@ public class CurrencyControl : MonoBehaviour {
     public Text amountText;
 
 	void Start () {
-        PlayerPrefs.SetInt("CurrencyAmount", currencyAmount * 0);
+        
     }
 	
 	void Update () {

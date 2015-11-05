@@ -31,7 +31,7 @@ namespace Assets.UI.Scripts
                     sk.Happines = 1;
             } else if (i == -4)
             {
-                GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>().ResetSavedSigns();
+                GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>().ResetUserData();
             }
 
             _sidekickControls.ExecuteAction(i);

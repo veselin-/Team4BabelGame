@@ -179,14 +179,24 @@ public void SaveAllDB()
         return (AlphabetDBLoaded && SignsDBLoaded && SentencesDBLoaded);
     }
 
-    public void ResetSavedSigns()
+    public void ResetUserData()
     {
+        // PlaterPrefs
         PlayerPrefsBool.SetBool("SideKickHat", false);
         PlayerPrefsBool.SetBool("PlayerHat", false);
         PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount * 0);
+
+        // XML's
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);
-        var bindata = (TextAsset) Resources.Load("Signs");
+        var bindata = (TextAsset)Resources.Load("Signs");
         File.WriteAllBytes(signsPath, bindata.bytes);
+        signsPath = GetFilePath(Constants.XmlFiles.Sentences);
+        bindata = (TextAsset)Resources.Load("Sentences");
+        File.WriteAllBytes(signsPath, bindata.bytes);
+        signsPath = GetFilePath(Constants.XmlFiles.Alphabet);
+        bindata = (TextAsset)Resources.Load("Alphabet");
+        File.WriteAllBytes(signsPath, bindata.bytes);
+
         LoadData();
     }
 

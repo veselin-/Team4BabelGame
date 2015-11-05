@@ -33,7 +33,7 @@ public class UIControl : MonoBehaviour
     public void SignCreationEnter()
     {
         SignCreation.SetTrigger("SignCreationEnter");
-        SignCreation.GetComponent<CombineSymbols>().ClearCurrentSign();
+        SignCreation.gameObject.GetComponentInChildren<CombineSymbols>().ClearCurrentSign();
     }
     public void SignCreationExit()
     {

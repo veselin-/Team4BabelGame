@@ -8,6 +8,7 @@ using System.Collections;
 using System.Linq;
 using System;
 using UnityEngine.UI;
+using Assets.Environment.Levers.LeverExample.Scripts;
 
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
 {
@@ -185,6 +186,9 @@ public void SaveAllDB()
         PlayerPrefsBool.SetBool("SideKickHat", false);
         PlayerPrefsBool.SetBool("PlayerHat", false);
         PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount * 0);
+
+        PlayerPrefsBool.SetBool("SevenElever", false);
+        LeverPulls.leverpulls = 0;
 
         // XML's
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);

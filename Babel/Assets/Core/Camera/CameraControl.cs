@@ -73,7 +73,7 @@ public class CameraControl : MonoBehaviour
 			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 			float pinchValue = deltaMagnitudeDiff * perspectiveZoomSpeed;
 
-			pinchZ += new Vector3(0f,0f, pinchValue);
+			pinchZ -= new Vector3(0f,0f, pinchValue);
 			pinchZ.z = Mathf.Clamp(pinchZ.z, MinPinch, MaxPinch);
 
 			Transform camera = Camera.main.transform;

@@ -14,7 +14,7 @@ public class Orb : MonoBehaviour {
     {
         if(col.tag == "Player")
         {
-            PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount + orbValue);
+            PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) + orbValue);
             Destroy(this.gameObject);
             Debug.Log("WTF YOU ARE HITTING ME!?");
         }

@@ -24,5 +24,9 @@ public class AchievementHandler : MonoBehaviour {
             PlayerPrefsBool.SetBool(achievement.name, true);
             achievement.SetActive(true);
         }
+        else
+        {
+            achievement.SetActive(false);
+        }
     }
 }

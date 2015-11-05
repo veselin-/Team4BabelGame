@@ -75,39 +75,34 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 	public void GetNextSpeech()
 	{
-		if(ConversationCounter >= 0 && ConversationCounter < narrative.Count)
-		{
+		if (ConversationCounter >= 0 && ConversationCounter < narrative.Count) {
 			if (narrative [ConversationCounter].isNarrativeSpeechActive) {
 
-				NarrativeSpeechBubble.gameObject.SetActive(true);
+				NarrativeSpeechBubble.gameObject.SetActive (true);
 				_NarrativeText.text = narrative [ConversationCounter].NarrativeSpeech;
-			} 
-			else 
-			{
-				NarrativeSpeechBubble.gameObject.SetActive(false);
+			} else {
+				NarrativeSpeechBubble.gameObject.SetActive (false);
 			}
 
-			if(narrative[ConversationCounter].isPlayerSpeechActive)
-			{
-				PlayerSpeechBubble.gameObject.SetActive(true);
-				_PlayerText.text = narrative[ConversationCounter].PlayerSpeech;
-			}
-			else 
-			{
-				PlayerSpeechBubble.gameObject.SetActive(false);
+			if (narrative [ConversationCounter].isPlayerSpeechActive) {
+				PlayerSpeechBubble.gameObject.SetActive (true);
+				_PlayerText.text = narrative [ConversationCounter].PlayerSpeech;
+			} else {
+				PlayerSpeechBubble.gameObject.SetActive (false);
 			}
 
-			if(narrative[ConversationCounter].isSideKickSpeechActive)
-			{
-				SideKickSpeechBubble.gameObject.SetActive(true);
-				_SideKickText.text = narrative[ConversationCounter].SideKickSpeech;
-			}
-			else 
-			{
-				SideKickSpeechBubble.gameObject.SetActive(false);
+			if (narrative [ConversationCounter].isSideKickSpeechActive) {
+				SideKickSpeechBubble.gameObject.SetActive (true);
+				_SideKickText.text = narrative [ConversationCounter].SideKickSpeech;
+			} else {
+				SideKickSpeechBubble.gameObject.SetActive (false);
 			}
 
 			ConversationCounter++;
+		} else {
+			NarrativeSpeechBubble.gameObject.SetActive (false);
+			PlayerSpeechBubble.gameObject.SetActive (false);
+			SideKickSpeechBubble.gameObject.SetActive (false);
 		}
 
 	}

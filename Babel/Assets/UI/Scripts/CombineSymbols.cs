@@ -75,7 +75,7 @@ public class CombineSymbols : MonoBehaviour
         if (Slot3.GetComponent<SentenceSlotHandler>().symbol)
         {
             syllableIDs.Add(Slot3.GetComponentInChildren<SyllableHandler>().ID);
-            Destroy(Slot2.transform.GetChild(0).gameObject);
+            Destroy(Slot3.transform.GetChild(0).gameObject);
         }
             
 

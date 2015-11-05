@@ -6,9 +6,9 @@ using Assets.Core.Configuration;
 
 public class InteractableSpeechBubble : MonoBehaviour {
 	
-	public Button PlayerSpeechBubble;
-	public Button SideKickSpeechBubble;
-	public Button NarrativeSpeechBubble;
+	public RectTransform PlayerSpeechBubble;
+	public RectTransform SideKickSpeechBubble;
+	public RectTransform NarrativeSpeechBubble;
 
 	private Text _PlayerText;
 	private Text _SideKickText;
@@ -47,12 +47,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 
 		//bubble resize depending on the text length
-		Debug.Log ("Image  " + PlayerSpeechBubble.image.rectTransform.rect.width);
-		Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
+		//Debug.Log ("Image  " + PlayerSpeechBubble.image.rectTransform.rect.width);
+		//Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
 		//_PlayerText.h
-		float textWidth = _PlayerText.rectTransform.rect.width + 10;
-		Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
-		imageWidth.width = textWidth;
+		//float textWidth = _PlayerText.rectTransform.rect.width + 10;
+		//Rect imageWidth = PlayerSpeechBubble.rect;
+		//imageWidth.width = textWidth;
 		//PlayerSpeechBubble.image.rectTransform.rect.width = textWidth;
 
 	}
@@ -64,7 +64,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		{
 			return;
 		}
-
+		/*
 		Vector3 playerOffset = player.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
@@ -72,6 +72,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+		*/
 
 		//Debug.Log (_PlayerText.);
 
@@ -81,6 +82,14 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
 		imageWidth.width = textWidth;
 		*/
+	}
+
+	public void ChangeRect(float bubbleWidth)
+	{
+		PlayerSpeechBubble.sizeDelta = new Vector2(PlayerSpeechBubble.sizeDelta.x, PlayerSpeechBubble.sizeDelta.y + bubbleWidth);
+		//Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
+		//imageWidth.x += bubbleWidth;
+		//PlayerSpeechBubble..rect.width = bubbleWidth; //imageWidth;
 	}
 
 	private void RandomBubblePos()
@@ -97,6 +106,18 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			Debug.Log(bubbleOffset);
 			break;
 		}
+	}
+
+	private void SetBubbleSize()
+	{
+		if (narrative [ConversationCounter].isPlayerSpeechActive) {
+			//Debug.Log (narrative[ConversationCounter].PlayerSpeech.Length);
+
+		}
+		if (narrative [ConversationCounter].isSideKickSpeechActive) {
+			//Debug.Log (narrative[ConversationCounter].SideKickSpeech.Length);
+		}
+
 	}
 
 	public void GetNextSpeech()
@@ -123,6 +144,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			} else {
 				SideKickSpeechBubble.gameObject.SetActive (false);
 			}
+			SetBubbleSize();
 			_hasSpeech = true;
 			ConversationCounter++;
 			//RandomBubblePos();

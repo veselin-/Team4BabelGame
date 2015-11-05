@@ -46,7 +46,8 @@ namespace Assets.Characters.AiScripts.States
 
         private void PickWaypoint()
         {
-            _agent.destination = Waypoints[Random.Range(0, Waypoints.Length)].position;
+            _agent.destination = Waypoints.Length == 0 ? _agent.transform.position : 
+                Waypoints[Random.Range(0, Waypoints.Length)].position;
         }
     }
 }

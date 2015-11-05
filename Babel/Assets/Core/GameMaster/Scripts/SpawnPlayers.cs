@@ -1,4 +1,6 @@
-﻿using Assets.Characters.AiScripts;
+﻿using System;
+using Assets.Characters.AiScripts;
+using Assets.Characters.AiScripts.ScriptedBehaviours;
 using Assets.Characters.Player.Scripts;
 using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
@@ -12,7 +14,13 @@ namespace Assets.Core.GameMaster.Scripts
 
         public Transform PlayerSpawnPoint;
         public Transform SidekickSpawnPoint;
-        
+
+
+        /// <summary>
+        /// This one should only be used, if the level recuires a scripted behaviour
+        /// </summary
+        public ScriptedBehaviour Behaviour;
+
         // Use this for initialization
         void Awake ()
         {
@@ -30,11 +38,20 @@ namespace Assets.Core.GameMaster.Scripts
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
             player.GetComponent<Renderer>().material.color = Color.green;
+
+            switch (Behaviour)
+            {
+                case ScriptedBehaviour.Toturial1:
+                    sidekick.AddComponent<Toturial01Behaviour>();
+                    break;
+            }
+
+    
         }
 
-        // Update is called once per frame
-        void Update () {
-	
+        public enum ScriptedBehaviour
+        {
+            None, Toturial1
         }
     }
 }

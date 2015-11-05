@@ -5,14 +5,6 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SpeechHolder
 {
-	public enum BubbleSize
-	{
-		Small,
-		Medium,
-		Large
-	}
-
-	public BubbleSize bubbleSize;
 	public string PlayerSpeech = "";
 	public bool isPlayerSpeechActive = false;
 

@@ -24,10 +24,12 @@ public class UIControl : MonoBehaviour
    public void SignBookEnter()
     {
         SignBook.SetTrigger("SignBookEnter");
+        Time.timeScale = 0;
     }
    public void SignBookExit()
     {
         SignBook.SetTrigger("SignBookExit");
+        Time.timeScale = 1;
     }
 
     public void SignCreationEnter()

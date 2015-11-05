@@ -38,8 +38,6 @@ namespace Assets.Core.LevelMaster
                     break;
             }
 
-            if(waypoints.Length < 1)
-                throw new Exception(string.Format("Room number {0} not supported", CurrentRoom));
             return waypoints;
         }
     }

@@ -28,7 +28,7 @@ namespace Assets.Environment.Scripts
         {
             // Sliding positions
             _startPosition = transform.localPosition;
-            _endPosistion = new Vector3(_startPosition.x, _startPosition.y, _startPosition.z + transform.localScale.z + moveValue);
+            _endPosistion = new Vector3(_startPosition.x, _startPosition.y, _startPosition.z + moveValue);
 
             // Get all IInteractables
             _interactables = new List<IInteractable>();

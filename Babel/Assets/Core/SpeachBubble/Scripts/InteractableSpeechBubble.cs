@@ -68,8 +68,9 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		Vector3 playerOffset = player.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
+        PlayerSignBubble.transform.position = _playerScreenPos;
 
-		Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
+        Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 	}

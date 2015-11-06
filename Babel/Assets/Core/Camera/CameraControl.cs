@@ -21,8 +21,8 @@ public class CameraControl : MonoBehaviour
 
 	public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
 	private Vector3 pinchZ = Vector3.zero;
-	public float MaxPinch = 15f;
-	public float MinPinch = -15f;
+	public float MaxPinch = 7f;
+	public float MinPinch = -30f;
 
 	public bool followPlayer = true;
 

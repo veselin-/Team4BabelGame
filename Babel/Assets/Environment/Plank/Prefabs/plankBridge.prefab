@@ -78,7 +78,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 404090}
-  - 114: {fileID: 11484536}
+  - 114: {fileID: 11457832}
   m_Layer: 0
   m_Name: plankBridge
   m_TagString: Untagged
@@ -122,8 +122,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.2399998, y: -2, z: -5.0999999}
+  m_LocalRotation: {x: 0, y: .70710665, z: 0, w: .707106948}
+  m_LocalPosition: {x: 42.4399986, y: 3.47000003, z: 16.6000004}
   m_LocalScale: {x: 4.7916007, y: 3.29999995, z: 3.29999995}
   m_Children:
   - {fileID: 402892}
@@ -373,7 +373,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11484536
+--- !u!114 &11457832
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -381,13 +381,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 166420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7e3ac3d9f7ebf4dac0989947166e73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7638f80f45bdf984f985c6d01fbcf291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Interactables:
   - {fileID: 0}
-  MovementSpeed: 5
+  MovementSpeed: 50
   obstacle: {fileID: 104654}
+  moveValue: 4
 --- !u!208 &20861652
 NavMeshObstacle:
   m_ObjectHideFlags: 1

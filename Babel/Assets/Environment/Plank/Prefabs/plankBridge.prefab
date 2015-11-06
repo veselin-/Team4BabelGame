@@ -29,7 +29,7 @@ GameObject:
   - 95: {fileID: 9523586}
   m_Layer: 0
   m_Name: plank (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -81,7 +81,7 @@ GameObject:
   - 114: {fileID: 11457832}
   m_Layer: 0
   m_Name: plankBridge
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ GameObject:
   - 95: {fileID: 9569388}
   m_Layer: 0
   m_Name: plank
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -123,8 +123,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166420}
   m_LocalRotation: {x: 0, y: .70710665, z: 0, w: .707106948}
-  m_LocalPosition: {x: 42.4399986, y: 3.47000003, z: 16.6000004}
-  m_LocalScale: {x: 4.7916007, y: 3.29999995, z: 3.29999995}
+  m_LocalPosition: {x: 19.7999992, y: -.540000021, z: 4.5}
+  m_LocalScale: {x: 3.60000014, y: 3, z: 3}
   m_Children:
   - {fileID: 402892}
   - {fileID: 476698}
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 104654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.884881675, y: 1.02999997, z: -1.10909104}
-  m_LocalScale: {x: 2.29562426, y: .712324619, z: 1.5890522}
+  m_LocalScale: {x: 1.83649945, y: .712324619, z: 1.5890522}
   m_Children: []
   m_Father: {fileID: 404090}
   m_RootOrder: 4
@@ -176,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.832518816, y: -1.16550112, z: -.881643295}
+  m_LocalPosition: {x: -.833000004, y: -1.14400005, z: -.896000028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404090}
@@ -386,7 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interactables:
   - {fileID: 0}
-  MovementSpeed: 50
+  - {fileID: 0}
+  MovementSpeed: 25
   obstacle: {fileID: 104654}
   moveValue: 4
 --- !u!208 &20861652

@@ -10,6 +10,8 @@ public class ActivateSentence : MonoBehaviour
     public GameObject[] SentenceSlots;
     private SidekickControls _sidekick;
 
+    private InteractableSpeechBubble isb;
+
 
 	// Use this for initialization
 	void Start ()
@@ -17,6 +19,8 @@ public class ActivateSentence : MonoBehaviour
         var sideKick = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
 	    if (sideKick == null) return;
 	    _sidekick = sideKick.GetComponent<SidekickControls>();
+
+	    isb = GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).GetComponent<InteractableSpeechBubble>();
 	}
 	
 	// Update is called once per frame
@@ -52,6 +56,7 @@ public class ActivateSentence : MonoBehaviour
        // Debug.Log(sentence[1]);
        // Debug.Log(sentence[2]);
        // Debug.Log(sentence[3]);
+       isb.ActivatePlayerSignBubble(sentence);
         return sentence;
    } 
 

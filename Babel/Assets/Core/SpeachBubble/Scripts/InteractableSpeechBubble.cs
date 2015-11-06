@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Core.Configuration;
+using System.Text.RegularExpressions;
 
 public class InteractableSpeechBubble : MonoBehaviour {
 	
@@ -10,7 +11,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	public RectTransform SideKickSpeechBubble;
 	public RectTransform NarrativeSpeechBubble;
 
-	private Text _PlayerText;
+
+    private Text _PlayerText;
 	private Text _SideKickText;
 	private Text _NarrativeText;
 	
@@ -23,12 +25,20 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	public SpeechList speechList;  
 
 	public List<SpeechHolder> narrative;
-	public int ConversationCounter = 0;
+	private int _ConversationCounter = 0;
 
 	private bool _hasSpeech = false;
 	public Vector2 bubbleOffset;
-	// Use this for initialization
-	void Start () {
+
+    private int _wordCounter = 0;
+	public int wordsForNewLine = 10;
+
+    public RectTransform PlayerSignBubble;
+    public float PlayerSignBubbleStayTime = 5f;
+    public GameObject SignPrefab;
+
+    // Use this for initialization
+    void Start () {
 		player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
 		sidekick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick);
 
@@ -38,22 +48,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, player.transform.position);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekick.transform.position);
-		//Debug.Log (playerScreenPos);
+
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 
 		narrative = speechList.speechList;
 		GetNextSpeech ();
-
-
-		//bubble resize depending on the text length
-		//Debug.Log ("Image  " + PlayerSpeechBubble.image.rectTransform.rect.width);
-		//Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
-		//_PlayerText.h
-		//float textWidth = _PlayerText.rectTransform.rect.width + 10;
-		//Rect imageWidth = PlayerSpeechBubble.rect;
-		//imageWidth.width = textWidth;
-		//PlayerSpeechBubble.image.rectTransform.rect.width = textWidth;
 
 	}
 	
@@ -64,7 +64,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		{
 			return;
 		}
-		/*
+
 		Vector3 playerOffset = player.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
@@ -72,24 +72,6 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
-		*/
-
-		//Debug.Log (_PlayerText.);
-
-		/*
-		Debug.Log ("Text  " +_PlayerText.rectTransform.rect.width);
-		float textWidth = _PlayerText.rectTransform.rect.width + 10;
-		Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
-		imageWidth.width = textWidth;
-		*/
-	}
-
-	public void ChangeRect(float bubbleWidth)
-	{
-		PlayerSpeechBubble.sizeDelta = new Vector2(PlayerSpeechBubble.sizeDelta.x, PlayerSpeechBubble.sizeDelta.y + bubbleWidth);
-		//Rect imageWidth = PlayerSpeechBubble.image.rectTransform.rect;
-		//imageWidth.x += bubbleWidth;
-		//PlayerSpeechBubble..rect.width = bubbleWidth; //imageWidth;
 	}
 
 	private void RandomBubblePos()
@@ -108,45 +90,77 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		}
 	}
 
-	private void SetBubbleSize()
+	private string AddNewLines(string text)
 	{
-		if (narrative [ConversationCounter].isPlayerSpeechActive) {
-			//Debug.Log (narrative[ConversationCounter].PlayerSpeech.Length);
-
+		_wordCounter = 0;
+		for(int i = 0; i < text.Length; i++)
+		{
+			if(char.IsWhiteSpace(text[i]))
+			{
+				_wordCounter++;
+			}
+			if(_wordCounter == wordsForNewLine)
+			{
+				text = text.Remove(i, 1);
+				text = text.Insert(i, "\n");
+				_wordCounter = 0;
+			}
 		}
-		if (narrative [ConversationCounter].isSideKickSpeechActive) {
-			//Debug.Log (narrative[ConversationCounter].SideKickSpeech.Length);
-		}
-
+		return text;
 	}
 
+	private string AddNewLineToNarrative(string text)
+	{
+		_wordCounter = 0;
+		for(int i = 0; i < text.Length; i++)
+		{
+			if(char.IsWhiteSpace(text[i]))
+			{
+				_wordCounter++;
+			}
+			if(_wordCounter == 15)
+			{
+				text = text.Remove(i, 1);
+				text = text.Insert(i, "\n");
+				_wordCounter = 0;
+			}
+		}
+		return text;
+	}
 	public void GetNextSpeech()
 	{
-		if (ConversationCounter >= 0 && ConversationCounter < narrative.Count) {
-			if (narrative [ConversationCounter].isNarrativeSpeechActive) {
+		if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
+			if (narrative [_ConversationCounter].isNarrativeSpeechActive) {
 
 				NarrativeSpeechBubble.gameObject.SetActive (true);
-				_NarrativeText.text = narrative [ConversationCounter].NarrativeSpeech;
+				string tempText = narrative [_ConversationCounter].NarrativeSpeech;
+				tempText = AddNewLineToNarrative(tempText);
+				_NarrativeText.text = tempText;
 			} else {
 				NarrativeSpeechBubble.gameObject.SetActive (false);
 			}
 
-			if (narrative [ConversationCounter].isPlayerSpeechActive) {
+			if (narrative [_ConversationCounter].isPlayerSpeechActive) {
+
 				PlayerSpeechBubble.gameObject.SetActive (true);
-				_PlayerText.text = narrative [ConversationCounter].PlayerSpeech;
+				string tempText =  narrative [_ConversationCounter].PlayerSpeech;
+				tempText = AddNewLines(tempText);
+				_PlayerText.text = tempText;
 			} else {
 				PlayerSpeechBubble.gameObject.SetActive (false);
 			}
 
-			if (narrative [ConversationCounter].isSideKickSpeechActive) {
+			if (narrative [_ConversationCounter].isSideKickSpeechActive) {
+
 				SideKickSpeechBubble.gameObject.SetActive (true);
-				_SideKickText.text = narrative [ConversationCounter].SideKickSpeech;
+				string tempText =  narrative [_ConversationCounter].SideKickSpeech;
+				tempText = AddNewLines(tempText);
+				_SideKickText.text = tempText;
 			} else {
 				SideKickSpeechBubble.gameObject.SetActive (false);
 			}
-			SetBubbleSize();
 			_hasSpeech = true;
-			ConversationCounter++;
+			_ConversationCounter++;
 			//RandomBubblePos();
 		} else {
 			NarrativeSpeechBubble.gameObject.SetActive (false);
@@ -156,4 +170,35 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		}
 
 	}
+
+    public void ActivatePlayerSignBubble(List<int> ids)
+    {
+        PlayerSignBubble.gameObject.SetActive(true);
+
+        foreach (int i in ids)
+        {
+            GameObject nSign = Instantiate(SignPrefab);
+            nSign.transform.SetParent(PlayerSignBubble);
+            nSign.GetComponent<SymbolHandler>().ID = i;
+            nSign.GetComponent<SymbolHandler>().UpdateSymbol();
+        }
+
+        StartCoroutine(signBubbleTimer());
+
+    }
+
+    IEnumerator signBubbleTimer()
+    {
+        
+        yield return new WaitForSeconds(PlayerSignBubbleStayTime);
+
+        for (int i = PlayerSignBubble.childCount; i > 0; i--)
+        {
+            Destroy(PlayerSignBubble.GetChild(i-1).gameObject);
+        }
+
+        PlayerSignBubble.gameObject.SetActive(false);
+
+    }
+
 }

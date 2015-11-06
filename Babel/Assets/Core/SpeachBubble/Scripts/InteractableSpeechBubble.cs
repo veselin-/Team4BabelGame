@@ -11,7 +11,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	public RectTransform SideKickSpeechBubble;
 	public RectTransform NarrativeSpeechBubble;
 
-	private Text _PlayerText;
+
+    private Text _PlayerText;
 	private Text _SideKickText;
 	private Text _NarrativeText;
 	
@@ -29,10 +30,15 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	private bool _hasSpeech = false;
 	public Vector2 bubbleOffset;
 
-	private int _wordCounter = 0;
+    private int _wordCounter = 0;
 	public int wordsForNewLine = 10;
-	// Use this for initialization
-	void Start () {
+
+    public RectTransform PlayerSignBubble;
+    public float PlayerSignBubbleStayTime = 5f;
+    public GameObject SignPrefab;
+
+    // Use this for initialization
+    void Start () {
 		player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
 		sidekick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick);
 
@@ -62,8 +68,9 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		Vector3 playerOffset = player.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
+        PlayerSignBubble.transform.position = _playerScreenPos;
 
-		Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
+        Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 	}
@@ -165,5 +172,34 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 	}
 
+    public void ActivatePlayerSignBubble(List<int> ids)
+    {
+        PlayerSignBubble.gameObject.SetActive(true);
+
+        foreach (int i in ids)
+        {
+            GameObject nSign = Instantiate(SignPrefab);
+            nSign.transform.SetParent(PlayerSignBubble);
+            nSign.GetComponent<SymbolHandler>().ID = i;
+            nSign.GetComponent<SymbolHandler>().UpdateSymbol();
+        }
+
+        StartCoroutine(signBubbleTimer());
+
+    }
+
+    IEnumerator signBubbleTimer()
+    {
+        
+        yield return new WaitForSeconds(PlayerSignBubbleStayTime);
+
+        for (int i = PlayerSignBubble.childCount; i > 0; i--)
+        {
+            Destroy(PlayerSignBubble.GetChild(i-1).gameObject);
+        }
+
+        PlayerSignBubble.gameObject.SetActive(false);
+
+    }
 
 }

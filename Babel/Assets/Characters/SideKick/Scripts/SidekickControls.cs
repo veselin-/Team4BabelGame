@@ -65,7 +65,7 @@ namespace Assets.Characters.SideKick.Scripts
                     _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Torch));
                     return;
                 case 12:
-                    _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Bottle));
+                    _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Bucket));
                     return;
                 case 13:
                     _sidekickPickupHandler.DropCurrent();

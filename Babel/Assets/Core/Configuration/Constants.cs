@@ -24,6 +24,7 @@ namespace Assets.Core.Configuration
             public const string AudioManager = "AudioManager";
             public const string AddNewSign = "AddNewSign";
             public const string GameUI = "GameUI";
+            public const string SpeechCanvas = "SpeechCanvas";
         }
 
         public class XmlFiles

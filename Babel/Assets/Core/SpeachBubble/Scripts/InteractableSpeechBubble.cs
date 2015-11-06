@@ -192,6 +192,11 @@ public class InteractableSpeechBubble : MonoBehaviour {
         
         yield return new WaitForSeconds(PlayerSignBubbleStayTime);
 
+        for (int i = PlayerSignBubble.childCount; i > 0; i--)
+        {
+            Destroy(PlayerSignBubble.GetChild(i-1).gameObject);
+        }
+
         PlayerSignBubble.gameObject.SetActive(false);
 
     }

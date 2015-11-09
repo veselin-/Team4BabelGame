@@ -22,7 +22,7 @@ namespace Assets.Environment.Braizer.Scripts
 
         void Awake()
         {
-            _psystem = GetComponent<ParticleSystem>();
+            _psystem = transform.FindChild("fire").GetComponent<ParticleSystem>();
             OnFire = StartLighted;
         }
 

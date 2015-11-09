@@ -71,7 +71,6 @@ namespace Assets.Characters.Player.Scripts
             }
             if (other.tag == Constants.Tags.AddNewSign)
             {
-                Debug.Log("Clicked on the trigger");
                 _uiControl.SignCreationEnter();
 
                 other.GetComponent<NewSign>().SetSignID();

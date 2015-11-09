@@ -1,66 +1,60 @@
 ﻿using UnityEngine;
-using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using Assets.Core.Configuration;
-using System.Collections;
 using System.Linq;
 using System;
-using UnityEngine.UI;
 using Assets.Environment.Levers.LeverExample.Scripts;
 
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
 {
-    private Dictionary<int, Syllable> AlphabetDatabase;
-    private Dictionary<int, Sign> SignsDatabase;
-    private Dictionary<int, Sentence> SentencesDatabase;
+    private Dictionary<int, Syllable> _alphabetDatabase;
+    private Dictionary<int, Sign> _signsDatabase;
+    private Dictionary<int, Sentence> _sentencesDatabase;
 
-    private bool AlphabetDBLoaded = false;
-    private bool SignsDBLoaded = false;
-    private bool SentencesDBLoaded = false;
-    //bool fuckyou = true;
+    private bool _alphabetDbLoaded;
+    private bool _signsDbLoaded;
+    private bool _sentencesDbLoaded;
 
     public GameObject ExceptionImage;
 
-    private 
+    private
 
     void Awake()
     {
         try
         {
-          LoadData();
-          //DontDestroyOnLoad(transform.gameObject);
+            LoadData();
         }
         catch (Exception e)
         {
-
             Debug.Log("Couldn't load database. Probably an error in the XML" + e);
         }
-       
+
     }
 
 
     // Adds the sign to the predefined id and name and sets it active
     public void AddSign(int id, List<int> syllableSequence)
     {
-        if (SignsDatabase.ContainsKey(id))
+        if (_signsDatabase.ContainsKey(id))
         {
-            Sign sign = SignsDatabase[id];
+            Sign sign = _signsDatabase[id];
             sign.SyllableSequence = syllableSequence;
             sign.IsActive = true;
-            SignsDatabase[id] = sign;
+            _signsDatabase[id] = sign;
         }
     }
 
     // Adds the sentence to the predefined id 
     public void AddSentence(int id, List<int> signSequence)
     {
-        if (SentencesDatabase.ContainsKey(id))
+        if (_sentencesDatabase.ContainsKey(id))
         {
-            Sentence sentence = SentencesDatabase[id];
+            Sentence sentence = _sentencesDatabase[id];
             sentence.SignSequence = signSequence;
-            SentencesDatabase[id] = sentence;
+            _sentencesDatabase[id] = sentence;
         }
     }
 
@@ -68,9 +62,9 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     // Returns the character of the database with the given ID
     public Syllable GetSyllable(int id)
     {
-        if (AlphabetDatabase.ContainsKey(id))
+        if (_alphabetDatabase.ContainsKey(id))
         {
-            return AlphabetDatabase[id];
+            return _alphabetDatabase[id];
         }
 
         return null;
@@ -79,9 +73,9 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     // Returns the sign of the database with the given ID if it is active
     public Sign GetSign(int id)
     {
-        if (SignsDatabase.ContainsKey(id) && SignsDatabase[id].IsActive)
+        if (_signsDatabase.ContainsKey(id) && _signsDatabase[id].IsActive)
         {
-            return SignsDatabase[id];
+            return _signsDatabase[id];
         }
         return null;
     }
@@ -89,9 +83,9 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     // Returns the sentence of the database with the given ID
     public Sentence GetSentenceById(int id)
     {
-        if (SentencesDatabase.ContainsKey(id))
+        if (_sentencesDatabase.ContainsKey(id))
         {
-            return SentencesDatabase[id];
+            return _sentencesDatabase[id];
         }
         return null;
     }
@@ -103,44 +97,27 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         if (signSequence.Count > 0)
         {
             Sentence sentence =
-                SentencesDatabase.FirstOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
+                _sentencesDatabase.FirstOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
 
             return sentence != null ? sentence.id : -1;
         }
         return -1;
     }
 
-public void SaveAllDB()
+    public void SaveAllDb()
     {
-        SaveAlphabetDB();
-        SaveSignsDB();
-        SaveSentencesDB();
+        SaveSignsDb();
+        SaveSentencesDb();
     }
 
-    public void SaveAlphabetDB()
-    {
-        var alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
-
-        AlphabetContainer alphabetContainer = new AlphabetContainer();
-        alphabetContainer.Syllables = new List<Syllable>(AlphabetDatabase.Values);
-
-        var serializer = new XmlSerializer(typeof(AlphabetContainer));
-
-        var stream = new MemoryStream();
-        serializer.Serialize(stream, alphabetContainer);
-
-        
-        stream.Close();
-    }
-
-    public void SaveSignsDB()
+    public void SaveSignsDb()
     {
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);
 
-        signsContainer signsContainer = new signsContainer();
-        signsContainer.Signs = new List<Sign>(SignsDatabase.Values);
+        SignsContainer signsContainer = new SignsContainer();
+        signsContainer.Signs = new List<Sign>(_signsDatabase.Values);
 
-        var serializer = new XmlSerializer(typeof(signsContainer));
+        var serializer = new XmlSerializer(typeof(SignsContainer));
 
         var stream = new MemoryStream();
         serializer.Serialize(stream, signsContainer);
@@ -148,12 +125,12 @@ public void SaveAllDB()
         stream.Close();
     }
 
-    public void SaveSentencesDB()
+    public void SaveSentencesDb()
     {
         var sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
 
         SentencesContainer sentencesContainer = new SentencesContainer();
-        sentencesContainer.Sentences = new List<Sentence>(SentencesDatabase.Values);
+        sentencesContainer.Sentences = new List<Sentence>(_sentencesDatabase.Values);
 
         var serializer = new XmlSerializer(typeof(SentencesContainer));
         var stream = new FileStream(sentencesPath, FileMode.Create);
@@ -170,14 +147,14 @@ public void SaveAllDB()
 
     private void LoadData()
     {
-        LoadAlphabetDB();
-        LoadsignsDB();
-        LoadSentencesDB();
+        LoadAlphabetDb();
+        LoadsignsDb();
+        LoadSentencesDb();
     }
 
     public bool DatabasesLoaded()
     {
-        return (AlphabetDBLoaded && SignsDBLoaded && SentencesDBLoaded);
+        return (_alphabetDbLoaded && _signsDbLoaded && _sentencesDbLoaded);
     }
 
     public void ResetUserData()
@@ -204,45 +181,37 @@ public void SaveAllDB()
         LoadData();
     }
 
-    private void LoadAlphabetDB()
+    private void LoadAlphabetDb()
     {
         var alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
-        //WWW alphabetData = new WWW(Application.streamingAssetsPath + "/" + Constants.XmlFiles.Alphabet);
-
-        //WWW alphabetData = alphabetPath;
-
-
         if (!File.Exists(alphabetPath))
         {
             TextAsset bindata = Resources.Load("Alphabet") as TextAsset;
-            if(bindata == null)
+            if (bindata == null)
                 ExceptionImage.SetActive(true);
-            else 
+            else
                 File.WriteAllBytes(alphabetPath, bindata.bytes);
-            //ExceptionImage.SetActive(true);
         }
 
         var charSerializer = new XmlSerializer(typeof(AlphabetContainer));
-
-        //string escapeURL = WWW.EscapeURL(alphabetPath.url);
-
         var bytes = File.ReadAllBytes(alphabetPath);
-        var charStream = new MemoryStream(bytes);//new FileStream(alphabetPath.url, FileMode.Open);
+        var charStream = new MemoryStream(bytes);
 
         var container = charSerializer.Deserialize(charStream) as AlphabetContainer;
 
         charStream.Close();
-        AlphabetDatabase = new Dictionary<int, Syllable>();
+        _alphabetDatabase = new Dictionary<int, Syllable>();
 
-        foreach (Syllable syllable in container.Syllables)
-        {
-                AlphabetDatabase.Add(syllable.id, syllable);
-        }
-        AlphabetDBLoaded = true;
+        if (container != null)
+            foreach (Syllable syllable in container.Syllables)
+            {
+                _alphabetDatabase.Add(syllable.id, syllable);
+            }
+        _alphabetDbLoaded = true;
     }
 
 
-    private void LoadsignsDB()
+    private void LoadsignsDb()
     {
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);
         if (!File.Exists(signsPath))
@@ -252,24 +221,24 @@ public void SaveAllDB()
                 ExceptionImage.SetActive(true);
             else
                 File.WriteAllBytes(signsPath, bindata.bytes);
-            //ExceptionImage.SetActive(true);
         }
 
-        var charSerializer = new XmlSerializer(typeof(signsContainer));
+        var charSerializer = new XmlSerializer(typeof(SignsContainer));
         var bytes = File.ReadAllBytes(signsPath);
         var charStream = new MemoryStream(bytes);
-        var container = charSerializer.Deserialize(charStream) as signsContainer;
+        var container = charSerializer.Deserialize(charStream) as SignsContainer;
         charStream.Close();
 
-        SignsDatabase = new Dictionary<int, Sign>();
-        foreach (Sign sign in container.Signs)
-        {
-            SignsDatabase.Add(sign.id, sign);
-        }
-        SignsDBLoaded = true;
+        _signsDatabase = new Dictionary<int, Sign>();
+        if (container != null)
+            foreach (Sign sign in container.Signs)
+            {
+                _signsDatabase.Add(sign.id, sign);
+            }
+        _signsDbLoaded = true;
     }
 
-    private void LoadSentencesDB()
+    private void LoadSentencesDb()
     {
         var sentencesPath = GetFilePath(Constants.XmlFiles.Sentences);
         if (!File.Exists(sentencesPath))
@@ -279,65 +248,29 @@ public void SaveAllDB()
                 ExceptionImage.SetActive(true);
             else
                 File.WriteAllBytes(sentencesPath, bindata.bytes);
-            //ExceptionImage.SetActive(true);
         }
 
-        
+
         var charSerializer = new XmlSerializer(typeof(SentencesContainer));
         var bytes = File.ReadAllBytes(sentencesPath);
         var charStream = new MemoryStream(bytes);
         var container = charSerializer.Deserialize(charStream) as SentencesContainer;
         charStream.Close();
 
-        SentencesDatabase = new Dictionary<int, Sentence>();
-        foreach (Sentence sentence in container.Sentences)
-        {
-            SentencesDatabase.Add(sentence.id, sentence);
-        }
+        _sentencesDatabase = new Dictionary<int, Sentence>();
+        if (container != null)
+            foreach (Sentence sentence in container.Sentences)
+            {
+                _sentencesDatabase.Add(sentence.id, sentence);
+            }
 
-        SentencesDBLoaded = true;
+        _sentencesDbLoaded = true;
     }
 
     private string GetFilePath(string fileName)
     {
-
         return Application.persistentDataPath + "/" + fileName;
-
-        WWW www = new WWW("fml!");
-    #if UNITY_ANDROID//For running in Android
-            www = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);       
-    #endif
-    #if UNITY_EDITOR // For running in Unity
-            www = new WWW(Application.streamingAssetsPath + "/" + fileName);
-    #endif
-
-        if (www.url == Application.streamingAssetsPath + "/" + fileName)
-        {
-            ExceptionImage.SetActive(true);
-        }
-
-        //while (fuckyou)
-        //{
-        //    StartCoroutine(GetShitDone(www, fileName));
-        //}
-        //    if (www.isDone)
-        //    {
-        //        File.WriteAllBytes(Application.streamingAssetsPath + "/" + fileName, www.bytes);
-        //    //ExceptionImage.SetActive(true);
-        //    }
-        //if (www.error == null)
-        //{
-        //    ExceptionImage.SetActive(true);
-        //}
-
     }
-
-    //IEnumerator GetShitDone(WWW www, string path)
-    //{
-    //    yield return www;
-    //    File.WriteAllBytes(Application.persistentDataPath + path, www.bytes);
-    //    //fuckyou = false;
-    //}
 }
 
 public class Syllable
@@ -371,7 +304,7 @@ public class Sign
 }
 
 [XmlRoot("SignsCollection")]
-public class signsContainer
+public class SignsContainer
 {
     [XmlArray("Signs")]
     [XmlArrayItem("Sign")]

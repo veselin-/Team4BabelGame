@@ -105,7 +105,7 @@ public class CombineSymbols : MonoBehaviour
         }
 
         databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
-        databaseManager.GetComponent<DatabaseManager>().SaveSignsDB();
+        databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
 
         GameObject newSymbol = Instantiate(SymbolPrefab);
 

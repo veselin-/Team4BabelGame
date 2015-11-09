@@ -8,23 +8,25 @@ namespace Assets.Environment.Font.Scripts
     {
 
         public GameObject[] InteractPoints;
-        public GameObject Wather;
-        private int _whaterLevel;
+        public GameObject Water;
+        public int WaterLevel;
 
         void Start()
         {
-            Wather.GetComponent<Renderer>().material.color = Color.blue;
+            Water.GetComponent<Renderer>().material.color = Color.blue;
+            FixWater();
         }
 
         public bool HasBeenActivated()
         {
-            return _whaterLevel == 3;
+            return WaterLevel == 2;
         }
 
         public GameObject Interact(GameObject pickup)
         {
             if (!CanThisBeInteractedWith(pickup)) return null;
             pickup.GetComponent<Bucket.Scripts.Bucket>().HasWaterInIt = false;
+            RaiseWater();
             return pickup;
         }
 
@@ -39,10 +41,40 @@ namespace Assets.Environment.Font.Scripts
                 ToArray()[0].transform.position;
         }
 
-        void RaiseWhater()
+        void RaiseWater()
         {
-            _whaterLevel += _whaterLevel > 2 ? 0 : 1;
-            
+            WaterLevel += WaterLevel > 1 ? 0 : 1;
+            FixWater();
+        }
+
+        void FixWater()
+        {
+            switch (WaterLevel)
+            {
+                case (0):
+                    Water.SetActive(false);
+                    break;
+                case (1):
+                    Water.SetActive(true);
+                    var vec = Water.transform.localPosition;
+                    vec.y = 84;
+                    Water.transform.localPosition = vec;
+                    vec = Water.transform.localScale;
+                    vec.x = 28.2f;
+                    vec.z = 28.2f;
+                    Water.transform.localScale = vec;
+                    break;
+                case (2):
+                    Water.SetActive(true);
+                    vec = Water.transform.localPosition;
+                    vec.y = 95;
+                    Water.transform.localPosition = vec;
+                    vec = Water.transform.localScale;
+                    vec.x = 33f;
+                    vec.z = 33f;
+                    Water.transform.localScale = vec;
+                    break;
+            }
         }
     }
 }

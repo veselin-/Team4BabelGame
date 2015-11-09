@@ -13,10 +13,9 @@ public interface IDatabaseManager
     Sentence GetSentenceById(int id);
     int GetSentenceBySeq(List<int> signSequence);
 
-    void SaveAllDB();
-    void SaveAlphabetDB();
-    void SaveSignsDB();
-    void SaveSentencesDB();
+    void SaveAllDb();
+    void SaveSignsDb();
+    void SaveSentencesDb();
 
     Sprite GetImage(string fileName);
 

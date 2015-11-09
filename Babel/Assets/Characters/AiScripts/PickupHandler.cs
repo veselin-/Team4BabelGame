@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Core.Configuration;
+using Assets.Environment.Bucket.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +59,9 @@ namespace Assets.Characters.AiScripts
                 mr.SetActive(false);
             if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup.tag)) return;
             _pickUps[_currentPickup.tag].SetActive(true);
+            
+            if(_currentPickup.tag == Constants.Tags.Bucket)
+                _pickUps["Water"].SetActive(CurrentPickup.GetComponent<Bucket>().HasWaterInIt);
         }
 
         public void DropCurrent()

@@ -5,10 +5,12 @@ namespace Assets.Environment.Bucket.Scripts
 {
     public class Bucket : MonoBehaviour, ICollectable
     {
-        private bool _hasWather;
+        public bool HasWather;
+        public GameObject Water;
+
         public bool HasWaterInIt {
-            get { return _hasWather; }
-            set { _hasWather = value; LetThereBeWhater(); }
+            get { return HasWather; }
+            set { HasWather = value; LetThereBeWhater(); }
         }
 
         void Start()
@@ -24,8 +26,7 @@ namespace Assets.Environment.Bucket.Scripts
 
         private void LetThereBeWhater()
         {
-            // TODO Add Rosens implementation of whater in the bucket.. 
-            transform.GetChild(0).GetComponent<Renderer>().material.color = _hasWather ? Color.blue : Color.white;
+            Water.SetActive(HasWather);
         }
     }
 }

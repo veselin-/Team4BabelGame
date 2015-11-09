@@ -17,12 +17,7 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
         {
             return PlayerPos.transform.position;
         }
-
-        void Start()
-        {
-            _oldColor = GetComponent<Renderer>().material.color;
-        }
-
+        
         public bool HasBeenActivated()
         {
             return _hasBeenPulled;
@@ -42,17 +37,16 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
 
         IEnumerator ChangeColor()
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponentInChildren<Animator>().SetTrigger("PullLever");
             _hasBeenPulled = true;
             if(leverpulls < 7)
             {
                 leverpulls += 1;
             }
-            Debug.Log(leverpulls);
             if (Timelimit)
             {
                 yield return new WaitForSeconds(SecForLever);
-                GetComponent<Renderer>().material.color = _oldColor;
+                GetComponentInChildren<Animator>().SetTrigger("PullLever");
                 _hasBeenPulled = false;
             }
         }

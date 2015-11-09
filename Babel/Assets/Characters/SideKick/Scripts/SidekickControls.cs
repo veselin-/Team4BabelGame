@@ -52,6 +52,12 @@ namespace Assets.Characters.SideKick.Scripts
                 case 4:
                     _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Brazier, _sidekickPickupHandler.CurrentPickup));
                     return;
+                case 2:
+                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Pool, _sidekickPickupHandler.CurrentPickup));
+                    return;
+                case 5:
+                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Font, _sidekickPickupHandler.CurrentPickup));
+                    return;
                 case 6:
                     _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Lever, _sidekickPickupHandler.CurrentPickup));
                     return;

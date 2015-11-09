@@ -32,6 +32,7 @@ public class ActivateSentence : MonoBehaviour
     {
         var sentence = GetSentence();
         if(_sidekick == null) return;
+        if (sentence == null) return;
         _sidekick.RespondToSentence(sentence);
     }
 
@@ -40,23 +41,42 @@ public class ActivateSentence : MonoBehaviour
 
        List<int> sentence = new List<int>();
 
-       foreach (GameObject slot in SentenceSlots)
-       {
-           if (slot.GetComponent<SentenceSlotHandler>().symbol)
-           {
-               sentence.Add(slot.transform.GetComponentInChildren<SymbolHandler>().ID);
-                Destroy(slot.transform.GetChild(0).gameObject, 2f);
-           }
-           else
-           {
-              // sentence.Add(-1);
-           }
-       }
-       //Debug.Log(sentence[0]);
-       // Debug.Log(sentence[1]);
-       // Debug.Log(sentence[2]);
-       // Debug.Log(sentence[3]);
-       isb.ActivatePlayerSignBubble(sentence);
+       //foreach (GameObject slot in SentenceSlots)
+       //{
+       //    if (slot.GetComponent<SentenceSlotHandler>().symbol)
+       //    {
+       //        sentence.Add(slot.transform.GetComponentInChildren<SymbolHandler>().ID);
+       //         Destroy(slot.transform.GetChild(0).gameObject, 2f);
+       //    }
+       //    else
+       //    {
+       //       // sentence.Add(-1);
+       //    }
+       //}
+        if (SentenceSlots[0].transform.childCount == 1)
+        {
+            sentence.Add(SentenceSlots[0].transform.GetComponentInChildren<SymbolHandler>().ID);
+        }
+        if (SentenceSlots[1].transform.childCount == 1)
+        {
+            sentence.Add(SentenceSlots[1].transform.GetComponentInChildren<SymbolHandler>().ID);
+        }
+        if (SentenceSlots[2].transform.childCount == 1)
+        {
+            sentence.Add(SentenceSlots[2].transform.GetComponentInChildren<SymbolHandler>().ID);
+        }
+        if (SentenceSlots[3].transform.childCount == 1)
+        {
+            sentence.Add(SentenceSlots[3].transform.GetComponentInChildren<SymbolHandler>().ID);
+        }
+        Debug.Log("SLOT CHILD COUNT: " + SentenceSlots[0].transform.childCount);
+        Debug.Log("sentence[0]: " + sentence[0]);
+        //if
+        //Debug.Log(sentence[0]);
+        // Debug.Log(sentence[1]);
+        // Debug.Log(sentence[2]);
+        // Debug.Log(sentence[3]);
+        isb.ActivatePlayerSignBubble(sentence);
         return sentence;
    } 
 

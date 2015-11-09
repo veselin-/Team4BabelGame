@@ -7,15 +7,15 @@ using Assets.Core.Configuration;
 public class CombineSymbols : MonoBehaviour
 {
 
-    public GameObject Slot1;
+    //public GameObject Slot1;
 
-    public GameObject Slot2;
+    //public GameObject Slot2;
 
-    public GameObject Slot3;
+    //public GameObject Slot3;
 
     public Text text;
 
-    public GameObject SymbolPrefab;
+    //private GameObject SymbolPrefab;
 
     private GameObject databaseManager;
 
@@ -59,25 +59,44 @@ public class CombineSymbols : MonoBehaviour
         ClearCurrentSign();
 
         List<int> syllableIDs = new List<int>();
+        Debug.Log("CHILDCOUNT OF PARENT: " + transform.childCount);
+        Debug.Log("CHILDCOUNT OF CHILD1: " + transform.GetChild(0).childCount);
+        Debug.Log("CHILDCOUNT OF PARENT+CHILD1: " + (transform.childCount + transform.GetChild(0).childCount));
+        Debug.Log("CHILDCOUNT OF PARENT+CHILD1+CHILD2: " + (transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount));
+        if ((transform.childCount + transform.GetChild(0).childCount) >= 2)
+        {
+            if ((transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount) == 3)
+            {
+                syllableIDs.Add(transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                Debug.Log("nej der er fukin 3");
+            }
+            else //if ((transform.childCount + transform.GetChild(0).childCount) == 2)
+            {
+                syllableIDs.Add(transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                Debug.Log("den tror der kun er 2");
+            }
+        }
+        //if (Slot1.GetComponent<SentenceSlotHandler>().symbol)
+        //{
+        //    syllableIDs.Add(Slot1.GetComponentInChildren<SyllableHandler>().ID);
+        //    Destroy(Slot1.transform.GetChild(0).gameObject);
+        //}
 
-        if (Slot1.GetComponent<SentenceSlotHandler>().symbol)
-        {
-            syllableIDs.Add(Slot1.GetComponentInChildren<SyllableHandler>().ID);
-            Destroy(Slot1.transform.GetChild(0).gameObject);
-        }
+        //if (Slot2.GetComponent<SentenceSlotHandler>().symbol)
+        //{
+        //    syllableIDs.Add(Slot2.GetComponentInChildren<SyllableHandler>().ID);
+        //    Destroy(Slot2.transform.GetChild(0).gameObject);
+        //}
 
-        if (Slot2.GetComponent<SentenceSlotHandler>().symbol)
-        {
-            syllableIDs.Add(Slot2.GetComponentInChildren<SyllableHandler>().ID);
-            Destroy(Slot2.transform.GetChild(0).gameObject);
-        }
-           
-        if (Slot3.GetComponent<SentenceSlotHandler>().symbol)
-        {
-            syllableIDs.Add(Slot3.GetComponentInChildren<SyllableHandler>().ID);
-            Destroy(Slot3.transform.GetChild(0).gameObject);
-        }
-            
+        //if (Slot3.GetComponent<SentenceSlotHandler>().symbol)
+        //{
+        //    syllableIDs.Add(Slot3.GetComponentInChildren<SyllableHandler>().ID);
+        //    Destroy(Slot3.transform.GetChild(0).gameObject);
+        //}
+
 
 
         if (syllableIDs.Count < 2)
@@ -107,16 +126,16 @@ public class CombineSymbols : MonoBehaviour
         databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
         databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
 
-        GameObject newSymbol = Instantiate(SymbolPrefab);
+        //GameObject newSymbol = Instantiate(SymbolPrefab);
 
     
-        newSymbol.transform.SetParent(transform);
+        //newSymbol.transform.SetParent(transform);
 
-        newSymbol.transform.localScale = Vector3.one;
+        //newSymbol.transform.localScale = Vector3.one;
 
-        newSymbol.GetComponent<SymbolHandler>().ID = CreateNewSymbol.SymbolID;
+        //newSymbol.GetComponent<SymbolHandler>().ID = CreateNewSymbol.SymbolID;
 
-        newSymbol.GetComponent<SymbolHandler>().UpdateSymbol();
+        //newSymbol.GetComponent<SymbolHandler>().UpdateSymbol();
 
         audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
     }
@@ -127,7 +146,6 @@ public class CombineSymbols : MonoBehaviour
         {
             Destroy(transform.GetChild(0).gameObject);
         }
-
     }
 
 }

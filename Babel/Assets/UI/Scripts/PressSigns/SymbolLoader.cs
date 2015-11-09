@@ -44,4 +44,9 @@ public class SymbolLoader : MonoBehaviour
 
         }
     }
+
+    public void AnimateSignBook(GameObject go)
+    {
+        go.GetComponent<Animator>().SetTrigger("SignBookEnter");
+    }
 }

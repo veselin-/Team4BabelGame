@@ -27,6 +27,8 @@ namespace Assets.Core.Configuration
             public const string SpeechCanvas = "SpeechCanvas";
             public const string Pool = "Pool";
             public const string Font = "Font";
+            public const string EventSystem = "EventSystem";
+            public const string WindowManager = "WindowManager";
         }
 
         public class XmlFiles

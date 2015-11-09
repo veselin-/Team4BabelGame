@@ -12,6 +12,8 @@ GameObject:
   - 23: {fileID: 2352338}
   - 64: {fileID: 6472326}
   - 114: {fileID: 11423704}
+  - 54: {fileID: 5472384}
+  - 64: {fileID: 6400150}
   m_Layer: 0
   m_Name: Key
   m_TagString: Key
@@ -54,8 +56,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109350}
-  m_LocalRotation: {x: -.537722766, y: 0, z: 0, w: .843121767}
-  m_LocalPosition: {x: 12.1330528, y: -.109946154, z: 14.1291733}
+  m_LocalRotation: {x: -.604355395, y: -.00287456112, z: -.0012542184, w: .796708763}
+  m_LocalPosition: {x: -2.30999994, y: .0529999994, z: -2.27999997}
   m_LocalScale: {x: .130922332, y: .130922377, z: .130922377}
   m_Children:
   - {fileID: 410730}
@@ -92,6 +94,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109350}
   m_Mesh: {fileID: 4300000, guid: 5abfc2d3b5ea5d64ca95d10d1a34b677, type: 3}
+--- !u!54 &5472384
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109350}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &6400150
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: 5abfc2d3b5ea5d64ca95d10d1a34b677, type: 3}
 --- !u!64 &6472326
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -102,7 +131,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 5abfc2d3b5ea5d64ca95d10d1a34b677, type: 3}
 --- !u!114 &11413004
 MonoBehaviour:
@@ -134,7 +163,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180528}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.69000006

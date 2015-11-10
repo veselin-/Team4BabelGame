@@ -29,6 +29,7 @@ namespace Assets.Core.Configuration
             public const string Font = "Font";
             public const string EventSystem = "EventSystem";
             public const string WindowManager = "WindowManager";
+            public const string DialogWindow = "DialogWindow";
         }
 
         public class XmlFiles

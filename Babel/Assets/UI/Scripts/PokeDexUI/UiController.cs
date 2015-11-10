@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using UnityEditor.AnimatedValues;
 using UnityEngine.UI;
 
 public class UiController : MonoBehaviour
@@ -8,6 +9,8 @@ public class UiController : MonoBehaviour
     private Animator anim;
 
     public ScrollRect scrollRect;
+
+    public Animator bookAnim;
 
     // Use this for initialization
     void Start () {
@@ -27,12 +30,17 @@ public class UiController : MonoBehaviour
     {
         CreateNewSymbol.SymbolID = id;
         scrollRect.horizontalNormalizedPosition = 0f;
-        anim.SetTrigger("CreationToggle");
+        anim.SetTrigger("MenuToggle");
+        anim.SetBool("CreatingSign", true);
+        bookAnim.SetBool("CreatingSign", true);
+        bookAnim.SetTrigger("CreationToggle");
 
     }
     public void SignCreationDone()
     {
-        anim.SetTrigger("CreationToggle");
+        anim.SetBool("CreatingSign", false);
+        bookAnim.SetBool("CreatingSign", false);
+        bookAnim.SetTrigger("CreationToggle");
 
     }
 

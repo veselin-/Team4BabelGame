@@ -233,9 +233,11 @@ public class AudioManager : MonoBehaviour {
 	// female voices -----------------------------
 	public void FemaleSyllabusSoundPlay(int index)
 	{
-		Player.clip = FemaleSyllabusList [index];
-		Player.Play ();
-		//FemaleSyllabusList[index].Play();
+        Debug.Log(index);
+	        Player.clip = FemaleSyllabusList[index];
+	        Player.Play();
+	    
+	    //FemaleSyllabusList[index].Play();
 		//GetFemaleSyllabusByName (name).Play ();
 	}
 	

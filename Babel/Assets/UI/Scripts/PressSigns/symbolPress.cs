@@ -42,7 +42,7 @@ public class symbolPress : MonoBehaviour {
         childIndex = transform.GetSiblingIndex();
     }
 
-    void MoveSignBackInBook()
+    public void MoveSignBackInBook()
     {
         transform.SetParent(sylPanel.transform);
         transform.SetSiblingIndex(childIndex);

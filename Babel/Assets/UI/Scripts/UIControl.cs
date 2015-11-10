@@ -35,11 +35,13 @@ public class UIControl : MonoBehaviour
     public void SignCreationEnter()
     {
         SignCreation.SetTrigger("SignCreationEnter");
+        Time.timeScale = 0;
         //SignCreation.gameObject.GetComponentInChildren<CombineSymbols>().ClearCurrentSign();
     }
     public void SignCreationExit()
     {
         SignCreation.SetTrigger("SignCreationExit");
+        Time.timeScale = 1;
     }
 
     public void ShopEnter()

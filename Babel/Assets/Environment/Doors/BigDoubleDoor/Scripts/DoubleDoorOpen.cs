@@ -53,7 +53,7 @@ namespace Assets.Environment.Scripts
         {
             //transform.localPosition = Vector3.MoveTowards(transform.localPosition, _objectIsShown ? _endPosistion : _startPosition, Time.deltaTime * MovementSpeed);
             door.transform.eulerAngles = Vector3.MoveTowards(door.transform.eulerAngles, _objectIsShown ? _endRotation : _startRotation, Time.deltaTime * MovementSpeed);
-            if(door2.transform.eulerAngles.y >= 240)
+            if(door2.transform.localEulerAngles.y >= 240)
             {
                 door2.transform.eulerAngles = Vector3.MoveTowards(door2.transform.eulerAngles, _objectIsShown ? _endRotation2 : _startRotation2, Time.deltaTime * MovementSpeed);
             }

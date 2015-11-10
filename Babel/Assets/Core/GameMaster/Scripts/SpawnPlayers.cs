@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Characters.AiScripts;
+﻿using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.ScriptedBehaviours;
 using Assets.Characters.Player.Scripts;
 using Assets.Characters.SideKick.Scripts;
@@ -33,8 +32,7 @@ namespace Assets.Core.GameMaster.Scripts
 
             sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
             sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 5;
-            sidekick.GetComponent<Renderer>().material.color = Color.magenta;
-
+            
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
             player.GetComponent<Renderer>().material.color = Color.green;
@@ -44,14 +42,15 @@ namespace Assets.Core.GameMaster.Scripts
                 case ScriptedBehaviour.Toturial1:
                     sidekick.AddComponent<Toturial01Behaviour>();
                     break;
+                case ScriptedBehaviour.Toturial2:
+                    sidekick.AddComponent<Toturial02Behaviour>();
+                    break;
             }
-
-    
         }
 
         public enum ScriptedBehaviour
         {
-            None, Toturial1
+            None, Toturial1, Toturial2
         }
     }
 }

@@ -39,14 +39,18 @@ public class SymbolLoader : MonoBehaviour
     {
         foreach (GameObject s in Signs)
         {
-
             s.GetComponent<SymbolHandler>().UpdateSymbol();
-
         }
+
     }
 
     public void AnimateSignBook(GameObject go)
     {
         go.GetComponent<Animator>().SetTrigger("SignBookEnter");
+        foreach (GameObject s in Signs)
+        {
+            s.GetComponent<SymbolHandler>().ResetSigns();
+        }
+        Time.timeScale = 0;
     }
 }

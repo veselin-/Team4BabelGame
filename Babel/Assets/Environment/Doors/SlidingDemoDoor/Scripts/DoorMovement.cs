@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
-using Assets.Core.LevelMaster;
 using UnityEngine;
 
 namespace Assets.Environment.Doors.SlidingDemoDoor.Scripts

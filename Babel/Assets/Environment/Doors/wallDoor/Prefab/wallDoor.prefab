@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 494668}
   - 95: {fileID: 9559490}
+  - 114: {fileID: 11456146}
   m_Layer: 0
   m_Name: wallDoor
   m_TagString: Untagged
@@ -27,7 +28,6 @@ GameObject:
   - 33: {fileID: 3344666}
   - 23: {fileID: 2307264}
   - 95: {fileID: 9503190}
-  - 114: {fileID: 11461576}
   m_Layer: 0
   m_Name: doorBig
   m_TagString: Untagged
@@ -46,7 +46,6 @@ GameObject:
   - 33: {fileID: 3316964}
   - 23: {fileID: 2391314}
   - 95: {fileID: 9590872}
-  - 114: {fileID: 11440772}
   m_Layer: 0
   m_Name: doorBig (1)
   m_TagString: Untagged
@@ -172,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.9300003, y: 5.03999996, z: 57.5600014}
+  m_LocalPosition: {x: 31.6774826, y: .0221380647, z: 13.2464705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418502}
@@ -324,36 +323,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11440772
+--- !u!114 &11456146
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189414}
+  m_GameObject: {fileID: 147058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ed91cf9fe5afb4b8eaa5d597903e4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 07088982eb01a3849b3d6c96bc9eb8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Interactables:
   - {fileID: 0}
   MovementSpeed: 20
   degreeValue: 120
---- !u!114 &11461576
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ed91cf9fe5afb4b8eaa5d597903e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Interactables:
-  - {fileID: 0}
-  MovementSpeed: 20
-  degreeValue: 120
+  door: {fileID: 171220}
+  door2: {fileID: 189414}
 --- !u!208 &20810168
 NavMeshObstacle:
   m_ObjectHideFlags: 1

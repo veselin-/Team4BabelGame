@@ -32,8 +32,7 @@ namespace Assets.Core.GameMaster.Scripts
 
             sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
             sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 5;
-            sidekick.GetComponent<Renderer>().material.color = Color.magenta;
-
+            
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
             player.GetComponent<Renderer>().material.color = Color.green;

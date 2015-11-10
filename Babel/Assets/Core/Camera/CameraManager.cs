@@ -44,6 +44,8 @@ public class CameraManager : MonoBehaviour {
 	public Vector2 v2_previousDistance = Vector2.zero;
 	public float f_touch_delta = 0;
     
+	private CameraMovementArea cameraMovementArea;
+	public bool isInsideArea = true;
 	// Use this for initialization
 	void Start () {
 
@@ -56,6 +58,7 @@ public class CameraManager : MonoBehaviour {
 		_cameraHolder = transform.GetChild (0);
 		_cameraZoom = _cameraHolder.transform.GetChild (0).transform.GetChild(0);
 
+		cameraMovementArea = transform.FindChild ("CameraHook").GetComponent<CameraMovementArea>();
 	}
 	
 
@@ -80,11 +83,11 @@ public class CameraManager : MonoBehaviour {
 		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0)){
 			current_position = Input.mousePosition;
 
-			Ray ray = Camera.main.ScreenPointToRay(current_position);
-			if (Physics.Raycast(ray))
-            {
+			//Ray ray = Camera.main.ScreenPointToRay(current_position);
+			//if (Physics.Raycast(ray))
+           // {
 				LeftMouseDrag();     
-            }
+           // }
 				   
 		}
 
@@ -92,8 +95,23 @@ public class CameraManager : MonoBehaviour {
 			isCameraDragging = false;
 			isCameraZooming = false;
 			isCameraRotating = false;
+
+			if(!cameraMovementArea.isInsideArea)
+			{
+				LerpBackToMovementArea();
+				isInsideArea = false;
+			}
         }
         
+		if(!isInsideArea)
+		{
+			LerpBackToMovementArea();
+			if(cameraMovementArea.isInsideArea)
+			{
+				isInsideArea = true;
+			}
+		}
+
         
         if (touchCount == 2) {
 			isCameraDragging = false;
@@ -104,6 +122,14 @@ public class CameraManager : MonoBehaviour {
             isCameraRotating = false;
         }
     }
+
+	public void LerpBackToMovementArea()
+	{
+		Vector3 lastPos = cameraMovementArea.lastPos;
+		lastPos.y = transform.position.y;
+		transform.position = Vector3.Lerp (transform.position, lastPos, Time.deltaTime * 5f);
+	
+	}
 
     void RotateAndZoom()
 	{

@@ -21,6 +21,7 @@ public class CombineSymbols : MonoBehaviour
 
     private AudioManager audioManager;
 
+    //NavMeshAgent navMesh;
     // Use this for initialization
 
     public GameObject symbol
@@ -56,7 +57,7 @@ public class CombineSymbols : MonoBehaviour
         //If two different syllables are present in the two slots it should create a new prefab with the two syllables pictures and sounds. TYhen it should play the sounds in order.
     {
         //Destroy any preexisting symbols.
-        ClearCurrentSign();
+        //ClearCurrentSign();
 
         List<int> syllableIDs = new List<int>();
         //Debug.Log("CHILDCOUNT OF PARENT: " + transform.childCount);
@@ -155,6 +156,7 @@ public class CombineSymbols : MonoBehaviour
             Destroy(transform.GetChild(0).gameObject);
         }
         Time.timeScale = 1;
+        //navMesh.Resume();
     }
 
 }

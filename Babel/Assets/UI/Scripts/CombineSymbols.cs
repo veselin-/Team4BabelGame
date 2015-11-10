@@ -59,10 +59,10 @@ public class CombineSymbols : MonoBehaviour
         ClearCurrentSign();
 
         List<int> syllableIDs = new List<int>();
-        Debug.Log("CHILDCOUNT OF PARENT: " + transform.childCount);
-        Debug.Log("CHILDCOUNT OF CHILD1: " + transform.GetChild(0).childCount);
-        Debug.Log("CHILDCOUNT OF PARENT+CHILD1: " + (transform.childCount + transform.GetChild(0).childCount));
-        Debug.Log("CHILDCOUNT OF PARENT+CHILD1+CHILD2: " + (transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount));
+        //Debug.Log("CHILDCOUNT OF PARENT: " + transform.childCount);
+        //Debug.Log("CHILDCOUNT OF CHILD1: " + transform.GetChild(0).childCount);
+        //Debug.Log("CHILDCOUNT OF PARENT+CHILD1: " + (transform.childCount + transform.GetChild(0).childCount));
+        //Debug.Log("CHILDCOUNT OF PARENT+CHILD1+CHILD2: " + (transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount));
         if ((transform.childCount + transform.GetChild(0).childCount) >= 2)
         {
             if ((transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount) == 3)
@@ -70,14 +70,23 @@ public class CombineSymbols : MonoBehaviour
                 syllableIDs.Add(transform.GetChild(0).GetComponent<SyllableHandler>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
-                Debug.Log("nej der er fukin 3");
+                //Debug.Log("nej der er fukin 3");
             }
             else //if ((transform.childCount + transform.GetChild(0).childCount) == 2)
             {
                 syllableIDs.Add(transform.GetChild(0).GetComponent<SyllableHandler>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
-                Debug.Log("den tror der kun er 2");
+                //Debug.Log("den tror der kun er 2");
             }
+            databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
+            databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
+            audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
+        }
+        else
+        {
+            text.text = "Invalid combination. A sign must be at least two syllables.";
+            Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
+            return;
         }
         //if (Slot1.GetComponent<SentenceSlotHandler>().symbol)
         //{
@@ -99,36 +108,37 @@ public class CombineSymbols : MonoBehaviour
 
 
 
-        if (syllableIDs.Count < 2)
-        {
-            text.text = "Invalid combination. A sign must be at least two syllables.";
-            return;
-        }
+        //if (syllableIDs.Count < 2)
+        //{
+        //    text.text = "Invalid combination. A sign must be at least two syllables.";
+        //    Debug.Log("IM HERE");
+        //    return;
+        //}
 
-        if (syllableIDs.Count == 2)
-        {
-            if (syllableIDs[0] == syllableIDs[1])
-            {
-                text.text = "Invalid combination. The syllables must be different.";
-                return;
-            }
-        }
+        //if (syllableIDs.Count == 2)
+        //{
+        //    if (syllableIDs[0] == syllableIDs[1])
+        //    {
+        //        text.text = "Invalid combination. The syllables must be different.";
+        //        return;
+        //    }
+        //}
 
-        if (syllableIDs.Count == 3)
-        {
-            if (syllableIDs[0] == syllableIDs[1] || syllableIDs[0] == syllableIDs[2] || syllableIDs[1] == syllableIDs[2])
-            {
-                text.text = "Invalid combination. The syllables must be different.";
-                return;
-            }
-        }
+        //if (syllableIDs.Count == 3)
+        //{
+        //    if (syllableIDs[0] == syllableIDs[1] || syllableIDs[0] == syllableIDs[2] || syllableIDs[1] == syllableIDs[2])
+        //    {
+        //        text.text = "Invalid combination. The syllables must be different.";
+        //        return;
+        //    }
+        //}
 
-        databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
-        databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
-
+        //databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
+        //databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
+        //audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
         //GameObject newSymbol = Instantiate(SymbolPrefab);
 
-    
+
         //newSymbol.transform.SetParent(transform);
 
         //newSymbol.transform.localScale = Vector3.one;
@@ -136,8 +146,6 @@ public class CombineSymbols : MonoBehaviour
         //newSymbol.GetComponent<SymbolHandler>().ID = CreateNewSymbol.SymbolID;
 
         //newSymbol.GetComponent<SymbolHandler>().UpdateSymbol();
-
-        audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
     }
 
     public void ClearCurrentSign()
@@ -146,6 +154,7 @@ public class CombineSymbols : MonoBehaviour
         {
             Destroy(transform.GetChild(0).gameObject);
         }
+        Time.timeScale = 1;
     }
 
 }

@@ -34,6 +34,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	public int wordsForNewLine = 10;
 
     public RectTransform PlayerSignBubble;
+    public RectTransform SidekickSignBubble;
+
     public float PlayerSignBubbleStayTime = 5f;
     public GameObject SignPrefab;
 
@@ -73,6 +75,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
         Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+	    SidekickSignBubble.transform.position = _sidekickScreenPos;
 	}
 
 	private void RandomBubblePos()
@@ -184,11 +187,25 @@ public class InteractableSpeechBubble : MonoBehaviour {
             nSign.GetComponent<SymbolHandler>().UpdateSymbol();
         }
 
-        StartCoroutine(signBubbleTimer());
-
+        StartCoroutine(SignBubbleTimer(PlayerSignBubble));
     }
 
-    IEnumerator signBubbleTimer()
+    public void ActivateSidekickSignBubble(List<int> ids)
+    {
+        SidekickSignBubble.gameObject.SetActive(true);
+
+        foreach (int i in ids)
+        {
+            GameObject nSign = Instantiate(SignPrefab);
+            nSign.transform.SetParent(SidekickSignBubble);
+            nSign.GetComponent<SymbolHandler>().ID = i;
+            nSign.GetComponent<SymbolHandler>().UpdateSymbol();
+        }
+
+        StartCoroutine(SignBubbleTimer(SidekickSignBubble));
+    }
+
+    IEnumerator SignBubbleTimer(RectTransform PlayerSignBubble)
     {
         
         yield return new WaitForSeconds(PlayerSignBubbleStayTime);

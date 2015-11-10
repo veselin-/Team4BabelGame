@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour {
 	*/
 
 	private Transform _cameraHolder;
+	private Transform _cameraZoom;
 
 	public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
 	private Vector3 pinchZ = Vector3.zero;
@@ -25,13 +26,19 @@ public class CameraManager : MonoBehaviour {
 	Vector3 current_position = Vector3.zero;
 	Vector3 camera_position = Vector3.zero;
 
+	public bool isCameraDragging = false;
+	public bool isCameraRotating = false;
+	public bool isCameraZooming = false;
+
 	// ROTATION GESTURE
 	public Transform RotationGesture;
 	private bool rotating = false;
 	private Vector2 startVector = Vector2.zero;
-	private float rotGestureWidth = 5f;
+	private float rotGestureWidth = 20f;
 	private float rotAngleMinimum = 5f;
+	public float rotationSpeed = 2f;
     // END ROTATION
+	
 
 	// Use this for initialization
 	void Start () {
@@ -43,25 +50,101 @@ public class CameraManager : MonoBehaviour {
 			SideKick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick).transform;
 
 		_cameraHolder = transform.GetChild (0);
+		_cameraZoom = _cameraHolder.transform.GetChild (0).transform.GetChild(0);
 
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetMouseButtonDown(0)){
+		//Rotate1();
+
+		Rotate2 ();
+
+
+		/*
+		// Drag camera
+		if(Input.GetMouseButtonDown(0) && !isCameraRotating && !isCameraZooming){
 			hit_position = Input.mousePosition;
 			camera_position = transform.position;
-			
+			isCameraDragging = true;
 		}
-		if(Input.GetMouseButton(0)){
+		if(Input.GetMouseButton(0) && isCameraDragging){
 			current_position = Input.mousePosition;
 			LeftMouseDrag();        
 		}
+		
+		if (Input.GetMouseButtonUp (0)) {
+			isCameraDragging = false;
+			isCameraZooming = false;
+			//isCameraRotating = false;
+		}
+		*/
+	}
 
-		// If there are two touches on the device...
-		if (Input.touchCount == 2 )
+	
+	public Vector2 v2_currentDistance = Vector2.zero;
+	public Vector2 v2_previousDistance = Vector2.zero;
+	public float f_touch_delta = 0;
+
+	void Rotate1()
+	{
+		int touchCount = Input.touchCount;
+		
+		// rotation gesture
+		if (touchCount == 2 && !isCameraDragging) {
+			if (!rotating) {
+				startVector = Input.GetTouch(1).position - Input.GetTouch(0).position;
+				rotating = startVector.sqrMagnitude > rotGestureWidth * rotGestureWidth;
+			} else {
+				
+				var currVector = Input.GetTouch(1).position - Input.GetTouch(0).position;
+				var angleOffset = Vector2.Angle(startVector, currVector);
+				var LR = Vector3.Cross(startVector, currVector);
+				//Debug.Log(LR);
+				if(Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
+				{
+					//if (angleOffset > rotAngleMinimum) {
+					isCameraRotating = true;
+					isCameraZooming = false;
+					if (LR.z > 0) {
+						// Anticlockwise turn equal to angleOffset.
+						
+						Vector3 tempRot = transform.eulerAngles;
+						//tempRot += new Vector3(0, angleOffset, 0) * rotationSpeed * Time.deltaTime;
+						tempRot += new Vector3(0, rotationSpeed, 0) * Time.deltaTime;
+						transform.eulerAngles = tempRot;
+						
+						//RotationGesture.localRotation = Quaternion.Euler (0, angleOffset, 0);
+						
+						
+					} else if (LR.z < 0) {
+						// Clockwise turn equal to angleOffset.
+						
+						Vector3 tempRot = transform.eulerAngles;
+						//tempRot -= new Vector3(0, angleOffset, 0) * rotationSpeed * Time.deltaTime;
+						tempRot -= new Vector3(0, rotationSpeed, 0) * Time.deltaTime;
+						transform.eulerAngles = tempRot;
+						
+						//RotationGesture.localRotation = Quaternion.Euler (0, angleOffset, 0);
+						
+					}
+					//}
+					
+				}
+			}
+			
+		} else {
+			rotating = false;
+			isCameraRotating = false;
+		}
+		
+		
+		// If there are two touches on the device... ZOOM
+		if (touchCount == 2 && !isCameraDragging && !isCameraRotating)
 		{
+			isCameraZooming = true;
 			// Store both touches.
 			Touch touchZero = Input.GetTouch(0);
 			Touch touchOne = Input.GetTouch(1);
@@ -77,57 +160,91 @@ public class CameraManager : MonoBehaviour {
 			// Find the difference in the distances between each frame.
 			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 			float pinchValue = deltaMagnitudeDiff * perspectiveZoomSpeed;
-			
+			//Debug.Log(prevTouchDeltaMag + "   " + touchDeltaMag);
 			pinchZ -= new Vector3(0f,0f, pinchValue);
 			pinchZ.z = Mathf.Clamp(pinchZ.z, MinPinch, MaxPinch);
 			
 			//Transform camera = Camera.main.transform;
-			_cameraHolder.localPosition = pinchZ;
+			_cameraZoom.localPosition = pinchZ;
 		}
+		
+		
+		if (touchCount == 2) {
+			isCameraDragging = false;
+		}
+		else if(touchCount == 1)
+		{
+			//isCameraDragging = true;
+			isCameraZooming = false;
+			isCameraRotating = false;
+		}
+	}
 
+    void Rotate2()
+	{
+		if(Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
+		{
+			v2_currentDistance = Input.GetTouch(0).position - Input.GetTouch(1).position;
+			v2_previousDistance = ((Input.GetTouch(0).position - Input.GetTouch(0).deltaPosition) - (Input.GetTouch(1).position - Input.GetTouch(1).deltaPosition));
+			f_touch_delta = v2_currentDistance.magnitude - v2_previousDistance.magnitude;
 
-		// rotation gesture
-		if (Input.touchCount == 2) {
-			if (!rotating) {
-				startVector = Input.GetTouch(1).position - Input.GetTouch(0).position;
-				rotating = startVector.sqrMagnitude > rotGestureWidth * rotGestureWidth;
-			} else {
-				var currVector = Input.GetTouch(1).position - Input.GetTouch(0).position;
-				var angleOffset = Vector2.Angle(startVector, currVector);
-				var LR = Vector3.Cross(startVector, currVector);
-				
-				if(Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
+			var angleOffset = Vector2.Angle(v2_previousDistance, v2_currentDistance);
+			var CrossVector = Vector3.Cross(v2_previousDistance, v2_currentDistance);
+
+			if(angleOffset > 0.1f)
+			{
+				if(CrossVector.z > 0)
 				{
-					if (angleOffset > rotAngleMinimum) {
-						if (LR.z > 0) {
-							// Anticlockwise turn equal to angleOffset.
-							
-							Vector3 tempRot = transform.eulerAngles;
-							tempRot += new Vector3(0, angleOffset, 0) * 0.01f;
-							transform.eulerAngles = tempRot;
-							
-							//RotationGesture.localRotation = Quaternion.Euler (0, angleOffset, 0);
-							
-							
-                        } else if (LR.z < 0) {
-                            // Clockwise turn equal to angleOffset.
-                            
-                            Vector3 tempRot = transform.eulerAngles;
-                            tempRot -= new Vector3(0, angleOffset, 0) * 0.01f;
-                            transform.eulerAngles = tempRot;
-                            
-                            //RotationGesture.localRotation = Quaternion.Euler (0, angleOffset, 0);
-                            
-                        }
-					}
-					
+					transform.Rotate(Vector3.up, -1f * angleOffset * rotationSpeed );
+				}
+				else if (CrossVector.z < 0)
+				{
+					transform.Rotate(Vector3.up, angleOffset * rotationSpeed );
 				}
 			}
-			
-		} else {
-			rotating = false;
-		}
+			//Debug.Log("angleOffset " + angleOffset);
+			//Debug.Log("f_touch_delta " + f_touch_delta);
+			if(Mathf.Abs(f_touch_delta) > 1f)
+			{
+				if(f_touch_delta >= 0)
+				{
+					//pinchZ -= new Vector3(0f,0f, pinchValue);
+					//pinchZ.z = Mathf.Clamp(pinchZ.z, MinPinch, MaxPinch);
+					pinchZ.x = 0f;
+					pinchZ.y = 0f;
+					pinchZ.z = Mathf.Clamp(Mathf.Lerp(pinchZ.z, pinchZ.z + perspectiveZoomSpeed * Mathf.Abs(f_touch_delta), Time.deltaTime * 2f), MinPinch, MaxPinch);
 
+					//Transform camera = Camera.main.transform;
+					_cameraZoom.localPosition = pinchZ;
+
+
+				}
+				else if(f_touch_delta < 0)
+				{
+					pinchZ.x = 0f;
+					pinchZ.y = 0f;
+					pinchZ.z = Mathf.Clamp(Mathf.Lerp(pinchZ.z, pinchZ.z - perspectiveZoomSpeed * Mathf.Abs(f_touch_delta), Time.deltaTime * 2f), MinPinch, MaxPinch);
+					
+					//Transform camera = Camera.main.transform;
+					_cameraZoom.localPosition = pinchZ;
+					//Debug.Log("zoomOut");
+				}
+			}
+		}
+	}
+
+	private float Angle (Vector2 pos1, Vector2 pos2) {
+		Vector2 from = pos2 - pos1;
+		Vector2 to = new Vector2(1, 0);
+		
+		float result = Vector2.Angle( from, to );
+		Vector3 cross = Vector3.Cross( from, to );
+		
+		if (cross.z > 0) {
+			result = 360f - result;
+		}
+		
+		return result;
 	}
 
 	void LeftMouseDrag(){

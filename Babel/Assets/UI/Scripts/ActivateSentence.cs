@@ -32,8 +32,15 @@ public class ActivateSentence : MonoBehaviour
     {
         var sentence = GetSentence();
         if(_sidekick == null) return;
-        if (sentence == null) return;
-        _sidekick.RespondToSentence(sentence);
+        if (sentence.Count == 0)
+        {
+            return;
+        }
+        else
+        {
+            _sidekick.RespondToSentence(sentence);
+        }
+        
     }
 
   public List<int> GetSentence()
@@ -69,8 +76,8 @@ public class ActivateSentence : MonoBehaviour
         {
             sentence.Add(SentenceSlots[3].transform.GetComponentInChildren<SymbolHandler>().ID);
         }
-        Debug.Log("SLOT CHILD COUNT: " + SentenceSlots[0].transform.childCount);
-        Debug.Log("sentence[0]: " + sentence[0]);
+     //   Debug.Log("SLOT CHILD COUNT: " + SentenceSlots[0].transform.childCount);
+    //    Debug.Log("sentence[0]: " + sentence[0]);
         //if
         //Debug.Log(sentence[0]);
         // Debug.Log(sentence[1]);

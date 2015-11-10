@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Characters.AiScripts;
 
 public class UIControl : MonoBehaviour
 {
@@ -10,11 +11,16 @@ public class UIControl : MonoBehaviour
     public Animator Customization;
     public Animator MainMenu;
     bool wtfIsThis = false;
+    //NavMeshAgent navMeshP, navMeshS;
+    //float speed1, speed2;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        //navMeshP = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
+        //navMeshS = GameObject.FindGameObjectWithTag("SideKick").GetComponent<NavMeshAgent>();
+        //speed1 = navMeshP.gameObject.GetComponent<AiMovement>().MovementSpeed;
+        //speed2 = navMeshS.gameObject.GetComponent<AiMovement>().MovementSpeed; 
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,11 +30,15 @@ public class UIControl : MonoBehaviour
    public void SignBookEnter()
     {
         SignBook.SetTrigger("SignBookEnter");
+        //navMeshP.speed = 0;
+        //navMeshS.speed = 0;
         Time.timeScale = 0;
     }
    public void SignBookExit()
     {
         SignBook.SetTrigger("SignBookExit");
+        //navMeshP.speed = speed1;
+        //navMeshS.speed = speed2;
         Time.timeScale = 1;
     }
 
@@ -38,6 +48,8 @@ public class UIControl : MonoBehaviour
         //StartCoroutine(StopTimeScale());
         //if (wtfIsThis)
         //{
+        //navMeshP.speed = 0;
+        //navMeshS.speed = 0;
         Time.timeScale = 0;
         //}
 
@@ -49,6 +61,8 @@ public class UIControl : MonoBehaviour
         //StartCoroutine(StartTimeScale());
         //if (!wtfIsThis)
         //{
+        //navMeshP.speed = speed1;
+        //navMeshS.speed = speed2;
         Time.timeScale = 1;
         //}
     }

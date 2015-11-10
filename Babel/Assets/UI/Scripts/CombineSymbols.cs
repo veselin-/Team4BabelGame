@@ -67,15 +67,15 @@ public class CombineSymbols : MonoBehaviour
         {
             if ((transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount) == 3)
             {
-                syllableIDs.Add(transform.GetChild(0).GetComponent<SyllableHandler>().ID);
-                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
-                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                syllableIDs.Add(transform.GetChild(0).GetComponent<symbolPress>().ID);
+                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
+                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
                 //Debug.Log("nej der er fukin 3");
             }
             else //if ((transform.childCount + transform.GetChild(0).childCount) == 2)
             {
-                syllableIDs.Add(transform.GetChild(0).GetComponent<SyllableHandler>().ID);
-                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<SyllableHandler>().ID);
+                syllableIDs.Add(transform.GetChild(0).GetComponent<symbolPress>().ID);
+                syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
                 //Debug.Log("den tror der kun er 2");
             }
             databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);

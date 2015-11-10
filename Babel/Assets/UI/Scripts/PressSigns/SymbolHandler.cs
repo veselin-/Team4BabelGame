@@ -16,13 +16,19 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     int childIndex;
     public static int count = 0;
     private DatabaseManager databaseManager;
+    AudioManager am;
+
 
     // Use this for initialization
-    void OnEnable ()
+    void OnEnable()
     {
         databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
     }
 
+    void Start()
+    {
+        am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+    }
     public void PlaySound()
     {
         //AudioManager.Play(ID);
@@ -132,6 +138,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Debug.Log("second ER: " + twoSens);
             Debug.Log("third ER: " + threeSens);
             Debug.Log("third ER: " + fourSens);
+            am.StartPlayCoroutine(ID);
         }
     }
 

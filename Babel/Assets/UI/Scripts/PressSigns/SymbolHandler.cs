@@ -12,7 +12,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     public Image Image3;
     public GameObject sens1, sens2, sens3, sens4, book;
     bool oneSens = false, twoSens = false, threeSens = false, fourSens = false;
-    bool movedSign = false;
+    bool movedSign = false, isMade = false;
     int childIndex;
     public static int count = 0;
     private DatabaseManager databaseManager;
@@ -42,8 +42,36 @@ public class SymbolHandler : MonoBehaviour //DragHandler
         count -= 1;
     }
 
+    public void ResetSigns()
+    {
+        if (count > 0 && oneSens || twoSens || threeSens || fourSens && movedSign)
+        {
+            if (oneSens)
+            {
+                oneSens = false;
+            }
+            else if (twoSens)
+            {
+                twoSens = false;
+            }
+            else if (threeSens)
+            {
+                threeSens = false;
+            }
+            else if (fourSens)
+            {
+                fourSens = false;
+            }
+            MoveSignBackInBook();
+            movedSign = false;
+
+        }
+        Debug.Log("IM HERE DOIJNG IT");
+    }
+
     public void PressedSign()
     {
+        if (isMade)
         {
             if (count > 0 && oneSens || twoSens || threeSens || fourSens && movedSign)
             {
@@ -144,6 +172,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Image1.color = Color.clear;
             Image2.color = Color.clear;
             Image3.color = Color.clear;
+            isMade = false;
             return;
         }
         if (s.SyllableSequence.Count == 2)
@@ -151,6 +180,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Syllable s1 = databaseManager.GetSyllable(s.SyllableSequence[0]);
             Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
             SetSyllables(s1.ImageName, s2.ImageName);
+            isMade = true;
         }
         else if (s.SyllableSequence.Count == 3)
         {
@@ -158,6 +188,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
             Syllable s3 = databaseManager.GetSyllable(s.SyllableSequence[2]);
             SetSyllables(s1.ImageName, s2.ImageName, s3.ImageName);
+            isMade = true;
         }
     }
     //public override void InitializeSyllable()

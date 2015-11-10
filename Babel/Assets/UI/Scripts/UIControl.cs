@@ -9,7 +9,7 @@ public class UIControl : MonoBehaviour
     public Animator Shop;
     public Animator Customization;
     public Animator MainMenu;
-
+    bool wtfIsThis = false;
 
     // Use this for initialization
     void Start () {
@@ -35,12 +35,38 @@ public class UIControl : MonoBehaviour
     public void SignCreationEnter()
     {
         SignCreation.SetTrigger("SignCreationEnter");
+        //StartCoroutine(StopTimeScale());
+        //if (wtfIsThis)
+        //{
+        Time.timeScale = 0;
+        //}
+
         //SignCreation.gameObject.GetComponentInChildren<CombineSymbols>().ClearCurrentSign();
     }
     public void SignCreationExit()
     {
         SignCreation.SetTrigger("SignCreationExit");
+        //StartCoroutine(StartTimeScale());
+        //if (!wtfIsThis)
+        //{
+        Time.timeScale = 1;
+        //}
     }
+
+    //IEnumerator StopTimeScale()
+    //{
+    //    new WaitForSeconds(2);
+    //    Debug.Log("I RUN THIS");
+    //    wtfIsThis = true;
+    //    yield return wtfIsThis;
+    //}
+
+    //IEnumerator StartTimeScale()
+    //{
+    //    new WaitForSeconds(2);
+    //    wtfIsThis = false;
+    //    yield return wtfIsThis;
+    //}
 
     public void ShopEnter()
     {

@@ -4,30 +4,35 @@ using Assets.Core.Configuration;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SyllableHandler : DragHandler
+public class SyllabelHandler : MonoBehaviour //DragHandler
 {
 
-    public int ID;
+    //public int ID;
 
-    private DatabaseManager db;
+    //private DatabaseManager db;
 
-    public override void InitializeSyllable()
-    {
-        db = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+    //void Start()
+    //{
+    //    InitializeSyllable();
+    //}
 
-        GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(ID).ImageName);
-    }
+    //public void InitializeSyllable()
+    //{
+    //    db = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
-    public override void OnBeginDrag(PointerEventData eventData)
-    {
-        SymbolBeingDragged = gameObject;
+    //    GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(ID).ImageName);
+    //}
 
-        _startPosition = transform.position;
-        _startParent = transform.parent;
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+    //public override void OnBeginDrag(PointerEventData eventData)
+    //{
+    //    SymbolBeingDragged = gameObject;
 
-        audioManager.FemaleSyllabusSoundPlay(ID);
+    //    _startPosition = transform.position;
+    //    _startParent = transform.parent;
+    //    GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-    }
+    //    audioManager.FemaleSyllabusSoundPlay(ID);
+
+    //}
 
 }

@@ -17,19 +17,23 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     private bool _signsDbLoaded;
     private bool _sentencesDbLoaded;
 
-    public GameObject ExceptionImage;
+    private WindowHandler _windowHandler;
 
     private
 
     void Awake()
     {
+
+        DontDestroyOnLoad(this.gameObject);
+        _windowHandler = GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>();
+
         try
         {
             LoadData();
         }
         catch (Exception e)
         {
-            Debug.Log("Couldn't load database. Probably an error in the XML" + e);
+            _windowHandler.ActivateDialogWindow("Error", "Couldn't load database. Please reinstall the game from Play Store", false);
         }
 
     }
@@ -188,7 +192,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Alphabet") as TextAsset;
             if (bindata == null)
-                ExceptionImage.SetActive(true);
+                _windowHandler.ActivateDialogWindow("Error", "Error while loading the alphabet database. Please reinstall the game from Play Store", false);
             else
                 File.WriteAllBytes(alphabetPath, bindata.bytes);
         }
@@ -218,7 +222,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Signs") as TextAsset;
             if (bindata == null)
-                ExceptionImage.SetActive(true);
+                _windowHandler.ActivateDialogWindow("Error", "Error while loading the sign database. Please reinstall the game from Play Store", false);
             else
                 File.WriteAllBytes(signsPath, bindata.bytes);
         }
@@ -245,7 +249,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Sentences") as TextAsset;
             if (bindata == null)
-                ExceptionImage.SetActive(true);
+                _windowHandler.ActivateDialogWindow("Error", "Error while loading the sentence database. Please reinstall the game from Play Store", false);
             else
                 File.WriteAllBytes(sentencesPath, bindata.bytes);
         }

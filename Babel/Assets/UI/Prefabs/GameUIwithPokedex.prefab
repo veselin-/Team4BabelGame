@@ -2187,6 +2187,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &179508
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22483012}
+  - 222: {fileID: 22272596}
+  - 114: {fileID: 11481110}
+  m_Layer: 5
+  m_Name: ObjectForSign
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &180722
 GameObject:
   m_ObjectHideFlags: 1
@@ -3410,8 +3427,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11450462}
   m_HandleRect: {fileID: 22401590}
   m_Direction: 2
-  m_Value: 1
-  m_Size: .539729416
+  m_Value: .99999994
+  m_Size: .539897859
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3559,6 +3576,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 100618}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -4209,6 +4237,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 100618}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11418506
@@ -4622,6 +4661,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MenuToggle
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 181506}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -7530,8 +7580,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11467864}
   m_HandleRect: {fileID: 22422764}
   m_Direction: 2
-  m_Value: .982056558
-  m_Size: .537485182
+  m_Value: .982056499
+  m_Size: .537569582
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9261,6 +9311,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11481110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 8400000, guid: 198f230c472c4fd498385035adcf369b, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!114 &11481494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11915,6 +11991,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112290}
+--- !u!222 &22272596
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179508}
 --- !u!222 &22273344
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -12562,6 +12644,7 @@ RectTransform:
   - {fileID: 22458620}
   - {fileID: 22452242}
   - {fileID: 22429748}
+  - {fileID: 22483012}
   m_Father: {fileID: 22403024}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
@@ -13146,7 +13229,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: .0178997964}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -323.297424}
+  m_AnchoredPosition: {x: -2, y: -323.297485}
   m_SizeDelta: {x: 40, y: 670}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22434116
@@ -13729,7 +13812,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -57, y: -347.044189}
+  m_AnchoredPosition: {x: -57, y: -346.917114}
   m_SizeDelta: {x: 775, y: 1508}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22451560
@@ -13928,7 +14011,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -560, y: 22}
+  m_AnchoredPosition: {x: -589, y: 183}
   m_SizeDelta: {x: 974, y: 333}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22459784
@@ -14546,6 +14629,23 @@ RectTransform:
   m_AnchorMax: {x: 1, y: .185616076}
   m_AnchoredPosition: {x: 1, y: 2.5}
   m_SizeDelta: {x: -42, y: -6}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22483012
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179508}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22409366}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: .363176167, y: .647282541}
+  m_AnchoredPosition: {x: -27.5, y: -44.5}
+  m_SizeDelta: {x: -304, y: -175}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22483780
 RectTransform:

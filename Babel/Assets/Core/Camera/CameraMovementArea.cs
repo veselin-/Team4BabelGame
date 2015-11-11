@@ -20,10 +20,14 @@ public class CameraMovementArea : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-//		Debug.Log ("Inside");
+		//Debug.Log ("Inside");
 		isInsideArea = true;
 		lastPos = transform.position;
 		//Debug.Log (other);
+		/*
+		if (other.attachedRigidbody)
+			other.attachedRigidbody.AddForce(Vector3.up * 10);  
+			*/
 	}
 
 	void OnTriggerExit(Collider other) {

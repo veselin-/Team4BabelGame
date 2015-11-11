@@ -64,9 +64,10 @@ GameObject:
   - 4: {fileID: 413900}
   - 33: {fileID: 3359422}
   - 23: {fileID: 2355008}
+  - 65: {fileID: 6563490}
   m_Layer: 0
   m_Name: wall1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -273,6 +274,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195562}
   m_Mesh: {fileID: 4300010, guid: 111fedaa8de6ff74ab8edbb456f297b1, type: 3}
+--- !u!65 &6563490
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 64.5750809, y: 403.588104, z: 797.51355}
+  m_Center: {x: 0, y: -7.62939453e-05, z: -6.10351562e-05}
 --- !u!82 &8249434
 AudioSource:
   m_ObjectHideFlags: 1

@@ -45,7 +45,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log(scrollRect.horizontalNormalizedPosition);
+       // Debug.Log(scrollRect.horizontalNormalizedPosition);
 
 
         StartCoroutine(LerpToPoint());
@@ -80,7 +80,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
             scrollRect.horizontalNormalizedPosition = Mathf.Lerp(startPos, endPos, timer);
 
-            timer += Time.deltaTime * 2f;
+            timer += Time.deltaTime * 5f;
 
             yield return new WaitForEndOfFrame();
         }

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.Configuration;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class symbolPress : MonoBehaviour {
 
@@ -8,15 +11,28 @@ public class symbolPress : MonoBehaviour {
     //GameObject chosenSign;
     int childIndex;
     bool moved = false;
-    public bool first = false, second = false, third = false;
+    bool first = false, second = false, third = false;
+    AudioManager am;
+    public int ID;
 
+    private DatabaseManager db;
     // Use this for initialization
-    void Start () {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Start()
+    {
+        InitializeSyllable();
+    }
+
+    public void InitializeSyllable()
+    {
+        db = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+        am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+        GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(ID).ImageName);
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 
@@ -26,7 +42,7 @@ public class symbolPress : MonoBehaviour {
         childIndex = transform.GetSiblingIndex();
     }
 
-    void MoveSignBackInBook()
+    public void MoveSignBackInBook()
     {
         transform.SetParent(sylPanel.transform);
         transform.SetSiblingIndex(childIndex);
@@ -83,5 +99,6 @@ public class symbolPress : MonoBehaviour {
         Debug.Log("first ER: " + first);
         Debug.Log("second ER: " + second);
         Debug.Log("third ER: " + third);
+        am.FemaleSyllabusSoundPlay(ID);
     }
 }

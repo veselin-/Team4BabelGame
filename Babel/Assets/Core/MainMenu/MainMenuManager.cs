@@ -7,17 +7,24 @@ public class MainMenuManager : MonoBehaviour {
 	public GameObject SettingsPanel, CreditsPanel, AchievementsPanel;
 	public Text SoundText, MusicText, VoicesText, SoundFXText;
 
-	private Animator menuAnim;
+    public Image SettingsLanguage;
+    public Sprite DanishFlag;
+    public Sprite EnglishFlag;
+
+
+    private Animator menuAnim;
 
 	AudioManager _audioManager;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Time.timeScale = 1f;
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 		SettingsPanel.SetActive (false);
 		menuAnim = GetComponent<Animator> ();
-	}
+        LanguageManager.Instance.LoadLanguage("Danish");
+        PlayerPrefs.SetString("Language", "Danish");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -110,5 +117,24 @@ public class MainMenuManager : MonoBehaviour {
 		_audioManager.SetSoundFXOnOff ();
 		GetSoundFXText ();
 	}
+
+    public void LanguageBtnPress()
+    {
+        if (PlayerPrefs.GetString("Language").Equals("Danish"))
+        {
+            LanguageManager.Instance.LoadLanguage("English");
+            PlayerPrefs.SetString("Language", "English");
+            SettingsLanguage.sprite = EnglishFlag;
+        }
+        else
+        {
+            LanguageManager.Instance.LoadLanguage("Danish");
+            PlayerPrefs.SetString("Language", "Danish");
+            SettingsLanguage.sprite = DanishFlag;
+        }
+    }
+
+
+    
 
 }

@@ -44,33 +44,29 @@ public class CameraManager : MonoBehaviour {
 	public Vector2 v2_previousDistance = Vector2.zero;
 	public float f_touch_delta = 0;
     
+	private CameraMovementArea cameraMovementArea;
+	public bool isInsideArea = true;
 	// Use this for initialization
 	void Start () {
 
-		if(GameObject.FindGameObjectWithTag (Constants.Tags.Player).transform != null)
+		if(GameObject.FindGameObjectWithTag (Constants.Tags.Player) != null)
 			Player = GameObject.FindGameObjectWithTag (Constants.Tags.Player).transform;
 
-		if(GameObject.FindGameObjectWithTag (Constants.Tags.SideKick).transform != null)
+		if(GameObject.FindGameObjectWithTag (Constants.Tags.SideKick) != null)
 			SideKick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick).transform;
 
 		_cameraHolder = transform.GetChild (0);
 		_cameraZoom = _cameraHolder.transform.GetChild (0).transform.GetChild(0);
 
+		cameraMovementArea = transform.FindChild ("CameraHook").GetComponent<CameraMovementArea>();
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
 
-		//Rotate1();
-
-
-		Rotate2 ();
-
-		
+		RotateAndZoom ();
 		DragCamera ();
-
-        
     }
 
 	
@@ -78,131 +74,64 @@ public class CameraManager : MonoBehaviour {
 	{
 		int touchCount = Input.touchCount;
 		// Drag camera
-		if(touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Began){
+		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)){
 			hit_position = Input.mousePosition;
 			camera_position = transform.position;
 			isCameraDragging = true;
 		}
-		if(touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Moved ){
+
+		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0)){
 			current_position = Input.mousePosition;
-			LeftMouseDrag();        
+
+			//Ray ray = Camera.main.ScreenPointToRay(current_position);
+			//if (Physics.Raycast(ray))
+           // {
+				LeftMouseDrag();     
+           // }
+				   
 		}
 
-
-		//if (touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Ended ) {}
-
-        
 		if (Input.GetMouseButtonUp (0)) {
 			isCameraDragging = false;
 			isCameraZooming = false;
-			//isCameraRotating = false;
+			isCameraRotating = false;
+
+			if(!cameraMovementArea.isInsideArea)
+			{
+				LerpBackToMovementArea();
+				isInsideArea = false;
+			}
         }
         
+		if(!isInsideArea)
+		{
+			LerpBackToMovementArea();
+			if(cameraMovementArea.isInsideArea)
+			{
+				isInsideArea = true;
+			}
+		}
+
         
         if (touchCount == 2) {
 			isCameraDragging = false;
 		}
 		else if(touchCount == 1)
 		{
-			//isCameraDragging = true;
 			isCameraZooming = false;
             isCameraRotating = false;
         }
     }
-    
-    void Rotate1()
+
+	public void LerpBackToMovementArea()
 	{
-		int touchCount = Input.touchCount;
-		
-		// rotation gesture
-		if (touchCount == 2 && !isCameraDragging) {
-			if (!rotating) {
-				startVector = Input.GetTouch(1).position - Input.GetTouch(0).position;
-				rotating = startVector.sqrMagnitude > rotGestureWidth * rotGestureWidth;
-			} else {
-				
-				var currVector = Input.GetTouch(1).position - Input.GetTouch(0).position;
-				var angleOffset = Vector2.Angle(startVector, currVector);
-				var LR = Vector3.Cross(startVector, currVector);
-				//Debug.Log(LR);
-				if(Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
-				{
-					//if (angleOffset > rotAngleMinimum) {
-					isCameraRotating = true;
-					isCameraZooming = false;
-					if (LR.z > 0) {
-						// Anticlockwise turn equal to angleOffset.
-						
-						Vector3 tempRot = transform.eulerAngles;
-						//tempRot += new Vector3(0, angleOffset, 0) * rotationSpeed * Time.deltaTime;
-						tempRot += new Vector3(0, rotationSpeed, 0) * Time.deltaTime;
-						transform.eulerAngles = tempRot;
-						
-						//RotationGesture.localRotation = Quaternion.Euler (0, angleOffset, 0);
-						
-						
-					} else if (LR.z < 0) {
-						// Clockwise turn equal to angleOffset.
-						
-						Vector3 tempRot = transform.eulerAngles;
-						//tempRot -= new Vector3(0, angleOffset, 0) * rotationSpeed * Time.deltaTime;
-						tempRot -= new Vector3(0, rotationSpeed, 0) * Time.deltaTime;
-						transform.eulerAngles = tempRot;
-						
-						//RotationGesture.localRotation = Quaternion.Euler (0, angleOffset, 0);
-						
-					}
-					//}
-					
-				}
-			}
-			
-		} else {
-			rotating = false;
-			isCameraRotating = false;
-		}
-		
-		
-		// If there are two touches on the device... ZOOM
-		if (touchCount == 2 && !isCameraDragging && !isCameraRotating)
-		{
-			isCameraZooming = true;
-			// Store both touches.
-			Touch touchZero = Input.GetTouch(0);
-			Touch touchOne = Input.GetTouch(1);
-			
-			// Find the position in the previous frame of each touch.
-			Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-			Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-			
-			// Find the magnitude of the vector (the distance) between the touches in each frame.
-			float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-			float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-			
-			// Find the difference in the distances between each frame.
-			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-			float pinchValue = deltaMagnitudeDiff * perspectiveZoomSpeed;
-			//Debug.Log(prevTouchDeltaMag + "   " + touchDeltaMag);
-			pinchZ -= new Vector3(0f,0f, pinchValue);
-			pinchZ.z = Mathf.Clamp(pinchZ.z, MinPinch, MaxPinch);
-			
-			//Transform camera = Camera.main.transform;
-			_cameraZoom.localPosition = pinchZ;
-		}
-		
-		
-		if (touchCount == 2) {
-			isCameraDragging = false;
-		}
-		else if(touchCount == 1)
-		{
-			//isCameraDragging = true;
-			isCameraZooming = false;
-			isCameraRotating = false;
-		}
+		Vector3 lastPos = cameraMovementArea.lastPos;
+		lastPos.y = transform.position.y;
+		transform.position = Vector3.Lerp (transform.position, lastPos, Time.deltaTime * 5f);
+	
 	}
 
-    void Rotate2()
+    void RotateAndZoom()
 	{
 		if (Input.touchCount == 2 && Input.GetTouch (0).phase == TouchPhase.Moved && Input.GetTouch (1).phase == TouchPhase.Moved && !isCameraDragging) {
 			v2_currentDistance = Input.GetTouch (0).position - Input.GetTouch (1).position;
@@ -250,21 +179,7 @@ public class CameraManager : MonoBehaviour {
 			isCameraZooming = false;
 		}
 	}
-
-	private float Angle (Vector2 pos1, Vector2 pos2) {
-		Vector2 from = pos2 - pos1;
-		Vector2 to = new Vector2(1, 0);
-		
-		float result = Vector2.Angle( from, to );
-		Vector3 cross = Vector3.Cross( from, to );
-		
-		if (cross.z > 0) {
-			result = 360f - result;
-		}
-		
-		return result;
-	}
-
+	
 	void LeftMouseDrag(){
 		// From the Unity3D docs: "The z position is in world units from the camera."  In my case I'm using the y-axis as height
 		// with my camera facing back down the y-axis.  You can ignore this when the camera is orthograhic.

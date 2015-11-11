@@ -36,7 +36,6 @@ namespace Assets.Core.GameMaster.Scripts
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
 
-
             switch (Behaviour)
             {
                 case ScriptedBehaviour.Toturial1:

@@ -19,7 +19,12 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip[] MaleSyllabusList;
 	public AudioClip[] FemaleSyllabusList;
 
+	[Header("Left Center Right Signal Sounds")]
 	public AudioSource[] SignalSounds;
+	public AudioSource[] L;    	// left side signal sounds
+	public AudioSource[] C;		// center side signal sounds
+	public AudioSource[] R;		// right side signal sounds
+	[Header("")]
 
 	public int MinSnapShotTransition = 5;
 	public int MaxSnapShotTransition = 20;
@@ -28,12 +33,29 @@ public class AudioManager : MonoBehaviour {
 	public int MinSignalSoundChange = 7;
 	public int MaxSignalSoundChange = 15;
 
+	[Header("Left Center Right Signal Sounds Min - Max")]
+	public int LMinSec = 7;
+	public int LMaxSec = 15;
+	public int CMinSec = 7;
+	public int CMaxSec = 15;
+	public int RMinSec = 7;
+	public int RMaxSec = 15;
+	//[Header("")]
+
+
+	[Header("Current playing signal sounds")]
 	[SerializeField]
 	private int _currentSnapshot = 0;
 	[SerializeField]
 	private int _currentSnapshotSeconds = 0;
 	[SerializeField]
 	private int _currentSignal = 0;
+	[SerializeField]
+	private int _currentLSignal = 0;
+	[SerializeField]
+	private int _currentCSignal = 0;
+	[SerializeField]
+	private int _currentRSignal = 0;
 	[SerializeField]
 	private int _currentSignalSeconds = 0;
 
@@ -48,7 +70,9 @@ public class AudioManager : MonoBehaviour {
 			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		}
 
-	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+		if (GameObject.FindGameObjectWithTag (Constants.Tags.DatabaseManager) != null) {
+			databaseManager = GameObject.FindGameObjectWithTag (Constants.Tags.DatabaseManager).GetComponent<DatabaseManager> ();
+		}
 
 		LoadSavedValues ();
 
@@ -166,6 +190,63 @@ public class AudioManager : MonoBehaviour {
 		StartCoroutine (RandomAmbienceSignals ());
 	}
 
+	// Randomize left sided signal sounds 
+	IEnumerator RandomLeftSignals()
+	{
+		int nextTransition = Random.Range (MinSignalSoundChange, MaxSignalSoundChange);
+		//_currentSignalSeconds = nextTransition;
+		yield return new WaitForSeconds (nextTransition);
+		
+		int randomAmbientSignal = Random.Range (0, L.Length);
+		while(_currentLSignal == randomAmbientSignal)
+		{
+			randomAmbientSignal = Random.Range (0, L.Length);
+			yield return null;
+		}
+		_currentLSignal = randomAmbientSignal;
+		L [randomAmbientSignal].Play ();
+		
+		StartCoroutine (RandomLeftSignals ());
+	}
+
+	// Randomize center sided signal sounds 
+	IEnumerator RandomCenterSignals()
+	{
+		int nextTransition = Random.Range (MinSignalSoundChange, MaxSignalSoundChange);
+		//_currentSignalSeconds = nextTransition;
+		yield return new WaitForSeconds (nextTransition);
+		
+		int randomAmbientSignal = Random.Range (0, C.Length);
+		while(_currentCSignal == randomAmbientSignal)
+		{
+			randomAmbientSignal = Random.Range (0, C.Length);
+			yield return null;
+		}
+		_currentCSignal = randomAmbientSignal;
+		C [randomAmbientSignal].Play ();
+
+		StartCoroutine (RandomCenterSignals ());
+	}
+
+	// Randomize right sided signal sounds 
+	IEnumerator RandomRightSignals()
+	{
+		int nextTransition = Random.Range (MinSignalSoundChange, MaxSignalSoundChange);
+		//_currentSignalSeconds = nextTransition;
+		yield return new WaitForSeconds (nextTransition);
+		
+		int randomAmbientSignal = Random.Range (0, R.Length);
+		while(_currentRSignal == randomAmbientSignal)
+		{
+			randomAmbientSignal = Random.Range (0, R.Length);
+			yield return null;
+		}
+		_currentRSignal = randomAmbientSignal;
+		R [randomAmbientSignal].Play ();
+
+		StartCoroutine (RandomRightSignals ());
+	}
+
 	IEnumerator RandomAmbience()
 	{
 		int randomTransition = Random.Range (MinSnapShotTransition, MaxSnapShotTransition);
@@ -233,9 +314,11 @@ public class AudioManager : MonoBehaviour {
 	// female voices -----------------------------
 	public void FemaleSyllabusSoundPlay(int index)
 	{
-		Player.clip = FemaleSyllabusList [index];
-		Player.Play ();
-		//FemaleSyllabusList[index].Play();
+        Debug.Log(index);
+	        Player.clip = FemaleSyllabusList[index];
+	        Player.Play();
+	    
+	    //FemaleSyllabusList[index].Play();
 		//GetFemaleSyllabusByName (name).Play ();
 	}
 	

@@ -43,5 +43,10 @@ namespace Assets.Core.Configuration
         {
             public const string Hat = "Hat";
         }
+
+        public class PlayerPrefs
+        {
+            public const string UserLevels = "UserLevels";
+        }
     }
 }

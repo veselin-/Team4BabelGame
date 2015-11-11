@@ -49,8 +49,15 @@ namespace Assets.Characters.AiScripts
             DropCurrent();
             CurrentPickup = pickup;
 
-            if(CurrentPickup != null)
-                CurrentPickup.SetActive(false);
+            if (CurrentPickup != null) {
+
+				if(CurrentPickup.GetComponent<AudioSource>() != null)
+				{
+					CurrentPickup.GetComponent<AudioSource>().Play();
+				}
+
+				CurrentPickup.SetActive (false);
+			}
         }
 
         public void UpdateDict()
@@ -67,6 +74,12 @@ namespace Assets.Characters.AiScripts
         public void DropCurrent()
         {
             if(CurrentPickup == null) return;
+
+			if(CurrentPickup.GetComponent<AudioSource>() != null)
+			{
+				CurrentPickup.GetComponent<AudioSource>().Stop();
+			}
+
             CurrentPickup.transform.position = transform.position;
             CurrentPickup.SetActive(true);
             CurrentPickup = null;

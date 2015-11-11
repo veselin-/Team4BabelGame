@@ -31,6 +31,7 @@ namespace Assets.Core.Configuration
             public const string EventSystem = "EventSystem";
             public const string WindowManager = "WindowManager";
             public const string DialogWindow = "DialogWindow";
+            public const string Wall = "Wall";
         }
 
         public class XmlFiles

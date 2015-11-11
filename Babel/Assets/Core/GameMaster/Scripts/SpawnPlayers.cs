@@ -35,7 +35,7 @@ namespace Assets.Core.GameMaster.Scripts
             
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
-            player.GetComponent<Renderer>().material.color = Color.green;
+
 
             switch (Behaviour)
             {

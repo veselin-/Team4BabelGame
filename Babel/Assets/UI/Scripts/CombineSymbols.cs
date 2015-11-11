@@ -96,6 +96,9 @@ public class CombineSymbols : MonoBehaviour
           //  Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
             return;
         }
+
+
+
         //if (Slot1.GetComponent<SentenceSlotHandler>().symbol)
         //{
         //    syllableIDs.Add(Slot1.GetComponentInChildren<SyllableHandler>().ID);

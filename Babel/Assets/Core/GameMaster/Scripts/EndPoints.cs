@@ -33,6 +33,7 @@ namespace Assets.Core.GameMaster.Scripts
             Userlevels.GetInstance().AddUserLevel(GrandAccesToLevelId);
             endLevel.GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
+			GetComponent<AudioSource> ().Play();
             
         }
 

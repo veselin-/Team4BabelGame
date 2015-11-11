@@ -4,7 +4,7 @@ using System.Collections;
 public class UIAnimationController : MonoBehaviour
 {
 
-    public Animator Title;
+   // public Animator Title;
 
     public Animator Menu;
 
@@ -36,14 +36,14 @@ public class UIAnimationController : MonoBehaviour
   public  void TitleEnter()
     {
        // Title.clip.
-        Title.SetTrigger("Enter");
+     //   Title.SetTrigger("Enter");
 
     }
 
   public  void TitleExit()
     {
 
-        Title.SetTrigger("Exit");
+       // Title.SetTrigger("Exit");
 
     }
 

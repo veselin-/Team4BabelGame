@@ -35,8 +35,6 @@ namespace Assets.Core.GameMaster.Scripts
             
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
-            player.GetComponentInChildren<Renderer>().material.color = Color.green;
-            sidekick.GetComponentInChildren<Renderer>().material.color = Color.magenta;
 
             switch (Behaviour)
             {

@@ -20,7 +20,7 @@ public class CameraMovementArea : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-		Debug.Log ("Inside");
+		//Debug.Log ("Inside");
 		isInsideArea = true;
 		lastPos = transform.position;
 		//Debug.Log (other);

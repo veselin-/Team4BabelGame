@@ -5,6 +5,7 @@ using System.IO;
 using Assets.Core.Configuration;
 using System.Linq;
 using System;
+using Assets.Core.LevelSelector;
 using Assets.Environment.Levers.LeverExample.Scripts;
 
 public class DatabaseManager : MonoBehaviour, IDatabaseManager
@@ -175,6 +176,8 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
 
         PlayerPrefsBool.SetBool("SevenElever", false);
         LeverPulls.leverpulls = 0;
+
+        Userlevels.GetInstance().ClearUserLevels();
 
         // XML's
         var signsPath = GetFilePath(Constants.XmlFiles.Signs);

@@ -10,7 +10,7 @@ public class UIControl : MonoBehaviour
     public Animator Shop;
     public Animator Customization;
     public Animator MainMenu;
-    bool wtfIsThis = false;
+
     //NavMeshAgent navMeshP, navMeshS;
     //float speed1, speed2;
 

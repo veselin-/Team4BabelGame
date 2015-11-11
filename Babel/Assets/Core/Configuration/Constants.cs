@@ -2,11 +2,12 @@
 
 namespace Assets.Core.Configuration
 {
-    public class Constants {
+    public class Constants
+    {
 
         public class Tags
         {
-            public const string Waypoint  = "Waypoint";
+            public const string Waypoint = "Waypoint";
             public const string Lever = "Lever";
             public const string GameMaster = "GameMaster";
             public const string SideKick = "SideKick";
@@ -44,17 +45,17 @@ namespace Assets.Core.Configuration
             public const string Hat = "Hat";
         }
 
+        public class PlayerPrefs
+        {
+            public const string UserLevels = "UserLevels";
+            public const string On = "On";
+            public const string Off = "Off";
+        }
 
         public class Languages
         {
             public const string Danish = "Danish";
             public const string English = "English";
-        }
-
-        public class PlayerPrefs
-        {
-            public const string On = "On";
-            public const string Off = "Off";
         }
     }
 }

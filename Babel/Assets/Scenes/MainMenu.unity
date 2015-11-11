@@ -996,10 +996,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 28249212}
   m_RootOrder: 1
-  m_AnchorMin: {x: .302000016, y: 0}
-  m_AnchorMax: {x: .702693403, y: 1}
-  m_AnchoredPosition: {x: -2, y: -623.810059}
-  m_SizeDelta: {x: -4, y: 637}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -64.6399536, y: -623.810059}
+  m_SizeDelta: {x: 616.120117, y: 637}
   m_Pivot: {x: .5, y: 0}
 --- !u!114 &409274031
 MonoBehaviour:
@@ -1026,19 +1026,13 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 20
-    m_MaxSize: 120
+    m_MaxSize: 60
     m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game Designer\r\nSimon Bentzen\n\n\rLevel Designer\r\nNicholas Bukdahl\n\nLead
-    Programmer\nIvan Dimov\n\nQA and UX\nDennis Godtfredsen\r\n\nCG Artist\nNadia
-    Hamza\n\r\nAudio Designer\nMajbritt L\xF8fgreen\r\n\nGame Director\nKlaus Tue
-    Madsen \r\n\r\nCG Artist\nRosen Milev\r\n\nQA Programmer\nTomas Moesgaard\r\n\nQA
-    and UX\nSteffen Nygaard\r\n\nProgrammer\nBo Olsen\r\n\nProject Manager\nAmanda
-    Natalie Rasmussen\n\nProgrammer\nPeter Troelsen\r\n\nProgrammer\nAnders Wessberg\n\nPipeline
-    Programmer\nVeselin Yanakiev\r\n\nArt Director\nJulie Tidsvilde Zintel\r"
+  m_Text: 
 --- !u!222 &409274032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1051,12 +1045,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 409274029}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceaf745504a18da429e64dafbeb87ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localizedID: Credits
+  localizedID: CreditsList
 --- !u!1 &451070479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,6 +3536,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizedID: Phrases/ResetData
+--- !u!1001 &1413224763
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 424
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 312.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 411166, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5daf004e5e642c44c847f0e9346b0cf0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1485363233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,6 +3915,7 @@ GameObject:
   - 224: {fileID: 1809531499}
   - 222: {fileID: 1809531501}
   - 114: {fileID: 1809531500}
+  - 114: {fileID: 1809531502}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -3941,6 +3978,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1809531498}
+--- !u!114 &1809531502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1809531498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaf745504a18da429e64dafbeb87ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedID: Phrases/Back
 --- !u!1 &1949892909
 GameObject:
   m_ObjectHideFlags: 0

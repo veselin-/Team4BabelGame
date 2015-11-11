@@ -6,7 +6,7 @@ public class NewSign : MonoBehaviour
 {
 
     public int ID;
-
+    public Camera cam;
     private DatabaseManager databaseManager;
 
     void Start()

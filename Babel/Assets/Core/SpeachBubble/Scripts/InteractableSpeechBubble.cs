@@ -22,10 +22,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	private GameObject player;
 	private	GameObject sidekick;
 
-	public SpeechList speechList;  
+	public SpeechList speechListEnglish;
+    public SpeechList speechListDanish;
 
-	public List<SpeechHolder> narrative;
-	private int _ConversationCounter = 0;
+    public List<SpeechHolder> narrativeEnglish;
+    public List<SpeechHolder> narrativeDanish;
+    private int _ConversationCounter = 0;
 
 	private bool _hasSpeech = false;
 	public Vector2 bubbleOffset;
@@ -54,7 +56,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 
-		narrative = speechList.speechList;
+        narrativeEnglish = speechListEnglish.speechList;
+         narrativeDanish = speechListDanish.speechList;
 		GetNextSpeech ();
 
 	}
@@ -133,7 +136,9 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	}
 	public void GetNextSpeech()
 	{
-		if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
+        List<SpeechHolder> narrative = PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish) ? narrativeDanish : narrativeEnglish;
+
+        if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
 			if (narrative [_ConversationCounter].isNarrativeSpeechActive) {
 
 				NarrativeSpeechBubble.gameObject.SetActive (true);

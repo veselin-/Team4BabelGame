@@ -43,5 +43,18 @@ namespace Assets.Core.Configuration
         {
             public const string Hat = "Hat";
         }
+
+
+        public class Languages
+        {
+            public const string Danish = "Danish";
+            public const string English = "English";
+        }
+
+        public class PlayerPrefs
+        {
+            public const string On = "On";
+            public const string Off = "Off";
+        }
     }
 }

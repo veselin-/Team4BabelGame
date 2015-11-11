@@ -2,6 +2,7 @@
 using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.States;
 using Assets.Core.Configuration;
+using Assets.Core.LevelSelector;
 using UnityEngine;
 
 namespace Assets.Core.GameMaster.Scripts
@@ -11,6 +12,7 @@ namespace Assets.Core.GameMaster.Scripts
 
         public GameObject[] Endpoints;
         public string NextLevelName;
+        public string GrandAccesToLevelId;
 		public GameObject endLevel;
         private bool isSidekickHere;
         private bool isPlayerHere;
@@ -28,9 +30,10 @@ namespace Assets.Core.GameMaster.Scripts
             {
                 yield return new WaitForSeconds(0.5f);
             }
-			endLevel.GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
+            Userlevels.GetInstance().AddUserLevel(GrandAccesToLevelId);
+            endLevel.GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
-            //Application.LoadLevel(NextLevelName);
+            
         }
 
 

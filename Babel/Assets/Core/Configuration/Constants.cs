@@ -50,12 +50,12 @@ namespace Assets.Core.Configuration
             public const string UserLevels = "UserLevels";
             public const string On = "On";
             public const string Off = "Off";
+        }
 
-            public class Languages
-            {
-                public const string Danish = "Danish";
-                public const string English = "English";
-            }
+        public class Languages
+        {
+            public const string Danish = "Danish";
+            public const string English = "English";
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Core.Configuration;
 
 public class MainMenuManager : MonoBehaviour {
 
 	public GameObject SettingsPanel, CreditsPanel, AchievementsPanel;
-	public Text SoundText, MusicText, VoicesText, SoundFXText;
+	public Text SoundTextOn, SoundTextOff, MusicTextOn, MusicTextOff, VoicesTextOn, VoicesTextOff, SoundFxTextOn, SoundFxTextOff;
 
     public Image SettingsLanguage;
     public Sprite DanishFlag;
@@ -22,11 +23,20 @@ public class MainMenuManager : MonoBehaviour {
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 		SettingsPanel.SetActive (false);
 		menuAnim = GetComponent<Animator> ();
-        LanguageManager.Instance.LoadLanguage("Danish");
-        PlayerPrefs.SetString("Language", "Danish");
+	    SetupButtons();
+	   
+	}
+
+    private void SetupButtons()
+    {
+        SetupLanguage();
+        GetSoundText();
+        GetMusicText();
+        GetVoicesText();
+        GetSoundFXText();
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
 	void Update () {
 	
 	}
@@ -79,22 +89,52 @@ public class MainMenuManager : MonoBehaviour {
 
 	private void GetSoundText()
 	{
-		SoundText.text = "Sound " + PlayerPrefs.GetString ("Sound").ToString();
+	    SoundTextOn.enabled = PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
+	    SoundTextOff.enabled = !PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
 	}
 	private void GetMusicText()
 	{
-		MusicText.text = "Music " + PlayerPrefs.GetString ("Music").ToString();
-	}
+        MusicTextOn.enabled = PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
+        MusicTextOff.enabled = !PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
+    }
 	private void GetVoicesText()
 	{
-		VoicesText.text = "Voices " + PlayerPrefs.GetString ("Voices").ToString();
-	}
+        VoicesTextOn.enabled = PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
+        VoicesTextOff.enabled = !PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
+    }
 	private void GetSoundFXText()
 	{
-		SoundFXText.text = "SoundFX " + PlayerPrefs.GetString ("SoundFX").ToString();
-	}
+        SoundFxTextOn.enabled = PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
+        SoundFxTextOff.enabled = !PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
+    }
 
-	public void SoundBtnPress()
+    public void SetupLanguage()
+    {
+        if (!PlayerPrefs.HasKey("Language"))
+        {
+            PlayerPrefs.SetString("Language", Constants.Languages.Danish);
+            SettingsLanguage.sprite = DanishFlag;
+            LanguageManager.Instance.LoadLanguage(PlayerPrefs.GetString("Language"));
+        }
+        else
+        {
+            SettingsLanguage.sprite = PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish) ? DanishFlag : EnglishFlag;
+            LanguageManager.Instance.LoadLanguage(PlayerPrefs.GetString("Language"));
+        }
+    }
+
+    public void LanguageChange(string language)
+    {
+        LanguageManager.Instance.LoadLanguage(language);
+        PlayerPrefs.SetString("Language", language);
+        LocalizedText[] texts = FindObjectsOfType<LocalizedText>();
+        foreach (LocalizedText text in texts)
+        {
+            text.LocalizeText();
+        }
+    }
+
+    public void SoundBtnPress()
 	{
 		_audioManager.SetSoundOnOff ();
 		GetSoundText ();
@@ -120,16 +160,14 @@ public class MainMenuManager : MonoBehaviour {
 
     public void LanguageBtnPress()
     {
-        if (PlayerPrefs.GetString("Language").Equals("Danish"))
+        if (PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish))
         {
-            LanguageManager.Instance.LoadLanguage("English");
-            PlayerPrefs.SetString("Language", "English");
+            LanguageChange(Constants.Languages.English);
             SettingsLanguage.sprite = EnglishFlag;
         }
         else
         {
-            LanguageManager.Instance.LoadLanguage("Danish");
-            PlayerPrefs.SetString("Language", "Danish");
+            LanguageChange(Constants.Languages.Danish);
             SettingsLanguage.sprite = DanishFlag;
         }
     }

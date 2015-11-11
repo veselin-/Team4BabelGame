@@ -14,6 +14,9 @@ public class AudioManager : MonoBehaviour {
 	public AudioMixer SoundFXMixer;
 	public AudioMixer VoiceMixer;
 
+	public AudioSource ClickBtn;
+
+
 	public AudioMixerSnapshot[] AmbientSnapshots;
 
 	public AudioClip[] MaleSyllabusList;
@@ -351,6 +354,16 @@ public class AudioManager : MonoBehaviour {
 
 
     }
+
+	public void ClickBtnPlay()
+	{
+		ClickBtn.Play ();
+	}
+
+	public void ClickBtnStop()
+	{
+		ClickBtn.Stop ();
+	}
 
 	/*
 	private AudioSource GetFemaleSyllabusByName(string name)

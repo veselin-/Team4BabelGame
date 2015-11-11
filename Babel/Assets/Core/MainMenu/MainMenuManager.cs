@@ -33,39 +33,46 @@ public class MainMenuManager : MonoBehaviour {
 
 	public void StartBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		Application.LoadLevel ("LevelSelect");
 	}
 
 	public void SettingsBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		InitTextFields ();
 		SettingsPanel.SetActive (true);
 	}
 
 	public void SettingsBackBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		SettingsPanel.SetActive (false);
 	}
 
 	public void CreditsBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		menuAnim.SetBool ("Credits", true);
 		CreditsPanel.SetActive (true);
 	}
 
 	public void CreditsBackBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		menuAnim.SetBool ("Credits", false);
 		CreditsPanel.SetActive (false);
 	}
 
 	public void AchievementsBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		AchievementsPanel.SetActive (true);
 	}
 
 	public void AchievementsBackBtnPress()
 	{
+		_audioManager.ClickBtnPlay ();
 		AchievementsPanel.SetActive (false);
 	}
 	
@@ -97,29 +104,34 @@ public class MainMenuManager : MonoBehaviour {
 	public void SoundBtnPress()
 	{
 		_audioManager.SetSoundOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetSoundText ();
 	}
 	
 	public void MusicBtnPress()
 	{
 		_audioManager.SetMusicOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetMusicText ();
 	}
 
 	public void VoicesBtnPress()
 	{
 		_audioManager.SetVoicesOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetVoicesText ();
 	}
 
 	public void SoundFXBtnPress()
 	{
 		_audioManager.SetSoundFXOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetSoundFXText ();
 	}
 
     public void LanguageBtnPress()
     {
+		_audioManager.ClickBtnPlay ();
         if (PlayerPrefs.GetString("Language").Equals("Danish"))
         {
             LanguageManager.Instance.LoadLanguage("English");

@@ -1,24 +1,34 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class LevelSelector : MonoBehaviour {
+namespace Assets.Core.LevelSelector
+{
+    public class LevelSelector : MonoBehaviour
+    {
+        public GameObject[] LevelButtons;
 
-	// Use this for initialization
-	void Start () {
-		Time.timeScale = 1f;
-	}
-	
+        // Use this for initialization
+        void Start () {
+            Time.timeScale = 1f;
 
-	public void LoadLevel(string SceneName)
-	{
-		if(!SceneName.Equals(""))
-		{
-			Application.LoadLevel (SceneName);
-		}
-	}
+            var userLevels = Userlevels.GetInstance().GetUserLevels();
+            foreach (var levelButton in LevelButtons)
+                levelButton.GetComponent<Button>().interactable = userLevels.Contains(levelButton.name);
 
-	public void BackToMainMenu()
-	{
-		Application.LoadLevel ("MainMenu");
-	}
+        }
+
+        public void LoadLevel(string SceneName)
+        {
+            if(!string.IsNullOrEmpty(SceneName))
+            {
+                Application.LoadLevel (SceneName);
+            }
+        }
+
+        public void BackToMainMenu()
+        {
+            Application.LoadLevel ("MainMenu");
+        }
+    }
 }

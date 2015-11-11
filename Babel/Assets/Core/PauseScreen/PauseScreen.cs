@@ -39,6 +39,7 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (true);
 		SettingsButton.SetActive (false);
 		pauseAnim.SetBool ("ShowPause", true);
@@ -48,6 +49,7 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBackBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (false);
 		SettingsButton.SetActive (true);
 		pauseAnim.SetBool ("ShowPause", false);
@@ -57,11 +59,13 @@ public class PauseScreen : MonoBehaviour {
 
 	public void LevelSelectBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		Application.LoadLevel ("LevelSelect");
 	}
 
 	public void SettingsPanelBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		pauseAnim.SetBool ("ShowSettings", true);
 		pauseAnim.SetBool ("ShowPause", false);
 		InitTextFields ();
@@ -69,12 +73,14 @@ public class PauseScreen : MonoBehaviour {
 
 	public void SettingsPanelBackBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		pauseAnim.SetBool ("ShowSettings", false);
 		pauseAnim.SetBool ("ShowPause", true);
 	}
 
 	public void MainMenuScene()
 	{
+		_audioManager.ClickBtnPlay ();
 		Application.LoadLevel ("MainMenu");
 	}
 
@@ -89,24 +95,28 @@ public class PauseScreen : MonoBehaviour {
 	public void SoundBtnPress()
 	{
 		_audioManager.SetSoundOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetSoundText ();
 	}
 	
 	public void MusicBtnPress()
 	{
 		_audioManager.SetMusicOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetMusicText ();
 	}
 	
 	public void VoicesBtnPress()
 	{
 		_audioManager.SetVoicesOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetVoicesText ();
 	}
 	
 	public void SoundFXBtnPress()
 	{
 		_audioManager.SetSoundFXOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetSoundFXText ();
 	}
 

@@ -24,7 +24,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     void Awake()
     {
 
-        DontDestroyOnLoad(this.gameObject);
+       // DontDestroyOnLoad(this.gameObject);
         _windowHandler = GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>();
 
         try
@@ -36,6 +36,11 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
             _windowHandler.ActivateDialogWindow("Error", "Couldn't load database. Please reinstall the game from Play Store", false);
         }
 
+    }
+
+    void Start()
+    {
+        _windowHandler = GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>();
     }
 
 

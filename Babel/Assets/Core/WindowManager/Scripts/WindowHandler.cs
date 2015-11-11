@@ -12,7 +12,7 @@ public class WindowHandler : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+      //  DontDestroyOnLoad(this.gameObject);
     }
 
 

@@ -32,6 +32,7 @@ namespace Assets.Core.Configuration
             public const string WindowManager = "WindowManager";
             public const string DialogWindow = "DialogWindow";
             public const string Wall = "Wall";
+            public const string TorchHolder = "TorchHolder";
         }
 
         public class XmlFiles

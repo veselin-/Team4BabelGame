@@ -23,7 +23,8 @@ public class Orb : MonoBehaviour {
 
 	IEnumerator DestroyOrb()
 	{
-		yield return new WaitForSeconds(0.1f);
+		transform.GetChild(0).gameObject.SetActive(false);
+		yield return new WaitForSeconds(GetComponent<AudioSource> ().clip.length);
 		Destroy(this.gameObject);
 	}
 }

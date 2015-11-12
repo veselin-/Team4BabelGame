@@ -14,7 +14,6 @@ namespace Assets.Characters.Player.Scripts
         private AiMovement _ai;
 
         private UiController _uiControl;
-        private bool isMovingAround;
 
         // Use this for initialization
         void Start ()
@@ -28,20 +27,11 @@ namespace Assets.Characters.Player.Scripts
         // Update is called once per frame
         void Update ()
         {
-            if (Input.GetMouseButtonUp(0))
-                isMovingAround = false;
+            if (!Input.GetMouseButtonDown(0)) return;
 
-            if (!Input.GetMouseButton(0)) return;
             var ts = Input.touches;
-
             if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))
                 || EventSystem.current.IsPointerOverGameObject()) return;
-
-
-            if (Input.GetMouseButtonDown(0))
-                isMovingAround = true;
-
-            if(!isMovingAround) return;
             
             // Find all object in ray, and sort them by distance to object.
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);

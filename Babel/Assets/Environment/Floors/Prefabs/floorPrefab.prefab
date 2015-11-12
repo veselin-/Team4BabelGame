@@ -8,9 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 425978}
+  - 65: {fileID: 6535286}
   m_Layer: 0
   m_Name: floorPrefab
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +32,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &425978
 Transform:
@@ -40,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10.54, y: .023, z: 7.1960001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 430708}
@@ -68,7 +69,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: a8344b3c849857e4cafa27ceec04e8ee, type: 2}
+  - {fileID: 2100000, guid: 2d3a6afd513253e4492de6611e1eafb6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -88,7 +89,19 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192102}
-  m_Mesh: {fileID: 4300000, guid: 57ab533f71fd22e499fb54021e2f7eb2, type: 3}
+  m_Mesh: {fileID: 4300000, guid: f902fa6c31ae284458299c9126f77064, type: 3}
+--- !u!65 &6535286
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.14939404, y: .3500036, z: 7.93867493}
+  m_Center: {x: .0040512085, y: -.130231857, z: .00389862061}
 --- !u!95 &9546646
 Animator:
   serializedVersion: 3
@@ -112,7 +125,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: f902fa6c31ae284458299c9126f77064, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165490}

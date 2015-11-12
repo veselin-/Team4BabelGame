@@ -125,7 +125,7 @@ GameObject:
   - 135: {fileID: 13513366}
   m_Layer: 0
   m_Name: Firepit
-  m_TagString: Untagged
+  m_TagString: Brazier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.74399996, y: .103, z: 3.45700002}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
   m_LocalScale: {x: 8.98863602, y: 8.98863602, z: 8.98863602}
   m_Children:
   - {fileID: 419622}
@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 2
+  cam: {fileID: 0}
 --- !u!114 &11464048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TorchPrefab: {fileID: 120888, guid: b98606142d459a24f82ad78a85051a2f, type: 2}
   StickPrefab: {fileID: 193758, guid: 9f81346b918570040be243bdba4c0ed7, type: 2}
-  StartLighted: 1
+  StartLighted: 0
   InteractPoint:
   - {fileID: 176344}
   - {fileID: 115738}

@@ -7,7 +7,7 @@ using UnityStandardAssets.Utility;
 
 public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
-
+	private AudioManager _audioManager; 
 
     private bool lerpToNearestPoint = false;
 
@@ -19,7 +19,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     // Use this for initialization
     void Start ()
     {
-
+		_audioManager = GameObject.FindObjectOfType<AudioManager> ().GetComponent<AudioManager> ();
        menuCount = transform.GetChild(0).transform.childCount;
 
         scrollRect = GetComponent<ScrollRect>();
@@ -88,6 +88,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+		_audioManager.SwipeBtnPlay ();
         StopAllCoroutines();
     }
 }

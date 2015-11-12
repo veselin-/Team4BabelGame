@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour {
 
 
 	public AudioMixerSnapshot[] AmbientSnapshots;
+	public AudioMixerSnapshot[] NewThemeAmbienceSnapshots;
 
 	public AudioClip[] MaleSyllabusList;
 	public AudioClip[] FemaleSyllabusList;
@@ -80,8 +81,12 @@ public class AudioManager : MonoBehaviour {
 		LoadSavedValues ();
 
 		//Start random ambience sound
-		StartCoroutine (RandomAmbience());
-		StartCoroutine (RandomAmbienceSignals());
+		//StartCoroutine (RandomAmbience());
+		StartCoroutine (ThemeTransition());
+		//StartCoroutine (RandomAmbienceSignals());
+		StartCoroutine (RandomLeftSignals());
+		StartCoroutine (RandomRightSignals());
+		StartCoroutine (RandomCenterSignals());
 
 	}
 	
@@ -248,6 +253,40 @@ public class AudioManager : MonoBehaviour {
 		R [randomAmbientSignal].Play ();
 
 		StartCoroutine (RandomRightSignals ());
+	}
+
+	IEnumerator ThemeTransition()
+	{
+		int randomTransition = Random.Range (5, 10);     // MIXING theme 01 to theme 04
+		int randomSnap = Random.Range (0, NewThemeAmbienceSnapshots.Length);
+
+		float[] weights = new float[NewThemeAmbienceSnapshots.Length];
+
+
+		while (_currentSnapshot == randomSnap) 
+		{
+			randomSnap = Random.Range (0, NewThemeAmbienceSnapshots.Length);
+			yield return null;
+		}
+		
+		weights [randomSnap] = 1f;
+		_currentSnapshot = randomSnap;
+		for(int i = 0; i < weights.Length; i++)
+		{
+			if(weights[i] != 1f)
+			{
+				weights[i] = 0f;
+			}
+		}
+
+		MusicMixer.TransitionToSnapshots (NewThemeAmbienceSnapshots, weights, randomTransition);
+
+		int nextTransition = Random.Range (15, 25);		// transit from theme01 to theme04
+		_currentSnapshotSeconds = nextTransition;
+		yield return new WaitForSeconds(nextTransition);
+
+		StartCoroutine (ThemeTransition());
+
 	}
 
 	IEnumerator RandomAmbience()

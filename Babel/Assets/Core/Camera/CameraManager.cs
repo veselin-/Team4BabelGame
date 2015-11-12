@@ -58,21 +58,35 @@ public class CameraManager : MonoBehaviour {
 		_cameraHolder = transform.GetChild (0);
 		_cameraZoom = _cameraHolder.transform.GetChild (0).transform.GetChild(0);
 
+		Transform Zoom = transform.GetChild (0).GetChild (0).GetChild (0);
+		Zoom.transform.localPosition = new Vector3(0, 0, (MaxPinch + MinPinch) / 2f);
 		cameraMovementArea = transform.FindChild ("CameraHook").GetComponent<CameraMovementArea>();
+
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
 
-		RotateAndZoom ();
 		DragCamera ();
+		RotateAndZoom ();
+
     }
 
 	
 	void DragCamera()
 	{
 		int touchCount = Input.touchCount;
+
+		if (touchCount == 2) {
+			isCameraDragging = false;
+		}
+		else if(touchCount == 1)
+		{
+			isCameraZooming = false;
+			isCameraRotating = false;
+		}
+
 		// Drag camera
 		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)){
 			hit_position = Input.mousePosition;
@@ -82,13 +96,9 @@ public class CameraManager : MonoBehaviour {
 
 		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0)){
 			current_position = Input.mousePosition;
-
-			//Ray ray = Camera.main.ScreenPointToRay(current_position);
-			//if (Physics.Raycast(ray))
-           // {
+			if(isCameraDragging)
 				LeftMouseDrag();     
-           // }
-				   
+				  
 		}
 
 		if (Input.GetMouseButtonUp (0)) {
@@ -113,14 +123,7 @@ public class CameraManager : MonoBehaviour {
 		}
 
         
-        if (touchCount == 2) {
-			isCameraDragging = false;
-		}
-		else if(touchCount == 1)
-		{
-			isCameraZooming = false;
-            isCameraRotating = false;
-        }
+
     }
 
 	public void LerpBackToMovementArea()

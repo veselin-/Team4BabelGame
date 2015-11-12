@@ -65,7 +65,12 @@ public class FrameController : MonoBehaviour
     {
         animator.SetTrigger(Animation);
 
-        yield return AnimationDone;
+        yield return animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+
+        GetComponent<Image>().enabled = false;
+        TextField.SetActive(false);
+
+        NextFrame.GetComponent<FrameController>().StartFrame();
 
     }
 }

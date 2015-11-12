@@ -12,6 +12,7 @@ namespace Assets.Characters.AiScripts.States
         private readonly IInteractable _intaractableGoal;
         private float _waitUntill;
         private State _state;
+        private Vector2 _interactGoalPosition;
         
         public InteractWithNearestState(NavMeshAgent agnet, string tag, GameObject pickup)
         {
@@ -51,13 +52,18 @@ namespace Assets.Characters.AiScripts.States
             switch (_state)
             {
                 case State.Neutral:
-                    _agent.SetDestination(_intaractableGoal.InteractPosition(_agent.transform.position));
+                    var pos = _intaractableGoal.InteractPosition(_agent.transform.position);
+                    _interactGoalPosition = new Vector2(pos.x, pos.z);
+                    _agent.SetDestination(pos);
                     _state = State.GoToIntactable;
                     return;
                 case State.GoToIntactable:
                     if (_agent.HasReachedTarget())
-                        _state = Vector3.Distance(_intaractableGoal.InteractPosition(_agent.transform.position), _agent.transform.position) < .6 ?
-                            State.Interact : State.Done;
+                    {
+                    
+                    var t = Vector2.Distance(_interactGoalPosition, new Vector2(_agent.transform.position.x, _agent.transform.position.z));
+                        _state = t < .6 ? State.Interact : State.Done;
+                    }
                     return;
                 case State.Interact:
                     var puh = _agent.gameObject.GetComponent<PickupHandler>();

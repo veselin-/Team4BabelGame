@@ -1,55 +1,104 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.Configuration;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class symbolPress : MonoBehaviour {
 
-    public GameObject slot1, sylPanel;
-    static bool isInSlut = false;
-    static int count = 0;
-	// Use this for initialization
-	void Start () {
+    public GameObject slot, sylPanel;
+    public static int count = 0;
+    //GameObject chosenSign;
+    int childIndex;
+    bool moved = false;
+    bool first = false, second = false, third = false;
+    AudioManager am;
+    public int ID;
 
-	}
+    private DatabaseManager db;
+    // Use this for initialization
+
+
+    void Start()
+    {
+        InitializeSyllable();
+    }
+
+    public void InitializeSyllable()
+    {
+        db = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+        am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+        GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(ID).ImageName);
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
-	// Update is called once per frame
-	void Update () {
-	
 	}
+
+    void SaveChildIndex()
+    {
+        //chosenSign = Instantiate(gameObject);
+        childIndex = transform.GetSiblingIndex();
+    }
+
+    public void MoveSignBackInBook()
+    {
+        transform.SetParent(sylPanel.transform);
+        transform.SetSiblingIndex(childIndex);
+        transform.localScale = Vector3.one;
+        count -= 1;
+    }
 
     public void PressedSymbol()
     {
-        if (isInSlut && count == 2)
+        if (count > 0 && first || second || third && moved)
         {
-            transform.SetParent(slot1.transform.GetChild(0).transform.GetChild(0).transform);
-            count += 1;
-            isInSlut = true;
-            Debug.Log("COUNT ER: " + count);
-            Debug.Log("isInSlut is: " + isInSlut);
+            if (first)
+            {
+                first = false;
+            }
+            else if (second)
+            {
+                second = false;
+            }
+            else if(third)
+            {
+                third = false;
+            }
+            MoveSignBackInBook();
+            moved = false;
         }
-        else if (isInSlut && count == 1)
+        else
         {
-            transform.SetParent(slot1.transform.GetChild(0).transform);
-            count += 1;
-            isInSlut = true;
-            Debug.Log("COUNT ER: "+ count);
-            Debug.Log("isInSlut is: " + isInSlut);
+            moved = true;
+            if (count == 2)
+            {
+                SaveChildIndex();
+                third = true;
+                transform.SetParent(slot.transform.GetChild(0).transform.GetChild(0).transform);
+                count += 1;
+            }
+            else if (count == 1)
+            {
+                SaveChildIndex();
+                second = true;
+                transform.SetParent(slot.transform.GetChild(0).transform);
+                count += 1;
+            }
+            else if (count == 0)
+            {
+                SaveChildIndex();
+                first = true;
+                transform.SetParent(slot.transform);
+                count += 1;
+            }
         }
-        else if (isInSlut == false)
-        {
-            transform.SetParent(slot1.transform);
-            count += 1;
-            isInSlut = true;
-            Debug.Log("COUNT ER: " + count);
-            Debug.Log("isInSlut is: " + isInSlut);
-        }
-        else 
-        {
-            transform.SetParent(sylPanel.transform);
-            count -= 1;
-            isInSlut = false;
-            Debug.Log("COUNT ER: " + count);
-            Debug.Log("isInSlut is: " + isInSlut);
-        }
-        // NÅR MAN HAR 3 SYMBOLER, OG TAGER ET FRA BLIVER BOOL SAT TIL FALSE, DERFOR NÅR DU TYKKER PÅ NÆSTE, VIL COUNT STIGE MED 1, DA BOOL ER FALSE, FIX DET!
+        Debug.Log("COUNT ER: " + count);
+        Debug.Log("moved ER: " + moved);
+        Debug.Log("first ER: " + first);
+        Debug.Log("second ER: " + second);
+        Debug.Log("third ER: " + third);
+        am.FemaleSyllabusSoundPlay(ID);
     }
 }

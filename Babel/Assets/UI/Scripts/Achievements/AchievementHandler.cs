@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using Assets.Environment.Levers.LeverExample.Scripts;
 
 public class AchievementHandler : MonoBehaviour {

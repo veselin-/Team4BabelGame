@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Core.Configuration;
 
 public class PauseScreen : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class PauseScreen : MonoBehaviour {
 	public GameObject SettingsButton;
 	public GameObject GamePausedTxt;
 
-	public Text SoundText, MusicText, VoicesText, SoundFXText;
+    public Text SoundTextOn, SoundTextOff, MusicTextOn, MusicTextOff, VoicesTextOn, VoicesTextOff, SoundFxTextOn, SoundFxTextOff;
 	private Animator pauseAnim;
 	
 	AudioManager _audioManager;
@@ -20,15 +21,25 @@ public class PauseScreen : MonoBehaviour {
 		SettingsPanel.SetActive (false);
 		pauseAnim = GetComponent<Animator> ();
 		Time.timeScale = 1f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        SetupButtons();
+    }
+
+    private void SetupButtons()
+    {
+        GetSoundText();
+        GetMusicText();
+        GetVoicesText();
+        GetSoundFXText();
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 
 	public void PausePanelBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (true);
 		SettingsButton.SetActive (false);
 		pauseAnim.SetBool ("ShowPause", true);
@@ -38,6 +49,7 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBackBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (false);
 		SettingsButton.SetActive (true);
 		pauseAnim.SetBool ("ShowPause", false);
@@ -47,11 +59,13 @@ public class PauseScreen : MonoBehaviour {
 
 	public void LevelSelectBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		Application.LoadLevel ("LevelSelect");
 	}
 
 	public void SettingsPanelBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		pauseAnim.SetBool ("ShowSettings", true);
 		pauseAnim.SetBool ("ShowPause", false);
 		InitTextFields ();
@@ -59,12 +73,14 @@ public class PauseScreen : MonoBehaviour {
 
 	public void SettingsPanelBackBtn()
 	{
+		_audioManager.ClickBtnPlay ();
 		pauseAnim.SetBool ("ShowSettings", false);
 		pauseAnim.SetBool ("ShowPause", true);
 	}
 
 	public void MainMenuScene()
 	{
+		_audioManager.ClickBtnPlay ();
 		Application.LoadLevel ("MainMenu");
 	}
 
@@ -79,42 +95,50 @@ public class PauseScreen : MonoBehaviour {
 	public void SoundBtnPress()
 	{
 		_audioManager.SetSoundOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetSoundText ();
 	}
 	
 	public void MusicBtnPress()
 	{
 		_audioManager.SetMusicOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetMusicText ();
 	}
 	
 	public void VoicesBtnPress()
 	{
 		_audioManager.SetVoicesOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetVoicesText ();
 	}
 	
 	public void SoundFXBtnPress()
 	{
 		_audioManager.SetSoundFXOnOff ();
+		_audioManager.ClickBtnPlay ();
 		GetSoundFXText ();
 	}
 
-	private void GetSoundText()
-	{
-		SoundText.text = "Sound " + PlayerPrefs.GetString ("Sound").ToString();
-	}
-	private void GetMusicText()
-	{
-		MusicText.text = "Music " + PlayerPrefs.GetString ("Music").ToString();
-	}
-	private void GetVoicesText()
-	{
-		VoicesText.text = "Voices " + PlayerPrefs.GetString ("Voices").ToString();
-	}
-	private void GetSoundFXText()
-	{
-		SoundFXText.text = "SoundFX " + PlayerPrefs.GetString ("SoundFX").ToString();
-	}
+    private void GetSoundText()
+    {
+        SoundTextOn.enabled = PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
+        SoundTextOff.enabled = !PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
+    }
+    private void GetMusicText()
+    {
+        MusicTextOn.enabled = PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
+        MusicTextOff.enabled = !PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
+    }
+    private void GetVoicesText()
+    {
+        VoicesTextOn.enabled = PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
+        VoicesTextOff.enabled = !PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
+    }
+    private void GetSoundFXText()
+    {
+        SoundFxTextOn.enabled = PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
+        SoundFxTextOff.enabled = !PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
+    }
 
 }

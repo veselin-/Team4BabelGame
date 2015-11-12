@@ -22,10 +22,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	private GameObject player;
 	private	GameObject sidekick;
 
-	public SpeechList speechList;  
+	public SpeechList speechListEnglish;
+    public SpeechList speechListDanish;
 
-	public List<SpeechHolder> narrative;
-	private int _ConversationCounter = 0;
+    public List<SpeechHolder> narrativeEnglish;
+    public List<SpeechHolder> narrativeDanish;
+    private int _ConversationCounter = 0;
 
 	private bool _hasSpeech = false;
 	public Vector2 bubbleOffset;
@@ -34,6 +36,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	public int wordsForNewLine = 10;
 
     public RectTransform PlayerSignBubble;
+    public RectTransform SidekickSignBubble;
+
     public float PlayerSignBubbleStayTime = 5f;
     public GameObject SignPrefab;
 
@@ -52,7 +56,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		PlayerSpeechBubble.transform.position = _playerScreenPos;
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 
-		narrative = speechList.speechList;
+        narrativeEnglish = speechListEnglish.speechList;
+         narrativeDanish = speechListDanish.speechList;
 		GetNextSpeech ();
 
 	}
@@ -73,6 +78,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
         Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
 		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
 		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+	    SidekickSignBubble.transform.position = _sidekickScreenPos;
 	}
 
 	private void RandomBubblePos()
@@ -130,7 +136,9 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	}
 	public void GetNextSpeech()
 	{
-		if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
+        List<SpeechHolder> narrative = PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish) ? narrativeDanish : narrativeEnglish;
+
+        if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
 			if (narrative [_ConversationCounter].isNarrativeSpeechActive) {
 
 				NarrativeSpeechBubble.gameObject.SetActive (true);
@@ -184,11 +192,25 @@ public class InteractableSpeechBubble : MonoBehaviour {
             nSign.GetComponent<SymbolHandler>().UpdateSymbol();
         }
 
-        StartCoroutine(signBubbleTimer());
-
+        StartCoroutine(SignBubbleTimer(PlayerSignBubble));
     }
 
-    IEnumerator signBubbleTimer()
+    public void ActivateSidekickSignBubble(List<int> ids)
+    {
+        SidekickSignBubble.gameObject.SetActive(true);
+
+        foreach (int i in ids)
+        {
+            GameObject nSign = Instantiate(SignPrefab);
+            nSign.transform.SetParent(SidekickSignBubble);
+            nSign.GetComponent<SymbolHandler>().ID = i;
+            nSign.GetComponent<SymbolHandler>().UpdateSymbol();
+        }
+
+        StartCoroutine(SignBubbleTimer(SidekickSignBubble));
+    }
+
+    IEnumerator SignBubbleTimer(RectTransform PlayerSignBubble)
     {
         
         yield return new WaitForSeconds(PlayerSignBubbleStayTime);

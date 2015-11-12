@@ -19,7 +19,7 @@ namespace Assets.Characters.AiScripts.States
 
             var interactables = GameObject.FindGameObjectsWithTag(tag);
             if(interactables.Length < 1)
-                Debug.LogError("No interactables in scene, FUCK!");
+                return;
             
             foreach (var i in interactables)
             {

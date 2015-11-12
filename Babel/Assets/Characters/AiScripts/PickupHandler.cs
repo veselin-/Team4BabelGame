@@ -49,8 +49,9 @@ namespace Assets.Characters.AiScripts
             DropCurrent();
             CurrentPickup = pickup;
 
-            if(CurrentPickup != null)
-                CurrentPickup.SetActive(false);
+            if (CurrentPickup != null) 
+				CurrentPickup.SetActive (false);
+
         }
 
         public void UpdateDict()
@@ -59,7 +60,7 @@ namespace Assets.Characters.AiScripts
                 mr.SetActive(false);
             if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup.tag)) return;
             _pickUps[_currentPickup.tag].SetActive(true);
-            
+			_pickUps[_currentPickup.tag].GetComponent<AudioSource>().Play();
             if(_currentPickup.tag == Constants.Tags.Bucket)
                 _pickUps["Water"].SetActive(CurrentPickup.GetComponent<Bucket>().HasWaterInIt);
         }
@@ -67,6 +68,7 @@ namespace Assets.Characters.AiScripts
         public void DropCurrent()
         {
             if(CurrentPickup == null) return;
+
             CurrentPickup.transform.position = transform.position;
             CurrentPickup.SetActive(true);
             CurrentPickup = null;

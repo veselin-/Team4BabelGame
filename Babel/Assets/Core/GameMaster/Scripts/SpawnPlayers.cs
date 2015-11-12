@@ -32,9 +32,11 @@ namespace Assets.Core.GameMaster.Scripts
 
             sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
             sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 5;
-            
+            player.GetComponent<NavMeshAgent>().avoidancePriority = 1;
+
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
+            player.GetComponent<NavMeshAgent>().avoidancePriority = 2;
 
             switch (Behaviour)
             {

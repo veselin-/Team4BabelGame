@@ -9,9 +9,11 @@ public class UiController : MonoBehaviour
     public ScrollRect scrollRect;
     public Animator bookAnim;
     NavMeshAgent navMeshP, navMeshS;
+	private AudioManager _audioManager;
 
     // Use this for initialization
     void Start () {
+		_audioManager = GameObject.FindObjectOfType<AudioManager> ().GetComponent<AudioManager> ();
         navMeshP = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
         navMeshS = GameObject.FindGameObjectWithTag("SideKick").GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -45,12 +47,14 @@ public class UiController : MonoBehaviour
 
     public void PokedexOpen()
     {
+		_audioManager.PokedexBtnPlay ();
         navMeshP.Stop();
         navMeshS.Stop();
     }
 
     public void PokedexClose()
     {
+		_audioManager.PokedexBtnPlay ();
         navMeshP.ResetPath();
         navMeshS.ResetPath();
     }

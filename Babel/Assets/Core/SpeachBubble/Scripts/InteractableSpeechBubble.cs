@@ -43,21 +43,25 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
-		sidekick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick);
+
+		if (GameObject.FindGameObjectWithTag (Constants.Tags.Player)) {
+			player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
+			_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, player.transform.position);
+			//PlayerSpeechBubble.transform.position = _playerScreenPos;
+		}
+
+		if (GameObject.FindGameObjectWithTag (Constants.Tags.SideKick)) {
+			sidekick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick);
+			_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekick.transform.position);
+			SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+		}
 
 		_PlayerText = PlayerSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 		_SideKickText = SideKickSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 		_NarrativeText = NarrativeSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 
-		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, player.transform.position);
-		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekick.transform.position);
-
-		PlayerSpeechBubble.transform.position = _playerScreenPos;
-		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
-
         narrativeEnglish = speechListEnglish.speechList;
-         narrativeDanish = speechListDanish.speechList;
+        narrativeDanish = speechListDanish.speechList;
 		GetNextSpeech ();
 
 	}
@@ -70,32 +74,21 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			return;
 		}
 
-		Vector3 playerOffset = player.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
-		_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
-		PlayerSpeechBubble.transform.position = _playerScreenPos;
-        PlayerSignBubble.transform.position = _playerScreenPos;
+		if (player != null) {
+			Vector3 playerOffset = player.transform.position + new Vector3 (bubbleOffset.x, bubbleOffset.y, 0);
+			_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, playerOffset);
+			//PlayerSpeechBubble.transform.position = _playerScreenPos;
+			PlayerSignBubble.transform.position = _playerScreenPos;
+		}
 
-        Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
-		_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
-		SideKickSpeechBubble.transform.position = _sidekickScreenPos;
-	    SidekickSignBubble.transform.position = _sidekickScreenPos;
-	}
-
-	private void RandomBubblePos()
-	{
-		int rand = Random.Range (0, 1);
-		switch(rand)
-		{
-		case 0:
-			bubbleOffset.x = -bubbleOffset.x; 
-			Debug.Log(bubbleOffset);
-			break;
-		case 1:
-			bubbleOffset.x = -bubbleOffset.x;
-			Debug.Log(bubbleOffset);
-			break;
+		if(sidekick != null){
+	        Vector3 sidekickOffset = sidekick.transform.position + new Vector3(bubbleOffset.x, bubbleOffset.y, 0);
+			_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekickOffset);
+			//SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+		    SidekickSignBubble.transform.position = _sidekickScreenPos;
 		}
 	}
+	
 
 	private string AddNewLines(string text)
 	{
@@ -139,6 +132,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
         List<SpeechHolder> narrative = PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish) ? narrativeDanish : narrativeEnglish;
 
         if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
+
+			// Narrative speech bubble
 			if (narrative [_ConversationCounter].isNarrativeSpeechActive) {
 
 				NarrativeSpeechBubble.gameObject.SetActive (true);
@@ -149,6 +144,18 @@ public class InteractableSpeechBubble : MonoBehaviour {
 				NarrativeSpeechBubble.gameObject.SetActive (false);
 			}
 
+			// Bubble speech bubble
+			if (narrative [_ConversationCounter].isPlayerSpeechActive) {
+				
+				PlayerSpeechBubble.gameObject.SetActive (true);
+				string tempText =  narrative [_ConversationCounter].PlayerSpeech;
+				tempText = AddNewLines(tempText);
+				_PlayerText.text = tempText;
+			} else {
+				PlayerSpeechBubble.gameObject.SetActive (false);
+			}
+
+			/*
 			if (narrative [_ConversationCounter].isPlayerSpeechActive) {
 
 				PlayerSpeechBubble.gameObject.SetActive (true);
@@ -168,9 +175,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			} else {
 				SideKickSpeechBubble.gameObject.SetActive (false);
 			}
+			*/
 			_hasSpeech = true;
 			_ConversationCounter++;
 			//RandomBubblePos();
+
+
 		} else {
 			NarrativeSpeechBubble.gameObject.SetActive (false);
 			PlayerSpeechBubble.gameObject.SetActive (false);

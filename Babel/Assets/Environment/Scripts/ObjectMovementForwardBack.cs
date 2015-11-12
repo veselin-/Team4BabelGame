@@ -21,7 +21,7 @@ namespace Assets.Environment.Scripts
         private bool _objectIsShown;
 
         public GameObject obstacle;
-        public int moveValue;
+        public float moveValue;
 
         // Use this for initialization
         void Start()

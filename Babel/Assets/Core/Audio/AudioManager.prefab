@@ -94,6 +94,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &129402
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 448106}
+  - 82: {fileID: 8209636}
+  m_Layer: 0
+  m_Name: UIBtnSwipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &142034
 GameObject:
   m_ObjectHideFlags: 1
@@ -120,6 +136,22 @@ GameObject:
   - 4: {fileID: 435466}
   m_Layer: 0
   m_Name: Ambient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &153244
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 414162}
+  - 82: {fileID: 8225292}
+  m_Layer: 0
+  m_Name: UIBtnClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +276,7 @@ GameObject:
   - 4: {fileID: 494484}
   - 82: {fileID: 8245576}
   m_Layer: 0
-  m_Name: UIBtnClick
+  m_Name: UIBtnPokedex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,6 +367,18 @@ Transform:
   - {fileID: 435466}
   - {fileID: 446256}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &414162
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 446256}
   m_RootOrder: 0
 --- !u!4 &416624
 Transform:
@@ -449,8 +493,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 414162}
+  - {fileID: 448106}
   - {fileID: 494484}
   m_Father: {fileID: 407342}
+  m_RootOrder: 1
+--- !u!4 &448106
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 446256}
   m_RootOrder: 1
 --- !u!4 &449494
 Transform:
@@ -542,7 +600,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446256}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!82 &8205190
 AudioSource:
   m_ObjectHideFlags: 1
@@ -614,6 +672,77 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8209636
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129402}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: a4df2baa7f78b834ca45e00ecff3746b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!82 &8210778
 AudioSource:
   m_ObjectHideFlags: 1
@@ -625,7 +754,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24369090, guid: f618f35b3e02d664d9c6126cb98247eb,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: da9df4cd6d11a51479e810a6f3893a94, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -637,6 +766,77 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8225292
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153244}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7ad35bd72914326419a5509b664e774e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -766,7 +966,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7ad35bd72914326419a5509b664e774e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: acec3cba7480abb4fb260e04f783d563, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -838,7 +1038,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24326644, guid: f618f35b3e02d664d9c6126cb98247eb,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2a25365a5a75c4f42846e1028526e5e7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1335,17 +1535,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facba5ac8e9970143bea08da7016a2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: 1
   MasterMixer: {fileID: 24100000, guid: 16e9e0afcf11f14439c53add53a2a169, type: 2}
   MusicMixer: {fileID: 24100000, guid: f618f35b3e02d664d9c6126cb98247eb, type: 2}
   SoundFXMixer: {fileID: 24100000, guid: 54baf84db612b184388ffbd859b2084f, type: 2}
   VoiceMixer: {fileID: 24100000, guid: aba5546c1551f15489efa5386d137519, type: 2}
-  ClickBtn: {fileID: 8245576}
-  AmbientSnapshots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  ClickBtn: {fileID: 8225292}
+  SwipeBtn: {fileID: 8209636}
+  PokedexBtn: {fileID: 8245576}
+  PlayAmbience: 0
   NewThemeAmbienceSnapshots:
   - {fileID: 24504104, guid: f618f35b3e02d664d9c6126cb98247eb, type: 2}
   - {fileID: 24555898, guid: f618f35b3e02d664d9c6126cb98247eb, type: 2}
@@ -1381,29 +1579,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2917aa21d3545dd4db2863d8c6f565a7, type: 3}
   - {fileID: 8300000, guid: 2917aa21d3545dd4db2863d8c6f565a7, type: 3}
   - {fileID: 8300000, guid: 2917aa21d3545dd4db2863d8c6f565a7, type: 3}
-  SignalSounds:
-  - {fileID: 8244218}
-  - {fileID: 8205190}
-  - {fileID: 8282422}
-  - {fileID: 8258604}
-  - {fileID: 8281746}
-  - {fileID: 8261114}
-  - {fileID: 8286298}
-  L:
-  - {fileID: 8261114}
-  - {fileID: 8286298}
-  - {fileID: 8205190}
-  C:
-  - {fileID: 8286298}
-  - {fileID: 8205190}
-  - {fileID: 8244218}
-  - {fileID: 8282422}
-  - {fileID: 8263054}
-  - {fileID: 8258604}
-  R:
-  - {fileID: 8281746}
-  - {fileID: 8244218}
-  - {fileID: 8263054}
   MinSnapShotTransition: 5
   MaxSnapShotTransition: 15
   MinSnapShotPlayingTime: 10

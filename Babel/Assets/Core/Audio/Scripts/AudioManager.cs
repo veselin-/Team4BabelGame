@@ -14,20 +14,21 @@ public class AudioManager : MonoBehaviour {
 	public AudioMixer SoundFXMixer;
 	public AudioMixer VoiceMixer;
 
-	public AudioSource ClickBtn;
+	public AudioSource ClickBtn, SwipeBtn, PokedexBtn;
 
+	public bool PlayAmbience;
 
-	public AudioMixerSnapshot[] AmbientSnapshots;
 	public AudioMixerSnapshot[] NewThemeAmbienceSnapshots;
 
 	public AudioClip[] MaleSyllabusList;
 	public AudioClip[] FemaleSyllabusList;
+	
+	private AudioSource[] _ambienceSounds;
 
 	[Header("Left Center Right Signal Sounds")]
-	public AudioSource[] SignalSounds;
-	public AudioSource[] L;    	// left side signal sounds
-	public AudioSource[] C;		// center side signal sounds
-	public AudioSource[] R;		// right side signal sounds
+	private AudioSource[] _L;    	// left side signal sounds
+	private AudioSource[] _C;		// center side signal sounds
+	private AudioSource[] _R;		// right side signal sounds
 	[Header("")]
 
 	public int MinSnapShotTransition = 5;
@@ -80,19 +81,50 @@ public class AudioManager : MonoBehaviour {
 
 		LoadSavedValues ();
 
-		//Start random ambience sound
-		//StartCoroutine (RandomAmbience());
-		StartCoroutine (ThemeTransition());
-		//StartCoroutine (RandomAmbienceSignals());
-		StartCoroutine (RandomLeftSignals());
-		StartCoroutine (RandomRightSignals());
-		StartCoroutine (RandomCenterSignals());
+		if(PlayAmbience)
+		{
+			PlayAmbienceMix();
+		}
+		else
+		{
+			StopAmbienceMix();
+		}
+
+//		Debug.Log (Application.loa);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void PlayAmbienceMix()
+	{
+		Transform Ambient = transform.FindChild ("Ambient");
+		Transform SignalSounds = Ambient.FindChild("SignalSounds");
+		_ambienceSounds = Ambient.FindChild("KeynoteSounds").GetComponentsInChildren<AudioSource>();
+		_L = SignalSounds.FindChild("L").GetComponentsInChildren<AudioSource>();
+		_C = SignalSounds.FindChild("C").GetComponentsInChildren<AudioSource>();
+		_R = SignalSounds.FindChild("R").GetComponentsInChildren<AudioSource>();
+
+		//Start random ambience sound
+		foreach(AudioSource a in _ambienceSounds)
+		{
+			a.Play();
+		}
+		
+		StartCoroutine (ThemeTransition());
+		StartCoroutine (RandomLeftSignals());
+		StartCoroutine (RandomRightSignals());
+		StartCoroutine (RandomCenterSignals());
+		PlayAmbience = true;
+	}
+
+	public void StopAmbienceMix()
+	{
+		PlayAmbience = false;
+		StopAllCoroutines ();
 	}
 
 	private void LoadSavedValues()
@@ -179,25 +211,7 @@ public class AudioManager : MonoBehaviour {
 		}
 		//Debug.Log (PlayerPrefs.GetString ("SoundFX"));
 	}
-
-	IEnumerator RandomAmbienceSignals()
-	{
-		int nextTransition = Random.Range (MinSignalSoundChange, MaxSignalSoundChange);
-		_currentSignalSeconds = nextTransition;
-		yield return new WaitForSeconds (nextTransition);
-
-		int randomAmbientSignal = Random.Range (0, SignalSounds.Length);
-		while(_currentSignal == randomAmbientSignal)
-		{
-			randomAmbientSignal = Random.Range (0, SignalSounds.Length);
-			yield return null;
-		}
-		_currentSignal = randomAmbientSignal;
-		SignalSounds [_currentSignal].Play ();
-
-		StartCoroutine (RandomAmbienceSignals ());
-	}
-
+	
 	// Randomize left sided signal sounds 
 	IEnumerator RandomLeftSignals()
 	{
@@ -205,14 +219,14 @@ public class AudioManager : MonoBehaviour {
 		//_currentSignalSeconds = nextTransition;
 		yield return new WaitForSeconds (nextTransition);
 		
-		int randomAmbientSignal = Random.Range (0, L.Length);
+		int randomAmbientSignal = Random.Range (0, _L.Length);
 		while(_currentLSignal == randomAmbientSignal)
 		{
-			randomAmbientSignal = Random.Range (0, L.Length);
+			randomAmbientSignal = Random.Range (0, _L.Length);
 			yield return null;
 		}
 		_currentLSignal = randomAmbientSignal;
-		L [randomAmbientSignal].Play ();
+		_L [randomAmbientSignal].Play ();
 		
 		StartCoroutine (RandomLeftSignals ());
 	}
@@ -224,14 +238,14 @@ public class AudioManager : MonoBehaviour {
 		//_currentSignalSeconds = nextTransition;
 		yield return new WaitForSeconds (nextTransition);
 		
-		int randomAmbientSignal = Random.Range (0, C.Length);
+		int randomAmbientSignal = Random.Range (0, _C.Length);
 		while(_currentCSignal == randomAmbientSignal)
 		{
-			randomAmbientSignal = Random.Range (0, C.Length);
+			randomAmbientSignal = Random.Range (0, _C.Length);
 			yield return null;
 		}
 		_currentCSignal = randomAmbientSignal;
-		C [randomAmbientSignal].Play ();
+		_C [randomAmbientSignal].Play ();
 
 		StartCoroutine (RandomCenterSignals ());
 	}
@@ -243,14 +257,14 @@ public class AudioManager : MonoBehaviour {
 		//_currentSignalSeconds = nextTransition;
 		yield return new WaitForSeconds (nextTransition);
 		
-		int randomAmbientSignal = Random.Range (0, R.Length);
+		int randomAmbientSignal = Random.Range (0, _R.Length);
 		while(_currentRSignal == randomAmbientSignal)
 		{
-			randomAmbientSignal = Random.Range (0, R.Length);
+			randomAmbientSignal = Random.Range (0, _R.Length);
 			yield return null;
 		}
 		_currentRSignal = randomAmbientSignal;
-		R [randomAmbientSignal].Play ();
+		_R [randomAmbientSignal].Play ();
 
 		StartCoroutine (RandomRightSignals ());
 	}
@@ -286,42 +300,6 @@ public class AudioManager : MonoBehaviour {
 		yield return new WaitForSeconds(nextTransition);
 
 		StartCoroutine (ThemeTransition());
-
-	}
-
-	IEnumerator RandomAmbience()
-	{
-		int randomTransition = Random.Range (MinSnapShotTransition, MaxSnapShotTransition);
-		int randomSnap = Random.Range (0, AmbientSnapshots.Length);
-		//AmbientSnapshots[0].name;
-
-		float[] weights = new float[AmbientSnapshots.Length];
-
-		while (_currentSnapshot == randomSnap) 
-		{
-			randomSnap = Random.Range (0, AmbientSnapshots.Length);
-			yield return null;
-		}
-
-		weights [randomSnap] = 1f;
-		_currentSnapshot = randomSnap;
-		for(int i = 0; i < weights.Length; i++)
-		{
-			if(weights[i] != 1f)
-			{
-				weights[i] = 0f;
-			}
-		}
-
-
-		MusicMixer.TransitionToSnapshots (AmbientSnapshots, weights, randomTransition);
-
-		int nextTransition = Random.Range (MinSnapShotPlayingTime, MaxSnapShotPlayingTime);
-		_currentSnapshotSeconds = nextTransition;
-		yield return new WaitForSeconds(nextTransition);
-
-		//randomTransition = Random.Range (MinSnapTransition, MaxSnapTransition);
-		StartCoroutine (RandomAmbience ());
 
 	}
 
@@ -404,6 +382,21 @@ public class AudioManager : MonoBehaviour {
 		ClickBtn.Stop ();
 	}
 
+	public void SwipeBtnPlay()
+	{
+		SwipeBtn.Play ();
+	}
+
+	public void SwipeBtnStop()
+	{
+		SwipeBtn.Stop ();
+	}
+
+	public void PokedexBtnPlay()
+	{
+		PokedexBtn.Play ();
+	}
+	
 	/*
 	private AudioSource GetFemaleSyllabusByName(string name)
 	{
@@ -419,6 +412,61 @@ public class AudioManager : MonoBehaviour {
 	*/
 	//--------------------------------------------
 
+	/*
+	IEnumerator RandomAmbienceSignals()
+	{
+		int nextTransition = Random.Range (MinSignalSoundChange, MaxSignalSoundChange);
+		_currentSignalSeconds = nextTransition;
+		yield return new WaitForSeconds (nextTransition);
+
+		int randomAmbientSignal = Random.Range (0, SignalSounds.Length);
+		while(_currentSignal == randomAmbientSignal)
+		{
+			randomAmbientSignal = Random.Range (0, SignalSounds.Length);
+			yield return null;
+		}
+		_currentSignal = randomAmbientSignal;
+		SignalSounds [_currentSignal].Play ();
+
+		StartCoroutine (RandomAmbienceSignals ());
+	}
+	*/
+
+	/*
+	IEnumerator RandomAmbience()
+	{
+		int randomTransition = Random.Range (MinSnapShotTransition, MaxSnapShotTransition);
+		int randomSnap = Random.Range (0, AmbientSnapshots.Length);
+		//AmbientSnapshots[0].name;
+
+		float[] weights = new float[AmbientSnapshots.Length];
+
+		while (_currentSnapshot == randomSnap) 
+		{
+			randomSnap = Random.Range (0, AmbientSnapshots.Length);
+			yield return null;
+		}
+
+		weights [randomSnap] = 1f;
+		_currentSnapshot = randomSnap;
+		for(int i = 0; i < weights.Length; i++)
+		{
+			if(weights[i] != 1f)
+			{
+				weights[i] = 0f;
+			}
+		}
 
 
+		MusicMixer.TransitionToSnapshots (AmbientSnapshots, weights, randomTransition);
+
+		int nextTransition = Random.Range (MinSnapShotPlayingTime, MaxSnapShotPlayingTime);
+		_currentSnapshotSeconds = nextTransition;
+		yield return new WaitForSeconds(nextTransition);
+
+		//randomTransition = Random.Range (MinSnapTransition, MaxSnapTransition);
+		StartCoroutine (RandomAmbience ());
+
+	}
+	*/
 }

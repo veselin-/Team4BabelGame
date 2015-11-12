@@ -56,7 +56,7 @@ namespace Assets.Characters.AiScripts.States
                     return;
                 case State.GoToIntactable:
                     if (_agent.HasReachedTarget())
-                        _state = Vector3.Distance(_intaractableGoal.InteractPosition(_agent.transform.position), _agent.transform.position) < 2 ?
+                        _state = Vector3.Distance(_intaractableGoal.InteractPosition(_agent.transform.position), _agent.transform.position) < .6 ?
                             State.Interact : State.Done;
                     return;
                 case State.Interact:

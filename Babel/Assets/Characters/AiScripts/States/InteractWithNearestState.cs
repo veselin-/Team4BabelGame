@@ -70,6 +70,8 @@ namespace Assets.Characters.AiScripts.States
                     var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
                     puh.PickUpItem(returnItem);
 
+                    _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
+
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;
                     return;

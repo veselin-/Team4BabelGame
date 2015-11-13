@@ -25,9 +25,7 @@ public class NewSign : MonoBehaviour
 
     public void SetSignID()
     {
-
         CreateNewSymbol.SymbolID = ID;
-
     }
 }
 

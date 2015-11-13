@@ -44,7 +44,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     {
         transform.SetParent(book.transform);
         transform.SetSiblingIndex(childIndex);
-        //transform.localScale = Vector3.one;
+        transform.localScale = Vector3.one;
         count -= 1;
     }
 
@@ -70,7 +70,6 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             }
             MoveSignBackInBook();
             movedSign = false;
-
         }
         Debug.Log("IM HERE DOIJNG IT");
     }

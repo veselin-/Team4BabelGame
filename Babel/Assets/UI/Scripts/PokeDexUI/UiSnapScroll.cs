@@ -14,13 +14,13 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private ScrollRect scrollRect;
 
     private float[] steps;
-    private int menuCount;
+    public int menuCount;
 
     // Use this for initialization
     void Start ()
     {
 		_audioManager = GameObject.FindObjectOfType<AudioManager> ().GetComponent<AudioManager> ();
-       menuCount = transform.GetChild(0).transform.childCount;
+      // menuCount = transform.GetChild(0).transform.childCount;
 
         scrollRect = GetComponent<ScrollRect>();
 

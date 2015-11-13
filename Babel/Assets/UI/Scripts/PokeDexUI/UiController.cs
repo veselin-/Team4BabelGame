@@ -9,6 +9,7 @@ public class UiController : MonoBehaviour
     private Animator anim;
     public ScrollRect scrollRect;
     public Animator bookAnim;
+    public GameObject slidePanel;
     NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
 	private CameraManager _cameraManager;
@@ -40,6 +41,7 @@ public class UiController : MonoBehaviour
         anim.SetBool("CreatingSign", true);
         bookAnim.SetBool("CreatingSign", true);
         bookAnim.SetTrigger("CreationToggle");
+        slidePanel.SetActive(false);
         navMeshP.Stop();
         navMeshS.Stop();
     }
@@ -51,6 +53,8 @@ public class UiController : MonoBehaviour
         anim.SetBool("CreatingSign", false);
         bookAnim.SetBool("CreatingSign", false);
         bookAnim.SetTrigger("CreationToggle");
+        anim.SetTrigger("MenuToggle");
+        slidePanel.SetActive(true);
         navMeshP.ResetPath();
         navMeshS.ResetPath();
     }

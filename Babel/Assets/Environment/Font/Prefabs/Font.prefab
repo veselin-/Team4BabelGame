@@ -58,7 +58,6 @@ GameObject:
   - 4: {fileID: 475738}
   - 33: {fileID: 3324534}
   - 23: {fileID: 2376848}
-  - 95: {fileID: 9524756}
   - 114: {fileID: 11418208}
   - 64: {fileID: 6443172}
   - 208: {fileID: 20879566}
@@ -130,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 1.1920929e-07, z: -7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .00999999978, y: .00999999978, z: .00999999978}
   m_Children:
   - {fileID: 475802}
@@ -147,8 +146,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .30002594, y: 95.5999985, z: -.399971008}
-  m_LocalScale: {x: 32.9498291, y: 2.05936527, z: 32.9498444}
+  m_LocalPosition: {x: .30002594, y: 47.2999992, z: -.399971008}
+  m_LocalScale: {x: 30.8838749, y: 1.9302423, z: 30.8838768}
   m_Children: []
   m_Father: {fileID: 475738}
   m_RootOrder: 0
@@ -210,7 +209,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: ca99fee9db8b2fc418ff775bea56f09f, type: 2}
+  - {fileID: 2100000, guid: 2d3a6afd513253e4492de6611e1eafb6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -230,7 +229,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160130}
-  m_Mesh: {fileID: 4300000, guid: b46b7923e42b44947b526ba73c2f9d74, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 9d0923e80aaa88e45bb6ab4b9a8798b5, type: 3}
 --- !u!33 &3361068
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -249,24 +248,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: b46b7923e42b44947b526ba73c2f9d74, type: 3}
---- !u!95 &9524756
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160130}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b46b7923e42b44947b526ba73c2f9d74, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Mesh: {fileID: 4300000, guid: 9d0923e80aaa88e45bb6ab4b9a8798b5, type: 3}
 --- !u!114 &11418208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,7 +301,7 @@ NavMeshObstacle:
   m_MoveThreshold: .100000001
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 48.2180023, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: .5
 --- !u!1001 &100100000
 Prefab:

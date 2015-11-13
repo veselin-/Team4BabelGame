@@ -46,6 +46,8 @@ public class CameraManager : MonoBehaviour {
     
 	private CameraMovementArea cameraMovementArea;
 	public bool isInsideArea = true;
+	public bool isCharacterMoving = false;
+	public bool isTouchDown = false;
 	// Use this for initialization
 	void Start () {
 
@@ -67,9 +69,14 @@ public class CameraManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+	
+		if (isCharacterMoving)
+			return;
 
+		//Debug.Log ("drag camera");
 		DragCamera ();
 		RotateAndZoom ();
+		
 
     }
 
@@ -88,13 +95,22 @@ public class CameraManager : MonoBehaviour {
 		}
 
 		// Drag camera
-		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)){
+		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0) ){
+			//Debug.Log("drag");
 			hit_position = Input.mousePosition;
 			camera_position = transform.position;
 			isCameraDragging = true;
 		}
 
 		if((touchCount == 1  && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0)){
+			//Debug.Log("moved");
+			if(isTouchDown)
+			{
+				hit_position = Input.mousePosition;
+				camera_position = transform.position;
+				isCameraDragging = true;
+			}
+			isTouchDown = false;
 			current_position = Input.mousePosition;
 			if(isCameraDragging)
 				LeftMouseDrag();     

@@ -48,26 +48,39 @@ public class symbolPress : MonoBehaviour {
         transform.SetSiblingIndex(childIndex);
         transform.localScale = Vector3.one;
         count -= 1;
+        first = false;
+        second = false;
+        third = false;
+        moved = false;
     }
+
+    //public void ResetSyllabels()
+    //{
+    //    if (count > 0 && first || second || third && moved)
+    //    {
+    //        if (first)
+    //        {
+    //            first = false;
+    //        }
+    //        if (second)
+    //        {
+    //            second = false;
+    //        }
+    //        if (third)
+    //        {
+    //            third = false;
+    //        }
+    //        MoveSignBackInBook();
+    //        moved = false;
+    //    }
+    //    Debug.Log("THIS HAS BEEN DONE");
+    //}
 
     public void PressedSymbol()
     {
         if (count > 0 && first || second || third && moved)
         {
-            if (first)
-            {
-                first = false;
-            }
-            else if (second)
-            {
-                second = false;
-            }
-            else if(third)
-            {
-                third = false;
-            }
             MoveSignBackInBook();
-            moved = false;
         }
         else
         {

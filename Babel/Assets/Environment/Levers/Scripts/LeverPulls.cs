@@ -39,6 +39,7 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
         {
 			GetComponent<AudioSource> ().Play ();
             GetComponentInChildren<Animator>().SetTrigger("PullLever");
+            yield return new WaitForSeconds(2f);
             _hasBeenPulled = true;
             if(leverpulls < 7)
             {

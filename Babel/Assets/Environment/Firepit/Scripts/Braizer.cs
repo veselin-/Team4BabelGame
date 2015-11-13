@@ -24,10 +24,15 @@ namespace Assets.Environment.Braizer.Scripts
         {
             _psystem = transform.FindChild("fire").GetComponent<ParticleSystem>();
             OnFire = StartLighted;
+			if(StartLighted)
+			{
+				GetComponent<AudioSource> ().Play ();
+			}
         }
 
         public bool HasBeenActivated()
         {
+			//GetComponent<AudioSource> ().Play ();
             return OnFire;
         }
 

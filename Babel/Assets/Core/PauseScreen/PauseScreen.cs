@@ -12,12 +12,13 @@ public class PauseScreen : MonoBehaviour {
 
     public Text SoundTextOn, SoundTextOff, MusicTextOn, MusicTextOff, VoicesTextOn, VoicesTextOff, SoundFxTextOn, SoundFxTextOff;
 	private Animator pauseAnim;
-	
-	AudioManager _audioManager;
-	
+
+	private AudioManager _audioManager;
+	private CameraManager _cameraManager;
 	// Use this for initialization
 	void Start () {
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+		_cameraManager = GameObject.FindObjectOfType<CameraManager> ().GetComponent<CameraManager> ();
 		SettingsPanel.SetActive (false);
 		pauseAnim = GetComponent<Animator> ();
 		Time.timeScale = 1f;
@@ -39,6 +40,7 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBtn()
 	{
+		_cameraManager.enabled = false;
 		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (true);
 		SettingsButton.SetActive (false);
@@ -49,6 +51,7 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBackBtn()
 	{
+		_cameraManager.enabled = true;
 		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (false);
 		SettingsButton.SetActive (true);

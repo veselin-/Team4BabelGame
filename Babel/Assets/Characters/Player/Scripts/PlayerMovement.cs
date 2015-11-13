@@ -14,20 +14,58 @@ namespace Assets.Characters.Player.Scripts
         private AiMovement _ai;
 
         private UiController _uiControl;
-
+		private float _touchCounter = 0;
+		private bool _tap = false;			//ugly boolean for detecting tap
+		private bool _canMove = false;		//ugly boolean for detecting when the player can move
+		public bool _isTouchDown = false;	//ugly boolean which runs once needed to reset the Input.GetMouseButtonDown in the GetMouseButton state
+		private CameraManager _cameraManager;
         // Use this for initialization
         void Start ()
         {
             _agent = GetComponent<NavMeshAgent>();
             _ai = GetComponent<AiMovement>();
-
+			_cameraManager = GameObject.FindObjectOfType<CameraManager> ().GetComponent<CameraManager> ();
             _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
         }
 	
         // Update is called once per frame
         void Update ()
         {
-            if (!Input.GetMouseButtonDown(0)) return;
+			//ugly code fixing camera drag and player movement. 
+			if (Input.GetMouseButton (0)) {
+				_touchCounter += Time.deltaTime;
+				if(_touchCounter < 0.12f)
+				{
+					_tap = true;
+					_cameraManager.isCharacterMoving = true;
+				}
+				else
+				{
+					if(!_isTouchDown)
+					{
+						_isTouchDown = true;
+						_tap = false;
+						_cameraManager.isTouchDown = true;
+					}
+					_cameraManager.isCharacterMoving = false;
+				}
+			}
+
+			if (Input.GetMouseButtonUp (0)) {
+				_cameraManager.isCharacterMoving = false;
+				_isTouchDown = false;
+				if(_tap)
+				{
+					_canMove = true;
+				}
+				_touchCounter = 0;
+			}
+
+			if (!_canMove) return;
+
+			_tap = false;
+			_canMove = false;
+            //if (!Input.GetMouseButtonDown(0)) return;
 
             var ts = Input.touches;
             if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))

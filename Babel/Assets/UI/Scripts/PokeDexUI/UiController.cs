@@ -41,6 +41,7 @@ public class UiController : MonoBehaviour
         anim.SetBool("CreatingSign", false);
         bookAnim.SetBool("CreatingSign", false);
         bookAnim.SetTrigger("CreationToggle");
+        anim.SetTrigger("MenuToggle");
         navMeshP.ResetPath();
         navMeshS.ResetPath();
     }

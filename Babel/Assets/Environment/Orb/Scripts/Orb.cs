@@ -16,7 +16,7 @@ public class Orb : MonoBehaviour {
         {
 			GetComponent<AudioSource> ().Play();
             PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) + orbValue);
-            //Debug.Log("WTF YOU ARE HITTING ME!?");
+            Debug.Log("WTF YOU ARE HITTING ME!?");
 			StartCoroutine(DestroyOrb());
         }
     }
@@ -24,6 +24,7 @@ public class Orb : MonoBehaviour {
 	IEnumerator DestroyOrb()
 	{
 		transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<ParticleSystem>().Stop();
 		yield return new WaitForSeconds(GetComponent<AudioSource> ().clip.length);
 		Destroy(this.gameObject);
 	}

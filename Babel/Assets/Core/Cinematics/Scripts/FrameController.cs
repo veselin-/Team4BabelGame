@@ -14,8 +14,14 @@ public class FrameController : MonoBehaviour
     [Tooltip("This only applies if there is no animations attached to the frame.")]
     public float FrameLength = 3f;
 
-    public GameObject TextField;
 
+    [Tooltip("Must only be true for the first frame of the cinematic or it will break horribly.")]
+    public bool IsStartingFrame = false;
+
+    [Tooltip("Must only be true for the last frame of the cinematic or it will break horribly.")]
+    public bool IsEndFrame = false;
+
+    public string LevelToLoad;
 
     private Animator animator;
 
@@ -27,6 +33,10 @@ public class FrameController : MonoBehaviour
 
 	    animator = GetComponent<Animator>();
 
+	    if (IsStartingFrame)
+	    {
+	        StartFrame();
+	    }
 
 	}
 	
@@ -38,16 +48,16 @@ public class FrameController : MonoBehaviour
     public void StartFrame()
     {
         GetComponent<Image>().enabled = true;
-        TextField.SetActive(true);
 
-        if (AnimateFrame)
-        {
-            StartCoroutine(RunFrameWithAnimation());
-        }
-        else
-        {
-            StartCoroutine(RunFrame());
-        }
+
+            if (AnimateFrame)
+            {
+                StartCoroutine(RunFrameWithAnimation());
+            }
+            else
+            {
+                StartCoroutine(RunFrame());
+            }
 
     }
 
@@ -55,22 +65,50 @@ public class FrameController : MonoBehaviour
     {
         yield return new WaitForSeconds(FrameLength);
 
-        GetComponent<Image>().enabled = false;
-        TextField.SetActive(false);
 
-        NextFrame.GetComponent<FrameController>().StartFrame();
+
+    //    Debug.Log(IsEndFrame);
+
+        if (IsEndFrame)
+        {
+         //   Debug.Log("Loading Level");
+            Application.LoadLevel(LevelToLoad);
+       
+        }
+        else
+        {
+            if (NextFrame != null)
+            {
+                GetComponent<Image>().enabled = false;
+                NextFrame.GetComponent<FrameController>().StartFrame();
+            }
+        }
+        
     }
 
     IEnumerator RunFrameWithAnimation()
     {
         animator.SetTrigger(Animation);
 
-        yield return animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        yield return new WaitForEndOfFrame();
 
-        GetComponent<Image>().enabled = false;
-        TextField.SetActive(false);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-        NextFrame.GetComponent<FrameController>().StartFrame();
+
+
+        if (IsEndFrame)
+        {
+            Application.LoadLevel(LevelToLoad);
+           // Debug.Log("Loading Level");
+        }
+        else
+        {
+            if (NextFrame != null)
+            {
+                GetComponent<Image>().enabled = false;
+                NextFrame.GetComponent<FrameController>().StartFrame();
+            }
+        }
 
     }
 }

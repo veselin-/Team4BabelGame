@@ -62,7 +62,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
         narrativeEnglish = speechListEnglish.speechList;
         narrativeDanish = speechListDanish.speechList;
-		GetNextSpeech ();
+		//GetNextSpeech ();
 
 	}
 	

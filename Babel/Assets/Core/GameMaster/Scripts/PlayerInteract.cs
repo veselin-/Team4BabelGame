@@ -10,16 +10,20 @@ public class PlayerInteract : MonoBehaviour
 {
     public bool PlayerCanAct = true;
     private PlayerMovement _playerMovementScript;
-    private AiMovement _ai;
-    private NavMeshAgent _sideKickAgent;
+    private AiMovement _ai, _playerspeed;
+    private NavMeshAgent _sideKickAgent, _player;
     public Transform[] Waypoints;
     private Transform _currentWayPoint;
     private int _waypointIndex = 0;
-    private bool _targetIsNotHit = true;
+    public static bool _targetIsNotHit = true;
+    float speed;
 
     void Start ()
     {
         _ai = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick).GetComponent<AiMovement>();
+        _playerspeed = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<AiMovement>();
+        speed = _playerspeed.MovementSpeed;
+        _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<NavMeshAgent>();
         _sideKickAgent = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick).GetComponent<NavMeshAgent>();
         _playerMovementScript = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<PlayerMovement>();
 	    _playerMovementScript.enabled = PlayerCanAct;
@@ -32,24 +36,30 @@ public class PlayerInteract : MonoBehaviour
         {
             if (_sideKickAgent.HasReachedTarget())
             {
-                StartCoroutine("PerformAnimation");
+                _targetIsNotHit = false;
+                _sideKickAgent.Stop();
                 WaypointAction action = _currentWayPoint.gameObject.GetComponent<WaypointAction>();
                 if (action != null)
                 {
                     action.SideKickPerformAction();
                 }
+                _player.ResetPath();
+                _player.Resume();
                 GoToNextWaypoint();
             }
         }
     }
-    IEnumerator PerformAnimation()
-    {
-        _targetIsNotHit = false;
-        _sideKickAgent.Stop();
-        yield return new WaitForSeconds(2);
-        _targetIsNotHit = true;
-        _sideKickAgent.Resume();
-    }
+
+    //void OnCollisionEnter(Collision col)
+    //{
+
+    //}
+
+    //IEnumerator PerformAnimation()
+    //{
+
+    //    yield return new WaitForSeconds(2);
+    //}
 
     public void GoToNextWaypoint()
     {

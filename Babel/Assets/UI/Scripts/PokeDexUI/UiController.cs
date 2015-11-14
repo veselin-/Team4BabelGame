@@ -15,6 +15,9 @@ public class UiController : MonoBehaviour
 	private CameraManager _cameraManager;
 	private PlayerMovement _playerMovement;
 
+    private float playerSpeed;
+    private float sideKickSpeed;
+
     // Use this for initialization
     void Start () {
 		_audioManager = GameObject.FindObjectOfType<AudioManager> ().GetComponent<AudioManager> ();
@@ -42,8 +45,13 @@ public class UiController : MonoBehaviour
         bookAnim.SetBool("CreatingSign", true);
         bookAnim.SetTrigger("CreationToggle");
         slidePanel.SetActive(false);
-        navMeshP.Stop();
-        navMeshS.Stop();
+       playerSpeed = navMeshP.speed;
+       sideKickSpeed = navMeshS.speed;
+
+        navMeshP.speed = 0f;
+        navMeshS.speed = 0f;
+
+         Time.timeScale = 0;
     }
 
     public void SignCreationDone()
@@ -55,8 +63,11 @@ public class UiController : MonoBehaviour
         bookAnim.SetTrigger("CreationToggle");
         anim.SetTrigger("MenuToggle");
         slidePanel.SetActive(true);
-        navMeshP.ResetPath();
-        navMeshS.ResetPath();
+        //  navMeshP.ResetPath();
+        //  navMeshS.ResetPath();
+        navMeshP.speed = playerSpeed;
+        navMeshS.speed = sideKickSpeed;
+        Time.timeScale = 1;
     }
 
     public void PokedexOpen()
@@ -65,8 +76,14 @@ public class UiController : MonoBehaviour
 		_cameraManager.enabled = false;
 		_playerMovement.enabled = false;
 		_audioManager.PokedexBtnOpenPlay ();
-        navMeshP.Stop();
-        navMeshS.Stop();
+        //   navMeshP.Stop();
+        //   navMeshS.Stop();
+        playerSpeed = navMeshP.speed;
+        sideKickSpeed = navMeshS.speed;
+
+        navMeshP.speed = 0f;
+        navMeshS.speed = 0f;
+        Time.timeScale = 0;
     }
 
     public void PokedexClose()
@@ -75,7 +92,10 @@ public class UiController : MonoBehaviour
 		_cameraManager.enabled = true;
 		_playerMovement.enabled = true;
 		_audioManager.PokedexBtnClosePlay ();
-        navMeshP.ResetPath();
-        navMeshS.ResetPath();
+        //   navMeshP.ResetPath();
+        //   navMeshS.ResetPath();
+        navMeshP.speed = playerSpeed;
+        navMeshS.speed = sideKickSpeed;
+         Time.timeScale = 1;
     }
 }

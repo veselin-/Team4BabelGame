@@ -32,7 +32,7 @@ namespace Assets.Core.GameMaster.Scripts
 
             sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
             sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 5;
-            player.GetComponent<NavMeshAgent>().avoidancePriority = 1;
+            sidekick.GetComponent<NavMeshAgent>().avoidancePriority = 1;
 
             player.GetComponent<SidekickControls>().enabled = false;
             player.name = Constants.Tags.Player;
@@ -46,12 +46,15 @@ namespace Assets.Core.GameMaster.Scripts
                 case ScriptedBehaviour.Toturial2:
                     sidekick.AddComponent<Toturial02Behaviour>();
                     break;
+                case ScriptedBehaviour.WaypointSystem:
+                    sidekick.AddComponent<WaypointSystem>();
+                    break;
             }
         }
 
         public enum ScriptedBehaviour
         {
-            None, Toturial1, Toturial2
+            None, Toturial1, Toturial2, WaypointSystem
         }
     }
 }

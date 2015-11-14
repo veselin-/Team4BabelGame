@@ -33,6 +33,7 @@ namespace Assets.Core.Configuration
             public const string DialogWindow = "DialogWindow";
             public const string Wall = "Wall";
             public const string TorchHolder = "TorchHolder";
+            public const string SysWaypoint = "SysWaypoints";
         }
 
         public class XmlFiles

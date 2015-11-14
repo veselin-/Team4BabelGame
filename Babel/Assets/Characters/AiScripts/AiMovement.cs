@@ -40,6 +40,13 @@ namespace Assets.Characters.AiScripts
             _rm.Ai = this;
 
             // Default state
+            if (GetComponent<WaypointSystem>() != null)
+            {
+                Happines = 10000f;
+            }
+
+
+
             _exploreState = new ExploreState(_agent, StrollSpeed) {Waypoints = _rm.GetCurrnetWaypoints()};
 
             StartCoroutine(StateExecuter());           
@@ -47,18 +54,21 @@ namespace Assets.Characters.AiScripts
         
         IEnumerator StateExecuter()
         {
-            while (true)
-            {
-                _agent.speed = MovementSpeed;
 
-                // Default state
-                if (_currentState == null || _currentState.IsDoneExecuting() || Happines < 0.1f)
-                    _currentState = _exploreState;
+                while (true)
+                {
+                    _agent.speed = MovementSpeed;
 
-                _currentState.WaitingTime = TimeBeforeStolling * Happines;
-                _currentState.ExecuteState();
-                yield return new WaitForSeconds(0.1f);
-            }
+                    // Default state
+                    if (_currentState == null || _currentState.IsDoneExecuting() || Happines < 0.1f)
+                        _currentState = _exploreState;
+
+                    _currentState.WaitingTime = TimeBeforeStolling*Happines;
+                    _currentState.ExecuteState();
+                    yield return new WaitForSeconds(0.1f);
+                }
+            
+
         }
 
         public void AssignNewState(IState state)

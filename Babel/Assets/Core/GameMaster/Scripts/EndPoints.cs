@@ -26,14 +26,17 @@ namespace Assets.Core.GameMaster.Scripts
 
         IEnumerator ShouldRoomChange()
         {
+            //while (!(isPlayerHere && isSidekickHere))
             while (!(isPlayerHere && isSidekickHere))
             {
                 yield return new WaitForSeconds(0.5f);
+              
             }
+            Debug.Log("room change");
             Userlevels.GetInstance().AddUserLevel(GrandAccesToLevelId);
-            endLevel.GetComponent<EndLevelScreen> ().ShowEndLevelScreen ();
+            endLevel.SetActive(true);
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
-			GetComponent<AudioSource> ().Play();
+		//	GetComponent<AudioSource> ().Play();
             
         }
 
@@ -42,21 +45,26 @@ namespace Assets.Core.GameMaster.Scripts
         {
             switch (other.tag)
             {
+
                 case Constants.Tags.Player:
                     var sk = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
                     sk.GetComponent<AiMovement>().AssignNewState(new EndGameState(sk.GetComponent<NavMeshAgent>()));
                     isPlayerHere = true;
+                    Debug.Log("Player is in");
+
                     break;
                 case Constants.Tags.SideKick:
                     isSidekickHere = true;
+                    Debug.Log("sidekick is in");
                     break;
             }
         }
 
-        void OnTriggerExit(Collider other)
-        {
-            isSidekickHere = other.tag != Constants.Tags.SideKick && isSidekickHere;
-            isPlayerHere = other.tag != Constants.Tags.Player && isPlayerHere;
-        }
+        //void OnTriggerExit(Collider other)
+        //{
+        //    isSidekickHere = other.tag != Constants.Tags.SideKick && isSidekickHere;
+        //    isPlayerHere = other.tag != Constants.Tags.Player && isPlayerHere;
+        //    Debug.Log("someone left");
+        //}
     }
 }

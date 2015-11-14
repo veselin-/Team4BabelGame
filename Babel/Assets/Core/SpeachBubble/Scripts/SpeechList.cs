@@ -5,13 +5,14 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SpeechHolder
 {
-	public string PlayerSpeech = "";
+    [TextArea]
+    public string PlayerSpeech = "";
 	public bool isPlayerSpeechActive = false;
-
-	public string SideKickSpeech = "";
+    [TextArea]
+    public string SideKickSpeech = "";
 	public bool isSideKickSpeechActive = false;
-
-	public string NarrativeSpeech = "";
+    [TextArea]
+    public string NarrativeSpeech = "";
 	public bool isNarrativeSpeechActive = false;
 
 	/*

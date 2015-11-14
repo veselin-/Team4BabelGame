@@ -4,13 +4,13 @@ using System.Collections;
 
 public class EndLevelScreen : MonoBehaviour {
 
-	public GameObject EndLevelCanvas;
+
 	public Text orbsTxt; 
 	public string NextLevel;
 
 	// Use this for initialization
 	void Start () {
-		EndLevelCanvas = gameObject;
+
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class EndLevelScreen : MonoBehaviour {
 
 	public void ShowEndLevelScreen()
 	{
-		EndLevelCanvas.SetActive (true);
+		gameObject.SetActive (true);
 	}
 
 	public void MainMenuBtn()

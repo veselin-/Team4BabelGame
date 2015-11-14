@@ -107,6 +107,7 @@ public class FrameController : MonoBehaviour
             {
                 GetComponent<Image>().enabled = false;
                 NextFrame.GetComponent<FrameController>().StartFrame();
+                
             }
         }
 

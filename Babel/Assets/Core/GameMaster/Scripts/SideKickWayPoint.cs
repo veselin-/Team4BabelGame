@@ -146,6 +146,11 @@ public class SideKickWayPoint : MonoBehaviour
             //endTime = sidekick.GetComponent<Animator>().get
         }
 
+        if (UseSignBubble)
+        {
+            speech.ActivateSidekickSignBubble(DisplaySignId);
+        }
+
         if (WaitForInteraction)
         {
             while(!Interactable.GetComponent<IInteractable>().HasBeenActivated())
@@ -154,10 +159,7 @@ public class SideKickWayPoint : MonoBehaviour
             }
         }
 
-        if (UseSignBubble)
-        {
-            speech.ActivateSidekickSignBubble(DisplaySignId);
-        }
+
 
         while (UseText && AdvanceSpeechByNSteps > 0)
         {

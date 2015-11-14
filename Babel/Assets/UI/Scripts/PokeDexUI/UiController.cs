@@ -64,7 +64,7 @@ public class UiController : MonoBehaviour
 		Debug.Log ("PokedexOpen");
 		_cameraManager.enabled = false;
 		_playerMovement.enabled = false;
-		_audioManager.PokedexBtnPlay ();
+		_audioManager.PokedexBtnOpenPlay ();
         navMeshP.Stop();
         navMeshS.Stop();
     }
@@ -74,7 +74,7 @@ public class UiController : MonoBehaviour
 		Debug.Log ("PokedexClose");
 		_cameraManager.enabled = true;
 		_playerMovement.enabled = true;
-		_audioManager.PokedexBtnPlay ();
+		_audioManager.PokedexBtnClosePlay ();
         navMeshP.ResetPath();
         navMeshS.ResetPath();
     }

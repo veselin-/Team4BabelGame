@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioMixer SoundFXMixer;
 	public AudioMixer VoiceMixer;
 
-	public AudioSource ClickBtn, SwipeBtn, PokedexBtn;
+	public AudioSource ClickBtn, SwipeBtn, PokedexOpenBtn, PokedexCloseBtn;
 
 	public bool PlayAmbience;
 
@@ -392,9 +392,14 @@ public class AudioManager : MonoBehaviour {
 		SwipeBtn.Stop ();
 	}
 
-	public void PokedexBtnPlay()
+	public void PokedexBtnOpenPlay()
 	{
-		PokedexBtn.Play ();
+		PokedexOpenBtn.Play ();
+	}
+
+	public void PokedexBtnClosePlay()
+	{
+		PokedexCloseBtn.Play ();
 	}
 	
 	/*

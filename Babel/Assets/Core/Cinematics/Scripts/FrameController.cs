@@ -92,8 +92,8 @@ public class FrameController : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
+        //yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(FrameLength);
 
 
         if (IsEndFrame)

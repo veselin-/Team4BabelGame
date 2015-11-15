@@ -17,6 +17,8 @@ public class UiController : MonoBehaviour
 
     private float playerSpeed;
     private float sideKickSpeed;
+	private GameObject _pokedexButton;
+	private GameObject _pauseCanvas;
 
     // Use this for initialization
     void Start () {
@@ -25,6 +27,8 @@ public class UiController : MonoBehaviour
 		_playerMovement = GameObject.FindObjectOfType<PlayerMovement> ().GetComponent<PlayerMovement> ();
         navMeshP = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
         navMeshS = GameObject.FindGameObjectWithTag("SideKick").GetComponent<NavMeshAgent>();
+		_pokedexButton = transform.FindChild ("Button").gameObject;
+		_pauseCanvas = GameObject.FindObjectOfType<PauseScreen> ().gameObject;
         anim = GetComponent<Animator>();
     }
 	
@@ -51,7 +55,10 @@ public class UiController : MonoBehaviour
         navMeshP.speed = 0f;
         navMeshS.speed = 0f;
 
-         Time.timeScale = 0;
+        Time.timeScale = 0;
+
+		_pokedexButton.SetActive (false);
+		_pauseCanvas.SetActive (false);
     }
 
     public void SignCreationDone()
@@ -68,6 +75,8 @@ public class UiController : MonoBehaviour
         navMeshP.speed = playerSpeed;
         navMeshS.speed = sideKickSpeed;
         Time.timeScale = 1;
+		_pokedexButton.SetActive (true);
+		_pauseCanvas.SetActive (true);
     }
 
     public void PokedexOpen()
@@ -84,6 +93,7 @@ public class UiController : MonoBehaviour
         navMeshP.speed = 0f;
         navMeshS.speed = 0f;
         Time.timeScale = 0;
+		_pauseCanvas.SetActive (false);
     }
 
     public void PokedexClose()
@@ -97,5 +107,6 @@ public class UiController : MonoBehaviour
         navMeshP.speed = playerSpeed;
         navMeshS.speed = sideKickSpeed;
          Time.timeScale = 1;
+		_pauseCanvas.SetActive (true);
     }
 }

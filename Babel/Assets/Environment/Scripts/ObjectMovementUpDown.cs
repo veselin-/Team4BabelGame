@@ -50,7 +50,8 @@ namespace Assets.Environment.Scripts
                 if (_interactables.All(i => i.HasBeenActivated()))
                 {
 					if(!_objectIsShown){
-					//	GetComponent<AudioSource>().Play();
+						if(GetComponent<AudioSource>() != null)
+							GetComponent<AudioSource>().Play();
 					}
                     _objectIsShown = true;
                     obstacle.SetActive(false);

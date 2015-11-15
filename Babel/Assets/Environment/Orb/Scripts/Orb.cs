@@ -14,7 +14,11 @@ public class Orb : MonoBehaviour {
     {
         if(col.tag == "Player")
         {
-			GetComponent<AudioSource> ().Play();
+			if(!GetComponent<AudioSource> ().isPlaying)
+			{
+				GetComponent<AudioSource> ().Play();
+			}
+
             PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) + orbValue);
             Debug.Log("WTF YOU ARE HITTING ME!?");
 			StartCoroutine(DestroyOrb());

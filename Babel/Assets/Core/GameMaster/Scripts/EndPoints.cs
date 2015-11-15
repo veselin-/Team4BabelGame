@@ -36,7 +36,9 @@ namespace Assets.Core.GameMaster.Scripts
             Userlevels.GetInstance().AddUserLevel(GrandAccesToLevelId);
             endLevel.SetActive(true);
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
-		//	GetComponent<AudioSource> ().Play();
+			if(GetComponent<AudioSource> () != null)
+			
+				GetComponent<AudioSource> ().Play();
             
         }
 
@@ -50,12 +52,12 @@ namespace Assets.Core.GameMaster.Scripts
                     var sk = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
                     sk.GetComponent<AiMovement>().AssignNewState(new EndGameState(sk.GetComponent<NavMeshAgent>()));
                     isPlayerHere = true;
-                    Debug.Log("Player is in");
+//                    Debug.Log("Player is in");
 
                     break;
                 case Constants.Tags.SideKick:
                     isSidekickHere = true;
-                    Debug.Log("sidekick is in");
+//                    Debug.Log("sidekick is in");
                     break;
             }
         }

@@ -21,6 +21,8 @@ public class CombineSymbols : MonoBehaviour
 
     private AudioManager audioManager;
 
+	private UiController _UiController;
+
     //NavMeshAgent navMesh;
     // Use this for initialization
 
@@ -45,7 +47,7 @@ public class CombineSymbols : MonoBehaviour
         databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager);
 
         audioManager = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
-
+		_UiController = GameObject.FindObjectOfType<UiController> ().GetComponent<UiController>();
     }
 	
 	// Update is called once per frame
@@ -89,10 +91,13 @@ public class CombineSymbols : MonoBehaviour
             databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
             databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
             audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
+			_UiController.SignCreationDone();
+			_UiController.PokedexClose();
         }
         else
         {
-            text.text = "Invalid combination. A sign must be at least two syllables.";
+			text.text = "Add 1 more sign";
+            //text.text = "Invalid combination. A sign must be at least two syllables.";
           //  Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
             return;
         }

@@ -58,6 +58,9 @@ namespace Assets.Environment.Scripts
                 }
                 else
                 {
+					if(_objectIsShown){
+						GetComponent<AudioSource>().Play();
+					}
                     _objectIsShown = false;
                     obstacle.SetActive(true);
                 }

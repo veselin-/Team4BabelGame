@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using Assets.Core.Configuration;
+using Assets.Characters.Player.Scripts;
 
 public class PauseScreen : MonoBehaviour {
 
@@ -15,8 +16,12 @@ public class PauseScreen : MonoBehaviour {
 
 	private AudioManager _audioManager;
 	private CameraManager _cameraManager;
+	private GameObject _pokedexButton;
+	private PlayerMovement _player;
 	// Use this for initialization
 	void Start () {
+		_player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMovement>();
+		_pokedexButton = GameObject.FindObjectOfType<UiController>().transform.FindChild ("Button").gameObject;
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 		_cameraManager = GameObject.FindObjectOfType<CameraManager> ().GetComponent<CameraManager> ();
 		SettingsPanel.SetActive (false);
@@ -40,6 +45,8 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBtn()
 	{
+		_player.enabled = false;
+		_pokedexButton.SetActive (false);
 		_cameraManager.enabled = false;
 		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (true);
@@ -51,6 +58,8 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBackBtn()
 	{
+		_player.enabled = true;
+		_pokedexButton.SetActive (true);
 		_cameraManager.enabled = true;
 		_audioManager.ClickBtnPlay ();
 		GamePausedTxt.SetActive (false);

@@ -26,13 +26,16 @@ namespace Assets.Environment.Braizer.Scripts
             OnFire = StartLighted;
 			if(StartLighted)
 			{
-				GetComponent<AudioSource> ().Play ();
+				if(!GetComponent<AudioSource> ().isPlaying)
+				{
+					GetComponent<AudioSource> ().Play ();
+				}
+
 			}
         }
 
         public bool HasBeenActivated()
         {
-			//GetComponent<AudioSource> ().Play ();
             return OnFire;
         }
 

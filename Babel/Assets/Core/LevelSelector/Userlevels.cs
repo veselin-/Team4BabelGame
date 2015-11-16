@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Core.LevelSelector
 {
-    public class Userlevels : MonoBehaviour
+    public class Userlevels
     {
         #region Singleton
         private static Userlevels _instance;
@@ -24,6 +24,7 @@ namespace Assets.Core.LevelSelector
 
         public string[] GetUserLevels()
         {
+            LoadUserLevels();
             return _userLevels.ToArray();
         }
 

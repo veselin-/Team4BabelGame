@@ -1,4 +1,6 @@
-﻿using Assets.Core.NavMesh;
+﻿using System.Linq;
+using Assets.Core.NavMesh;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -46,8 +48,21 @@ namespace Assets.Characters.AiScripts.States
 
         private void PickWaypoint()
         {
-            _agent.destination = Waypoints.Length == 0 ? _agent.transform.position : 
-                Waypoints[Random.Range(0, Waypoints.Length)].position;
+            var waypoints = Waypoints.OrderBy(w => Random.Range(0, Waypoints.Length));
+            Transform waypoint = null;
+            foreach (var i in waypoints)
+            {
+                var path = new NavMeshPath();
+                _agent.CalculatePath(i.position, path);
+
+                if (path.status != NavMeshPathStatus.PathComplete) continue;
+
+                waypoint = i;
+                break;
+            }
+
+            if(waypoint != null)
+                _agent.SetDestination(waypoint.position);
         }
     }
 }

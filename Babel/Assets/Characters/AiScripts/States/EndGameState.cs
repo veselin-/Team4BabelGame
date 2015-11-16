@@ -19,13 +19,13 @@ namespace Assets.Characters.AiScripts.States
         {
             _agent = agent;
 
-            var interactables = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).
+            var endPoints = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).
                 GetComponent<EndPoints>().Endpoints;
 
-            if (interactables.Length < 1)
+            if (endPoints.Length < 1)
                 Debug.LogError("No interactables in scene, FUCK!");
 
-            foreach (var i in interactables)
+            foreach (var i in endPoints)
             {
                 var path = new NavMeshPath();
                 agent.CalculatePath(i.transform.position, path);

@@ -85,7 +85,6 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             MoveSignBackInBook();
             movedSign = false;
         }
-        Debug.Log("IM HERE DOIJNG IT");
     }
 
     public void PressedSign()
@@ -157,9 +156,6 @@ public class SymbolHandler : MonoBehaviour //DragHandler
                     count += 1;
                 }
             }
-            Debug.Log("COUNT ER: " + count);
-            Debug.Log("moved ER: " + movedSign);
-            Debug.Log("first ER: " + oneSens);
             //Debug.Log("second ER: " + twoSens);
             //Debug.Log("third ER: " + threeSens);
             //Debug.Log("third ER: " + fourSens);

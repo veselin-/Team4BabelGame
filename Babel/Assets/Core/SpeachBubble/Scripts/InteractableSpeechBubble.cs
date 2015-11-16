@@ -69,10 +69,10 @@ public class InteractableSpeechBubble : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(!_hasSpeech)
-		{
-			return;
-		}
+		//if(!_hasSpeech)
+		//{
+		//	return;
+		//}
 
 		if (player != null) {
 			Vector3 playerOffset = player.transform.position + new Vector3 (bubbleOffset.x, bubbleOffset.y, 0);

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Assets.Core.Configuration;
 
 public class NewSign : MonoBehaviour
@@ -21,15 +20,6 @@ public class NewSign : MonoBehaviour
         if (databaseManager.GetSign(ID) != null)
         {
             this.gameObject.SetActive(false);
-        }
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player")
-        {
-            _uiControl.NewSignCreation(ID);
-            Debug.Log("IM HERE");
         }
     }
 

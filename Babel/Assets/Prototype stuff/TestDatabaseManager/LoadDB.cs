@@ -3,11 +3,11 @@ using System.Collections;
 
 public class LoadDB : MonoBehaviour {
 
-    private DatabaseManager db;
+    //private DatabaseManager db;
 
     // Use this for initialization
     void Awake () {
-        db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
+        //db = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
         
     }
 	

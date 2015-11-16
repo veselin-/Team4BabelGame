@@ -13,7 +13,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
 
     private Text _PlayerText;
-	private Text _SideKickText;
+	//private Text _SideKickText;
 	private Text _NarrativeText;
 	
 	private Vector2 _playerScreenPos;
@@ -29,7 +29,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
     public List<SpeechHolder> narrativeDanish;
     private int _ConversationCounter = 0;
 
-	private bool _hasSpeech = false;
+	//private bool _hasSpeech = false;
 	public Vector2 bubbleOffset;
 
     private int _wordCounter = 0;
@@ -57,7 +57,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		}
 
 		_PlayerText = PlayerSpeechBubble.transform.GetChild (0).GetComponent<Text>();
-		_SideKickText = SideKickSpeechBubble.transform.GetChild (0).GetComponent<Text>();
+		//_SideKickText = SideKickSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 		_NarrativeText = NarrativeSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 
         narrativeEnglish = speechListEnglish.speechList;
@@ -176,7 +176,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 				SideKickSpeechBubble.gameObject.SetActive (false);
 			}
 			*/
-			_hasSpeech = true;
+			//_hasSpeech = true;
 			_ConversationCounter++;
 			//RandomBubblePos();
 
@@ -185,7 +185,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			NarrativeSpeechBubble.gameObject.SetActive (false);
 			PlayerSpeechBubble.gameObject.SetActive (false);
 			SideKickSpeechBubble.gameObject.SetActive (false);
-			_hasSpeech = false;
+			//_hasSpeech = false;
 		}
 
 	}

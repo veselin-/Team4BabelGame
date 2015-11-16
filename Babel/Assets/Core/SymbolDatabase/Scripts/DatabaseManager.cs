@@ -32,7 +32,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             LoadData();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             _windowHandler.ActivateDialogWindow("Error", "Couldn't load database. Please reinstall the game from Play Store", false);
         }

@@ -11,14 +11,14 @@ public class hitThisBox : MonoBehaviour {
 
     private NavMeshAgent _sideKickAgent;
     public PlayerInteract _playerInteract;
-    private AiMovement _playerMovement;
+    //private AiMovement _playerMovement;
     NavMeshAgent _player;
     //public InteractableSpeechBubble speech;
 
     // Use this for initialization
     void Start () {
         _sideKickAgent = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick).GetComponent<NavMeshAgent>();
-        _playerMovement = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<AiMovement>();
+        //_playerMovement = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<AiMovement>();
         _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<NavMeshAgent>();
     }
 	

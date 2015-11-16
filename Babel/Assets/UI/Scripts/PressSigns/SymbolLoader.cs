@@ -5,7 +5,7 @@ using Assets.Core.Configuration;
 public class SymbolLoader : MonoBehaviour
 {
 
-    private DatabaseManager databaseManager;
+    //private DatabaseManager databaseManager;
 
     [SerializeField]
     private GameObject[] Signs;
@@ -17,7 +17,7 @@ public class SymbolLoader : MonoBehaviour
 	{
 
 
-	    databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
+	    //databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
 
 
 
@@ -48,6 +48,14 @@ public class SymbolLoader : MonoBehaviour
         }
 
     }
+
+    //public void InsCopyOfSign()
+    //{
+    //    if(transform.parent.name == "SentenceSlot1")
+    //    {
+    //        DestroyObject(gameObject);
+    //    }
+    //}
 
     //public void AnimateSignBook(GameObject go)
     //{

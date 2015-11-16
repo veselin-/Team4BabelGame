@@ -13,9 +13,9 @@ public class NavAgentsAnimation : MonoBehaviour {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         // Don’t update position automatically
-        agent.updatePosition = true;
-        agent.updateRotation = true;
-        anim.applyRootMotion = false;
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+        anim.applyRootMotion = true;
     }
 
     void Update()
@@ -35,14 +35,19 @@ public class NavAgentsAnimation : MonoBehaviour {
         if (Time.deltaTime > 1e-5f)
             velocity = smoothDeltaPosition / Time.deltaTime;
 
-        bool shouldMove = velocity.magnitude > 0.5f && agent.remainingDistance > agent.radius;
-
-        anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
+        if (velocity.magnitude > 0.5f && agent.remainingDistance > agent.radius)
+        {
+            anim.SetFloat("Speed", 1);
+        }
+        else
+        {
+            anim.SetFloat("Speed", 0);
+        }
 
         // Update animation parameters
-        anim.SetBool("move", shouldMove);
-      //  anim.SetFloat("Speed", velocity.x);
-      //  anim.SetFloat("Direction", velocity.y);
+      anim.SetFloat("Direction", velocity.y);
+
+        Debug.Log(agent.desiredVelocity);
 
     }
 

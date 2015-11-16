@@ -10,7 +10,7 @@ public class CameraControl : MonoBehaviour
 	private Quaternion rotationOffset;
 	private Vector3 destination = Vector3.zero;
 	//public float PlayerFollowDelay = 3f;
-	private Vector3 velocity = Vector3.zero;
+	//private Vector3 velocity = Vector3.zero;
 
 	public bool cameraSwitcher = false;
 
@@ -27,10 +27,10 @@ public class CameraControl : MonoBehaviour
 
 	// ROTATION GESTURE
 	public Transform RotationGesture;
-	private bool rotating = false;
-	private Vector2 startVector = Vector2.zero;
-	private float rotGestureWidth = 5f;
-	private float rotAngleMinimum = 5f;
+	//private bool rotating = false;
+	//private Vector2 startVector = Vector2.zero;
+	//private float rotGestureWidth = 5f;
+	//private float rotAngleMinimum = 5f;
 
 	// END ROTATION
 

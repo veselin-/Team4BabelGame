@@ -9,7 +9,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
 	private AudioManager _audioManager; 
 
-    private bool lerpToNearestPoint = false;
+    //private bool lerpToNearestPoint = false;
 
     private ScrollRect scrollRect;
 

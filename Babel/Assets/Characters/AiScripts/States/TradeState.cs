@@ -7,7 +7,7 @@ namespace Assets.Characters.AiScripts.States
 
         public float WaitingTime { get; set; }
 
-        private PickupHandler _pickupHandler;
+        //private PickupHandler _pickupHandler;
         private State _state;
         private float _waitUntil;
         private readonly NavMeshAgent _agent;
@@ -15,7 +15,7 @@ namespace Assets.Characters.AiScripts.States
 
         public TradeState(NavMeshAgent agent, NavMeshAgent otherAgent)
         {
-            _pickupHandler = agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder();
+            //_pickupHandler = agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder();
             _agent = agent;
             _otherAgent = otherAgent;
         }

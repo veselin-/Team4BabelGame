@@ -19,8 +19,6 @@ namespace Assets.Characters.AiScripts
         public float TimeBeforeStolling;
         #endregion
 
-        public float Happines { get; set; }
-
         private IState _currentState;
         private NavMeshAgent _agent;
         private RoomManager _rm;
@@ -30,7 +28,6 @@ namespace Assets.Characters.AiScripts
         void Start ()
         {
             _agent = GetComponent<NavMeshAgent>();
-            Happines = 1;
 
             // Room manager 
             var gm = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster);
@@ -38,15 +35,6 @@ namespace Assets.Characters.AiScripts
                 throw new Exception("We need a RoomManager in the scene, for the AI to work..!");
             _rm = gm.GetComponent<RoomManager>();
             _rm.Ai = this;
-
-            // Default state
-            if (GetComponent<WaypointSystem>() != null)
-            {
-                Happines = 10000f;
-            }
-
-
-
             _exploreState = new ExploreState(_agent, StrollSpeed) {Waypoints = _rm.GetCurrnetWaypoints()};
 
             StartCoroutine(StateExecuter());           
@@ -54,26 +42,23 @@ namespace Assets.Characters.AiScripts
         
         IEnumerator StateExecuter()
         {
+            while (true)
+            {
+                _agent.speed = MovementSpeed;
 
-                while (true)
-                {
-                    _agent.speed = MovementSpeed;
+                // Default state
+                if (_currentState == null || _currentState.IsDoneExecuting())
+                    _currentState = _exploreState;
 
-                    // Default state
-                    if (_currentState == null || _currentState.IsDoneExecuting() || Happines < 0.1f)
-                        _currentState = _exploreState;
-
-                    _currentState.WaitingTime = TimeBeforeStolling*Happines;
-                    _currentState.ExecuteState();
-                    yield return new WaitForSeconds(0.1f);
-                }
-            
-
+                _currentState.ExecuteState();
+                yield return new WaitForSeconds(0.1f);
+            }
         }
 
         public void AssignNewState(IState state)
         {
             _currentState = state;
+            _currentState.WaitingTime = TimeBeforeStolling;
         }
 
         public void RoomChanged()

@@ -192,6 +192,13 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
     public void ActivatePlayerSignBubble(List<int> ids)
     {
+        
+
+        for (int i = PlayerSignBubble.childCount; i > 0; i--)
+        {
+            Destroy(PlayerSignBubble.GetChild(i - 1).gameObject);
+        }
+
         PlayerSignBubble.gameObject.SetActive(true);
 
         foreach (int i in ids)
@@ -207,6 +214,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
     public void ActivateSidekickSignBubble(List<int> ids)
     {
+
+        for (int i = SidekickSignBubble.childCount; i > 0; i--)
+        {
+            Destroy(SidekickSignBubble.GetChild(i - 1).gameObject);
+        }
+
         SidekickSignBubble.gameObject.SetActive(true);
 
         foreach (int i in ids)

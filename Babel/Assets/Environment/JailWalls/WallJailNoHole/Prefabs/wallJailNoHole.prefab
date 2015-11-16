@@ -26,6 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 496430}
   - 95: {fileID: 9572664}
+  - 65: {fileID: 6547856}
   m_Layer: 0
   m_Name: wallJailNoHole
   m_TagString: Untagged
@@ -81,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: 8}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 461820}
@@ -150,6 +151,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118526}
   m_Mesh: {fileID: 4300002, guid: 54b65a90ba05fde4bbf5f36aa9fa2e18, type: 3}
+--- !u!65 &6547856
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .177900314, y: 4.58767986, z: 7.86043358}
+  m_Center: {x: 5.90236092, y: 1.79383993, z: -.0720381737}
 --- !u!95 &9572664
 Animator:
   serializedVersion: 3

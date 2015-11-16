@@ -43,7 +43,6 @@ public class CombineSymbols : MonoBehaviour
 
 
     void Start () {
-
         databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager);
 
         audioManager = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
@@ -93,10 +92,11 @@ public class CombineSymbols : MonoBehaviour
             audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
 			_UiController.SignCreationDone();
 			_UiController.PokedexClose();
+            text.text = "";
         }
-        else
+        else if(transform.childCount == 1)
         {
-			text.text = "Add 1 more sign";
+			text.text = "You need 1 more syllabel.";
             //text.text = "Invalid combination. A sign must be at least two syllables.";
           //  Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
             return;

@@ -9,7 +9,8 @@ public class symbolPress : MonoBehaviour {
     public GameObject slot, sylPanel;
     public static int count = 0;
     //GameObject chosenSign;
-    int childIndex;
+    //int childIndex;
+    Transform parentBuf;
     bool moved = false;
     bool first = false, second = false, third = false;
     AudioManager am;
@@ -36,22 +37,28 @@ public class symbolPress : MonoBehaviour {
 	
 	}
 
-    void SaveChildIndex()
+    //void SaveChildIndex()
+    //{
+    //    //chosenSign = Instantiate(gameObject);
+    //    childIndex = transform.GetSiblingIndex();
+    //}
+
+    void SaveTransformOfParent()
     {
-        //chosenSign = Instantiate(gameObject);
-        childIndex = transform.GetSiblingIndex();
+        parentBuf = transform.parent.transform;
     }
 
     public void MoveSignBackInBook()
     {
-        transform.SetParent(sylPanel.transform);
-        transform.SetSiblingIndex(childIndex);
+        transform.SetParent(parentBuf);
+        //transform.SetSiblingIndex(childIndex);
         transform.localScale = Vector3.one;
         count -= 1;
         first = false;
         second = false;
         third = false;
         moved = false;
+        //Debug.Log("childindex er nu: " + childIndex);
     }
 
     //public void ResetSyllabels()
@@ -87,31 +94,35 @@ public class symbolPress : MonoBehaviour {
             moved = true;
             if (count == 2)
             {
-                SaveChildIndex();
+                //SaveChildIndex();
+                SaveTransformOfParent();
                 third = true;
                 transform.SetParent(slot.transform.GetChild(0).transform.GetChild(0).transform);
                 count += 1;
             }
             else if (count == 1)
             {
-                SaveChildIndex();
+                //SaveChildIndex();
+                SaveTransformOfParent();
                 second = true;
                 transform.SetParent(slot.transform.GetChild(0).transform);
                 count += 1;
             }
             else if (count == 0)
             {
-                SaveChildIndex();
+                //SaveChildIndex();
+                SaveTransformOfParent();
                 first = true;
                 transform.SetParent(slot.transform);
                 count += 1;
             }
         }
-        Debug.Log("COUNT ER: " + count);
-        Debug.Log("moved ER: " + moved);
-        Debug.Log("first ER: " + first);
-        Debug.Log("second ER: " + second);
-        Debug.Log("third ER: " + third);
+        //Debug.Log("COUNT ER: " + count);
+        //Debug.Log("moved ER: " + moved);
+        //Debug.Log("first ER: " + first);
+        //Debug.Log("second ER: " + second);
+        //Debug.Log("third ER: " + third);
+        //Debug.Log("childindex er nu: " + childIndex);
         am.FemaleSyllabusSoundPlay(ID);
     }
 }

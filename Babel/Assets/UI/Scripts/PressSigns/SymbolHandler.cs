@@ -13,7 +13,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     public GameObject sens1, sens2, sens3, sens4, book;
     bool oneSens = false, twoSens = false, threeSens = false, fourSens = false;
     bool movedSign = false, isMade = false;
-    int childIndex;
+    //int childIndex;
     GameObject goTemp;
     Transform parentBuffer;
     public static int count = 0;
@@ -39,7 +39,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     void SaveChildIndex()
     {
         //chosenSign = Instantiate(gameObject);
-        childIndex = transform.GetSiblingIndex();
+        //childIndex = transform.GetSiblingIndex();
     }
 
     void SaveTransformOfParent()

@@ -14,6 +14,8 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     bool oneSens = false, twoSens = false, threeSens = false, fourSens = false;
     bool movedSign = false, isMade = false;
     int childIndex;
+    //GameObject goTemp;
+    //Transform parentBuffer;
     public static int count = 0;
     private DatabaseManager databaseManager;
     AudioManager am;
@@ -40,12 +42,24 @@ public class SymbolHandler : MonoBehaviour //DragHandler
         childIndex = transform.GetSiblingIndex();
     }
 
+    //void SaveTransformOfParent()
+    //{
+    //    parentBuffer = transform.parent.transform;
+    //}
+
     void MoveSignBackInBook()
     {
+        //transform.SetParent(parentBuffer);
         transform.SetParent(book.transform);
         transform.SetSiblingIndex(childIndex);
+        //DestroyObject(gameObject);
         transform.localScale = Vector3.one;
         count -= 1;
+        movedSign = false;
+        oneSens = false;
+        //twoSens = false;
+        //threeSens = false;
+        //fourSens = false;
     }
 
     public void ResetSigns()
@@ -56,18 +70,18 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             {
                 oneSens = false;
             }
-            else if (twoSens)
-            {
-                twoSens = false;
-            }
-            else if (threeSens)
-            {
-                threeSens = false;
-            }
-            else if (fourSens)
-            {
-                fourSens = false;
-            }
+            //else if (twoSens)
+            //{
+            //    twoSens = false;
+            //}
+            //else if (threeSens)
+            //{
+            //    threeSens = false;
+            //}
+            //else if (fourSens)
+            //{
+            //    fourSens = false;
+            //}
             MoveSignBackInBook();
             movedSign = false;
         }
@@ -78,55 +92,63 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     {
         if (isMade)
         {
+            //goTemp = Instantiate(gameObject.transform.GetChild(0).gameObject);
             if (count > 0 && oneSens || twoSens || threeSens || fourSens && movedSign)
             {
+                //Debug.Log("IM HERE DOIJNG IT");
                 if (oneSens)
                 {
                     oneSens = false;
                 }
-                else if (twoSens)
-                {
-                    twoSens = false;
-                }
-                else if (threeSens)
-                {
-                    threeSens = false;
-                }
-                else if (fourSens)
-                {
-                    fourSens = false;
-                }
+                //else if (twoSens)
+                //{
+                //    twoSens = false;
+                //}
+                //else if (threeSens)
+                //{
+                //    threeSens = false;
+                //}
+                //else if (fourSens)
+                //{
+                //    fourSens = false;
+                //}
                 MoveSignBackInBook();
+                //DestroyObject(goTemp.gameObject);
                 movedSign = false;
             }
             else
             {
                 movedSign = true;
-                if (count == 3)
+                //if (count == 3)
+                //{
+                //    SaveChildIndex();
+                //    fourSens = true;
+                //    transform.SetParent(sens4.transform);
+                //    count += 1;
+                //}
+                //else if (count == 2)
+                //{
+                //    SaveChildIndex();
+                //    threeSens = true;
+                //    transform.SetParent(sens3.transform);
+                //    count += 1;
+                //}
+                //else if (count == 1)
+                //{
+                //    SaveChildIndex();
+                //    twoSens = true;
+                //    transform.SetParent(sens2.transform);
+                //    count += 1;
+                //}
+                //else 
+                if (count == 0)
                 {
                     SaveChildIndex();
-                    fourSens = true;
-                    transform.SetParent(sens4.transform);
-                    count += 1;
-                }
-                else if (count == 2)
-                {
-                    SaveChildIndex();
-                    threeSens = true;
-                    transform.SetParent(sens3.transform);
-                    count += 1;
-                }
-                else if (count == 1)
-                {
-                    SaveChildIndex();
-                    twoSens = true;
-                    transform.SetParent(sens2.transform);
-                    count += 1;
-                }
-                else if (count == 0)
-                {
-                    SaveChildIndex();
+                    //SaveTransformOfParent();
                     oneSens = true;
+                    //goTemp.transform.SetParent(transform.GetChild(0).transform);
+                    //goTemp.transform.localScale = Vector3.one;
+                    //transform.GetChild(0).transform.SetParent(sens1.transform);
                     transform.SetParent(sens1.transform);
                     count += 1;
                 }
@@ -134,9 +156,9 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Debug.Log("COUNT ER: " + count);
             Debug.Log("moved ER: " + movedSign);
             Debug.Log("first ER: " + oneSens);
-            Debug.Log("second ER: " + twoSens);
-            Debug.Log("third ER: " + threeSens);
-            Debug.Log("third ER: " + fourSens);
+            //Debug.Log("second ER: " + twoSens);
+            //Debug.Log("third ER: " + threeSens);
+            //Debug.Log("third ER: " + fourSens);
             am.StartPlayCoroutine(ID);
         }
     }

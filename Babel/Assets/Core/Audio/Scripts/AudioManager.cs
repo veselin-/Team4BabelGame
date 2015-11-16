@@ -51,18 +51,18 @@ public class AudioManager : MonoBehaviour {
 	[Header("Current playing signal sounds")]
 	[SerializeField]
 	private int _currentSnapshot = 0;
-	[SerializeField]
-	private int _currentSnapshotSeconds = 0;
-	[SerializeField]
-	private int _currentSignal = 0;
+	//[SerializeField]
+	//private int _currentSnapshotSeconds = 0;
+	//[SerializeField]
+	//private int _currentSignal = 0;
 	[SerializeField]
 	private int _currentLSignal = 0;
 	[SerializeField]
 	private int _currentCSignal = 0;
 	[SerializeField]
 	private int _currentRSignal = 0;
-	[SerializeField]
-	private int _currentSignalSeconds = 0;
+	//[SerializeField]
+	//private int _currentSignalSeconds = 0;
 
 	private AudioSource Player;
     private DatabaseManager databaseManager;
@@ -296,7 +296,7 @@ public class AudioManager : MonoBehaviour {
 		MusicMixer.TransitionToSnapshots (NewThemeAmbienceSnapshots, weights, randomTransition);
 
 		int nextTransition = Random.Range (15, 25);		// transit from theme01 to theme04
-		_currentSnapshotSeconds = nextTransition;
+		//_currentSnapshotSeconds = nextTransition;
 		yield return new WaitForSeconds(nextTransition);
 
 		StartCoroutine (ThemeTransition());

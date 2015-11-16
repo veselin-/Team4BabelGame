@@ -7,11 +7,11 @@ public class NewSign : MonoBehaviour
     public int ID;
     public Camera cam;
     private DatabaseManager databaseManager;
-    private UiController _uiControl;
+    //private UiController _uiControl;
 
     void Start()
     {
-        _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
+        //_uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
         databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
     }
 

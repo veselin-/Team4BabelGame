@@ -124,7 +124,7 @@ public class SideKickWayPoint : MonoBehaviour
 
     IEnumerator ExecuteWaypoint()
     {
-        float endTime = 0f;
+        //float endTime = 0f;
 
         yield return new WaitForSeconds(0.5f);
 

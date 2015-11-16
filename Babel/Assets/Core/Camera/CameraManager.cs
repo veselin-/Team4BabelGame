@@ -32,10 +32,10 @@ public class CameraManager : MonoBehaviour {
 
 	// ROTATION GESTURE
 	public Transform RotationGesture;
-	private bool rotating = false;
-	private Vector2 startVector = Vector2.zero;
-	private float rotGestureWidth = 20f;
-	private float rotAngleMinimum = 5f;
+	//private bool rotating = false;
+	//private Vector2 startVector = Vector2.zero;
+	//private float rotGestureWidth = 20f;
+	//private float rotAngleMinimum = 5f;
 	public float rotationSpeed = 2f;
     // END ROTATION
 
@@ -47,7 +47,7 @@ public class CameraManager : MonoBehaviour {
 	private CameraMovementArea cameraMovementArea;
 	public bool isInsideArea = true;
 	public bool isCharacterMoving = false;
-	public bool isTouchDown = false;
+	public bool isTouchDown;
 	// Use this for initialization
 	void Start () {
 

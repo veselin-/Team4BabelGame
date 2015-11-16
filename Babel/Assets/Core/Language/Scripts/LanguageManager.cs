@@ -24,8 +24,8 @@ public class LanguageManager : ScriptableObject
     private XmlDocument mainDoc = null;
     private XmlElement root = null;
 
-    private string languagePath = string.Empty;
-    private string[] languageFiles = null;
+    //private string languagePath = string.Empty;
+    //private string[] languageFiles = null;
 
     void Awake()
     {

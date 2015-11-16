@@ -13,7 +13,7 @@ public class hitBoxNewSign : MonoBehaviour
     public int ID;
     private NavMeshAgent _sideKickAgent;
     public PlayerInteract _playerInteract;
-    private AiMovement _playerMovement;
+    //private AiMovement _playerMovement;
     NavMeshAgent _player;
     private UiController _uiControl;
     //public InteractableSpeechBubble speech;
@@ -23,7 +23,7 @@ public class hitBoxNewSign : MonoBehaviour
     {
         _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
         _sideKickAgent = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick).GetComponent<NavMeshAgent>();
-        _playerMovement = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<AiMovement>();
+        //_playerMovement = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<AiMovement>();
         _player = GameObject.FindGameObjectWithTag(Constants.Tags.Player).GetComponent<NavMeshAgent>();
     }
 

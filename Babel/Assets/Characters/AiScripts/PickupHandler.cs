@@ -10,6 +10,8 @@ namespace Assets.Characters.AiScripts
 {
     public class PickupHandler : MonoBehaviour
     {
+        public Transform Pickups;
+
         private readonly Dictionary<string, GameObject> _pickUps 
             = new Dictionary<string, GameObject>();
         private GameObject _currentPickup;
@@ -33,10 +35,7 @@ namespace Assets.Characters.AiScripts
             while (root.parent != null)
                 root = root.parent;
 
-            var pickups = root.FindChild("Pickups");
-            if(pickups == null)
-                throw new Exception("You need to have a child called 'Pickups', for this script to work!");
-            foreach (Transform pickUp in pickups)
+            foreach (Transform pickUp in Pickups)
             {
                 _pickUps.Add(pickUp.name, pickUp.gameObject);
             }

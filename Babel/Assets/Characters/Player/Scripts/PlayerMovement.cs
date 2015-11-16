@@ -34,7 +34,7 @@ namespace Assets.Characters.Player.Scripts
 			//ugly code fixing camera drag and player movement. 
 			if (Input.GetMouseButton (0)) {
 				_touchCounter += Time.deltaTime;
-				if(_touchCounter < 0.12f)
+				if(_touchCounter < 0.3f)
 				{
 					_tap = true;
 					_cameraManager.isCharacterMoving = true;

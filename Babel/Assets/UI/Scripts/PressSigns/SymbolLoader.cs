@@ -49,6 +49,14 @@ public class SymbolLoader : MonoBehaviour
 
     }
 
+    //public void InsCopyOfSign()
+    //{
+    //    if(transform.parent.name == "SentenceSlot1")
+    //    {
+    //        DestroyObject(gameObject);
+    //    }
+    //}
+
     //public void AnimateSignBook(GameObject go)
     //{
     //    go.GetComponent<Animator>().SetTrigger("SignBookEnter");

@@ -14,7 +14,7 @@ public class NavAgentsAnimation : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         // Don’t update position automatically
         agent.updatePosition = false;
-        agent.updateRotation = false;
+        agent.updateRotation = true;
         anim.applyRootMotion = true;
     }
 
@@ -45,7 +45,7 @@ public class NavAgentsAnimation : MonoBehaviour {
         }
 
         // Update animation parameters
-      anim.SetFloat("Direction", velocity.y);
+    //  anim.SetFloat("Direction", velocity.y);
 
         Debug.Log(agent.desiredVelocity);
 

@@ -75,6 +75,12 @@ public class PauseScreen : MonoBehaviour {
 		Application.LoadLevel ("LevelSelect");
 	}
 
+    public void LevelRestart()
+    {
+        _audioManager.ClickBtnPlay();
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
 	public void SettingsPanelBtn()
 	{
 		_audioManager.ClickBtnPlay ();

@@ -134,8 +134,11 @@ public class AudioManager : MonoBehaviour {
 		{
 			PlayerPrefs.SetString("Sound", "On");
 			PlayerPrefs.SetString("Music", "On");
+			PlayerPrefs.SetFloat("AmbienceV", 0f);
 			PlayerPrefs.SetString("Voices", "On");
+			PlayerPrefs.SetFloat("VoicesV", 0f);
 			PlayerPrefs.SetString("SoundFX", "On");
+			PlayerPrefs.SetFloat("SFXV", 0f);
 		}
 		
 		// checking saved states 
@@ -146,20 +149,23 @@ public class AudioManager : MonoBehaviour {
 		}
 		
 		if (PlayerPrefs.GetString ("Music").Equals ("On")) {
-			MasterMixer.SetFloat ("AmbienceV", 0f);
+			MasterMixer.SetFloat ("AmbienceV", PlayerPrefs.GetFloat("AmbienceV"));
 		} else {
+			//PlayerPrefs.SetFloat("AmbienceV", -80f);
 			MasterMixer.SetFloat ("AmbienceV", -80f);
 		}
 		
 		if (PlayerPrefs.GetString ("Voices").Equals ("On")) {
-			MasterMixer.SetFloat ("VoicesV", 0f);
+			MasterMixer.SetFloat ("VoicesV", PlayerPrefs.GetFloat("VoicesV"));
 		} else {
+			//PlayerPrefs.SetFloat("VoicesV", -80f);
 			MasterMixer.SetFloat ("VoicesV", -80f);
 		}
 		
 		if (PlayerPrefs.GetString ("SoundFX").Equals ("On")) {
-			MasterMixer.SetFloat ("SFXV", 0f);
+			MasterMixer.SetFloat ("SFXV", PlayerPrefs.GetFloat("SFXV"));
 		} else {
+			//PlayerPrefs.SetFloat("SFXV", -80f);
 			MasterMixer.SetFloat ("SFXV", -80f);
 		}
 	}
@@ -182,7 +188,7 @@ public class AudioManager : MonoBehaviour {
 			MasterMixer.SetFloat ("AmbienceV", -80f);
 			PlayerPrefs.SetString ("Music", "Off");
 		} else {
-			MasterMixer.SetFloat ("AmbienceV", 0f);
+			MasterMixer.SetFloat ("AmbienceV", 	PlayerPrefs.GetFloat("AmbienceV"));
 			PlayerPrefs.SetString ("Music", "On");
 		}
 		//Debug.Log (PlayerPrefs.GetString ("Music"));
@@ -194,7 +200,7 @@ public class AudioManager : MonoBehaviour {
 			MasterMixer.SetFloat ("VoicesV", -80f);
 			PlayerPrefs.SetString ("Voices", "Off");
 		} else {
-			MasterMixer.SetFloat ("VoicesV", 0f);
+			MasterMixer.SetFloat ("VoicesV", PlayerPrefs.GetFloat("VoicesV"));
 			PlayerPrefs.SetString ("Voices", "On");
 		}
 		//Debug.Log (PlayerPrefs.GetString ("Voices"));
@@ -206,7 +212,7 @@ public class AudioManager : MonoBehaviour {
 			MasterMixer.SetFloat ("SFXV", -80f);
 			PlayerPrefs.SetString ("SoundFX", "Off");
 		} else {
-			MasterMixer.SetFloat ("SFXV", 0f);
+			MasterMixer.SetFloat ("SFXV", PlayerPrefs.GetFloat("SFXV"));
 			PlayerPrefs.SetString ("SoundFX", "On");
 		}
 		//Debug.Log (PlayerPrefs.GetString ("SoundFX"));

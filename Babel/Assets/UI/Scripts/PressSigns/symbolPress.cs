@@ -98,6 +98,7 @@ public class symbolPress : MonoBehaviour {
                 SaveTransformOfParent();
                 third = true;
                 transform.SetParent(slot.transform.GetChild(0).transform.GetChild(0).transform);
+                transform.localScale = new Vector2(1f, 1f);
                 count += 1;
             }
             else if (count == 1)
@@ -106,6 +107,7 @@ public class symbolPress : MonoBehaviour {
                 SaveTransformOfParent();
                 second = true;
                 transform.SetParent(slot.transform.GetChild(0).transform);
+                transform.localScale = new Vector2(1, 1);
                 count += 1;
             }
             else if (count == 0)
@@ -114,6 +116,7 @@ public class symbolPress : MonoBehaviour {
                 SaveTransformOfParent();
                 first = true;
                 transform.SetParent(slot.transform);
+                transform.localScale = new Vector2(2, 2);
                 count += 1;
             }
         }

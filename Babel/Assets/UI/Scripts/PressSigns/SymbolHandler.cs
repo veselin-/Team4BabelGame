@@ -13,9 +13,9 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     public GameObject sens1, sens2, sens3, sens4, book;
     bool oneSens = false, twoSens = false, threeSens = false, fourSens = false;
     bool movedSign = false, isMade = false;
-    int childIndex;
-    //GameObject goTemp;
-    //Transform parentBuffer;
+    //int childIndex;
+    GameObject goTemp;
+    Transform parentBuffer;
     public static int count = 0;
     private DatabaseManager databaseManager;
     AudioManager am;
@@ -39,21 +39,21 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     void SaveChildIndex()
     {
         //chosenSign = Instantiate(gameObject);
-        childIndex = transform.GetSiblingIndex();
+        //childIndex = transform.GetSiblingIndex();
     }
 
-    //void SaveTransformOfParent()
-    //{
-    //    parentBuffer = transform.parent.transform;
-    //}
+    void SaveTransformOfParent()
+    {
+        parentBuffer = transform.parent.transform;
+    }
 
     void MoveSignBackInBook()
     {
         //transform.SetParent(parentBuffer);
-        transform.SetParent(book.transform);
-        transform.SetSiblingIndex(childIndex);
         //DestroyObject(gameObject);
-        transform.localScale = Vector3.one;
+        transform.SetParent(parentBuffer); // virker hvis du flytter frame med
+        //transform.SetSiblingIndex(childIndex); // virker hvis du flytter frame med
+        //transform.localScale = Vector3.one; // virker hvis du flytter frame med
         count -= 1;
         movedSign = false;
         oneSens = false;
@@ -85,14 +85,13 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             MoveSignBackInBook();
             movedSign = false;
         }
-        Debug.Log("IM HERE DOIJNG IT");
     }
 
     public void PressedSign()
     {
         if (isMade)
         {
-            //goTemp = Instantiate(gameObject.transform.GetChild(0).gameObject);
+            //goTemp = Instantiate(transform.GetChild(0).gameObject);
             if (count > 0 && oneSens || twoSens || threeSens || fourSens && movedSign)
             {
                 //Debug.Log("IM HERE DOIJNG IT");
@@ -143,19 +142,20 @@ public class SymbolHandler : MonoBehaviour //DragHandler
                 //else 
                 if (count == 0)
                 {
-                    SaveChildIndex();
-                    //SaveTransformOfParent();
+                    //SaveChildIndex();
+                    SaveTransformOfParent();
                     oneSens = true;
-                    //goTemp.transform.SetParent(transform.GetChild(0).transform);
+                    transform.SetParent(sens1.transform); //Virker hvis du flytter frame med
+                    //transform.GetChild(0).SetParent(sens1.transform);
+                    //transform.GetChild(1).SetParent(sens1.transform);
+                    //transform.GetChild(2).SetParent(sens1.transform);
+                    //goTemp.transform.SetParent(sens1.transform);
                     //goTemp.transform.localScale = Vector3.one;
                     //transform.GetChild(0).transform.SetParent(sens1.transform);
-                    transform.SetParent(sens1.transform);
+                    //goTemp.transform.SetParent(book.transform.GetChild(childIndex).transform);
                     count += 1;
                 }
             }
-            Debug.Log("COUNT ER: " + count);
-            Debug.Log("moved ER: " + movedSign);
-            Debug.Log("first ER: " + oneSens);
             //Debug.Log("second ER: " + twoSens);
             //Debug.Log("third ER: " + threeSens);
             //Debug.Log("third ER: " + fourSens);

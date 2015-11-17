@@ -81,7 +81,6 @@ public class UiController : MonoBehaviour
 
     public void PokedexOpen()
     {
-		Debug.Log ("PokedexOpen");
 		_cameraManager.enabled = false;
 		_playerMovement.enabled = false;
 		_audioManager.PokedexBtnOpenPlay ();
@@ -98,7 +97,6 @@ public class UiController : MonoBehaviour
 
     public void PokedexClose()
     {
-		Debug.Log ("PokedexClose");
 		_cameraManager.enabled = true;
 		_playerMovement.enabled = true;
 		_audioManager.PokedexBtnClosePlay ();

@@ -169,6 +169,23 @@ public class MainMenuManager : MonoBehaviour {
 		GetSoundFXText ();
 	}
 
+    public void SoundSlider(float i)
+    {
+        
+    }
+    public void MusicSlider(float i)
+    {
+
+    }
+    public void VoiceSlider(float i)
+    {
+
+    }
+    public void SfxSlider(float i)
+    {
+
+    }
+
     public void LanguageBtnPress()
     {
 		_audioManager.ClickBtnPlay ();

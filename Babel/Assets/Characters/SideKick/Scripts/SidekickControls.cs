@@ -76,6 +76,10 @@ namespace Assets.Characters.SideKick.Scripts
                 case 9:
                     _sideKickMovement.AssignNewState(new PickupItemState(_sideKickAgent, Constants.Tags.Key));
                     return;
+                case 10:
+                    _sideKickMovement.AssignNewState(new InteractWithNearestState(_sideKickAgent, Constants.Tags.Keyhole,
+                        _sidekickPickupHandler.CurrentPickup));
+                    return;
             }
         }
     }

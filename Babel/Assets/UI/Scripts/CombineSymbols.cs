@@ -96,7 +96,7 @@ public class CombineSymbols : MonoBehaviour
         }
         else if(transform.childCount == 1)
         {
-			text.text = "You need 1 more syllabel.";
+			text.text = "You need 1 more syllable.";
             //text.text = "Invalid combination. A sign must be at least two syllables.";
           //  Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
             return;

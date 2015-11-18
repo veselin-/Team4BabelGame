@@ -103,11 +103,6 @@ namespace Assets.Characters.Player.Scripts
 
                 return new GoSomewhereAndWaitState(_agent, hit.point);
             }
-            if (other.tag == Constants.Tags.Player)
-            {
-                _agent.gameObject.GetComponent<PickupHandler>().DropCurrent();
-                return  new GoSomewhereAndWaitState(_agent, _agent.transform.position);
-            }
             return null;
         }
     }

@@ -10,6 +10,7 @@ namespace Assets.Characters.AiScripts.States
     {
 
         private State _state;
+        private float _waitUntil;
         private readonly NavMeshAgent _agent;
         private readonly GameObject _pickupGoal;
 
@@ -53,7 +54,15 @@ namespace Assets.Characters.AiScripts.States
                         var pickup = _pickupGoal.GetComponent<ICollectable>().PickUp();
                         _agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder().PickUpItem(pickup);
                     }
-                    _state = State.Done;
+                    _waitUntil = Time.time + WaitingTime;
+                    _agent.ResetPath();
+                    _state = State.Wait;
+                    return;
+                case State.Wait:
+                    if (Time.time > _waitUntil)
+                    {
+                        _state = State.Done;
+                    }
                     return;
                 default:
                     return;
@@ -67,7 +76,7 @@ namespace Assets.Characters.AiScripts.States
         
         enum State
         {
-            Neutral, GoToPickup, Pickup, Done
+            Neutral, GoToPickup, Pickup, Wait, Done
         }
     }
 }

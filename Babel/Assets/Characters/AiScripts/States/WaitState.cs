@@ -21,7 +21,7 @@ namespace Assets.Characters.AiScripts.States
                 case State.Neutral:
                     _waitUntil = Time.time + WaitingTime;
                     _state = State.Waiting;
-                    _agent.destination = _agent.transform.position;
+                    _agent.ResetPath();
                     return;
                 case State.Waiting:
                     if (Time.time > _waitUntil)

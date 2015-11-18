@@ -60,8 +60,8 @@ namespace Assets.Characters.AiScripts.States
                 case State.GoToIntactable:
                     if (_agent.HasReachedTarget())
                     {
-                    
-                    var t = Vector2.Distance(_interactGoalPosition, new Vector2(_agent.transform.position.x, _agent.transform.position.z));
+                        _agent.ResetPath();
+                        var t = Vector2.Distance(_interactGoalPosition, new Vector2(_agent.transform.position.x, _agent.transform.position.z));
                         _state = t < .6 ? State.Interact : State.Done;
                     }
                     return;

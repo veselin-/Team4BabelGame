@@ -26,10 +26,11 @@ namespace Assets.Characters.AiScripts.States
             {
                 case State.Neutral:
                     _waitUntil = Time.time + WaitingTime;
-                    _state = State.Waiting;
+                    _state = State.WaitingForTrading;
                     _agent.destination = _agent.transform.position;
+                    _agent.ResetPath();
                     return;
-                case State.Waiting:
+                case State.WaitingForTrading:
 
                     if (Vector3.Distance(_agent.transform.position, _otherAgent.transform.position) < 2)
                     {
@@ -40,7 +41,6 @@ namespace Assets.Characters.AiScripts.States
                         {
                             _agent.gameObject.GetComponent<PickupHandler>().InitiateTrade(_otherAgent.gameObject.GetComponent<PickupHandler>());
                         }
-                        _state = State.Done;
                     }
                     if (Time.time > _waitUntil)
                     {
@@ -57,6 +57,6 @@ namespace Assets.Characters.AiScripts.States
             return _state == State.Done;
         }
 
-        enum State { Neutral, Waiting, Done}
+        enum State { Neutral, WaitingForTrading, Done}
     }
 }

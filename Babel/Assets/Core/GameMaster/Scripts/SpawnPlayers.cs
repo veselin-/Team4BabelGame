@@ -30,7 +30,7 @@ namespace Assets.Core.GameMaster.Scripts
             sidekick.name = Constants.Tags.SideKick;
             sidekick.GetComponent<PlayerMovement>().enabled = false;
 
-            sidekick.GetComponent<AiMovement>().StrollSpeed = 1.5f;
+            sidekick.GetComponent<AiMovement>().StrollSpeed = 0.3f;
             sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 15;
             sidekick.GetComponent<NavMeshAgent>().avoidancePriority = 1;
 

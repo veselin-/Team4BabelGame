@@ -6,12 +6,12 @@ public interface IDatabaseManager
     bool DatabasesLoaded();
 
     void AddSign(int id, List<int> syllableSequence);
-    void AddSentence(int id, List<int> signSequence);
+    //void AddSentence(int id, List<int> signSequence);
 
     Syllable GetSyllable(int id);
     Sign GetSign(int id);
-    Sentence GetSentenceById(int id);
-    int GetSentenceBySeq(List<int> signSequence);
+    //Sentence GetSentenceById(int id);
+    //int GetSentenceBySeq(List<int> signSequence);
 
     void SaveAllDb();
     void SaveSignsDb();

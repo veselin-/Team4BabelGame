@@ -30,6 +30,7 @@ namespace Assets.Characters.AiScripts.States
                 case State.GoSomewhere:
                     if (_agent.HasReachedTarget())
                     {
+                        _agent.ResetPath();
                         _waitUntill = Time.time + WaitingTime;
                         _state = State.WaitSomeTime;
                     }

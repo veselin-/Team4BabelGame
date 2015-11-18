@@ -136,7 +136,7 @@ public class SideKickWayPoint : MonoBehaviour
 
         if (InteractWithLever)
         {
-            sidekick.GetComponent<SidekickControls>().ExecuteAction(6);
+            sidekick.GetComponent<SidekickControls>().ExecuteAction(2);
         }
 
         if (Animate)

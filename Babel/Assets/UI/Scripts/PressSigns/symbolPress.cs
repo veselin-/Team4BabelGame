@@ -11,11 +11,10 @@ public class symbolPress : MonoBehaviour {
     //GameObject chosenSign;
     //int childIndex;
     Transform parentBuf;
-    bool moved = false;
-    bool first = false, second = false, third = false;
+    bool moved = false, first = false, second = false, third = false;
     AudioManager am;
     public int ID;
-
+    GameObject sylBuf, sylBlack;
     private DatabaseManager db;
     // Use this for initialization
 
@@ -43,16 +42,19 @@ public class symbolPress : MonoBehaviour {
     //    childIndex = transform.GetSiblingIndex();
     //}
 
-    void SaveTransformOfParent()
+    void PressedSylEffect()
     {
         parentBuf = transform.parent.transform;
+        gameObject.GetComponent<Image>().color = new Color(0, 0, 0, 0.2f);
+        count += 1;
     }
 
     public void MoveSignBackInBook()
     {
         transform.SetParent(parentBuf);
         //transform.SetSiblingIndex(childIndex);
-        transform.localScale = Vector3.one;
+        //transform.localScale = Vector3.one;
+        gameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1);
         count -= 1;
         first = false;
         second = false;
@@ -83,44 +85,63 @@ public class symbolPress : MonoBehaviour {
     //    Debug.Log("THIS HAS BEEN DONE");
     //}
 
+    //void InsSignInSlot()
+    //{
+    //    sylBuf = Instantiate(gameObject);
+    //    sylBuf.transform.SetParent(slot.transform);
+    //    sylBuf.transform.localScale = Vector2.one;
+    //}
+
     public void PressedSymbol()
     {
-        if (count > 0 && first || second || third && moved)
+        if (gameObject.name.Contains("Clone"))
         {
+            sylBlack.GetComponent<symbolPress>().MoveSignBackInBook();
+            //sylBlack.GetComponent<Image>().color = new Color(0, 0, 0, 1);
+            Destroy(gameObject);
+            //count -= 1;
+        }
+        else if (count > 0 && first || second || third && moved)
+        {
+            Destroy(sylBuf);
             MoveSignBackInBook();
         }
         else
         {
+            sylBuf = Instantiate(gameObject);
+            //sylBuf.GetComponent<Button>().enabled = false;
+            sylBuf.GetComponent<symbolPress>().sylBlack = gameObject;
             moved = true;
             if (count == 2)
             {
                 //SaveChildIndex();
-                SaveTransformOfParent();
+                sylBuf.transform.SetParent(slot.transform.GetChild(0).transform.GetChild(0).transform);
+                sylBuf.transform.localScale = new Vector2(1, 1);
+                PressedSylEffect();
                 third = true;
-                transform.SetParent(slot.transform.GetChild(0).transform.GetChild(0).transform);
-                transform.localScale = new Vector2(1f, 1f);
-                count += 1;
+
+                //InsSignInSlot();
             }
             else if (count == 1)
             {
                 //SaveChildIndex();
-                SaveTransformOfParent();
+                sylBuf.transform.SetParent(slot.transform.GetChild(0).transform);
+                sylBuf.transform.localScale = new Vector2(1, 1);
+                PressedSylEffect();
                 second = true;
-                transform.SetParent(slot.transform.GetChild(0).transform);
-                transform.localScale = new Vector2(1, 1);
-                count += 1;
+                //InsSignInSlot();
             }
             else if (count == 0)
             {
                 //SaveChildIndex();
-                SaveTransformOfParent();
+                sylBuf.transform.SetParent(slot.transform);
+                sylBuf.transform.localScale = new Vector2(2, 2);
+                PressedSylEffect();
                 first = true;
-                transform.SetParent(slot.transform);
-                transform.localScale = new Vector2(2, 2);
-                count += 1;
+                //InsSignInSlot();
             }
         }
-        //Debug.Log("COUNT ER: " + count);
+        Debug.Log("COUNT ER: " + count);
         //Debug.Log("moved ER: " + moved);
         //Debug.Log("first ER: " + first);
         //Debug.Log("second ER: " + second);

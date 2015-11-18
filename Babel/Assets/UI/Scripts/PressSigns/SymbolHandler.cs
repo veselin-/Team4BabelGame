@@ -31,10 +31,6 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     {
         am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
     }
-    public void PlaySound()
-    {
-        //AudioManager.Play(ID);
-    }
 
     void SaveChildIndex()
     {

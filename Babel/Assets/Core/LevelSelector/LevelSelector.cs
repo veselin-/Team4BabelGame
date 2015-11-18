@@ -13,9 +13,11 @@ namespace Assets.Core.LevelSelector
             Time.timeScale = 1f;
 
             var userLevels = Userlevels.GetInstance().GetUserLevels();
+            if (userLevels.FirstOrDefault() == "all")
+                return;
+
             foreach (var levelButton in LevelButtons)
                 levelButton.GetComponent<Button>().interactable = userLevels.Contains(levelButton.name);
-
         }
 
         public void LoadLevel(string SceneName)

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0c2f76ce03520a447bb4afd4dac71b26
-timeCreated: 1447426445
+guid: 7909943fb5d64ee418b3243ef4445e09
+timeCreated: 1447772107
 licenseType: Pro
 ModelImporter:
   serializedVersion: 18
@@ -137,7 +137,7 @@ ModelImporter:
     400126: mixamoTest:Spine1
     400128: mixamoTest:Spine2
     400130: //RootNode
-    7400000: Pull Lever
+    7400000: Yelling
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -149,7 +149,10 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'mixamoTest:Spine2' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -160,10 +163,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Pull Lever
+      name: Yelling
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 173
+      lastFrame: 235
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -196,7 +199,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:LeftUpLeg/mixamoTest:LeftLeg/mixamoTest:LeftFoot/mixamoTest:LeftToeBase
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:LeftUpLeg/mixamoTest:LeftLeg/mixamoTest:LeftFoot/mixamoTest:LeftToeBase/mixamoTest:LeftToe_End
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:RightUpLeg
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg
@@ -206,7 +209,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg/mixamoTest:RightFoot/mixamoTest:RightToeBase
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg/mixamoTest:RightFoot/mixamoTest:RightToeBase/mixamoTest:RightToe_End
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1
@@ -228,7 +231,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandIndex1/mixamoTest:LeftHandIndex2/mixamoTest:LeftHandIndex3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandIndex1/mixamoTest:LeftHandIndex2/mixamoTest:LeftHandIndex3/mixamoTest:LeftHandIndex4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1/mixamoTest:LeftHandMiddle2
@@ -236,7 +239,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1/mixamoTest:LeftHandMiddle2/mixamoTest:LeftHandMiddle3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1/mixamoTest:LeftHandMiddle2/mixamoTest:LeftHandMiddle3/mixamoTest:LeftHandMiddle4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1/mixamoTest:LeftHandPinky2
@@ -244,7 +247,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1/mixamoTest:LeftHandPinky2/mixamoTest:LeftHandPinky3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1/mixamoTest:LeftHandPinky2/mixamoTest:LeftHandPinky3/mixamoTest:LeftHandPinky4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1/mixamoTest:LeftHandRing2
@@ -252,7 +255,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1/mixamoTest:LeftHandRing2/mixamoTest:LeftHandRing3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1/mixamoTest:LeftHandRing2/mixamoTest:LeftHandRing3/mixamoTest:LeftHandRing4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1/mixamoTest:LeftHandThumb2
@@ -260,13 +263,13 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1/mixamoTest:LeftHandThumb2/mixamoTest:LeftHandThumb3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1/mixamoTest:LeftHandThumb2/mixamoTest:LeftHandThumb3/mixamoTest:LeftHandThumb4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:Neck
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:Neck/mixamoTest:Head
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:Neck/mixamoTest:Head/mixamoTest:HeadTop_End
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm
@@ -282,7 +285,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandIndex1/mixamoTest:RightHandIndex2/mixamoTest:RightHandIndex3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandIndex1/mixamoTest:RightHandIndex2/mixamoTest:RightHandIndex3/mixamoTest:RightHandIndex4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1/mixamoTest:RightHandMiddle2
@@ -290,7 +293,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1/mixamoTest:RightHandMiddle2/mixamoTest:RightHandMiddle3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1/mixamoTest:RightHandMiddle2/mixamoTest:RightHandMiddle3/mixamoTest:RightHandMiddle4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1/mixamoTest:RightHandPinky2
@@ -298,7 +301,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1/mixamoTest:RightHandPinky2/mixamoTest:RightHandPinky3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1/mixamoTest:RightHandPinky2/mixamoTest:RightHandPinky3/mixamoTest:RightHandPinky4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1/mixamoTest:RightHandRing2
@@ -306,7 +309,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1/mixamoTest:RightHandRing2/mixamoTest:RightHandRing3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1/mixamoTest:RightHandRing2/mixamoTest:RightHandRing3/mixamoTest:RightHandRing4
-        weight: 1
+        weight: 0
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1/mixamoTest:RightHandThumb2
@@ -314,7 +317,7 @@ ModelImporter:
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1/mixamoTest:RightHandThumb2/mixamoTest:RightHandThumb3
         weight: 1
       - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1/mixamoTest:RightHandThumb2/mixamoTest:RightHandThumb3/mixamoTest:RightHandThumb4
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
     isReadable: 1
@@ -753,34 +756,34 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: picking_up_object(Clone)
+    - name: yelling(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:Hips
-      position: {x: -.000621785177, y: .873596728, z: -.0131844906}
-      rotation: {x: .00271071331, y: .0292299092, z: .0366972834, w: .998895228}
-      scale: {x: .99999994, y: .99999994, z: .99999994}
+      position: {x: -.00098650041, y: .870195091, z: -.0107872598}
+      rotation: {x: -.0495053902, y: .0428854264, z: -.00337585271, w: .997847021}
+      scale: {x: 1, y: .99999994, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftUpLeg
       position: {x: -.0819000006, y: -.0472000018, z: .0108000003}
-      rotation: {x: -.0917077959, y: .105245821, z: .985084713, w: .100603789}
+      rotation: {x: -.12319193, y: .0388190001, z: .990543842, w: .0462582111}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftLeg
       position: {x: -0, y: .389999986, z: 0}
-      rotation: {x: -.280061185, y: .0779932439, z: -.0460122228, w: .955701649}
+      rotation: {x: -.265252143, y: -.0387794189, z: .00125706277, w: .963398159}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftFoot
       position: {x: -0, y: .385699987, z: 0}
-      rotation: {x: .651584983, y: .0317410231, z: .0933550894, w: .752139866}
+      rotation: {x: .662305057, y: -.00352963712, z: .0269277804, w: .748741984}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftToeBase
       position: {x: -0, y: .170699999, z: 0}
-      rotation: {x: .227869138, y: .00265442324, z: -.000621152343, w: .973687947}
+      rotation: {x: .227869898, y: .00265446538, z: -.00062124856, w: .973687828}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftToe_End
@@ -790,22 +793,22 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:RightUpLeg
       position: {x: .0819000006, y: -.0472000018, z: .0121999998}
-      rotation: {x: .0614795573, y: .0947957486, z: .993560553, w: -.00845841318}
+      rotation: {x: .0820419863, y: .0520118363, z: .992239892, w: -.0776135176}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightLeg
       position: {x: -0, y: .389999986, z: 0}
-      rotation: {x: -.23870641, y: -.0317938626, z: .038256254, w: .969816923}
+      rotation: {x: -.274869144, y: .0134624597, z: .00403341046, w: .961378932}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightFoot
       position: {x: -0, y: .385800004, z: 0}
-      rotation: {x: .638383031, y: -.0230099261, z: -.0697190613, w: .766209424}
+      rotation: {x: .664673328, y: -.0133995702, z: -.0551349893, w: .744976461}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightToeBase
       position: {x: -0, y: .176300004, z: 0}
-      rotation: {x: .225383759, y: -.00273763668, z: .000735897687, w: .974265933}
+      rotation: {x: .220238566, y: -.00288737984, z: .000651949609, w: .975441575}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightToe_End
@@ -815,52 +818,52 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:Spine
       position: {x: -0, y: .0851000026, z: -.00540000014}
-      rotation: {x: -.0340287276, y: -.0091134496, z: -.00833844114, w: .999344528}
+      rotation: {x: -.0125355478, y: .0108461473, z: .0159805696, w: .999734879}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:Spine1
       position: {x: -0, y: .0995000005, z: 0}
-      rotation: {x: -.00336646102, y: -.00637989258, z: -.0133523289, w: .999884844}
+      rotation: {x: .020119736, y: .00116413657, z: .00687491242, w: .999773264}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:Spine2
       position: {x: -0, y: .113700002, z: 0}
-      rotation: {x: -.0034135466, y: -.00647330936, z: -.0133053986, w: .999884725}
+      rotation: {x: .0201085005, y: .00112494221, z: .00691449549, w: .999773264}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftShoulder
       position: {x: -.0582999997, y: .107299998, z: -.00150000001}
-      rotation: {x: .60252279, y: -.404927164, z: .560504854, w: .398540497}
+      rotation: {x: .590244651, y: -.411631972, z: .546462774, w: .428425997}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftArm
       position: {x: -0, y: .125100002, z: 0}
-      rotation: {x: -.149890631, y: -.115271896, z: .0223960374, w: .981704473}
+      rotation: {x: -.152688697, y: .122600541, z: .0203762744, w: .980428576}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftForeArm
       position: {x: -0, y: .2597, z: 0}
-      rotation: {x: -.0066540977, y: .00334492279, z: -.0354049169, w: .999345303}
+      rotation: {x: .00080491585, y: .00229625357, z: -.0410892703, w: .999152541}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHand
       position: {x: -0, y: .243100002, z: 0}
-      rotation: {x: -.00840508193, y: .0294846725, z: -.017958384, w: .999368548}
+      rotation: {x: .0794783756, y: .00998639781, z: .0564744174, w: .995185494}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandIndex1
       position: {x: .0305000003, y: .0958999991, z: -.00120000006}
-      rotation: {x: .0814877078, y: -.00865694787, z: -.0318535231, w: .996127605}
+      rotation: {x: .0761200935, y: -.00531992177, z: -.037620686, w: .996374488}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandIndex2
       position: {x: -0, y: .0252999999, z: 0}
-      rotation: {x: .0385085829, y: 5.96046519e-08, z: .00378552102, w: .999251127}
+      rotation: {x: .031473957, y: -8.94069458e-08, z: .00309373369, w: .999499798}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandIndex3
       position: {x: -0, y: .0242999997, z: 0}
-      rotation: {x: .0409637578, y: 5.23626695e-05, z: .00674831728, w: .999137878}
+      rotation: {x: .0395596363, y: 5.63561771e-05, z: .00660939375, w: .999195397}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandIndex4
@@ -870,17 +873,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:LeftHandMiddle1
       position: {x: .00870000012, y: .107100002, z: -9.99999975e-05}
-      rotation: {x: .0816503093, y: -.00373795535, z: -.0314500257, w: .996157765}
+      rotation: {x: .0767233074, y: -.00396767119, z: -.030973915, w: .996563315}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandMiddle2
       position: {x: -0, y: .0258000009, z: 0}
-      rotation: {x: .0384642296, y: 0, z: .0041650217, w: .999251306}
+      rotation: {x: .0281773824, y: 8.94069245e-08, z: .00305105606, w: .999598265}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandMiddle3
       position: {x: -0, y: .0253999997, z: 0}
-      rotation: {x: .0409213416, y: 2.98023188e-08, z: .00443109823, w: .999152541}
+      rotation: {x: .0393322296, y: -5.96046306e-08, z: .00425863173, w: .999217153}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandMiddle4
@@ -890,17 +893,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:LeftHandPinky1
       position: {x: -.0285, y: .100100003, z: -.00039999999}
-      rotation: {x: .072168, y: -.00612145569, z: .000710785331, w: .997373521}
+      rotation: {x: .0686426982, y: -.016352592, z: -.0191614758, w: .997323275}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandPinky2
       position: {x: 9.99999975e-05, y: .0186999999, z: 0}
-      rotation: {x: .0372957289, y: -.00344309094, z: -.0116740726, w: .999230146}
+      rotation: {x: .0348702408, y: -.00588395959, z: -.00618964201, w: .999355435}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandPinky3
       position: {x: -0, y: .0153999999, z: 0}
-      rotation: {x: .0409141369, y: -.000286876981, z: 9.52779665e-05, w: .999162674}
+      rotation: {x: .0408712067, y: -.000286936585, z: 9.06735149e-05, w: .999164343}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandPinky4
@@ -910,17 +913,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:LeftHandRing1
       position: {x: -.0108000003, y: .119599998, z: -.00039999999}
-      rotation: {x: .0816837773, y: -.0024026928, z: -.0313415192, w: .996162534}
+      rotation: {x: .0730594546, y: -.00856470782, z: -.0223687068, w: .997039914}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandRing2
       position: {x: -0, y: .0182000007, z: 0}
-      rotation: {x: .0384542868, y: 2.98023153e-08, z: .00426870491, w: .999251246}
+      rotation: {x: .0344649889, y: 2.98023117e-08, z: .00382473925, w: .999398589}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandRing3
       position: {x: -0, y: .0167999994, z: 0}
-      rotation: {x: .0409089662, y: 8.94069458e-08, z: .00454080012, w: .999152601}
+      rotation: {x: .0403370596, y: 8.94069458e-08, z: .00447687414, w: .999176145}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandRing4
@@ -930,17 +933,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:LeftHandThumb1
       position: {x: .0275999997, y: .0368000008, z: .00609999988}
-      rotation: {x: -.0447323881, y: .0239001457, z: -.309535414, w: .949534476}
+      rotation: {x: .0703567043, y: -.081627652, z: -.317834139, w: .942002296}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandThumb2
       position: {x: .00350000011, y: .0370000005, z: 0}
-      rotation: {x: .00557882199, y: .0266272668, z: .0170251541, w: .999484897}
+      rotation: {x: -.0204652231, y: .129582003, z: .00586342672, w: .99134016}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandThumb3
       position: {x: .00150000001, y: .0263999999, z: 0}
-      rotation: {x: -.0162338521, y: .0179508869, z: -.139149681, w: .989975572}
+      rotation: {x: -.00979822874, y: .028250413, z: -.139443755, w: .989778399}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:LeftHandThumb4
@@ -950,12 +953,12 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:Neck
       position: {x: -0, y: .127900004, z: 0}
-      rotation: {x: -.0135752214, y: -.00886563398, z: .00481696706, w: .999856949}
+      rotation: {x: .0819338337, y: -.00229615648, z: -.0217373446, w: .996398032}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:Head
       position: {x: -0, y: .0662999973, z: .000699999975}
-      rotation: {x: .00890558399, y: -.0355819613, z: -.000473407825, w: .999326944}
+      rotation: {x: -.130524516, y: -.0325701497, z: -.0184742324, w: .990737736}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:HeadTop_End
@@ -965,37 +968,37 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:RightShoulder
       position: {x: .0582999997, y: .107299998, z: -.00109999999}
-      rotation: {x: -.554946065, y: -.447615296, z: .579021394, w: -.395486742}
+      rotation: {x: .598798275, y: .399811327, z: -.558944583, w: .411305934}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightArm
       position: {x: -0, y: .125100002, z: 0}
-      rotation: {x: -.155215412, y: .0172609929, z: .0137619032, w: .987634003}
+      rotation: {x: -.144739166, y: .129214332, z: -.0405157171, w: .980159521}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightForeArm
       position: {x: -0, y: .259799987, z: 0}
-      rotation: {x: -.00629694527, y: -.00440603355, z: .0300556161, w: .999518752}
+      rotation: {x: -.00961867068, y: -.00456452416, z: .0306597669, w: .999473155}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHand
       position: {x: -0, y: .243100002, z: 0}
-      rotation: {x: .0107978713, y: .168725893, z: -.184780821, w: .968127608}
+      rotation: {x: .0900734589, y: -.0865086541, z: -.0597050451, w: .990372837}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandIndex1
       position: {x: -.0326000005, y: .0993999988, z: -.00170000002}
-      rotation: {x: .0834533349, y: .00761448871, z: .0299835615, w: .996031404}
+      rotation: {x: .0779023841, y: -.000938981655, z: .0672124699, w: .994692326}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandIndex2
       position: {x: -0, y: .0239000004, z: 0}
-      rotation: {x: .0393339507, y: -2.98023082e-08, z: -.0041303616, w: .999217629}
+      rotation: {x: .0355829187, y: 0, z: -.0037373309, w: .999359727}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandIndex3
       position: {x: -0, y: .0236000009, z: 0}
-      rotation: {x: .0404582582, y: 4.35475766e-13, z: -.00424838765, w: .999172211}
+      rotation: {x: .0371041521, y: -2.38418522e-07, z: -.00389587786, w: .999303818}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandIndex4
@@ -1005,17 +1008,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:RightHandMiddle1
       position: {x: -.00829999987, y: .106299996, z: .000600000028}
-      rotation: {x: .0835892931, y: .0031422656, z: .0296078753, w: .996055365}
+      rotation: {x: .0821913183, y: -.000228971243, z: .0400016457, w: .995813429}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandMiddle2
       position: {x: -0, y: .0242999997, z: 0}
-      rotation: {x: .0392989367, y: 2.98023117e-08, z: -.00448402623, w: .99921751}
+      rotation: {x: .03097298, y: 0, z: -.00353422668, w: .999514043}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandMiddle3
       position: {x: -0, y: .0265999995, z: 0}
-      rotation: {x: .0404184908, y: 1.26820979e-07, z: -.00461151963, w: .999172211}
+      rotation: {x: .0384200327, y: .000274240942, z: -.00437325193, w: .999252081}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandMiddle4
@@ -1025,17 +1028,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:RightHandPinky1
       position: {x: .0295000002, y: .102499999, z: -.00120000006}
-      rotation: {x: .0836698338, y: .000378191296, z: .0293758363, w: .996060371}
+      rotation: {x: .0779712498, y: -.000303506851, z: .0307845771, w: .996480167}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandPinky2
       position: {x: -0, y: .0175000001, z: 0}
-      rotation: {x: .0392744653, y: .000117599906, z: -.00138133694, w: .999227583}
+      rotation: {x: .0328819118, y: .000138580785, z: -.000618308724, w: .999459028}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandPinky3
       position: {x: 9.99999975e-05, y: .0151000004, z: 0}
-      rotation: {x: .0403955989, y: .000417976233, z: -.0133140003, w: .999094963}
+      rotation: {x: .0396843106, y: .000416427705, z: -.0132306172, w: .999124646}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandPinky4
@@ -1045,17 +1048,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:RightHandRing1
       position: {x: .0114000002, y: .117299996, z: .000199999995}
-      rotation: {x: .0836007074, y: .00281879143, z: .0295804273, w: .996056199}
+      rotation: {x: .0800537989, y: .00509864045, z: .0226831418, w: .996519446}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandRing2
       position: {x: -0, y: .0187999997, z: 0}
-      rotation: {x: .0392977707, y: 5.96046164e-08, z: -.00450762874, w: .999217451}
+      rotation: {x: .0304966867, y: -1.49011612e-07, z: -.00349915028, w: .999528766}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandRing3
       position: {x: -0, y: .0178999994, z: 0}
-      rotation: {x: .0404155329, y: -4.92378867e-08, z: -.00463774428, w: .999172211}
+      rotation: {x: .0400729142, y: -.000633746327, z: -.00462332321, w: .99918592}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandRing4
@@ -1065,17 +1068,17 @@ ModelImporter:
       transformModified: 1
     - name: mixamoTest:RightHandThumb1
       position: {x: -.0287999995, y: .0381000005, z: .00700000022}
-      rotation: {x: -.121055886, y: .0225663818, z: .279445112, w: .95223242}
+      rotation: {x: -.0128043443, y: .0102192461, z: .31918627, w: .947550416}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandThumb2
       position: {x: -.0046000001, y: .0383000001, z: 0}
-      rotation: {x: -8.76485865e-05, y: .0265854914, z: .0184352603, w: .999476612}
+      rotation: {x: -.0286437795, y: .0446045846, z: .0267872065, w: .998234689}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandThumb3
       position: {x: -.000300000014, y: .0252999999, z: 0}
-      rotation: {x: -.0228827745, y: .00832733419, z: .143431798, w: .989360571}
+      rotation: {x: .0237262901, y: .0685181096, z: .147502795, w: .986400187}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: mixamoTest:RightHandThumb4

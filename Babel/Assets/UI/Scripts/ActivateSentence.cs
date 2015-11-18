@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
 
@@ -38,7 +39,7 @@ public class ActivateSentence : MonoBehaviour
         }
         else
         {
-            _sidekick.RespondToSentence(sentence);
+            _sidekick.ExecuteAction(sentence.FirstOrDefault());
         }
         
     }

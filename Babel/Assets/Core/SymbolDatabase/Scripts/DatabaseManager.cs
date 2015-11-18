@@ -57,16 +57,16 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
     }
 
-    // Adds the sentence to the predefined id 
-    public void AddSentence(int id, List<int> signSequence)
-    {
-        if (_sentencesDatabase.ContainsKey(id))
-        {
-            Sentence sentence = _sentencesDatabase[id];
-            sentence.SignSequence = signSequence;
-            _sentencesDatabase[id] = sentence;
-        }
-    }
+    //// Adds the sentence to the predefined id 
+    //public void AddSentence(int id, List<int> signSequence)
+    //{
+    //    if (_sentencesDatabase.ContainsKey(id))
+    //    {
+    //        Sentence sentence = _sentencesDatabase[id];
+    //        sentence.SignSequence = signSequence;
+    //        _sentencesDatabase[id] = sentence;
+    //    }
+    //}
 
 
     // Returns the character of the database with the given ID
@@ -90,29 +90,29 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         return null;
     }
 
-    // Returns the sentence of the database with the given ID
-    public Sentence GetSentenceById(int id)
-    {
-        if (_sentencesDatabase.ContainsKey(id))
-        {
-            return _sentencesDatabase[id];
-        }
-        return null;
-    }
+    //// Returns the sentence of the database with the given ID
+    //public Sentence GetSentenceById(int id)
+    //{
+    //    if (_sentencesDatabase.ContainsKey(id))
+    //    {
+    //        return _sentencesDatabase[id];
+    //    }
+    //    return null;
+    //}
 
 
-    // Returns the sentence of the database with the given ID
-    public int GetSentenceBySeq(List<int> signSequence)
-    {
-        if (signSequence.Count > 0)
-        {
-            Sentence sentence =
-                _sentencesDatabase.FirstOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
+    //// Returns the sentence of the database with the given ID
+    //public int GetSentenceBySeq(List<int> signSequence)
+    //{
+    //    if (signSequence.Count > 0)
+    //    {
+    //        Sentence sentence =
+    //            _sentencesDatabase.FirstOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
 
-            return sentence != null ? sentence.id : -1;
-        }
-        return -1;
-    }
+    //        return sentence != null ? sentence.id : -1;
+    //    }
+    //    return -1;
+    //}
 
     public void SaveAllDb()
     {

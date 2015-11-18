@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour {
     public Sprite DanishFlag;
     public Sprite EnglishFlag;
 
+	public Slider SoundSlider, MusicSlider, VoicesSlider, SoundFXSlider;
 
     private Animator menuAnim;
 
@@ -24,7 +25,7 @@ public class MainMenuManager : MonoBehaviour {
 		SettingsPanel.SetActive (false);
 		menuAnim = GetComponent<Animator> ();
 	    SetupButtons();
-	   
+
 	}
 
     private void SetupButtons()
@@ -39,6 +40,18 @@ public class MainMenuManager : MonoBehaviour {
     // Update is called once per frame
 	void Update () {
 	
+	}
+
+	float NormalizeMixerValue(float value)
+	{
+		float scaleVal = (-40 - value) / (-40 - 0);
+		return scaleVal;
+	}
+
+	float DenormalizeSliderValue(float value)
+	{
+		float scaleVal = -40 - (value * -40f);
+		return scaleVal; 
 	}
 
 	public void StartBtnPress()
@@ -98,21 +111,26 @@ public class MainMenuManager : MonoBehaviour {
 	{
 	    SoundTextOn.enabled = PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
 	    SoundTextOff.enabled = !PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
+		//SoundSlider.normalizedValue = PlayerPrefs.GetString("Sound"
 	}
 	private void GetMusicText()
 	{
         MusicTextOn.enabled = PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
         MusicTextOff.enabled = !PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
+		MusicSlider.normalizedValue = NormalizeMixerValue( PlayerPrefs.GetFloat ("AmbienceV"));
+		//Debug.Log(NormalizeMixerValue( PlayerPrefs.GetFloat ("AmbienceV")));
     }
 	private void GetVoicesText()
 	{
         VoicesTextOn.enabled = PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
         VoicesTextOff.enabled = !PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
+		VoicesSlider.normalizedValue = NormalizeMixerValue (PlayerPrefs.GetFloat ("VoicesV"));
     }
 	private void GetSoundFXText()
 	{
         SoundFxTextOn.enabled = PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
         SoundFxTextOff.enabled = !PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
+		SoundFXSlider.normalizedValue = NormalizeMixerValue(PlayerPrefs.GetFloat ("SFXV"));
     }
 
     public void SetupLanguage()
@@ -168,6 +186,29 @@ public class MainMenuManager : MonoBehaviour {
 		_audioManager.ClickBtnPlay ();
 		GetSoundFXText ();
 	}
+
+    public void SoundSlide(float i)
+    {
+        //SoundSlider.normalizedValue
+    }
+    public void MusicSlide()
+    {
+		float denormalizedValue = DenormalizeSliderValue (MusicSlider.normalizedValue);
+		PlayerPrefs.SetFloat("AmbienceV", denormalizedValue);
+		_audioManager.MasterMixer.SetFloat ("AmbienceV", denormalizedValue);
+    }
+    public void VoiceSlide()
+    {
+		float denormalizedValue = DenormalizeSliderValue (VoicesSlider.normalizedValue);
+		PlayerPrefs.SetFloat("VoicesV", denormalizedValue);
+		_audioManager.MasterMixer.SetFloat ("VoicesV", denormalizedValue);
+    }
+    public void SfxSlide()
+    {
+		float denormalizedValue = DenormalizeSliderValue (SoundFXSlider.normalizedValue);
+		PlayerPrefs.SetFloat("SFXV", denormalizedValue);
+		_audioManager.MasterMixer.SetFloat ("SFXV", denormalizedValue);
+    }
 
     public void LanguageBtnPress()
     {

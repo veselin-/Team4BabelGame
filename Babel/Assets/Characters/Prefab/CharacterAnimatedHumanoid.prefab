@@ -632,10 +632,10 @@ GameObject:
   - 136: {fileID: 13675276}
   - 114: {fileID: 11488764}
   - 114: {fileID: 11417882}
-  - 114: {fileID: 11473868}
   - 114: {fileID: 11467636}
   - 114: {fileID: 11477808}
   - 114: {fileID: 11456976}
+  - 114: {fileID: 11495134}
   m_Layer: 0
   m_Name: CharacterAnimatedHumanoid
   m_TagString: Player
@@ -2908,7 +2908,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 71377ad6b05d91043937cdc26b0c2791, type: 3}
   m_Controller: {fileID: 9100000, guid: ee49578c46044ec4c83bbaed0d63ea4c, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d14919034d30c646a18877f33c75f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 3
+  MovementSpeed: 1
   StrollSpeed: 0
   TimeBeforeStolling: 0
 --- !u!114 &11456976
@@ -3040,17 +3040,6 @@ MonoBehaviour:
   refractLayers:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11473868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2c7cc39f0f89ae41a36c153639d0a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11477808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3074,6 +3063,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTouchDown: 0
+--- !u!114 &11495134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c32acf86bad35a4f818164b7c10d40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AnimSpeedMultiplier: 1
 --- !u!135 &13541796
 SphereCollider:
   m_ObjectHideFlags: 1

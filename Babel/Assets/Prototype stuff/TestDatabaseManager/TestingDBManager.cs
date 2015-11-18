@@ -36,14 +36,14 @@ public class TestingDBManager : MonoBehaviour {
         list3.Add(1);
 
 
-        var t1 = db.GetSentenceBySeq(list1);
-        var t2 = db.GetSentenceBySeq(list2);
-        var t3 = db.GetSentenceBySeq(list3);
+        //var t1 = db.GetSentenceBySeq(list1);
+        //var t2 = db.GetSentenceBySeq(list2);
+        //var t3 = db.GetSentenceBySeq(list3);
 
-        if(t1 == -1 && t2 == -1 && t3 == -1)
-        {
+        //if(t1 == -1 && t2 == -1 && t3 == -1)
+        //{
 
-        }
+        //}
 
 
         var uu = db.GetSign(0);

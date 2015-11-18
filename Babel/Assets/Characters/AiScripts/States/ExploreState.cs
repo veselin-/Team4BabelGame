@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Assets.Core.NavMesh;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

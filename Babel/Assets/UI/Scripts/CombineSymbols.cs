@@ -65,7 +65,12 @@ public class CombineSymbols : MonoBehaviour
         //Debug.Log("CHILDCOUNT OF CHILD1: " + transform.GetChild(0).childCount);
         //Debug.Log("CHILDCOUNT OF PARENT+CHILD1: " + (transform.childCount + transform.GetChild(0).childCount));
         //Debug.Log("CHILDCOUNT OF PARENT+CHILD1+CHILD2: " + (transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount));
-        if ((transform.childCount + transform.GetChild(0).childCount) >= 2)
+        if(transform.childCount == 0)
+        {
+            text.text = "You need at least 2 syllables.";
+            return;
+        }
+        else if ((transform.childCount + transform.GetChild(0).childCount) >= 2)
         {
             if ((transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount) == 3)
             {
@@ -73,9 +78,9 @@ public class CombineSymbols : MonoBehaviour
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
 
-                transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBook();
-                transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBook();
-                transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBook();
+                transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
+                transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
+                transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
                 //Debug.Log("nej der er fukin 3");
             }
             else //if ((transform.childCount + transform.GetChild(0).childCount) == 2)
@@ -83,10 +88,11 @@ public class CombineSymbols : MonoBehaviour
                 syllableIDs.Add(transform.GetChild(0).GetComponent<symbolPress>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
 
-                transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBook();
-                transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBook();
+                transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
+                transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
                 //Debug.Log("den tror der kun er 2");
             }
+            Destroy(transform.GetChild(0).gameObject);
             databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
             databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
             audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
@@ -96,7 +102,7 @@ public class CombineSymbols : MonoBehaviour
         }
         else if(transform.childCount == 1)
         {
-			text.text = "You need 1 more syllable.";
+			text.text = "You need at least 2 syllables.";
             //text.text = "Invalid combination. A sign must be at least two syllables.";
           //  Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
             return;

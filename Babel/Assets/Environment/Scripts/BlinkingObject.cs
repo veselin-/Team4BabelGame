@@ -22,5 +22,12 @@ namespace Assets.Environment.Scripts
                 mat.SetColor("_EmissionColor", Color.Lerp(Color.black,
                     new Color(0.3f, 0.3f, 0.3f), Mathf.PingPong(Time.time, 1)));
         }
+
+        public void Stop()
+        {
+            foreach (var mat in _materials)
+                mat.SetColor("_EmissionColor", Color.black);
+            Destroy(this);
+        }
     }
 }

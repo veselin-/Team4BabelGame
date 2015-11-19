@@ -8,7 +8,7 @@ public class KeyHole : MonoBehaviour, IInteractable
 
     public GameObject InteractPositionObject;
 
-    private bool _hasBeenPulled;
+    public bool _hasBeenPulled;
     private Color _oldColor;
 
     void Start()

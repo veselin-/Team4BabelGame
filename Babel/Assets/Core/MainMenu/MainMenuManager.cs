@@ -138,12 +138,12 @@ public class MainMenuManager : MonoBehaviour {
         if (!PlayerPrefs.HasKey("Language"))
         {
             PlayerPrefs.SetString("Language", Constants.Languages.Danish);
-            SettingsLanguage.sprite = DanishFlag;
+            SettingsLanguage.sprite = EnglishFlag;
             LanguageManager.Instance.LoadLanguage(PlayerPrefs.GetString("Language"));
         }
         else
         {
-            SettingsLanguage.sprite = PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish) ? DanishFlag : EnglishFlag;
+            SettingsLanguage.sprite = PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish) ? EnglishFlag : DanishFlag;
             LanguageManager.Instance.LoadLanguage(PlayerPrefs.GetString("Language"));
         }
     }
@@ -217,12 +217,12 @@ public class MainMenuManager : MonoBehaviour {
          if (PlayerPrefs.GetString("Language").Equals(Constants.Languages.Danish))
         {
             LanguageChange(Constants.Languages.English);
-            SettingsLanguage.sprite = EnglishFlag;
+            SettingsLanguage.sprite = DanishFlag;
         }
         else
         {
             LanguageChange(Constants.Languages.Danish);
-            SettingsLanguage.sprite = DanishFlag;
+            SettingsLanguage.sprite = EnglishFlag;
         }
     }
 

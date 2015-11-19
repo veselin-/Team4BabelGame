@@ -60,5 +60,10 @@ namespace Assets.Core.Configuration
             public const string Danish = "Danish";
             public const string English = "English";
         }
+
+        public class Achevements
+        {
+            public const string SevenElever = "CgkI0JqQkYAGEAIQAQ";
+        }
     }
 }

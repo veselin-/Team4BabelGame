@@ -152,7 +152,8 @@ public class MainMenuManager : MonoBehaviour {
     {
         LanguageManager.Instance.LoadLanguage(language);
         PlayerPrefs.SetString("Language", language);
-        LocalizedText[] texts = FindObjectsOfType<LocalizedText>();
+
+        LocalizedText[] texts = GetComponentsInChildren<LocalizedText>(true);
         foreach (LocalizedText text in texts)
         {
             text.LocalizeText();

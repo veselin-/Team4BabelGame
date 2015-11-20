@@ -8,7 +8,7 @@ public class UiController : MonoBehaviour
 {
     private Animator anim;
     public ScrollRect scrollRect;
-    public Animator bookAnim;
+    public GameObject creation;
     public GameObject slidePanel;
     public GameObject _pokedexButton;
     public GameObject closeUiBut;
@@ -50,8 +50,7 @@ public class UiController : MonoBehaviour
         scrollRect.horizontalNormalizedPosition = 0f;
         anim.SetTrigger("FullyEnter");
         anim.SetBool("CreatingSign", true);
-        bookAnim.SetBool("CreatingSign", true);
-        bookAnim.SetTrigger("CreationToggle");
+        creation.SetActive(true);
         slidePanel.SetActive(false);
         Time.timeScale = 0;
 		_pokedexButton.SetActive (false);
@@ -63,8 +62,7 @@ public class UiController : MonoBehaviour
 		//Debug.Log ("SignCreationDone");
 		//_cameraManager.enabled = true;
         anim.SetBool("CreatingSign", false);
-        bookAnim.SetBool("CreatingSign", false);
-        bookAnim.SetTrigger("CreationToggle");
+        creation.SetActive(false);
         anim.SetTrigger("MenuExit");
         slidePanel.SetActive(true);
         Time.timeScale = 1;

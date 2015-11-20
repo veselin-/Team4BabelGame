@@ -1548,7 +1548,6 @@ GameObject:
   - 222: {fileID: 22221566}
   - 114: {fileID: 11467330}
   - 225: {fileID: 22537648}
-  - 95: {fileID: 9588022}
   m_Layer: 5
   m_Name: PokeDex
   m_TagString: Untagged
@@ -2254,7 +2253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &160598
 GameObject:
   m_ObjectHideFlags: 1
@@ -3755,23 +3754,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &9588022
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143986}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 48716a72570d3244caaec0226e277a02, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5038,7 +5020,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22401590}
   m_Direction: 2
   m_Value: .999742508
-  m_Size: .278545499
+  m_Size: .27848348
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7759,7 +7741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 11428474}
-  bookAnim: {fileID: 9588022}
+  creation: {fileID: 160162}
   slidePanel: {fileID: 165556}
   _pokedexButton: {fileID: 100618}
   closeUiBut: {fileID: 181506}
@@ -8523,7 +8505,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11488914}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -10280,7 +10262,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11407250}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -10442,7 +10424,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11437616}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -10761,7 +10743,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11492244}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -11241,7 +11223,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11485610}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -11781,8 +11763,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11467864}
   m_HandleRect: {fileID: 22422764}
   m_Direction: 2
-  m_Value: .980615854
-  m_Size: .537485063
+  m_Value: .981107116
+  m_Size: .387011856
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12746,7 +12728,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11437438}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -13207,7 +13189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11449508}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -14237,7 +14219,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11406570}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -15104,7 +15086,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11424274}
+      - m_Target: {fileID: 11462850}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -18490,8 +18472,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22493378}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: .721268833}
+  m_AnchorMax: {x: 1, y: .999814332}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: .5, y: .5}
@@ -18777,10 +18759,10 @@ RectTransform:
   - {fileID: 22483012}
   m_Father: {fileID: 22455688}
   m_RootOrder: 0
-  m_AnchorMin: {x: .117597662, y: .338000029}
-  m_AnchorMax: {x: .915605485, y: .72750783}
-  m_AnchoredPosition: {x: -3583, y: -473}
-  m_SizeDelta: {x: -22, y: 15.9119873}
+  m_AnchorMin: {x: .117597662, y: .305675805}
+  m_AnchorMax: {x: .915605485, y: .707000017}
+  m_AnchoredPosition: {x: -4.19616699e-05, y: .150063515}
+  m_SizeDelta: {x: -22, y: -.299930006}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22409492
 RectTransform:
@@ -19771,7 +19753,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: .0178997964}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -322.008453}
+  m_AnchoredPosition: {x: -2, y: -322.283813}
   m_SizeDelta: {x: 40, y: 670}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22432936

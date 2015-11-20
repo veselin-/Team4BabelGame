@@ -31,41 +31,69 @@ namespace Assets.Characters.Player.Scripts
         // Update is called once per frame
         void Update ()
         {
-			//ugly code fixing camera drag and player movement. 
-			if (Input.GetMouseButton (0)) {
-				_touchCounter += Time.deltaTime;
-				if(_touchCounter < 0.3f)
-				{
-					_tap = true;
-					_cameraManager.isCharacterMoving = true;
-				}
-				else
-				{
-					if(!_isTouchDown)
-					{
-						_isTouchDown = true;
-						_tap = false;
-						_cameraManager.isTouchDown = true;
-					}
-					_cameraManager.isCharacterMoving = false;
-				}
-			}
+            //ugly code fixing camera drag and player movement. 
+            //if (Input.GetMouseButton (0)) {
+            //	_touchCounter += Time.deltaTime;
+            //	if(_touchCounter < 0.3f)
+            //	{
+            //		_tap = true;
+            //		_cameraManager.isCharacterMoving = true;
+            //	}
+            //	else
+            //	{
+            //		if(!_isTouchDown)
+            //		{
+            //			_isTouchDown = true;
+            //			_tap = false;
+            //			_cameraManager.isTouchDown = true;
+            //		}
+            //		_cameraManager.isCharacterMoving = false;
+            //	}
+            //}
 
-			if (Input.GetMouseButtonUp (0)) {
-				_cameraManager.isCharacterMoving = false;
-				_isTouchDown = false;
-				if(_tap)
-				{
-					_canMove = true;
-				}
-				_touchCounter = 0;
-			}
+            //if (Input.GetMouseButtonUp (0)) {
+            //	_cameraManager.isCharacterMoving = false;
+            //	_isTouchDown = false;
+            //	if(_tap)
+            //	{
+            //		_canMove = true;
+            //	}
+            //	_touchCounter = 0;
+            //}
+#if UNITY_EDITOR
+            if (Input.GetMouseButtonUp(0))
+            {
+                _canMove = true;
+            }
+#endif
+            if (Input.touchCount == 1 )
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    Debug.Log("Began");
+                    _tap = true;
+                }
 
-			if (!_canMove) return;
+                    if (Input.GetTouch(0).phase == TouchPhase.Moved)
+                {
+                    Debug.Log("Moved");
+                    _tap = false;
+                }
 
-			_tap = false;
-			_canMove = false;
-            //if (!Input.GetMouseButtonDown(0)) return;
+                if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    Debug.Log("Ended");
+                    if (_tap)
+                    {
+                        _canMove = true;
+                    }
+                }
+            }
+            if (!_canMove) return;
+
+            _tap = false;
+            _canMove = false;
+           // if (!Input.GetMouseButtonUp(0)) return;
 
             var ts = Input.touches;
             if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))

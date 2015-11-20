@@ -23,7 +23,7 @@ namespace GooglePlayGames
     /// GPGS has not been setup.
     /// </summary>
     [ExecuteInEditMode]
-    [CustomEditor(typeof(GameObject))]
+    //[CustomEditor(typeof(GameObject))]
     [CanEditMultipleObjects]
     public class GPGGizmo : UnityEditor.Editor
     {

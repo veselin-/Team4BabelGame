@@ -12,6 +12,8 @@ using Assets.Environment.Scripts;
 
 public class SideKickWayPoint : MonoBehaviour
 {
+    GameObject obstacle;
+
     [Header("Attributes with a NI at the end is not implemented yet.")]
     public bool IUnderstandMaster = false;
 
@@ -46,6 +48,7 @@ public class SideKickWayPoint : MonoBehaviour
     public bool ImmobilizePlayerForSecondsNI = false;
     public float ImmobilizeTimeNI;
     public bool ImmobilizePlayerUntilNextWaypoint = false;
+    public bool ObstacleInTheWay = false;
 
     [Header("Speech Text")]
     public bool UseText = false;
@@ -70,7 +73,6 @@ public class SideKickWayPoint : MonoBehaviour
 
     //[TextArea]
     //public string TextNI;
-
     private GameObject sidekick;
 
     private GameObject player;
@@ -84,7 +86,8 @@ public class SideKickWayPoint : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
 
-
+        obstacle = GameObject.FindGameObjectWithTag("Obstacle");
+        obstacle.GetComponent<NavMeshObstacle>().enabled = false;
         speech = GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).GetComponent<InteractableSpeechBubble>();
         //sidekick.GetComponent<SidekickControls>().enabled = false;
         //sidekick.GetComponent<SidekickControls>().enabled = false;
@@ -151,6 +154,16 @@ public class SideKickWayPoint : MonoBehaviour
         {
             Debug.Log("Has reached target: " + sidekick.GetComponent<NavMeshAgent>().HasReachedTarget());
             yield return new WaitForSeconds(0.1f);
+        }
+
+        if (ObstacleInTheWay)
+        {
+            obstacle.GetComponent<NavMeshObstacle>().enabled = true;
+        }
+
+        if (!ObstacleInTheWay)
+        {
+            obstacle.GetComponent<NavMeshObstacle>().enabled = false;
         }
 
         if (InteractWithLever)

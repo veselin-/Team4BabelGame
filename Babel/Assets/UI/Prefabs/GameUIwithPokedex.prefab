@@ -4466,6 +4466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 30
 --- !u!114 &11406378
 MonoBehaviour:
@@ -4491,6 +4492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 40
 --- !u!114 &11406534
 MonoBehaviour:
@@ -4867,6 +4869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 34
 --- !u!114 &11408230
 MonoBehaviour:
@@ -4904,6 +4907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 45
 --- !u!114 &11408378
 MonoBehaviour:
@@ -5033,8 +5037,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11450462}
   m_HandleRect: {fileID: 22401590}
   m_Direction: 2
-  m_Value: .999742746
-  m_Size: .27848345
+  m_Value: .999742508
+  m_Size: .278545499
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5131,6 +5135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 43
 --- !u!114 &11409882
 MonoBehaviour:
@@ -5198,9 +5203,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 181506}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 11428932}
+        m_MethodName: hotbarOpenPlusOne
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11428932}
+        m_MethodName: HotbarPokedexOpen
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5218,7 +5234,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -6587,6 +6603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 2
 --- !u!114 &11420616
 MonoBehaviour:
@@ -6773,6 +6790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 20
 --- !u!114 &11421650
 MonoBehaviour:
@@ -6810,6 +6828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 4
 --- !u!114 &11422312
 MonoBehaviour:
@@ -6903,6 +6922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 33
 --- !u!114 &11422728
 MonoBehaviour:
@@ -7428,6 +7448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 10
 --- !u!114 &11426692
 MonoBehaviour:
@@ -7655,6 +7676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 1
 --- !u!114 &11428474
 MonoBehaviour:
@@ -7723,6 +7745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 16
 --- !u!114 &11428932
 MonoBehaviour:
@@ -7739,6 +7762,8 @@ MonoBehaviour:
   bookAnim: {fileID: 9588022}
   slidePanel: {fileID: 165556}
   _pokedexButton: {fileID: 100618}
+  closeUiBut: {fileID: 181506}
+  menuMask: {fileID: 125790}
 --- !u!114 &11428978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8498,7 +8523,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11488914}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -8507,17 +8532,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -8668,6 +8682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 17
 --- !u!114 &11437438
 MonoBehaviour:
@@ -8758,6 +8773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 0
 --- !u!114 &11438142
 MonoBehaviour:
@@ -9779,6 +9795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 21
 --- !u!114 &11448050
 MonoBehaviour:
@@ -9843,6 +9860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 13
 --- !u!114 &11448502
 MonoBehaviour:
@@ -9880,6 +9898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 28
 --- !u!114 &11449176
 MonoBehaviour:
@@ -9894,6 +9913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 46
 --- !u!114 &11449466
 MonoBehaviour:
@@ -9965,6 +9985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 8
 --- !u!114 &11450064
 MonoBehaviour:
@@ -10259,7 +10280,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11407250}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -10268,17 +10289,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -10432,7 +10442,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11437616}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -10441,17 +10451,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -10762,7 +10761,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11492244}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -10771,17 +10770,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -10832,6 +10820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 38
 --- !u!114 &11454492
 MonoBehaviour:
@@ -11091,6 +11080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 35
 --- !u!114 &11456078
 MonoBehaviour:
@@ -11251,7 +11241,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11485610}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -11260,17 +11250,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -11321,6 +11300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 3
 --- !u!114 &11457086
 MonoBehaviour:
@@ -11641,6 +11621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 39
 --- !u!114 &11459162
 MonoBehaviour:
@@ -11690,6 +11671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 26
 --- !u!114 &11459776
 MonoBehaviour:
@@ -11799,8 +11781,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11467864}
   m_HandleRect: {fileID: 22422764}
   m_Direction: 2
-  m_Value: .977813601
-  m_Size: .38689217
+  m_Value: .980615854
+  m_Size: .537485063
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12076,6 +12058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 37
 --- !u!114 &11462468
 MonoBehaviour:
@@ -12174,6 +12157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 31
 --- !u!114 &11463174
 MonoBehaviour:
@@ -12321,6 +12305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 9
 --- !u!114 &11463958
 MonoBehaviour:
@@ -12374,6 +12359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 18
 --- !u!114 &11464094
 MonoBehaviour:
@@ -12388,6 +12374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 41
 --- !u!114 &11464928
 MonoBehaviour:
@@ -12759,7 +12746,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11437438}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -12768,17 +12755,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -13231,7 +13207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11449508}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -13240,17 +13216,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -13380,6 +13345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 32
 --- !u!114 &11471162
 MonoBehaviour:
@@ -13575,6 +13541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 19
 --- !u!114 &11472396
 MonoBehaviour:
@@ -13612,6 +13579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 44
 --- !u!114 &11472936
 MonoBehaviour:
@@ -14178,6 +14146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 14
 --- !u!114 &11476344
 MonoBehaviour:
@@ -14268,7 +14237,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11406570}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -14277,17 +14246,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -14358,6 +14316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 15
 --- !u!114 &11477540
 MonoBehaviour:
@@ -14404,6 +14363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 12
 --- !u!114 &11477826
 MonoBehaviour:
@@ -14557,6 +14517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 22
 --- !u!114 &11478718
 MonoBehaviour:
@@ -15143,7 +15104,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11462850}
+      - m_Target: {fileID: 11424274}
         m_MethodName: testFunc
         m_Mode: 1
         m_Arguments:
@@ -15152,17 +15113,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -15461,6 +15411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 24
 --- !u!114 &11486424
 MonoBehaviour:
@@ -15527,6 +15478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 42
 --- !u!114 &11487318
 MonoBehaviour:
@@ -15652,6 +15604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 47
 --- !u!114 &11488914
 MonoBehaviour:
@@ -16098,6 +16051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 5
 --- !u!114 &11491106
 MonoBehaviour:
@@ -16135,6 +16089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 11
 --- !u!114 &11491420
 MonoBehaviour:
@@ -16338,7 +16293,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1367256648, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -16426,6 +16381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 29
 --- !u!114 &11494480
 MonoBehaviour:
@@ -16573,6 +16529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 7
 --- !u!114 &11495372
 MonoBehaviour:
@@ -16637,6 +16594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 36
 --- !u!114 &11495494
 MonoBehaviour:
@@ -16651,6 +16609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 27
 --- !u!114 &11496206
 MonoBehaviour:
@@ -16738,6 +16697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 25
 --- !u!114 &11496774
 MonoBehaviour:
@@ -16775,6 +16735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 6
 --- !u!114 &11497390
 MonoBehaviour:
@@ -16870,6 +16831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 140386}
   sylPanel: {fileID: 171240}
+  text: {fileID: 0}
   ID: 23
 --- !u!114 &11498516
 MonoBehaviour:
@@ -17044,17 +17006,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9532464}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuToggle
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 181506}
@@ -19286,7 +19237,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.68330002, y: -1099}
+  m_AnchoredPosition: {x: 4.68340015, y: -1089}
   m_SizeDelta: {x: 0, y: 512}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22425592
@@ -19492,7 +19443,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: .894333243, y: 1}
-  m_AnchoredPosition: {x: -11.5, y: -1053.45752}
+  m_AnchoredPosition: {x: -11.5, y: -1053.45728}
   m_SizeDelta: {x: 8, y: 2108}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22428478
@@ -19820,7 +19771,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: .0178997964}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -320.426636}
+  m_AnchoredPosition: {x: -2, y: -322.008453}
   m_SizeDelta: {x: 40, y: 670}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22432936
@@ -20709,7 +20660,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22455660
 RectTransform:

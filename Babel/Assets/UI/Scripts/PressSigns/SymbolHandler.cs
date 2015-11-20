@@ -12,7 +12,8 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     public Image Image3;
     public GameObject sens1, sens2, sens3, sens4, book;
     bool oneSens = false, twoSens = false, threeSens = false, fourSens = false;
-    bool movedSign = false, isMade = false;
+    bool movedSign = false;
+    public static bool isMade = false;
     //int childIndex;
     GameObject goTemp;
     Transform parentBuffer;
@@ -197,9 +198,8 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Image2.color = Color.clear;
             Image3.color = Color.clear;
             isMade = false;
-            return;
         }
-        if (s.SyllableSequence.Count == 2)
+        else if (s.SyllableSequence.Count == 2)
         {
             Syllable s1 = databaseManager.GetSyllable(s.SyllableSequence[0]);
             Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
@@ -217,6 +217,6 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     }
     //public override void InitializeSyllable()
     //{
-        
+
     //}
 }

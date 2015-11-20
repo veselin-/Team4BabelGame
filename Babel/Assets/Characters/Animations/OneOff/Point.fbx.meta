@@ -137,7 +137,7 @@ ModelImporter:
     400126: mixamoTest:Spine
     400128: mixamoTest:Spine1
     400130: mixamoTest:Spine2
-    7400000: mixamo.com
+    7400000: Point
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -149,7 +149,10 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'mixamoTest:Spine2' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -158,7 +161,165 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Point
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 102
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mixamoTest:Hips
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:LeftUpLeg
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:LeftUpLeg/mixamoTest:LeftLeg
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:LeftUpLeg/mixamoTest:LeftLeg/mixamoTest:LeftFoot
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:LeftUpLeg/mixamoTest:LeftLeg/mixamoTest:LeftFoot/mixamoTest:LeftToeBase
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:LeftUpLeg/mixamoTest:LeftLeg/mixamoTest:LeftFoot/mixamoTest:LeftToeBase/mixamoTest:LeftToe_End
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:RightUpLeg
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg/mixamoTest:RightFoot
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg/mixamoTest:RightFoot/mixamoTest:RightToeBase
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:RightUpLeg/mixamoTest:RightLeg/mixamoTest:RightFoot/mixamoTest:RightToeBase/mixamoTest:RightToe_End
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandIndex1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandIndex1/mixamoTest:LeftHandIndex2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandIndex1/mixamoTest:LeftHandIndex2/mixamoTest:LeftHandIndex3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandIndex1/mixamoTest:LeftHandIndex2/mixamoTest:LeftHandIndex3/mixamoTest:LeftHandIndex4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1/mixamoTest:LeftHandMiddle2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1/mixamoTest:LeftHandMiddle2/mixamoTest:LeftHandMiddle3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandMiddle1/mixamoTest:LeftHandMiddle2/mixamoTest:LeftHandMiddle3/mixamoTest:LeftHandMiddle4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1/mixamoTest:LeftHandPinky2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1/mixamoTest:LeftHandPinky2/mixamoTest:LeftHandPinky3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandPinky1/mixamoTest:LeftHandPinky2/mixamoTest:LeftHandPinky3/mixamoTest:LeftHandPinky4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1/mixamoTest:LeftHandRing2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1/mixamoTest:LeftHandRing2/mixamoTest:LeftHandRing3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandRing1/mixamoTest:LeftHandRing2/mixamoTest:LeftHandRing3/mixamoTest:LeftHandRing4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1/mixamoTest:LeftHandThumb2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1/mixamoTest:LeftHandThumb2/mixamoTest:LeftHandThumb3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:LeftShoulder/mixamoTest:LeftArm/mixamoTest:LeftForeArm/mixamoTest:LeftHand/mixamoTest:LeftHandThumb1/mixamoTest:LeftHandThumb2/mixamoTest:LeftHandThumb3/mixamoTest:LeftHandThumb4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:Neck
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:Neck/mixamoTest:Head
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:Neck/mixamoTest:Head/mixamoTest:HeadTop_End
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandIndex1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandIndex1/mixamoTest:RightHandIndex2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandIndex1/mixamoTest:RightHandIndex2/mixamoTest:RightHandIndex3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandIndex1/mixamoTest:RightHandIndex2/mixamoTest:RightHandIndex3/mixamoTest:RightHandIndex4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1/mixamoTest:RightHandMiddle2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1/mixamoTest:RightHandMiddle2/mixamoTest:RightHandMiddle3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandMiddle1/mixamoTest:RightHandMiddle2/mixamoTest:RightHandMiddle3/mixamoTest:RightHandMiddle4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1/mixamoTest:RightHandPinky2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1/mixamoTest:RightHandPinky2/mixamoTest:RightHandPinky3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandPinky1/mixamoTest:RightHandPinky2/mixamoTest:RightHandPinky3/mixamoTest:RightHandPinky4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1/mixamoTest:RightHandRing2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1/mixamoTest:RightHandRing2/mixamoTest:RightHandRing3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandRing1/mixamoTest:RightHandRing2/mixamoTest:RightHandRing3/mixamoTest:RightHandRing4
+        weight: 0
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1/mixamoTest:RightHandThumb2
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1/mixamoTest:RightHandThumb2/mixamoTest:RightHandThumb3
+        weight: 1
+      - path: mixamoTest:Hips/mixamoTest:Spine/mixamoTest:Spine1/mixamoTest:Spine2/mixamoTest:RightShoulder/mixamoTest:RightArm/mixamoTest:RightForeArm/mixamoTest:RightHand/mixamoTest:RightHandThumb1/mixamoTest:RightHandThumb2/mixamoTest:RightHandThumb3/mixamoTest:RightHandThumb4
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

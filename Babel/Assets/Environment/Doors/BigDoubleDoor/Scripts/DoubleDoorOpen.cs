@@ -40,7 +40,7 @@ namespace Assets.Environment.Scripts
             _endRotation = new Vector3(_startRotation.x, _startRotation.y + degreeValue, _startRotation.z);
 
             _startRotation2 = door2.transform.eulerAngles;
-            _endRotation2 = new Vector3(_startRotation2.x, -degreeValue, _startRotation2.z);
+            _endRotation2 = new Vector3(_startRotation2.x, _startRotation.y - degreeValue, _startRotation2.z);
             // Get all IInteractables
             _interactables = new List<IInteractable>();
             foreach (var interactable in Interactables)
@@ -60,11 +60,7 @@ namespace Assets.Environment.Scripts
             {
                 door2.transform.eulerAngles = Vector3.MoveTowards(door2.transform.eulerAngles, _objectIsShown ? _endRotation2 : _startRotation2, Time.deltaTime * MovementSpeed);
             }
-        //else
-        //{
-        //    door2.transform.eulerAngles = Vector3.MoveTowards(door2.transform.eulerAngles, _objectIsShown ? _endRotation2 : _startRotation2, Time.deltaTime * MovementSpeed);
-        //}
-    }
+        }
 
         IEnumerator CheckForInputs()
         {

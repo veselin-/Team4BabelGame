@@ -9,7 +9,7 @@ namespace Assets.Core.GameMaster.Scripts
 {
     public class SpawnPlayers : MonoBehaviour
     {
-        public GameObject CharactorPrefab;
+        public GameObject CharactorPrefab, SideKickPrefab;
 
         public Transform PlayerSpawnPoint;
         public Transform SidekickSpawnPoint;
@@ -23,7 +23,7 @@ namespace Assets.Core.GameMaster.Scripts
         // Use this for initialization
         void Awake ()
         {
-            var sidekick = (GameObject) Instantiate(CharactorPrefab, SidekickSpawnPoint.position, Quaternion.identity);
+            var sidekick = (GameObject) Instantiate(SideKickPrefab, SidekickSpawnPoint.position, Quaternion.identity);
             var player = (GameObject) Instantiate(CharactorPrefab, PlayerSpawnPoint.position, Quaternion.identity);
 
             sidekick.tag = Constants.Tags.SideKick;

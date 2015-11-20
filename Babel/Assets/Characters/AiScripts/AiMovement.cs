@@ -73,5 +73,10 @@ namespace Assets.Characters.AiScripts
                 root = root.parent;
             return root.GetComponentInChildren<PickupHandler>();
         }
+
+        public IState GetCurrentState()
+        {
+            return _currentState;
+        }
     }
 }

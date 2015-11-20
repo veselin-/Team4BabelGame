@@ -7,12 +7,18 @@ public class CameraManager : MonoBehaviour {
 	public Transform Player;
 	public Transform SideKick;
 
-	/*
+    public static bool HaveMovedCamera;
+    public static bool HaveRotatedCameraClock;
+    public static bool HaveRotatedCameraCounterClock;
+    public static bool HaveZoomedCamera;
+
+
+    /*
 	public Vector3 offset = new Vector3(-10f, 15f, -15f);
 	public Vector3 camRot = new Vector3(35f, 35f, 0f);
 	*/
 
-	private Transform _cameraHolder;
+    private Transform _cameraHolder;
 	private Transform _cameraZoom;
 
 	public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
@@ -83,7 +89,7 @@ public class CameraManager : MonoBehaviour {
 	
 	void DragCamera()
 	{
-		int touchCount = Input.touchCount;
+        int touchCount = Input.touchCount;
 
 		if (touchCount == 2) {
 			isCameraDragging = false;
@@ -118,7 +124,8 @@ public class CameraManager : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonUp (0)) {
-			isCameraDragging = false;
+            HaveMovedCamera = true;
+            isCameraDragging = false;
 			isCameraZooming = false;
 			isCameraRotating = false;
 
@@ -162,16 +169,22 @@ public class CameraManager : MonoBehaviour {
 
 			isCameraDragging = false;
 
-			if (angleOffset > 0.1f) {
+			if (angleOffset > 0.1f)
+			{
+			    
 				if (CrossVector.z > 0) {
-					transform.Rotate (Vector3.up, angleOffset * rotationSpeed);
+                    HaveRotatedCameraClock = true;
+                    transform.Rotate (Vector3.up, angleOffset * rotationSpeed);
 				} else if (CrossVector.z < 0) {
-					transform.Rotate (Vector3.up, -1f * angleOffset * rotationSpeed);
+                    HaveRotatedCameraCounterClock = true;
+                    transform.Rotate (Vector3.up, -1f * angleOffset * rotationSpeed);
 				}
 			}
 			//Debug.Log("angleOffset " + angleOffset);
 			//Debug.Log("f_touch_delta " + f_touch_delta);
-			if (Mathf.Abs (f_touch_delta) > 1f) {
+			if (Mathf.Abs (f_touch_delta) > 1f)
+			{
+			    HaveZoomedCamera = true;
 				if (f_touch_delta >= 0) {
 					//pinchZ -= new Vector3(0f,0f, pinchValue);
 					//pinchZ.z = Mathf.Clamp(pinchZ.z, MinPinch, MaxPinch);

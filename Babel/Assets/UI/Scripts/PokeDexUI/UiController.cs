@@ -11,6 +11,8 @@ public class UiController : MonoBehaviour
     public Animator bookAnim;
     public GameObject slidePanel;
     public GameObject _pokedexButton;
+    public GameObject closeUiBut;
+    public GameObject menuMask;
     NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
 	private CameraManager _cameraManager;
@@ -20,6 +22,7 @@ public class UiController : MonoBehaviour
     private float sideKickSpeed;
 	//private GameObject _pokedexButton;
 	private GameObject _pauseCanvas;
+    int hotbarOpen = 0;
 
     // Use this for initialization
     void Start () {
@@ -71,12 +74,36 @@ public class UiController : MonoBehaviour
 
     public void PokedexOpen()
     {
-        anim.SetTrigger("MenuToggle");
-		_cameraManager.enabled = false;
-		_playerMovement.enabled = false;
-		_audioManager.PokedexBtnOpenPlay ();
-        Time.timeScale = 0;
-		_pauseCanvas.SetActive (false);
+        if (hotbarOpen == 2)
+        {
+            anim.SetTrigger("MenuToggle");
+            _cameraManager.enabled = false;
+            _playerMovement.enabled = false;
+            _audioManager.PokedexBtnOpenPlay();
+            Time.timeScale = 0;
+            _pauseCanvas.SetActive(false);
+            closeUiBut.SetActive(true);
+            menuMask.GetComponent<ScrollRect>().enabled = true;
+        }
+    }
+
+    public void HotbarPokedexOpen()
+    {
+        if(hotbarOpen == 1)
+        {
+            anim.SetTrigger("MenuToggle");
+            //_cameraManager.enabled = false;
+            //_playerMovement.enabled = false;
+            _audioManager.PokedexBtnOpenPlay();
+            //_pauseCanvas.SetActive(false);
+            menuMask.GetComponent<ScrollRect>().enabled = false;
+            menuMask.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0;
+        }
+    }
+
+    public void hotbarOpenPlusOne()
+    {
+        hotbarOpen += 1;
     }
 
     public void PokedexClose()
@@ -86,6 +113,7 @@ public class UiController : MonoBehaviour
 		_playerMovement.enabled = true;
 		_audioManager.PokedexBtnClosePlay ();
          Time.timeScale = 1;
+        hotbarOpen = 0;
 		_pauseCanvas.SetActive (true);
     }
 }

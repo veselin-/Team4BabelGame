@@ -43,7 +43,7 @@ public class SymbolLoader : MonoBehaviour
     {
         foreach (GameObject s in Signs)
         {
-           // Debug.Log("Updated book");
+            //Debug.Log("Updated book");
             s.GetComponent<SymbolHandler>().UpdateSymbol();
         }
 

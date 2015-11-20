@@ -10,6 +10,7 @@ public class UiController : MonoBehaviour
     public ScrollRect scrollRect;
     public Animator bookAnim;
     public GameObject slidePanel;
+    public GameObject _pokedexButton;
     NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
 	private CameraManager _cameraManager;
@@ -17,7 +18,7 @@ public class UiController : MonoBehaviour
 
     private float playerSpeed;
     private float sideKickSpeed;
-	private GameObject _pokedexButton;
+	//private GameObject _pokedexButton;
 	private GameObject _pauseCanvas;
 
     // Use this for initialization
@@ -27,7 +28,7 @@ public class UiController : MonoBehaviour
 		_playerMovement = GameObject.FindObjectOfType<PlayerMovement> ().GetComponent<PlayerMovement> ();
         navMeshP = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
         navMeshS = GameObject.FindGameObjectWithTag("SideKick").GetComponent<NavMeshAgent>();
-		_pokedexButton = transform.FindChild ("Button").gameObject;
+		//_pokedexButton = transform.FindChild ("Button").gameObject;
 		_pauseCanvas = GameObject.FindObjectOfType<PauseScreen> ().gameObject;
         anim = GetComponent<Animator>();
     }
@@ -39,24 +40,17 @@ public class UiController : MonoBehaviour
 
     public void NewSignCreation(int id)
     {
-		Debug.Log ("NewSignCreation");
+		//Debug.Log ("NewSignCreation");
 		_playerMovement.enabled = false;
 		_cameraManager.enabled = false;
         CreateNewSymbol.SymbolID = id;
         scrollRect.horizontalNormalizedPosition = 0f;
-        anim.SetTrigger("MenuToggle");
+        anim.SetTrigger("FullyEnter");
         anim.SetBool("CreatingSign", true);
         bookAnim.SetBool("CreatingSign", true);
         bookAnim.SetTrigger("CreationToggle");
         slidePanel.SetActive(false);
-       playerSpeed = navMeshP.speed;
-       sideKickSpeed = navMeshS.speed;
-
-        navMeshP.speed = 0f;
-        navMeshS.speed = 0f;
-
         Time.timeScale = 0;
-
 		_pokedexButton.SetActive (false);
 		_pauseCanvas.SetActive (false);
     }
@@ -68,12 +62,8 @@ public class UiController : MonoBehaviour
         anim.SetBool("CreatingSign", false);
         bookAnim.SetBool("CreatingSign", false);
         bookAnim.SetTrigger("CreationToggle");
-        anim.SetTrigger("MenuToggle");
+        anim.SetTrigger("MenuExit");
         slidePanel.SetActive(true);
-        //  navMeshP.ResetPath();
-        //  navMeshS.ResetPath();
-        navMeshP.speed = playerSpeed;
-        navMeshS.speed = sideKickSpeed;
         Time.timeScale = 1;
 		_pokedexButton.SetActive (true);
 		_pauseCanvas.SetActive (true);
@@ -81,29 +71,20 @@ public class UiController : MonoBehaviour
 
     public void PokedexOpen()
     {
+        anim.SetTrigger("MenuToggle");
 		_cameraManager.enabled = false;
 		_playerMovement.enabled = false;
 		_audioManager.PokedexBtnOpenPlay ();
-        //   navMeshP.Stop();
-        //   navMeshS.Stop();
-        playerSpeed = navMeshP.speed;
-        sideKickSpeed = navMeshS.speed;
-
-        navMeshP.speed = 0f;
-        navMeshS.speed = 0f;
         Time.timeScale = 0;
 		_pauseCanvas.SetActive (false);
     }
 
     public void PokedexClose()
     {
-		_cameraManager.enabled = true;
+        anim.SetTrigger("MenuExit");
+        _cameraManager.enabled = true;
 		_playerMovement.enabled = true;
 		_audioManager.PokedexBtnClosePlay ();
-        //   navMeshP.ResetPath();
-        //   navMeshS.ResetPath();
-        navMeshP.speed = playerSpeed;
-        navMeshS.speed = sideKickSpeed;
          Time.timeScale = 1;
 		_pauseCanvas.SetActive (true);
     }

@@ -16,6 +16,8 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private float[] steps;
     public int menuCount;
 
+    public GameObject[] Pips;
+
     // Use this for initialization
     void Start ()
     {
@@ -40,6 +42,25 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 	// Update is called once per frame
 	void Update () {
 
+	    if (scrollRect.horizontalNormalizedPosition < 0.16f)
+	    {
+	        Pips[0].GetComponent<Image>().color = Color.blue;
+            Pips[1].GetComponent<Image>().color = Color.black;
+            Pips[2].GetComponent<Image>().color = Color.black;
+        }
+	    else if (scrollRect.horizontalNormalizedPosition > 0.16f && scrollRect.horizontalNormalizedPosition < 0.56f)
+	    {
+            Pips[0].GetComponent<Image>().color = Color.black;
+            Pips[1].GetComponent<Image>().color = Color.blue;
+            Pips[2].GetComponent<Image>().color = Color.black;
+        }
+	    else
+	    {
+            Pips[0].GetComponent<Image>().color = Color.black;
+            Pips[1].GetComponent<Image>().color = Color.black;
+            Pips[2].GetComponent<Image>().color = Color.blue;
+        }
+
 
 	}
 
@@ -63,7 +84,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
 
             distanceNew = Mathf.Abs(startPos - s);
-           // Debug.Log(distanceNew);
+            Debug.Log(distanceNew);
             if (distanceNew < distanceShortest)
             {
                 distanceShortest = distanceNew;
@@ -80,7 +101,7 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
             scrollRect.horizontalNormalizedPosition = Mathf.Lerp(startPos, endPos, timer);
 
-            timer += Time.deltaTime * 5f;
+            timer += Time.unscaledDeltaTime * 5f;
 
             yield return new WaitForEndOfFrame();
         }

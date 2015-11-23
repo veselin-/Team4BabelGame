@@ -81,14 +81,12 @@ public class UiController : MonoBehaviour
         {
             if (arrowBut.transform.rotation.z == 0)
             {
-                Debug.Log("IM IN THE IF SENTENCE");
                 anim.SetTrigger("MenuExit");
                 hotbarOpen = 1;
                 HotbarPokedexOpen();
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
-            Debug.Log("I CHANGED THE ROTATION!");
             anim.SetTrigger("MenuToggle");
             _cameraManager.enabled = false;
             _playerMovement.enabled = false;

@@ -16,6 +16,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public Text hintText;
     bool _pressed, _hold;
     float timeForHold = 0;
+    private GameObject gameui;
     //DatabaseManager dm;
     //AudioManager am;
 
@@ -26,6 +27,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	    if (sideKick == null) return;
 	    _sidekick = sideKick.GetComponent<SidekickControls>();
 	    isb = GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).GetComponent<InteractableSpeechBubble>();
+        gameui = GameObject.FindGameObjectWithTag("GameUI");
         //am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
         //dm = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
     }
@@ -44,9 +46,43 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     void ChangeHintText()
     {
-        hintText.transform.position = transform.position + new Vector3(0, 5, 0);
-        hintText.text = "WTF HER ER DIT MATAFAKAN HINT";
-        Debug.Log("sdgh klsdghkl sdgkl ksdhgkl s");
+        hintText.transform.position = transform.position + new Vector3(0, 22, 0);
+        switch (gameObject.GetComponent<SymbolHandler>().ID)
+        {
+            case 0:
+                hintText.text = "A waving gesture for uniting people.";
+                break;
+            case 1:
+                hintText.text = "If you tell a dog to sit it ***** put.";
+                break;
+            case 2:
+                hintText.text = "Requires pulling.. activates mechanism..";
+                break;
+            case 3:
+                hintText.text = "It’s brown and can be set on fire.";
+                break;
+            case 4:
+                hintText.text = "It looks like a pan.. but I wouldn't eat anything from it!";
+                break;
+            case 5:
+                hintText.text = "Can be used to transport fluids.";
+                break;
+            case 6:
+                hintText.text = "It can contain several buckets of water, looks like a birdbath.";
+                break;
+            case 7:
+                hintText.text = "An endless supply of water at your disposal!";
+                break;
+            case 8:
+                hintText.text = "It’s tiny, it’s shiny.. but it’s the only means to get out!";
+                break;
+            case 9:
+                hintText.text = "Can be opened with a certain shiny little object.";
+                break;
+            case 10:
+                hintText.text = "Give or take!";
+                break;
+        }
         _hold = true;
     }
 
@@ -74,14 +110,15 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         var sentence = GetSentence();
         if(_sidekick == null) return;
-        if (sentence.Count == 0)
+        if (transform.GetChild(2).GetComponent<Image>().sprite == null && transform.GetChild(0).GetComponent<Image>().sprite == null && transform.GetChild(1).GetComponent<Image>().sprite == null)
         {
             return;
         }
         else
         {
             _sidekick.ExecuteAction(sentence.FirstOrDefault());
-            //am.StartPlayCoroutine(ID);
+            isb.ActivatePlayerSignBubble(sentence);
+            gameui.GetComponent<UiController>().PokedexClose();
         }
     }
 
@@ -131,8 +168,6 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         // Debug.Log(sentence[3]);
 
         sentence.Add(gameObject.GetComponent<SymbolHandler>().ID);
-
-        isb.ActivatePlayerSignBubble(sentence);
         return sentence;
    }
 

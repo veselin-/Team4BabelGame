@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Assets.Core.Configuration;
 
 public class BackButtonHandler : MonoBehaviour {
 
@@ -32,11 +33,22 @@ public class BackButtonHandler : MonoBehaviour {
 
     private void defaultAction()
     {
-        Application.LoadLevel(mainScene);
+        //Application.LoadLevel(mainScene);
+        if (Time.timeScale == 1)
+        {
+            GameObject.FindObjectOfType<PauseScreen>().PausePanelBtn();
+        }
+        else
+        {
+            GameObject.FindObjectOfType<PauseScreen>().PausePanelBackBtn();
+        }
+        
     }
 
     private void mainMenuActions()
     {
+
+       // GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().ActivateDialogWindow("Exit Game", "Do you want to exit the game?", true);
         Application.Quit();
     }
 }

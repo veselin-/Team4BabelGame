@@ -14,6 +14,7 @@ public class CharacterAnimMovement : MonoBehaviour {
 
 	//[SerializeField] float m_MoveSpeedMultiplier = 1f;
 	[SerializeField] float m_AnimSpeedMultiplier = 1f;
+	private Footsteps footsteps;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,8 @@ public class CharacterAnimMovement : MonoBehaviour {
 		agent.updateRotation = true;
 		agent.updatePosition = true;
 		anim.applyRootMotion = true;
+
+		footsteps = GetComponentInChildren<Footsteps> ();
 	}
 	
 	// Update is called once per frame
@@ -75,4 +78,10 @@ public class CharacterAnimMovement : MonoBehaviour {
 		}
 
 	}
+
+	public void Footsteps()
+	{
+		footsteps.RandomFootsteps ();
+	}
+
 }

@@ -16,12 +16,12 @@ public class PauseScreen : MonoBehaviour {
 
 	private AudioManager _audioManager;
 	private CameraManager _cameraManager;
-	public GameObject _pokedexButton;
+	private GameObject _pokedexButton;
 	private PlayerMovement _player;
 	// Use this for initialization
 	void Start () {
 		_player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMovement>();
-		//_pokedexButton = GameObject.FindObjectOfType<UiController>().transform.FindChild ("Button").gameObject;
+		_pokedexButton = GameObject.FindGameObjectWithTag("PokedexButton");
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 		_cameraManager = GameObject.FindObjectOfType<CameraManager> ().GetComponent<CameraManager> ();
 		SettingsPanel.SetActive (false);

@@ -201,9 +201,7 @@ public class SideKickWayPoint : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
         }
-
-
-
+        
         while (UseText && AdvanceSpeechByNSteps > 0)
         {
             speech.GetNextSpeech();
@@ -249,6 +247,15 @@ public class SideKickWayPoint : MonoBehaviour
             CameraManager.HaveRotatedCameraClock = false;
             CameraManager.HaveRotatedCameraCounterClock = false;
             while (!(CameraManager.HaveRotatedCameraClock && CameraManager.HaveRotatedCameraCounterClock))
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        if (WaitForCamZoom)
+        {
+            CameraManager.HaveZoomedCamera = false;
+            while (!CameraManager.HaveZoomedCamera)
             {
                 yield return new WaitForSeconds(0.1f);
             }

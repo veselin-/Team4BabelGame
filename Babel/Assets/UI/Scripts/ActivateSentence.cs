@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
+using UnityEngine.EventSystems;
 
-public class ActivateSentence : MonoBehaviour
+public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-
     //public GameObject[] SentenceSlots;
     private SidekickControls _sidekick;
     //public int ID;
     private InteractableSpeechBubble isb;
+    public Text hintText;
+    bool _pressed, _hold;
+    float timeForHold = 0;
     //DatabaseManager dm;
     //AudioManager am;
 
@@ -28,8 +32,43 @@ public class ActivateSentence : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (_pressed)
+        {
+            timeForHold += Time.unscaledDeltaTime;
+            if(timeForHold > 0.25)
+            {
+                ChangeHintText();
+            }
+        }
 	}
+
+    void ChangeHintText()
+    {
+        hintText.transform.position = transform.position + new Vector3(0, 5, 0);
+        hintText.text = "WTF HER ER DIT MATAFAKAN HINT";
+        Debug.Log("sdgh klsdghkl sdgkl ksdhgkl s");
+        _hold = true;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("DOWN");
+        _pressed = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (!_hold)
+        {
+            testFunc();
+        }
+        Debug.Log("UP");
+        hintText.text = "";
+        hintText.transform.position = new Vector3(100, 100, 100);
+        timeForHold = 0;
+        _pressed = false;
+        _hold = false;
+    }
 
     public void testFunc()
     {

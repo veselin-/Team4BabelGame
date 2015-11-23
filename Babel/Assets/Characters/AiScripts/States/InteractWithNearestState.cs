@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using Assets.Core.InteractableObjects;
 using Assets.Core.NavMesh;
@@ -13,10 +14,17 @@ namespace Assets.Characters.AiScripts.States
         private float _waitUntill;
         private State _state;
         private Vector2 _interactGoalPosition;
+        private CharacterAnimMovement cam;
+
+        private GameObject _interactGameObject;
         
         public InteractWithNearestState(NavMeshAgent agnet, string tag, GameObject pickup)
         {
             _agent = agnet;
+
+            cam = _agent.gameObject.GetComponent<CharacterAnimMovement>();
+
+            _interactGameObject = pickup;
 
             var interactables = GameObject.FindGameObjectsWithTag(tag);
             if(interactables.Length < 1)
@@ -41,8 +49,11 @@ namespace Assets.Characters.AiScripts.States
 
         public InteractWithNearestState(NavMeshAgent agent, GameObject goal)
         {
+            
             _agent = agent;
+            cam = _agent.gameObject.GetComponent<CharacterAnimMovement>();
             _intaractableGoal = goal.GetComponent<IInteractable>();
+            _interactGameObject = goal;
         }
 
         public float WaitingTime { get; set; }
@@ -61,8 +72,18 @@ namespace Assets.Characters.AiScripts.States
                     if (_agent.HasReachedTarget())
                     {
                         _agent.ResetPath();
-                        var t = Vector2.Distance(_interactGoalPosition, new Vector2(_agent.transform.position.x, _agent.transform.position.z));
-                        _state = t < .6 ? State.Interact : State.Done;
+
+                        if (_agent.enabled)
+                        {
+                          //  cam.StartAdjustPosition(_interactGameObject);
+                        }
+
+                        if (_agent.updateRotation)
+                        {
+                            var t = Vector2.Distance(_interactGoalPosition,
+                                new Vector2(_agent.transform.position.x, _agent.transform.position.z));
+                            _state = t < .6 ? State.Interact : State.Done;
+                        }
                     }
                     return;
                 case State.Interact:
@@ -93,5 +114,7 @@ namespace Assets.Characters.AiScripts.States
         {
             Neutral, GoToIntactable, Interact, WaitSomeTime, Done
         }
+
+
     }
 }

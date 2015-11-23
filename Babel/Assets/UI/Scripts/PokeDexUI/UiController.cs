@@ -81,9 +81,11 @@ public class UiController : MonoBehaviour
         {
             if (arrowBut.transform.rotation.z == 0)
             {
-                anim.SetTrigger("MenuExit");
+                anim.SetTrigger("HalfExit");
                 hotbarOpen = 1;
-                HotbarPokedexOpen();
+                //HotbarPokedexOpen();
+                arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
+                hintPanel.SetActive(false);
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -95,6 +97,7 @@ public class UiController : MonoBehaviour
             _pauseCanvas.SetActive(false);
             closeUiBut.SetActive(true);
             hintPanel.SetActive(true);
+            Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
             menuMask.GetComponent<ScrollRect>().enabled = true;
         }
     }
@@ -104,7 +107,6 @@ public class UiController : MonoBehaviour
         if(hotbarOpen == 1)
         {
             anim.SetTrigger("MenuToggle");
-            arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
             _cameraManager.enabled = true;
             _playerMovement.enabled = true;
             _audioManager.PokedexBtnOpenPlay();

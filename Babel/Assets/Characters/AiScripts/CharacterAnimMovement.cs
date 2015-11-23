@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.Configuration;
 
 public class CharacterAnimMovement : MonoBehaviour {
 
@@ -14,7 +15,6 @@ public class CharacterAnimMovement : MonoBehaviour {
 
 	//[SerializeField] float m_MoveSpeedMultiplier = 1f;
 	[SerializeField] float m_AnimSpeedMultiplier = 1f;
-	private Footsteps footsteps;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +24,6 @@ public class CharacterAnimMovement : MonoBehaviour {
 		agent.updateRotation = true;
 		agent.updatePosition = true;
 		anim.applyRootMotion = true;
-
-		footsteps = GetComponentInChildren<Footsteps> ();
 	}
 	
 	// Update is called once per frame
@@ -79,9 +77,78 @@ public class CharacterAnimMovement : MonoBehaviour {
 
 	}
 
-	public void Footsteps()
-	{
-		footsteps.RandomFootsteps ();
-	}
+    public void StartAdjustPosition(GameObject interactable)
+    {
+        StartCoroutine(AdjustPosition(interactable));
+    }
+
+   IEnumerator AdjustPosition(GameObject interactable)
+   {
+       Vector3 fwd;
+       Vector3 target;
+
+
+        agent.updateRotation = false;
+
+        if (interactable.tag == Constants.Tags.Lever)
+       {
+            fwd = transform.forward.normalized;
+            fwd.y = 0f;
+
+            target = (interactable.transform.position - transform.position).normalized;
+            target.y = 0f;
+
+           // Debug.Log(fwd + " " + target);
+
+            while (Vector3.Dot(fwd, target) < 0.98f)
+            {
+
+                //Debug.Log(interactable.transform.position);
+
+             //   interactable.transform.position = new Vector3(interactable.transform.position.x, 0, interactable.transform.position.z);
+
+                fwd = transform.forward.normalized;
+                fwd.y = 0f;
+
+                target = (interactable.transform.position - transform.position).normalized;
+                target.y = 0f;
+
+                float step = Time.deltaTime;
+                Vector3 newDir = Vector3.RotateTowards(fwd, target, 1 * step, 0.0F);
+                newDir.y = 0;
+                transform.rotation = Quaternion.LookRotation(newDir);
+              //  Debug.Log("running coroutine " + Vector3.Dot(fwd, target));
+                yield return new WaitForEndOfFrame();
+            }
+        }
+       else if (interactable.tag == Constants.Tags.Brazier)
+       {
+            fwd = transform.forward.normalized;
+            fwd.y = 0f;
+
+            target = (interactable.transform.position - transform.position).normalized;
+            target.y = 0f;
+
+            while (Vector3.Dot(fwd, target) < 0.98f)
+            {
+
+                fwd = transform.forward.normalized;
+                fwd.y = 0f;
+
+                target = (interactable.transform.position - transform.position).normalized;
+                target.y = 0f;
+
+                float step = Time.deltaTime;
+                Vector3 newDir = Vector3.RotateTowards(fwd, target, 1 * step, 0.0F);
+                newDir.y = 0;
+                transform.rotation = Quaternion.LookRotation(newDir);
+             //   Debug.Log("running coroutine" + Vector3.Dot(fwd, target));
+                yield return new WaitForEndOfFrame();
+            }
+
+        }
+
+        agent.updateRotation = true;
+    }
 
 }

@@ -1,53 +1,85 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
-using System.Linq;
-using Assets.Core.Configuration;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
+//  This script will be updated in Part 2 of this 2 part series.
 public class WindowHandler : MonoBehaviour
 {
+
+    public Text Content;
+    public Text Header;
+    public Button YesButton;
+    public Button NoButton;
     public GameObject DialogWindow;
 
+    private static WindowHandler _windowHandler;
 
-    private void Awake()
+    public static WindowHandler Instance()
     {
-      //  DontDestroyOnLoad(this.gameObject);
-    }
-
-
-    public void  ActivateDialogWindow(string header, string content, bool canBeClosed)
-    {
-        
-        Time.timeScale = 0f;
-     
-        Text[] allTextComponents = DialogWindow.GetComponentsInChildren<Text>(true);
-
-        //0 is the button text, 1 is header and 2 is content
-        allTextComponents[1].text = header;
-        allTextComponents[2].text = content;
-
-        DialogWindow.SetActive(true);
-
-        //If it is an error we don't allow the user to close the window
-        if (!canBeClosed)
+        if (!_windowHandler)
         {
-            Button[] but = DialogWindow.GetComponentsInChildren<Button>(true);
-            but[0].gameObject.SetActive(false);
+            _windowHandler = FindObjectOfType(typeof(WindowHandler)) as WindowHandler;
+            if (!_windowHandler)
+                Debug.LogError("There needs to be one active WindowHandler script on a GameObject in your scene.");
         }
 
-
-
+        return _windowHandler;
     }
 
-    public void DeactivateDialogWindow()
+    public void CreateConfirmDialog(string header, string content, string yesOptionText, string noOptionText, UnityAction yesEvent, UnityAction noEvent)
+    {
+        SetDefaultValues(header, content);
+
+        YesButton.GetComponentInChildren<Text>().text = yesOptionText;
+        YesButton.onClick.RemoveAllListeners();
+        if(yesEvent != null)
+             YesButton.onClick.AddListener(yesEvent);
+        YesButton.onClick.AddListener(ClosePanel);
+
+        NoButton.GetComponentInChildren<Text>().text = noOptionText;
+        NoButton.onClick.RemoveAllListeners();
+        if (noEvent != null)
+            NoButton.onClick.AddListener(noEvent);
+        NoButton.onClick.AddListener(ClosePanel);
+    }
+
+    public void CreateInfoDialog(string header, string content, string yesOptionText, UnityAction yesEvent)
+    {
+        SetDefaultValues(header, content);
+
+        YesButton.GetComponentInChildren<Text>().text = yesOptionText;
+        YesButton.onClick.RemoveAllListeners();
+        if (yesEvent != null)
+            YesButton.onClick.AddListener(yesEvent);
+        YesButton.onClick.AddListener(ClosePanel);
+
+        YesButton.gameObject.SetActive(true);
+        NoButton.gameObject.SetActive(false);
+    }
+
+    public void CreateStaticDialog(string header, string content)
+    {
+        SetDefaultValues(header, content);
+
+        YesButton.gameObject.SetActive(false);
+        NoButton.gameObject.SetActive(false);
+    }
+
+
+    private void SetDefaultValues(string header, string content)
+    {
+        DialogWindow.SetActive(true);
+        Content.text = content;
+        Header.text = header;
+        Time.timeScale = 0f;
+    }
+
+
+    public void ClosePanel()
     {
         DialogWindow.SetActive(false);
         Time.timeScale = 1f;
-
     }
-
-
 
 
 }

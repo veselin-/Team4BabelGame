@@ -86,6 +86,7 @@ public class UiController : MonoBehaviour
                 //HotbarPokedexOpen();
                 arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
                 hintPanel.SetActive(false);
+                _pauseCanvas.SetActive(true);
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);

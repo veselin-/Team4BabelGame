@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using Assets.Core.Configuration;
 using UnityEngine.Audio;
 
@@ -340,7 +341,7 @@ public class AudioManager : MonoBehaviour {
 	// female voices -----------------------------
 	public void FemaleSyllabusSoundPlay(int index)
 	{
-	        Player.clip = FemaleSyllabusList[index];
+	        Player.clip = FemaleSyllabusList.Length > index ? FemaleSyllabusList[index] : FemaleSyllabusList.FirstOrDefault();
 	        Player.Play();
 	    
 	    //FemaleSyllabusList[index].Play();

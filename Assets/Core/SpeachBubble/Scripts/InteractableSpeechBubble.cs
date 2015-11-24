@@ -44,9 +44,10 @@ public class InteractableSpeechBubble : MonoBehaviour {
     public int CurrentPlayerSignId;
 
     // Use this for initialization
-    void Start () {
-
-		if (GameObject.FindGameObjectWithTag (Constants.Tags.Player)) {
+    void Start ()
+    {
+        CurrentPlayerSignId = -1;
+        if (GameObject.FindGameObjectWithTag (Constants.Tags.Player)) {
 			player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
 			_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, player.transform.position);
 			//PlayerSpeechBubble.transform.position = _playerScreenPos;

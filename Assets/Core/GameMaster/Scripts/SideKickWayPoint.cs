@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.States;
 using Assets.Characters.Player.Scripts;
@@ -13,6 +14,9 @@ using Assets.Environment.Scripts;
 public class SideKickWayPoint : MonoBehaviour
 {
     GameObject obstacle;
+
+    [Header("Interactable..")]
+    public bool SetFakeInteractable;
 
     [Header("Attributes with a NI at the end is not implemented yet.")]
     public bool IUnderstandMaster = false;
@@ -41,6 +45,8 @@ public class SideKickWayPoint : MonoBehaviour
     public bool WaitForCamZoom = false;
     public bool WaitForitemBeeingPickedUp = false;
     public GameObject PickUp;
+    public bool WaitForPlayerSpeek;
+    public int PlayerSpeekId;
     
     
 
@@ -274,6 +280,22 @@ public class SideKickWayPoint : MonoBehaviour
         if (WaitForSeconds)
         {
             yield return new WaitForSeconds(WaitTime);
+        }
+
+        if (WaitForPlayerSpeek)
+        {
+            var bubble = FindObjectOfType<InteractableSpeechBubble>();
+            while (bubble.CurrentPlayerSignId != PlayerSpeekId)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+            sidekick.GetComponent<SidekickControls>().ExecuteAction(PlayerSpeekId);
+        }
+
+
+        if (SetFakeInteractable)
+        {
+            GameObject.FindObjectOfType<FakeInteracable>().Activated = true;
         }
 
         sidekick.GetComponent<WaypointSystem>().NextWaypoint();

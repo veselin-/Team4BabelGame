@@ -15,6 +15,7 @@ public class UiController : MonoBehaviour
     public GameObject menuMask;
     public GameObject MinBut;
     public GameObject hintPanel;
+    public GameObject menuIndicator;
 
     NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
@@ -53,7 +54,16 @@ public class UiController : MonoBehaviour
 		_cameraManager.enabled = false;
         CreateNewSymbol.SymbolID = id;
         scrollRect.horizontalNormalizedPosition = 0f;
-        anim.SetTrigger("FullyEnter");
+        if(hotbarOpen == 1)
+        {
+            anim.SetTrigger("MenuToggle");
+        }
+        else
+        {
+            anim.SetTrigger("FullyEnter");
+        }
+        menuIndicator.SetActive(false);
+        MinBut.SetActive(false);
         anim.SetBool("CreatingSign", true);
         creation.SetActive(true);
         slidePanel.SetActive(false);
@@ -101,6 +111,7 @@ public class UiController : MonoBehaviour
             hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
             //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
             menuMask.GetComponent<ScrollRect>().enabled = true;
+            menuIndicator.SetActive(true);
         }
     }
 
@@ -154,6 +165,6 @@ public class UiController : MonoBehaviour
         hotbarOpen = 0;
 		_pauseCanvas.SetActive (true);
         MinBut.SetActive(false);
-        Debug.Log(hotbarOpen);
+        menuIndicator.SetActive(true);
     }
 }

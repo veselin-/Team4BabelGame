@@ -550,12 +550,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 9e381f95b41914e4f85822e8cfc957a1, type: 3}
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 20
-    m_MaxSize: 120
+    m_MaxSize: 55
     m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 11493636}
   m_OnClick:
     m_PersistentCalls:
@@ -655,8 +655,8 @@ MonoBehaviour:
   PlayerSpeechBubble: {fileID: 22439062}
   SideKickSpeechBubble: {fileID: 22495548}
   NarrativeSpeechBubble: {fileID: 22430116}
-  speechListEnglish: {fileID: 11400000, guid: 68bb5af54e9b6e143937aa44f5123301, type: 2}
-  speechListDanish: {fileID: 11400000, guid: dc6fd2dd85eba8d498438a1ec49f5493, type: 2}
+  speechListEnglish: {fileID: 11400000, guid: 805413265bdfbde4aa3d6eb1619c091d, type: 2}
+  speechListDanish: {fileID: 11400000, guid: 13357716adacd514b8a96048acbd1cb1, type: 2}
   narrativeEnglish: []
   narrativeDanish: []
   bubbleOffset: {x: 0, y: 5}
@@ -719,7 +719,7 @@ MonoBehaviour:
     m_NormalColor: {r: .272058845, g: .272058845, b: .272058845, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
-    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:
@@ -908,7 +908,7 @@ MonoBehaviour:
     m_NormalColor: {r: .272058845, g: .272058845, b: .272058845, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
-    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:
@@ -997,7 +997,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bd3e4fd6a4b32e345b3df6ef29f9f909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1056,7 +1056,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bd3e4fd6a4b32e345b3df6ef29f9f909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1265,10 +1265,10 @@ RectTransform:
   - {fileID: 22481678}
   m_Father: {fileID: 22482148}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: .197262451}
-  m_AnchoredPosition: {x: -.499450684, y: -.25}
-  m_SizeDelta: {x: 0, y: -.5}
+  m_AnchorMin: {x: 0, y: .110158458}
+  m_AnchorMax: {x: 1, y: .30400002}
+  m_AnchoredPosition: {x: -2.38419989e-06, y: 2.5}
+  m_SizeDelta: {x: 0, y: 4.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22439062
 RectTransform:
@@ -1321,7 +1321,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -58.999939, y: 77.9999695}
-  m_SizeDelta: {x: 200, y: 250}
+  m_SizeDelta: {x: 800, y: 700}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22478288
 RectTransform:
@@ -1338,7 +1338,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -59, y: 78}
-  m_SizeDelta: {x: 200, y: 250}
+  m_SizeDelta: {x: 800, y: 700}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22479374
 RectTransform:

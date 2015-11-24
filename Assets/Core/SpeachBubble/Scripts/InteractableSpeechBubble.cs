@@ -41,10 +41,13 @@ public class InteractableSpeechBubble : MonoBehaviour {
     public float PlayerSignBubbleStayTime = 5f;
     public GameObject SignPrefab;
 
-    // Use this for initialization
-    void Start () {
+    public int CurrentPlayerSignId;
 
-		if (GameObject.FindGameObjectWithTag (Constants.Tags.Player)) {
+    // Use this for initialization
+    void Start ()
+    {
+        CurrentPlayerSignId = -1;
+        if (GameObject.FindGameObjectWithTag (Constants.Tags.Player)) {
 			player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
 			_playerScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, player.transform.position);
 			//PlayerSpeechBubble.transform.position = _playerScreenPos;
@@ -192,8 +195,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
     public void ActivatePlayerSignBubble(List<int> ids)
     {
-        
 
+        CurrentPlayerSignId = ids[0];
         for (int i = PlayerSignBubble.childCount; i > 0; i--)
         {
             Destroy(PlayerSignBubble.GetChild(i - 1).gameObject);

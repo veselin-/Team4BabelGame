@@ -41,6 +41,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
     public float PlayerSignBubbleStayTime = 5f;
     public GameObject SignPrefab;
 
+    public int CurrentPlayerSignId;
+
     // Use this for initialization
     void Start () {
 
@@ -192,8 +194,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
     public void ActivatePlayerSignBubble(List<int> ids)
     {
-        
 
+        CurrentPlayerSignId = ids[0];
         for (int i = PlayerSignBubble.childCount; i > 0; i--)
         {
             Destroy(PlayerSignBubble.GetChild(i - 1).gameObject);

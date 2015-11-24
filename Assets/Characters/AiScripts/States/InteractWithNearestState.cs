@@ -33,6 +33,7 @@ namespace Assets.Characters.AiScripts.States
             
             foreach (var i in interactables)
             {
+                _interactGameObject = i;
                 var dest = i.GetComponent<IInteractable>();
                 if(!dest.CanThisBeInteractedWith(pickup)) continue;
                 var path = new NavMeshPath();
@@ -76,7 +77,7 @@ namespace Assets.Characters.AiScripts.States
 
                         if (_agent.enabled)
                         {
-                           // cam.StartAdjustPosition(_interactGameObject);
+                            cam.StartAdjustPosition(_interactGameObject);
                         }
 
                         if (_agent.updateRotation)

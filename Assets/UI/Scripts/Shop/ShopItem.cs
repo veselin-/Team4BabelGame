@@ -4,8 +4,9 @@ using System.Collections;
 
 public class ShopItem : MonoBehaviour{
 
-    public GameObject inventoryCan, item;
-    public Image buyButton, itemImg;
+    public GameObject packOfObjects;
+    public Image buyButton;
+    //itemImg;
     public Sprite purchased;
     public Text costText;
     public int cost;
@@ -15,15 +16,24 @@ public class ShopItem : MonoBehaviour{
         IsBought();
     }
 
+    void Update()
+    {
+        if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
+        {
+            APack(packOfObjects);
+        }
+    }
+
     public void BuyThisItem()
     {
-        if (PlayerPrefsBool.GetBool(item.name) == true)
+        //if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
+        //{
+        //    APack(packOfObjects);
+        //}
+        //else 
+        if(PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool(packOfObjects.name) == false)
         {
-            inventoryCan.SetActive(true);
-        }
-        else if(PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool(item.name) == false)
-        {
-            PlayerPrefsBool.SetBool(item.name, true);
+            PlayerPrefsBool.SetBool(packOfObjects.name, true);
             IsBought();
             PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) - cost);
         }
@@ -35,11 +45,20 @@ public class ShopItem : MonoBehaviour{
 
     void IsBought()
     {
-        if (PlayerPrefsBool.GetBool(item.name) == true)
+        if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
         {
             buyButton.sprite = purchased;
-            item.SetActive(true);
+            APack(packOfObjects);
         }
+    }
+
+    void APack(GameObject pack)
+    {
+        pack.transform.GetChild(0).GetComponent<Text>().enabled = false;
+        pack.transform.GetChild(1).gameObject.SetActive(true);
+        pack.transform.GetChild(2).gameObject.SetActive(true);
+        pack.transform.GetChild(3).gameObject.SetActive(true);
+        pack.transform.GetChild(4).gameObject.SetActive(true);
     }
 }
 

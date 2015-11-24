@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
 using Assets.Core.NavMesh;
 using UnityEngine;
@@ -75,7 +76,7 @@ namespace Assets.Characters.AiScripts.States
 
                         if (_agent.enabled)
                         {
-                          //  cam.StartAdjustPosition(_interactGameObject);
+                            cam.StartAdjustPosition(_interactGameObject);
                         }
 
                         if (_agent.updateRotation)
@@ -91,8 +92,18 @@ namespace Assets.Characters.AiScripts.States
                     var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
                     puh.PickUpItem(returnItem);
 
-                    _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
-
+                    if (_interactGameObject.tag == Constants.Tags.Lever)
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
+                    }
+                    else if (_interactGameObject.tag == Constants.Tags.Brazier)
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
+                    }
+                    else
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
+                    }
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;
                     return;

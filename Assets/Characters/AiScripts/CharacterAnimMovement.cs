@@ -90,63 +90,68 @@ public class CharacterAnimMovement : MonoBehaviour {
 
         agent.updateRotation = false;
 
-        if (interactable.tag == Constants.Tags.Lever)
-       {
             fwd = transform.forward.normalized;
             fwd.y = 0f;
 
-            target = (interactable.transform.position - transform.position).normalized;
-            target.y = 0f;
+          
 
-           // Debug.Log(fwd + " " + target);
+            target = (new Vector3(interactable.transform.position.x, transform.position.y, interactable.transform.position.z) - transform.position).normalized;
+            //target.y = 0f;
+
+
+           
+            // Debug.Log(fwd + " " + target);
 
             while (Vector3.Dot(fwd, target) < 0.98f)
             {
 
                 //Debug.Log(interactable.transform.position);
 
-             //   interactable.transform.position = new Vector3(interactable.transform.position.x, 0, interactable.transform.position.z);
+                //   interactable.transform.position = new Vector3(interactable.transform.position.x, 0, interactable.transform.position.z);
+
+                Debug.DrawLine(fwd, fwd*10, Color.red, 1f);
 
                 fwd = transform.forward.normalized;
                 fwd.y = 0f;
 
-                target = (interactable.transform.position - transform.position).normalized;
-                target.y = 0f;
+                target = (new Vector3(interactable.transform.position.x, transform.position.y, interactable.transform.position.z) - transform.position).normalized;
+               // target = (interactable.transform.position - transform.position).normalized;
+              //  target.y = 0f;
 
                 float step = Time.deltaTime;
-                Vector3 newDir = Vector3.RotateTowards(fwd, target, 1 * step, 0.0F);
+                Vector3 newDir = Vector3.RotateTowards(fwd, target, 6 * step, 0.0F);
                 newDir.y = 0;
                 transform.rotation = Quaternion.LookRotation(newDir);
-              //  Debug.Log("running coroutine " + Vector3.Dot(fwd, target));
+                Debug.Log("running coroutine " + Vector3.Dot(fwd, target));
                 yield return new WaitForEndOfFrame();
             }
-        }
-       else if (interactable.tag == Constants.Tags.Brazier)
-       {
-            fwd = transform.forward.normalized;
-            fwd.y = 0f;
+        
+       //else if (interactable.tag == Constants.Tags.Brazier)
+       //{
+       //     fwd = transform.forward.normalized;
+       //     fwd.y = 0f;
 
-            target = (interactable.transform.position - transform.position).normalized;
-            target.y = 0f;
+       //     target = (interactable.transform.position - transform.position).normalized;
+       //     target.y = 0f;
 
-            while (Vector3.Dot(fwd, target) < 0.98f)
-            {
+       //     while (Vector3.Dot(fwd, target) < 0.98f)
+       //     {
 
-                fwd = transform.forward.normalized;
-                fwd.y = 0f;
+       //         fwd = transform.forward.normalized;
+       //         fwd.y = 0f;
 
-                target = (interactable.transform.position - transform.position).normalized;
-                target.y = 0f;
+       //         target = (interactable.transform.position - transform.position).normalized;
+       //         target.y = 0f;
 
-                float step = Time.deltaTime;
-                Vector3 newDir = Vector3.RotateTowards(fwd, target, 1 * step, 0.0F);
-                newDir.y = 0;
-                transform.rotation = Quaternion.LookRotation(newDir);
-             //   Debug.Log("running coroutine" + Vector3.Dot(fwd, target));
-                yield return new WaitForEndOfFrame();
-            }
+       //         float step = Time.deltaTime;
+       //         Vector3 newDir = Vector3.RotateTowards(fwd, target, 1 * step, 0.0F);
+       //         newDir.y = 0;
+       //         transform.rotation = Quaternion.LookRotation(newDir);
+       //      //   Debug.Log("running coroutine" + Vector3.Dot(fwd, target));
+       //         yield return new WaitForEndOfFrame();
+       //     }
 
-        }
+       // }
 
         agent.updateRotation = true;
     }

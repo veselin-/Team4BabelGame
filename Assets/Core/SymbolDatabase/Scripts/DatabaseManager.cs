@@ -34,7 +34,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
         catch (Exception)
         {
-            _windowHandler.ActivateDialogWindow("Error", "Couldn't load database. Please reinstall the game from Play Store", false);
+            _windowHandler.CreateStaticDialog("Error", "Couldn't load database. Please reinstall the game from Play Store");
         }
 
     }
@@ -200,7 +200,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Alphabet") as TextAsset;
             if (bindata == null)
-                _windowHandler.ActivateDialogWindow("Error", "Error while loading the alphabet database. Please reinstall the game from Play Store", false);
+                _windowHandler.CreateStaticDialog("Error", "Error while loading the alphabet database. Please reinstall the game from Play Store");
             else
                 File.WriteAllBytes(alphabetPath, bindata.bytes);
         }
@@ -230,7 +230,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Signs") as TextAsset;
             if (bindata == null)
-                _windowHandler.ActivateDialogWindow("Error", "Error while loading the sign database. Please reinstall the game from Play Store", false);
+                _windowHandler.CreateStaticDialog("Error", "Error while loading the sign database. Please reinstall the game from Play Store");
             else
                 File.WriteAllBytes(signsPath, bindata.bytes);
         }
@@ -257,7 +257,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Sentences") as TextAsset;
             if (bindata == null)
-                _windowHandler.ActivateDialogWindow("Error", "Error while loading the sentence database. Please reinstall the game from Play Store", false);
+                _windowHandler.CreateStaticDialog("Error", "Error while loading the sentence database. Please reinstall the game from Play Store");
             else
                 File.WriteAllBytes(sentencesPath, bindata.bytes);
         }

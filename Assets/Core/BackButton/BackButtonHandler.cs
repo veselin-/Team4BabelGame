@@ -48,7 +48,19 @@ public class BackButtonHandler : MonoBehaviour {
     private void mainMenuActions()
     {
 
-       // GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().ActivateDialogWindow("Exit Game", "Do you want to exit the game?", true);
+        // GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().ActivateDialogWindow("Exit Game", "Do you want to exit the game?", true);
+
+        if (GameObject.FindObjectOfType<MainMenuManager>().SettingsPanel.active)
+            GameObject.FindObjectOfType<MainMenuManager>().SettingsBackBtnPress();
+        else
+            // ******************* CONFIRMATION WINDOW HERE *******************
+            QuitGame();
+            ;
+
+    }
+
+    public void QuitGame()
+    {
         Application.Quit();
     }
 }

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class FrameController : MonoBehaviour
 {
 
@@ -14,7 +16,6 @@ public class FrameController : MonoBehaviour
     [Tooltip("This only applies if there is no animations attached to the frame.")]
     public float FrameLength = 3f;
 
-
     [Tooltip("Must only be true for the first frame of the cinematic or it will break horribly.")]
     public bool IsStartingFrame = false;
 
@@ -24,14 +25,18 @@ public class FrameController : MonoBehaviour
     public string LevelToLoad;
 
     private Animator animator;
+    private Text textBox;
+    private AudioSource audio;
 
-
+    [TextArea, Tooltip("Text in this field will appear in the bottom of the screen.")]
+    public string Text;
 
 	// Use this for initialization
 	void Start ()
 	{
-
+	    textBox = GameObject.FindGameObjectWithTag("CinematicText").GetComponent<Text>();
 	    animator = GetComponent<Animator>();
+	    audio = GetComponent<AudioSource>();
 
 	    if (IsStartingFrame)
 	    {
@@ -58,6 +63,16 @@ public class FrameController : MonoBehaviour
             {
                 StartCoroutine(RunFrame());
             }
+
+        if (Text != String.Empty)
+        {
+            textBox.text = Text;
+        }
+
+        if (audio.clip != null)
+        {
+            audio.Play();
+        }
 
     }
 

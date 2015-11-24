@@ -1,14 +1,16 @@
 ﻿using System;
 using Assets.Core.Configuration;
 using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Core.Achievements
-{
-    public class AchievementManager
+{   
+    public class AchievementManager// : MonoBehaviour
     {
-
+        #region Instance
         private static AchievementManager _instance;
         public static AchievementManager Instance
         {
@@ -18,35 +20,25 @@ namespace Assets.Core.Achievements
                 return _instance;
             }
         }
+        #endregion
+
+        private bool _loggedIn;
 
         private AchievementManager()
         {
-            var _windowHandler = GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>();
+            PlayGamesPlatform.DebugLogEnabled = true;
+            PlayGamesPlatform.Activate();
+            
             try
             {
-                PlayGamesPlatform.DebugLogEnabled = true;
-                PlayGamesPlatform.Activate();
-
-                _windowHandler.ActivateDialogWindow("Test", Social.localUser.ToString(), true);
-
-                Social.localUser.Authenticate((bool success) =>
+                Social.Active.localUser.Authenticate((bool success) =>
                 {
-                    if (success)
-                    {
-                        Debug.Log("Sign in Successful");
-                    }
-                    else
-                    {
-                        Debug.LogError("Sign in Unsuccessful");
-                        _windowHandler.ActivateDialogWindow("Error", "Sign in Unsuccessful", true);
-                    }
+                    _loggedIn = success;
                 });
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
-               
             }
-
         }
 
         public void UnlockAchievement(string achievement)
@@ -73,6 +65,10 @@ namespace Assets.Core.Achievements
             {
                 Debug.LogError(e.Message);
             }
+        }
+        public void ShowAchievements()
+        {
+            Social.ShowAchievementsUI();
         }
     }
 } 

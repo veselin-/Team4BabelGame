@@ -51,7 +51,7 @@ namespace GooglePlayGames
         private static void AddDependencies()
         {
 
-#if !UNITY_EDITOR
+
             svcSupport.DependOn("com.google.android.gms",
                 "play-services-games",
                 PluginVersion.PlayServicesVersionConstraint);
@@ -70,7 +70,7 @@ namespace GooglePlayGames
             svcSupport.DependOn("com.android.support",
                 "appcompat-v7",
                 "23.1.0+");
-#endif
+
         }
 
 

@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Assets.Core.Achievements;
+using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
 using UnityEngine;
 
@@ -25,7 +27,8 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
 
         public GameObject Interact(GameObject pickup)
         {
-            if(CanThisBeInteractedWith(pickup))
+            //AchievementManager.Instance.UnlockAchievement(Constants.Achevements.SevenElever);
+            if (CanThisBeInteractedWith(pickup))
                 StartCoroutine(ChangeColor());
             return pickup;
         }

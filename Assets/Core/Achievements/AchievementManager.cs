@@ -27,7 +27,7 @@ namespace Assets.Core.Achievements
                 PlayGamesPlatform.DebugLogEnabled = true;
                 PlayGamesPlatform.Activate();
 
-                _windowHandler.ActivateDialogWindow("Test", Social.localUser.ToString(), true);
+                _windowHandler.CreateInfoDialog("Test", Social.localUser.ToString(), "OK", null);
 
                 Social.localUser.Authenticate((bool success) =>
                 {
@@ -38,7 +38,7 @@ namespace Assets.Core.Achievements
                     else
                     {
                         Debug.LogError("Sign in Unsuccessful");
-                        _windowHandler.ActivateDialogWindow("Error", "Sign in Unsuccessful", true);
+                        _windowHandler.CreateInfoDialog("Error", "Sign in Unsuccessful", "OK", null);
                     }
                 });
             }

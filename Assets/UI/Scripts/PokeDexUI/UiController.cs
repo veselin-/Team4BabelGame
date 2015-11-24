@@ -97,7 +97,8 @@ public class UiController : MonoBehaviour
             _pauseCanvas.SetActive(false);
             closeUiBut.SetActive(true);
             hintPanel.SetActive(true);
-            Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
+            hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
+            //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
             menuMask.GetComponent<ScrollRect>().enabled = true;
         }
     }

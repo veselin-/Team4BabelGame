@@ -46,7 +46,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     void ChangeHintText()
     {
-        hintText.transform.position = transform.position + new Vector3(0, 27, 0);
+        hintText.transform.position = transform.position + new Vector3(0, 30, 0);
         switch (gameObject.GetComponent<SymbolHandler>().ID)
         {
             case 0:

@@ -15,6 +15,7 @@ public class UiController : MonoBehaviour
     public GameObject menuMask;
     public GameObject MinBut;
     public GameObject hintPanel;
+    public GameObject menuIndicator;
 
     NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
@@ -43,8 +44,15 @@ public class UiController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        //if (menuMask.GetComponent<UiSnapScroll>().Pips[0].GetComponent<Image>().color == Color.black)
+        //{
+        //    arrowBut.SetActive(false);
+        //}
+        //else
+        //{
+        //    arrowBut.SetActive(true);
+        //}
+    }
 
     public void NewSignCreation(int id)
     {
@@ -53,7 +61,16 @@ public class UiController : MonoBehaviour
 		_cameraManager.enabled = false;
         CreateNewSymbol.SymbolID = id;
         scrollRect.horizontalNormalizedPosition = 0f;
-        anim.SetTrigger("FullyEnter");
+        if(hotbarOpen == 1)
+        {
+            anim.SetTrigger("MenuToggle");
+        }
+        else
+        {
+            anim.SetTrigger("FullyEnter");
+        }
+        menuIndicator.SetActive(false);
+        MinBut.SetActive(false);
         anim.SetBool("CreatingSign", true);
         creation.SetActive(true);
         slidePanel.SetActive(false);
@@ -87,6 +104,7 @@ public class UiController : MonoBehaviour
                 arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
                 hintPanel.SetActive(false);
                 _pauseCanvas.SetActive(true);
+                scrollRect.horizontalNormalizedPosition = 0f;
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -101,6 +119,7 @@ public class UiController : MonoBehaviour
             hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
             //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
             menuMask.GetComponent<ScrollRect>().enabled = true;
+            menuIndicator.SetActive(true);
         }
     }
 
@@ -154,6 +173,6 @@ public class UiController : MonoBehaviour
         hotbarOpen = 0;
 		_pauseCanvas.SetActive (true);
         MinBut.SetActive(false);
-        Debug.Log(hotbarOpen);
+        menuIndicator.SetActive(true);
     }
 }

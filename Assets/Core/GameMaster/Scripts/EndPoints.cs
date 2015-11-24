@@ -49,6 +49,9 @@ namespace Assets.Core.GameMaster.Scripts
             {
 
                 case Constants.Tags.Player:
+                    if(isPlayerHere)
+                        return;
+                    isPlayerHere = true;
                     var sk = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
                     sk.GetComponent<AiMovement>().AssignNewState(new EndGameState(sk.GetComponent<NavMeshAgent>()));
                     isPlayerHere = true;
@@ -56,6 +59,8 @@ namespace Assets.Core.GameMaster.Scripts
 
                     break;
                 case Constants.Tags.SideKick:
+                    if(isSidekickHere)
+                        return;
                     isSidekickHere = true;
 //                    Debug.Log("sidekick is in");
                     break;

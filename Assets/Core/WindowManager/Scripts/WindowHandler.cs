@@ -20,7 +20,7 @@ public class WindowHandler : MonoBehaviour
         {
             _windowHandler = FindObjectOfType(typeof(WindowHandler)) as WindowHandler;
             if (!_windowHandler)
-                Debug.LogError("There needs to be one active ModalPanel script on a GameObject in your scene.");
+                Debug.LogError("There needs to be one active WindowHandler script on a GameObject in your scene.");
         }
 
         return _windowHandler;

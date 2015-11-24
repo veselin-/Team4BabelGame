@@ -125,5 +125,6 @@ public class CharacterAnimMovement : MonoBehaviour {
     {
         if(m_ForwardAmount > 0.1)
         footsteps.RandomFootsteps();
+
     }
 }

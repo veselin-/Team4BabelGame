@@ -37,9 +37,12 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
 
         IEnumerator ChangeColor()
         {
+            
             yield return new WaitForSeconds(1f);
-            GetComponent<AudioSource> ().Play ();
+            
             GetComponentInChildren<Animator>().SetTrigger("PullLever");
+
+            GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(2f);
             _hasBeenPulled = true;
             if(leverpulls < 7)

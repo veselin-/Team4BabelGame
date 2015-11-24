@@ -19,9 +19,9 @@ namespace Assets.Characters.AiScripts.States
 
         private GameObject _interactGameObject;
         
-        public InteractWithNearestState(NavMeshAgent agnet, string tag, GameObject pickup)
+        public InteractWithNearestState(NavMeshAgent agent, string tag, GameObject pickup)
         {
-            _agent = agnet;
+            _agent = agent;
 
             cam = _agent.gameObject.GetComponent<CharacterAnimMovement>();
 
@@ -37,7 +37,7 @@ namespace Assets.Characters.AiScripts.States
                 var dest = i.GetComponent<IInteractable>();
                 if(!dest.CanThisBeInteractedWith(pickup)) continue;
                 var path = new NavMeshPath();
-                agnet.CalculatePath(dest.InteractPosition(_agent.transform.position), path);
+                agent.CalculatePath(dest.InteractPosition(_agent.transform.position), path);
 
                 if (path.status != NavMeshPathStatus.PathComplete) continue;
 
@@ -80,8 +80,11 @@ namespace Assets.Characters.AiScripts.States
                             cam.StartAdjustPosition(_interactGameObject);
                         }
 
+                        _agent.ResetPath();
+
                         if (_agent.updateRotation)
                         {
+                            _agent.ResetPath();
                             var t = Vector2.Distance(_interactGoalPosition,
                                 new Vector2(_agent.transform.position.x, _agent.transform.position.z));
                             _state = t < .6 ? State.Interact : State.Done;
@@ -92,10 +95,11 @@ namespace Assets.Characters.AiScripts.States
                     var puh = _agent.gameObject.GetComponent<PickupHandler>();
                     var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
                     puh.PickUpItem(returnItem);
+                    _agent.ResetPath();
 
-                 //   if (_interactGameObject.tag == Constants.Tags.Lever)
-                 //   {
-                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
+                    //   if (_interactGameObject.tag == Constants.Tags.Lever)
+                    //   {
+                    _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
                  //   }
                     //else if (_interactGameObject.tag == Constants.Tags.Brazier)
                     //{
@@ -109,6 +113,7 @@ namespace Assets.Characters.AiScripts.States
                     _state = State.WaitSomeTime;
                     return;
                 case State.WaitSomeTime:
+                    _agent.ResetPath();
                     if (_waitUntill < Time.time)
                         _state = State.Done;
                     return;

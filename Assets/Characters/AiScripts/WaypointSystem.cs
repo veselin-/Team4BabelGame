@@ -19,7 +19,7 @@ public class WaypointSystem : MonoBehaviour
 	   
 
         GetComponent<SidekickControls>().enabled = false;
-
+        
 	    StartCoroutine(FirstWaypoint());
 	}
 	

@@ -33,6 +33,7 @@ namespace Assets.Characters.AiScripts.States
             
             foreach (var i in interactables)
             {
+                _interactGameObject = i;
                 var dest = i.GetComponent<IInteractable>();
                 if(!dest.CanThisBeInteractedWith(pickup)) continue;
                 var path = new NavMeshPath();
@@ -92,18 +93,18 @@ namespace Assets.Characters.AiScripts.States
                     var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
                     puh.PickUpItem(returnItem);
 
-                    if (_interactGameObject.tag == Constants.Tags.Lever)
-                    {
+                 //   if (_interactGameObject.tag == Constants.Tags.Lever)
+                 //   {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
-                    }
-                    else if (_interactGameObject.tag == Constants.Tags.Brazier)
-                    {
-                        _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
-                    }
-                    else
-                    {
-                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
-                    }
+                 //   }
+                    //else if (_interactGameObject.tag == Constants.Tags.Brazier)
+                    //{
+                    //    _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
+                    //}
+                    //else
+                    //{
+                    //    _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
+                    //}
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;
                     return;

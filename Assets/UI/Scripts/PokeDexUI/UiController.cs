@@ -44,8 +44,15 @@ public class UiController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        //if (menuMask.GetComponent<UiSnapScroll>().Pips[0].GetComponent<Image>().color == Color.black)
+        //{
+        //    arrowBut.SetActive(false);
+        //}
+        //else
+        //{
+        //    arrowBut.SetActive(true);
+        //}
+    }
 
     public void NewSignCreation(int id)
     {
@@ -97,6 +104,7 @@ public class UiController : MonoBehaviour
                 arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
                 hintPanel.SetActive(false);
                 _pauseCanvas.SetActive(true);
+                scrollRect.horizontalNormalizedPosition = 0f;
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);

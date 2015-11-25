@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Core.GameMaster.Scripts;
 
 public class EndLevelScreen : MonoBehaviour {
 
 
-	public Text orbsTxt; 
+	public Text AllOrbsText; 
+	private int allOrbs, foundOrbs;
+	public Text FoundOrbsText;
+	public Text LevelCompleteText;
 	public string NextLevel;
-
+	private EndPoints ep;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
+		AllOrbsText.text = "";
+		FoundOrbsText.text = "";
+		LevelCompleteText.text = "";
 	}
 	
 	// Update is called once per frame
@@ -35,11 +42,65 @@ public class EndLevelScreen : MonoBehaviour {
 
 	public void UpdateOrbsUI()
 	{
-		orbsTxt.text = "" + PlayerPrefs.GetInt ("CurrencyAmount").ToString();
+		AllOrbsText.text = "0"; //"" + PlayerPrefs.GetInt ("CurrencyAmount").ToString();
+		FoundOrbsText.text = "0"; // + ep.orbs.ToString();
+		LevelCompleteText.text = GetLevelNumber() + "\n Complete";
+
+		StartCoroutine (AnimateOrbs());
+	}
+
+	string GetLevelNumber()
+	{
+		string level = Application.loadedLevelName;
+		if (level.Equals ("Tutorial1Beta")) {
+			return "Tutorial 1";
+		} else if (level.Equals ("Tutorial2Beta")) {
+			return "Tutorial 2";
+		} else if (level.Equals ("Tutorial3Beta")) {
+			return "Tutorial 3";
+		} else if (level.Equals ("Tutorial4Beta")) {
+			return "Tutorial 4";
+		} else if (level.Equals ("Level1Beta")) {
+			return "Level 1";
+		} else if (level.Equals ("Level2Beta")) {
+			return "Level 2";
+		} else if (level.Equals ("Level3Beta")) {
+			return "Level 3";
+		} else {
+			return "Level";
+        }
+    }
+    
+	IEnumerator AnimateOrbs()
+	{
+		yield return new WaitForSeconds(1f);
+
+		int numbers = 0;
+		while(numbers <= foundOrbs)
+		{
+			yield return new WaitForSeconds(0.01f);
+			numbers++;
+			FoundOrbsText.text = "" + numbers.ToString();
+		}
+
+		yield return new WaitForSeconds(0.5f);
+
+		numbers = 0;
+		while(numbers <= allOrbs)
+		{
+			yield return new WaitForSeconds(0.001f);
+			numbers++;
+			AllOrbsText.text = "" + numbers.ToString();
+		}
 	}
 
     void OnEnable()
     {
+		ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
+		allOrbs = PlayerPrefs.GetInt ("CurrencyAmount");
+		foundOrbs = ep.orbs;
+
         UpdateOrbsUI();
     }
+
 }

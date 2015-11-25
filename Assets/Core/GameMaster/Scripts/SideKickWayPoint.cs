@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,9 +90,13 @@ public class SideKickWayPoint : MonoBehaviour
     // Use this for initialization
     void Start () {
 
-        sidekick = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
+        while(sidekick == null)
+            sidekick = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
 
-        player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
+
+
+        while (player == null)
+            player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
 
         obstacle = GameObject.FindGameObjectWithTag("Obstacle");
         obstacle.GetComponent<NavMeshObstacle>().enabled = false;
@@ -111,7 +116,7 @@ public class SideKickWayPoint : MonoBehaviour
    public void EngageWaypoint()
     {
         if(player != null)
-        player.GetComponent<PlayerMovement>().enabled = true;
+            player.GetComponent<PlayerMovement>().enabled = true;
 
         //if (Animate)
         //{
@@ -134,7 +139,7 @@ public class SideKickWayPoint : MonoBehaviour
          //  speech.ActivateSidekickSignBubble(new List<int>(new[] { 8 }));
         }
 
-        if (ImmobilizePlayerUntilNextWaypoint)
+        if (ImmobilizePlayerUntilNextWaypoint  && player != null)
        {
            player.GetComponent<PlayerMovement>().enabled = false;
        }

@@ -90,7 +90,6 @@ namespace Assets.Environment.Scripts
             if (coll.tag == Constants.Tags.Player || coll.tag == Constants.Tags.SideKick)
             {
                 someoneOnStairs = true;
-                Debug.Log(someoneOnStairs);
             }
         }
         void OnTriggerExit(Collider coll)
@@ -98,7 +97,6 @@ namespace Assets.Environment.Scripts
             if (coll.tag == Constants.Tags.Player || coll.tag == Constants.Tags.SideKick)
             {
                 someoneOnStairs = false;
-                Debug.Log(someoneOnStairs);
             }
         }
 

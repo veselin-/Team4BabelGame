@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f49f36484487046befb9f5c93c67c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbValue: 50
+  orbValue: 1
 --- !u!135 &13590072
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2274,7 +2274,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: orbValue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148544}

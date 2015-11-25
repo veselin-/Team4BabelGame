@@ -50,6 +50,9 @@ namespace Assets.Characters.AiScripts
                 if (_currentState == null || _currentState.IsDoneExecuting())
                     _currentState = _exploreState;
 
+                if(gameObject.tag == Constants.Tags.SideKick)
+                Debug.Log(_currentState);
+
                 _currentState.ExecuteState();
                 yield return new WaitForSeconds(0.1f);
             }

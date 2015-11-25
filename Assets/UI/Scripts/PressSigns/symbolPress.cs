@@ -9,7 +9,7 @@ public class symbolPress : MonoBehaviour
 {
 
     public GameObject slot, sylPanel;
-    public Text text;
+    //public Text text;
     public static int count = 0;
     //GameObject chosenSign;
     //int childIndex;
@@ -38,6 +38,7 @@ public class symbolPress : MonoBehaviour
         //    return;
         //}
         GetComponent<Image>().sprite = db.GetImage(db.GetSyllable(ID).ImageName);
+        //GetComponent<Image>().transform.localScale = new Vector3(1.2f,1.2f,1.2f);
     }
 
     // Update is called once per frame

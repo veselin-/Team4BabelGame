@@ -30,11 +30,13 @@ namespace Assets.Characters.AiScripts.States
         public void ExecuteState()
         {
             // Make sure we go back to default speed
-            _agent.speed = _movementSpeed;
 
+            _agent.speed = _movementSpeed;
 
             if (_movementSpeed < 0.1f)
                 return;
+
+           
 
             // Continue only if we have reached taget, or the room numner has changes 
             if (!_agent.HasReachedTarget()) return;

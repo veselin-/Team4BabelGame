@@ -46,19 +46,13 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 	    {
 	        Pips[0].GetComponent<Image>().color = Color.blue;
             Pips[1].GetComponent<Image>().color = Color.black;
-            Pips[2].GetComponent<Image>().color = Color.black;
+            //Pips[2].GetComponent<Image>().color = Color.black;
         }
 	    else if (scrollRect.horizontalNormalizedPosition > 0.16f && scrollRect.horizontalNormalizedPosition < 0.56f)
 	    {
             Pips[0].GetComponent<Image>().color = Color.black;
             Pips[1].GetComponent<Image>().color = Color.blue;
-            Pips[2].GetComponent<Image>().color = Color.black;
-        }
-	    else
-	    {
-            Pips[0].GetComponent<Image>().color = Color.black;
-            Pips[1].GetComponent<Image>().color = Color.black;
-            Pips[2].GetComponent<Image>().color = Color.blue;
+            //Pips[2].GetComponent<Image>().color = Color.black;
         }
 
 

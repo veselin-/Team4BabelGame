@@ -47,8 +47,9 @@ public class SideKickWayPoint : MonoBehaviour
     public GameObject PickUp;
     public bool WaitForPlayerSpeek;
     public int PlayerSpeekId;
-    
-    
+
+    [Header("Sidekick Rotation")]
+    public GameObject GameObjectToLookAt;
 
     [Header("Player Immobilization Settings")]
     public bool ImmobilizePlayerForSecondsNI = false;
@@ -103,7 +104,7 @@ public class SideKickWayPoint : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 	
-        
+      //  Debug.Log(sidekick.GetComponent<Animator>().GetFloat("Turn"));
 
 	}
 
@@ -160,6 +161,15 @@ public class SideKickWayPoint : MonoBehaviour
         {
             Debug.Log("Has reached target: " + sidekick.GetComponent<NavMeshAgent>().HasReachedTarget());
             yield return new WaitForSeconds(0.1f);
+        }
+
+        //  sidekick.GetComponent<NavMeshAgent>().ResetPath();
+
+        //   sidekick.GetComponent<NavMeshAgent>().updateRotation = false;
+
+        if (GameObjectToLookAt != null)
+        {
+            sidekick.GetComponent<CharacterAnimMovement>().StartAdjustPosition(GameObjectToLookAt);
         }
 
         if (ObstacleInTheWay)
@@ -282,6 +292,9 @@ public class SideKickWayPoint : MonoBehaviour
             yield return new WaitForSeconds(WaitTime);
         }
 
+
+       // sidekick.GetComponent<NavMeshAgent>().updateRotation = true;
+
         if (WaitForPlayerSpeek)
         {
             var bubble = FindObjectOfType<InteractableSpeechBubble>();
@@ -297,6 +310,7 @@ public class SideKickWayPoint : MonoBehaviour
         {
             GameObject.FindObjectOfType<FakeInteracable>().Activated = true;
         }
+
 
         sidekick.GetComponent<WaypointSystem>().NextWaypoint();
     }

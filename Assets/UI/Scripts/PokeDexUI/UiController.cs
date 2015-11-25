@@ -17,7 +17,7 @@ public class UiController : MonoBehaviour
     public GameObject hintPanel;
     public GameObject menuIndicator;
 
-    NavMeshAgent navMeshP, navMeshS;
+    //NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
 	private CameraManager _cameraManager;
 	private PlayerMovement _playerMovement;
@@ -34,8 +34,8 @@ public class UiController : MonoBehaviour
 		_audioManager = GameObject.FindObjectOfType<AudioManager> ().GetComponent<AudioManager> ();
 		_cameraManager = GameObject.FindObjectOfType<CameraManager> ().GetComponent<CameraManager> ();
 		_playerMovement = GameObject.FindObjectOfType<PlayerMovement> ().GetComponent<PlayerMovement> ();
-        navMeshP = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
-        navMeshS = GameObject.FindGameObjectWithTag("SideKick").GetComponent<NavMeshAgent>();
+        //navMeshP = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
+        //navMeshS = GameObject.FindGameObjectWithTag("SideKick").GetComponent<NavMeshAgent>();
 		//_pokedexButton = transform.FindChild ("Button").gameObject;
 		_pauseCanvas = GameObject.FindObjectOfType<PauseScreen> ().gameObject;
         anim = GetComponent<Animator>();
@@ -104,7 +104,11 @@ public class UiController : MonoBehaviour
                 arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
                 hintPanel.SetActive(false);
                 _pauseCanvas.SetActive(true);
+                closeUiBut.SetActive(false);
+                _cameraManager.enabled = true;
+                _playerMovement.enabled = true;
                 scrollRect.horizontalNormalizedPosition = 0f;
+                Time.timeScale = 1;
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);

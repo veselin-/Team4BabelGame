@@ -105,7 +105,7 @@ public class SideKickWayPoint : MonoBehaviour
             Debug.Log(player);
         }
 
-        if (ObstacleInTheWay)
+        if (UseObstacle)
         {
             obstacle = GameObject.FindGameObjectWithTag("Obstacle");
             obstacle.GetComponent<NavMeshObstacle>().enabled = false;

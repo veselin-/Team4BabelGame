@@ -15,7 +15,7 @@ namespace Assets.Characters.Player.Scripts
 
         private UiController _uiControl;
 		private float _touchCounter = 0;
-		private bool _tap = false;			// detecting tap
+		public bool _tap = false;			// detecting tap
 		private bool _canMove = false;		// allowing player to move
         // Use this for initialization
         void Start ()

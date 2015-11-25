@@ -92,6 +92,21 @@ public class UiController : MonoBehaviour
 		_pauseCanvas.SetActive (true);
     }
 
+    public void OpenShop()
+    {
+        arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
+        anim.SetTrigger("MenuToggle");
+        _cameraManager.enabled = false;
+        _playerMovement.enabled = false;
+        _audioManager.PokedexBtnOpenPlay();
+        Time.timeScale = 0;
+        _pauseCanvas.SetActive(false);
+        closeUiBut.SetActive(true);
+        menuMask.GetComponent<ScrollRect>().enabled = true;
+        scrollRect.horizontalNormalizedPosition = 1f;
+        menuIndicator.SetActive(true);
+    }
+
     public void PokedexOpen()
     {
         if (hotbarOpen == 2)

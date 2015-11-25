@@ -28,9 +28,12 @@ namespace Assets.Characters.AiScripts.States
             _interactGameObject = pickup;
 
             var interactables = GameObject.FindGameObjectsWithTag(tag);
-            if(interactables.Length < 1)
+            if (interactables.Length < 1)
+            {
+                _state = State.Done;
                 return;
-            
+            }
+
             foreach (var i in interactables)
             {
                 _interactGameObject = i;

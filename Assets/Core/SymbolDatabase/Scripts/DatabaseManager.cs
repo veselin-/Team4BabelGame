@@ -34,7 +34,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
         catch (Exception)
         {
-            _windowHandler.CreateStaticDialog("Error", "Couldn't load database. Please reinstall the game from Play Store");
+            _windowHandler.CreateStaticDialog("Phrases/Error", "Phrases/CouldNotLoadDatabaseReinstall");
         }
 
     }
@@ -89,30 +89,6 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         }
         return null;
     }
-
-    //// Returns the sentence of the database with the given ID
-    //public Sentence GetSentenceById(int id)
-    //{
-    //    if (_sentencesDatabase.ContainsKey(id))
-    //    {
-    //        return _sentencesDatabase[id];
-    //    }
-    //    return null;
-    //}
-
-
-    //// Returns the sentence of the database with the given ID
-    //public int GetSentenceBySeq(List<int> signSequence)
-    //{
-    //    if (signSequence.Count > 0)
-    //    {
-    //        Sentence sentence =
-    //            _sentencesDatabase.FirstOrDefault(x => x.Value.SignSequence.SequenceEqual(signSequence)).Value;
-
-    //        return sentence != null ? sentence.id : -1;
-    //    }
-    //    return -1;
-    //}
 
     public void SaveAllDb()
     {
@@ -207,7 +183,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Alphabet") as TextAsset;
             if (bindata == null)
-                _windowHandler.CreateStaticDialog("Error", "Error while loading the alphabet database. Please reinstall the game from Play Store");
+                _windowHandler.CreateStaticDialog("Phrases/Error", "Phrases/CouldNotLoadDatabaseReinstall");
             else
                 File.WriteAllBytes(alphabetPath, bindata.bytes);
         }
@@ -237,7 +213,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Signs") as TextAsset;
             if (bindata == null)
-                _windowHandler.CreateStaticDialog("Error", "Error while loading the sign database. Please reinstall the game from Play Store");
+                _windowHandler.CreateStaticDialog("Phrases/Error", "Phrases/CouldNotLoadDatabaseReinstall");
             else
                 File.WriteAllBytes(signsPath, bindata.bytes);
         }
@@ -264,7 +240,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         {
             TextAsset bindata = Resources.Load("Sentences") as TextAsset;
             if (bindata == null)
-                _windowHandler.CreateStaticDialog("Error", "Error while loading the sentence database. Please reinstall the game from Play Store");
+                _windowHandler.CreateStaticDialog("Phrases/Error", "Phrases/CouldNotLoadDatabaseReinstall");
             else
                 File.WriteAllBytes(sentencesPath, bindata.bytes);
         }

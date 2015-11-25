@@ -26,28 +26,28 @@ public class WindowHandler : MonoBehaviour
         return _windowHandler;
     }
 
-    public void CreateConfirmDialog(string header, string content, string yesOptionText, string noOptionText, UnityAction yesEvent, UnityAction noEvent)
+    public void CreateConfirmDialog(string headerXmlId, string contentXmlId, string yesXmlId, string noXmlId, UnityAction yesEvent, UnityAction noEvent)
     {
-        SetDefaultValues(header, content);
+        SetDefaultValues(headerXmlId, contentXmlId);
 
-        YesButton.GetComponentInChildren<Text>().text = yesOptionText;
+        YesButton.GetComponentInChildren<Text>().text = LanguageManager.Instance.Get(yesXmlId);
         YesButton.onClick.RemoveAllListeners();
         if(yesEvent != null)
              YesButton.onClick.AddListener(yesEvent);
         YesButton.onClick.AddListener(ClosePanel);
 
-        NoButton.GetComponentInChildren<Text>().text = noOptionText;
+        NoButton.GetComponentInChildren<Text>().text = LanguageManager.Instance.Get(noXmlId);
         NoButton.onClick.RemoveAllListeners();
         if (noEvent != null)
             NoButton.onClick.AddListener(noEvent);
         NoButton.onClick.AddListener(ClosePanel);
     }
 
-    public void CreateInfoDialog(string header, string content, string yesOptionText, UnityAction yesEvent)
+    public void CreateInfoDialog(string headerXmlId, string contentXmlId, string yesXmlId, UnityAction yesEvent)
     {
-        SetDefaultValues(header, content);
+        SetDefaultValues(headerXmlId, contentXmlId);
 
-        YesButton.GetComponentInChildren<Text>().text = yesOptionText;
+        YesButton.GetComponentInChildren<Text>().text = LanguageManager.Instance.Get(yesXmlId); ;
         YesButton.onClick.RemoveAllListeners();
         if (yesEvent != null)
             YesButton.onClick.AddListener(yesEvent);
@@ -57,9 +57,9 @@ public class WindowHandler : MonoBehaviour
         NoButton.gameObject.SetActive(false);
     }
 
-    public void CreateStaticDialog(string header, string content)
+    public void CreateStaticDialog(string headerXmlId, string contentXmlId)
     {
-        SetDefaultValues(header, content);
+        SetDefaultValues(headerXmlId, contentXmlId);
 
         YesButton.gameObject.SetActive(false);
         NoButton.gameObject.SetActive(false);
@@ -69,8 +69,8 @@ public class WindowHandler : MonoBehaviour
     private void SetDefaultValues(string header, string content)
     {
         DialogWindow.SetActive(true);
-        Content.text = content;
-        Header.text = header;
+        Content.text = LanguageManager.Instance.Get(content); 
+        Header.text = LanguageManager.Instance.Get(header);
         Time.timeScale = 0f;
     }
 

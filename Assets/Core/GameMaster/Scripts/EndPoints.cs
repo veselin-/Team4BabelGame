@@ -40,9 +40,7 @@ namespace Assets.Core.GameMaster.Scripts
             endLevel.SetActive(true);
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
 			if(GetComponent<AudioSource> () != null)
-			
 				GetComponent<AudioSource> ().Play();
-            
         }
 
 
@@ -70,11 +68,11 @@ namespace Assets.Core.GameMaster.Scripts
             }
         }
 
-        //void OnTriggerExit(Collider other)
-        //{
-        //    isSidekickHere = other.tag != Constants.Tags.SideKick && isSidekickHere;
-        //    isPlayerHere = other.tag != Constants.Tags.Player && isPlayerHere;
-        //    Debug.Log("someone left");
-        //}
+        void OnTriggerExit(Collider other)
+        {
+            isSidekickHere = other.tag != Constants.Tags.SideKick && isSidekickHere;
+            isPlayerHere = other.tag != Constants.Tags.Player && isPlayerHere;
+            Debug.Log("someone left");
+        }
     }
 } 

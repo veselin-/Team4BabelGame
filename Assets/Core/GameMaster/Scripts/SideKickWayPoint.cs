@@ -56,6 +56,8 @@ public class SideKickWayPoint : MonoBehaviour
     public bool ImmobilizePlayerForSecondsNI = false;
     public float ImmobilizeTimeNI;
     public bool ImmobilizePlayerUntilNextWaypoint = false;
+    [Tooltip("Use Obstacle need and obstacle in the scene")]
+    public bool UseObstacle = false;
     public bool ObstacleInTheWay = false;
 
     [Header("Speech Text")]
@@ -90,16 +92,25 @@ public class SideKickWayPoint : MonoBehaviour
     // Use this for initialization
     void Start () {
 
-        while(sidekick == null)
+        while (sidekick == null)
+        {
             sidekick = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
-
+            Debug.Log(sidekick);
+        }
 
 
         while (player == null)
+        {
             player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
+            Debug.Log(player);
+        }
 
-        obstacle = GameObject.FindGameObjectWithTag("Obstacle");
-        obstacle.GetComponent<NavMeshObstacle>().enabled = false;
+        if (UseObstacle)
+        {
+            obstacle = GameObject.FindGameObjectWithTag("Obstacle");
+            obstacle.GetComponent<NavMeshObstacle>().enabled = false;
+        }
+
         speech = GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).GetComponent<InteractableSpeechBubble>();
         //sidekick.GetComponent<SidekickControls>().enabled = false;
         //sidekick.GetComponent<SidekickControls>().enabled = false;
@@ -177,14 +188,16 @@ public class SideKickWayPoint : MonoBehaviour
             sidekick.GetComponent<CharacterAnimMovement>().StartAdjustPosition(GameObjectToLookAt);
         }
 
-        if (ObstacleInTheWay)
+        if (UseObstacle)
         {
-            obstacle.GetComponent<NavMeshObstacle>().enabled = true;
-        }
-
-        if (!ObstacleInTheWay)
-        {
-            obstacle.GetComponent<NavMeshObstacle>().enabled = false;
+            if (ObstacleInTheWay)
+            {
+                obstacle.GetComponent<NavMeshObstacle>().enabled = true;
+            }
+            else
+            {
+                obstacle.GetComponent<NavMeshObstacle>().enabled = false;
+            }
         }
 
         if (InteractWithLever)

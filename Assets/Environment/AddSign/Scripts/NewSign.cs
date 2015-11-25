@@ -7,11 +7,12 @@ public class NewSign : MonoBehaviour
     public int ID;
     public Camera cam;
     private DatabaseManager databaseManager;
+    private UiController _uiControl;
     //private UiController _uiControl;
 
     void Start()
     {
-        //_uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
+        _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
         databaseManager = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
     }
 
@@ -19,13 +20,16 @@ public class NewSign : MonoBehaviour
     {
         if (databaseManager.GetSign(ID) != null)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
-    public void SetSignID()
+    public void OnTriggerEnter(Collider other)
     {
-        CreateNewSymbol.SymbolID = ID;
+        if (other.tag != Constants.Tags.Player) return;
+
+        _uiControl.NewSignCreation(ID);
+        Destroy(gameObject);
     }
 }
 

@@ -618,9 +618,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11438818}
-        m_MethodName: GetNextSpeech
-        m_Mode: 1
+      - m_Target: {fileID: 161090}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -656,11 +656,11 @@ MonoBehaviour:
   PlayerSpeechBubble: {fileID: 22439062}
   SideKickSpeechBubble: {fileID: 22495548}
   NarrativeSpeechBubble: {fileID: 22430116}
-  speechListEnglish: {fileID: 11400000, guid: 805413265bdfbde4aa3d6eb1619c091d, type: 2}
-  speechListDanish: {fileID: 11400000, guid: 13357716adacd514b8a96048acbd1cb1, type: 2}
+  speechListEnglish: {fileID: 11400000, guid: 249baffe89c1ef244a7f08858fbaeff1, type: 2}
+  speechListDanish: {fileID: 11400000, guid: caae47a06c6560e46b8c4e4439177adf, type: 2}
   narrativeEnglish: []
   narrativeDanish: []
-  bubbleOffset: {x: 0, y: 5}
+  bubbleOffset: {x: 0, y: 2}
   wordsForNewLine: 4
   PlayerSignBubble: {fileID: 22478288}
   SidekickSignBubble: {fileID: 22444802}
@@ -1125,7 +1125,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1145,7 +1145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1269,8 +1269,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: .110158458}
   m_AnchorMax: {x: 1, y: .30400002}
-  m_AnchoredPosition: {x: -2.38419989e-06, y: 2.5}
-  m_SizeDelta: {x: 0, y: 4.5}
+  m_AnchoredPosition: {x: 7, y: -167}
+  m_SizeDelta: {x: 362, y: 248}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22439062
 RectTransform:
@@ -1287,8 +1287,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: .197262451}
-  m_AnchoredPosition: {x: -.499481201, y: -.250034332}
-  m_SizeDelta: {x: 0, y: -.5}
+  m_AnchoredPosition: {x: -360, y: 423.940002}
+  m_SizeDelta: {x: -1501, y: -3.05175781e-05}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22443714
 RectTransform:
@@ -1373,8 +1373,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .0385117196, y: .0484615825}
   m_AnchorMax: {x: .961000025, y: .952000022}
-  m_AnchoredPosition: {x: .249955773, y: .00577974319}
-  m_SizeDelta: {x: -.5, y: 0}
+  m_AnchoredPosition: {x: -20, y: 28}
+  m_SizeDelta: {x: -391, y: -179}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22482148
 RectTransform:

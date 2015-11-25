@@ -96,12 +96,6 @@ namespace Assets.Characters.Player.Scripts
             {
                 return new GoSomewhereAndWaitState(_agent, hit.point);
             }
-            if (other.tag == Constants.Tags.AddNewSign)
-            {
-                _uiControl.NewSignCreation(other.GetComponent<NewSign>().ID);
-
-                return new GoSomewhereAndWaitState(_agent, hit.point);
-            }
             return null;
         }
     }

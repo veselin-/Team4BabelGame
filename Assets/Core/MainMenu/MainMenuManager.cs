@@ -12,7 +12,7 @@ public class MainMenuManager : MonoBehaviour {
     public Sprite DanishFlag;
     public Sprite EnglishFlag;
 
-	public Slider SoundSlider, MusicSlider, VoicesSlider, SoundFXSlider;
+	public Slider MusicSlider, VoicesSlider, SoundFXSlider;
 
     private Animator menuAnim;
 
@@ -71,6 +71,7 @@ public class MainMenuManager : MonoBehaviour {
 	{
 		_audioManager.ClickBtnPlay ();
 		SettingsPanel.SetActive (false);
+		SettingsPanel.transform.FindChild ("Back").localScale = Vector3.one; //reset button scale animation
 	}
 
 	public void CreditsBtnPress()
@@ -188,10 +189,6 @@ public class MainMenuManager : MonoBehaviour {
 		GetSoundFXText ();
 	}
 
-    public void SoundSlide(float i)
-    {
-        //SoundSlider.normalizedValue
-    }
     public void MusicSlide()
     {
 		float denormalizedValue = DenormalizeSliderValue (MusicSlider.normalizedValue);

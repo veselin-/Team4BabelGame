@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Core.GameMaster.Scripts;
 
 public class Orb : MonoBehaviour {
 
     public int orbValue;
-
+	private EndPoints ep;
 	// Use this for initialization
 	void Start () {
-
+		ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
 	}
 	
     void OnTriggerEnter(Collider col)
@@ -17,9 +18,11 @@ public class Orb : MonoBehaviour {
 			if(!GetComponent<AudioSource> ().isPlaying)
 			{
 				GetComponent<AudioSource> ().Play();
+				ep.orbs += 1;
+				PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) + orbValue);
 			}
 
-            PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) + orbValue);
+            
             Debug.Log("WTF YOU ARE HITTING ME!?");
 			StartCoroutine(DestroyOrb());
         }

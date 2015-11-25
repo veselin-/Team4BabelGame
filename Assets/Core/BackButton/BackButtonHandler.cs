@@ -16,7 +16,6 @@ public class BackButtonHandler : MonoBehaviour {
     // Use this for initialization
     void Start () {
         currentScene = Application.loadedLevelName;
-       // Debug.Log(currentScene);
 	}
 
     // Update is called once per frame
@@ -55,13 +54,12 @@ public class BackButtonHandler : MonoBehaviour {
         else if (GameObject.FindObjectOfType<MainMenuManager>().CreditsPanel.active)
             GameObject.FindObjectOfType<MainMenuManager>().CreditsBackBtnPress();
         else
-            GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateConfirmDialog("Exit Game", "Do you want to exit the game?", "Yes", "No", QuitGame, null);
+            GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateConfirmDialog("Phrases/ExitGame", "Phrases/DoYouWantToExit", "Phrases/YesText", "Phrases/NoText", QuitGame, null);
 
     }
 
     public void QuitGame()
     {
-        Debug.Log("something");
         Application.Quit();
     }
 }

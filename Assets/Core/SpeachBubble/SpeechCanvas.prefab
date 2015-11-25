@@ -179,6 +179,7 @@ GameObject:
   - 114: {fileID: 11459610}
   - 114: {fileID: 11438818}
   - 82: {fileID: 8271868}
+  - 225: {fileID: 22515246}
   m_Layer: 5
   m_Name: SpeechCanvas
   m_TagString: SpeechCanvas
@@ -665,6 +666,7 @@ MonoBehaviour:
   SidekickSignBubble: {fileID: 22444802}
   PlayerSignBubbleStayTime: 5
   SignPrefab: {fileID: 159074, guid: d9254f16112e22842879d2ca5d3483f5, type: 2}
+  CurrentPlayerSignId: 0
 --- !u!114 &11443190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -957,7 +959,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bd3e4fd6a4b32e345b3df6ef29f9f909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1083,7 +1085,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bd3e4fd6a4b32e345b3df6ef29f9f909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1123,7 +1125,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1150,7 +1152,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4ccadb399887dfd47b982a7f478b4ed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1432,6 +1434,17 @@ RectTransform:
   m_AnchoredPosition: {x: 340.49646, y: -259}
   m_SizeDelta: {x: 580.99292, y: 518}
   m_Pivot: {x: .5, y: .5}
+--- !u!225 &22515246
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175596}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private SidekickControls _sidekick;
     //public int ID;
     private InteractableSpeechBubble isb;
-    public Text hintText;
+    public Text hintText, dicText;
     bool _pressed, _hold;
     float timeForHold = 0;
     private GameObject gameui;
@@ -37,7 +37,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (_pressed)
         {
             timeForHold += Time.unscaledDeltaTime;
-            if(timeForHold > 0.25)
+            if(timeForHold > 0.25 && UiController.hotbarOpen == 1)
             {
                 ChangeHintText();
             }
@@ -86,19 +86,63 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         _hold = true;
     }
 
+    void ChangeDicText()
+    {
+        switch (gameObject.GetComponent<SymbolHandler>().ID)
+        {
+            case 0:
+                dicText.text = "A waving gesture for uniting people.";
+                break;
+            case 1:
+                dicText.text = "If you tell a dog to sit it ***** put.";
+                break;
+            case 2:
+                dicText.text = "Requires pulling.. activates mechanism..";
+                break;
+            case 3:
+                dicText.text = "It’s brown and can be set on fire.";
+                break;
+            case 4:
+                dicText.text = "It looks like a pan.. but I wouldn't eat anything from it!";
+                break;
+            case 5:
+                dicText.text = "Can be used to transport fluids.";
+                break;
+            case 6:
+                dicText.text = "It can contain several buckets of water, looks like a birdbath.";
+                break;
+            case 7:
+                dicText.text = "An endless supply of water at your disposal!";
+                break;
+            case 8:
+                dicText.text = "It’s tiny, it’s shiny.. but it’s the only means to get out!";
+                break;
+            case 9:
+                dicText.text = "Can be opened with a certain shiny little object.";
+                break;
+            case 10:
+                dicText.text = "Give or take!";
+                break;
+        }
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("DOWN");
+        //Debug.Log("DOWN");
         _pressed = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!_hold)
+        if (!_hold && UiController.hotbarOpen == 1)
         {
             testFunc();
         }
-        Debug.Log("UP");
+        //Debug.Log("UP");
+        if(UiController.hotbarOpen == 2)
+        {
+            ChangeDicText();
+        }
         hintText.text = "";
         hintText.transform.position = new Vector3(100, 100, 100);
         timeForHold = 0;

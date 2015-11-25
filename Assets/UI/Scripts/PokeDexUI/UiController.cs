@@ -27,7 +27,7 @@ public class UiController : MonoBehaviour
 	//private GameObject _pokedexButton;
 	private GameObject _pauseCanvas;
     private GameObject arrowBut;
-    int hotbarOpen = 0;
+    public static int hotbarOpen = 0;
 
     // Use this for initialization
     void Start () {

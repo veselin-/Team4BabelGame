@@ -16,7 +16,7 @@ public class BackButtonHandler : MonoBehaviour {
     // Use this for initialization
     void Start () {
         currentScene = Application.loadedLevelName;
-        Debug.Log(currentScene);
+       // Debug.Log(currentScene);
 	}
 
     // Update is called once per frame

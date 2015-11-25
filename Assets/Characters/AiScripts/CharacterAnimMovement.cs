@@ -102,7 +102,7 @@ public class CharacterAnimMovement : MonoBehaviour {
             while (Vector3.Dot(fwd, target) < 0.98f)
             {
 
-                Debug.DrawLine(fwd, fwd*10, Color.red, 1f);
+              //  Debug.DrawLine(fwd, fwd*10, Color.red, 1f);
 
                 fwd = transform.forward.normalized;
                 fwd.y = 0f;
@@ -113,7 +113,7 @@ public class CharacterAnimMovement : MonoBehaviour {
                 Vector3 newDir = Vector3.RotateTowards(fwd, target, 6 * step, 0.0F);
                 newDir.y = 0;
                 transform.rotation = Quaternion.LookRotation(newDir);
-                Debug.Log("running coroutine " + Vector3.Dot(fwd, target));
+               // Debug.Log("running coroutine " + Vector3.Dot(fwd, target));
                 yield return new WaitForEndOfFrame();
             }
        

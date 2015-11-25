@@ -19,5 +19,6 @@ public class DontMoveThePlayer : MonoBehaviour {
     void OnMouseDown()
     {
         _playerMovement._tap = false;
+        Debug.Log("JEG TRYKKEDE PÅ DIG");
     }
 }

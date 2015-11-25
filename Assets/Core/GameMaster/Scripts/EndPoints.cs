@@ -17,9 +17,12 @@ namespace Assets.Core.GameMaster.Scripts
         private bool isSidekickHere;
         private bool isPlayerHere;
 
+		[HideInInspector]
+		public int orbs = 0;
         // Use this for initialization
         void Start ()
         {
+			orbs = 0;
 			Time.timeScale = 1f;
             StartCoroutine(ShouldRoomChange());
         }
@@ -74,4 +77,4 @@ namespace Assets.Core.GameMaster.Scripts
         //    Debug.Log("someone left");
         //}
     }
-}
+} 

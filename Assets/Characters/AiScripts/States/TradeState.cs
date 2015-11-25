@@ -35,11 +35,12 @@ namespace Assets.Characters.AiScripts.States
                     if (Vector3.Distance(_agent.transform.position, _otherAgent.transform.position) < 2)
                     {
                         RaycastHit hit;
-                        Physics.Raycast(_agent.transform.position, (_otherAgent.transform.position - _agent.transform.position), out hit, 2);
+                        Physics.Raycast(_agent.transform.position + new Vector3(0f, 1f, 0f), (_otherAgent.transform.position - _agent.transform.position) + new Vector3(0f, 1f, 0f), out hit, 2);
                         bool hitPlayer = hit.transform.tag == Constants.Tags.Player;
                         if (hitPlayer)
                         {
                             _agent.gameObject.GetComponent<PickupHandler>().InitiateTrade(_otherAgent.gameObject.GetComponent<PickupHandler>());
+                            _state = State.Done;
                         }
                     }
                     if (Time.time > _waitUntil)

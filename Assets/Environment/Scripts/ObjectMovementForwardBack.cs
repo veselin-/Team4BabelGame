@@ -12,16 +12,16 @@ namespace Assets.Environment.Scripts
     {
 
         public GameObject[] Interactables;
-        public float MovementSpeed;
+    //    public float MovementSpeed;
 
         private List<IInteractable> _interactables;
 
-        private Vector3 _startPosition;
-        private Vector3 _endPosistion;
+     //   private Vector3 _startPosition;
+    //    private Vector3 _endPosistion;
         private bool _objectIsShown;
 
         public GameObject obstacle;
-        public float moveValue;
+   //     public float moveValue;
 
         private Animator anim;
 
@@ -31,8 +31,8 @@ namespace Assets.Environment.Scripts
         void Start()
         {
             // Sliding positions
-            _startPosition = transform.localPosition;
-            _endPosistion = new Vector3(_startPosition.x + moveValue, _startPosition.y, _startPosition.z);
+         //   _startPosition = transform.localPosition;
+         //   _endPosistion = new Vector3(_startPosition.x + moveValue, _startPosition.y, _startPosition.z);
             anim = GetComponent<Animator>();
             // Get all IInteractables
             _interactables = new List<IInteractable>();
@@ -46,16 +46,16 @@ namespace Assets.Environment.Scripts
         {
 
 
-            if (!someoneOnStairs)
-            {
+            //if (!someoneOnStairs)
+            //{
 
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition,
-                    _objectIsShown ? _endPosistion : _startPosition, Time.deltaTime*MovementSpeed);
-            }
-            else
-            {
-                obstacle.SetActive(false);
-            }
+            //    transform.localPosition = Vector3.MoveTowards(transform.localPosition,
+            //        _objectIsShown ? _endPosistion : _startPosition, Time.deltaTime*MovementSpeed);
+            //}
+            //else
+            //{
+            //    obstacle.SetActive(false);
+            //}
 
         }
 
@@ -90,6 +90,7 @@ namespace Assets.Environment.Scripts
             if (coll.tag == Constants.Tags.Player || coll.tag == Constants.Tags.SideKick)
             {
                 someoneOnStairs = true;
+                Debug.Log(someoneOnStairs);
             }
         }
         void OnTriggerExit(Collider coll)
@@ -97,6 +98,7 @@ namespace Assets.Environment.Scripts
             if (coll.tag == Constants.Tags.Player || coll.tag == Constants.Tags.SideKick)
             {
                 someoneOnStairs = false;
+                Debug.Log(someoneOnStairs);
             }
         }
 

@@ -23,6 +23,8 @@ namespace Assets.Environment.Scripts
         public GameObject obstacle;
         public float moveValue;
 
+        private bool someoneOnStairs;
+
         // Use this for initialization
         void Start()
         {
@@ -57,7 +59,7 @@ namespace Assets.Environment.Scripts
                     obstacle.SetActive(false);
                     //GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<RoomManager>().SetCurrentRoom(1);
                 }
-                else
+                else if(!someoneOnStairs)
                 {
                     _objectIsShown = false;
                     obstacle.SetActive(true);
@@ -65,5 +67,22 @@ namespace Assets.Environment.Scripts
                 yield return new WaitForSeconds(0.2f);
             }
         }
+
+
+        void OnTriggerEnter(Collider coll)
+        {
+            if (coll.tag == Constants.Tags.Player || coll.tag == Constants.Tags.SideKick)
+            {
+                someoneOnStairs = true;
+            }
+        }
+        void OnTriggerExit(Collider coll)
+        {
+            if (coll.tag == Constants.Tags.Player || coll.tag == Constants.Tags.SideKick)
+            {
+                someoneOnStairs = false;
+            }
+        }
+
     }
 }

@@ -18,8 +18,10 @@ public class PauseScreen : MonoBehaviour {
 	private CameraManager _cameraManager;
 	private GameObject _pokedexButton;
 	private PlayerMovement _player;
-	// Use this for initialization
-	void Start () {
+
+    public Slider MusicSlider, VoicesSlider, SoundFxSlider;
+    // Use this for initialization
+    void Start () {
 		_player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMovement>();
 		_pokedexButton = GameObject.FindGameObjectWithTag("PokedexButton");
 		_audioManager = GameObject.FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
@@ -142,21 +144,56 @@ public class PauseScreen : MonoBehaviour {
     {
         SoundTextOn.enabled = PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
         SoundTextOff.enabled = !PlayerPrefs.GetString("Sound").Equals(Constants.PlayerPrefs.On);
+        //SoundSlider.normalizedValue = PlayerPrefs.GetString("Sound"
     }
     private void GetMusicText()
     {
         MusicTextOn.enabled = PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
         MusicTextOff.enabled = !PlayerPrefs.GetString("Music").Equals(Constants.PlayerPrefs.On);
+        MusicSlider.normalizedValue = NormalizeMixerValue(PlayerPrefs.GetFloat("AmbienceV"));
+        //Debug.Log(NormalizeMixerValue( PlayerPrefs.GetFloat ("AmbienceV")));
     }
     private void GetVoicesText()
     {
         VoicesTextOn.enabled = PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
         VoicesTextOff.enabled = !PlayerPrefs.GetString("Voices").Equals(Constants.PlayerPrefs.On);
+        VoicesSlider.normalizedValue = NormalizeMixerValue(PlayerPrefs.GetFloat("VoicesV"));
     }
     private void GetSoundFXText()
     {
         SoundFxTextOn.enabled = PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
         SoundFxTextOff.enabled = !PlayerPrefs.GetString("SoundFX").Equals(Constants.PlayerPrefs.On);
+        SoundFxSlider.normalizedValue = NormalizeMixerValue(PlayerPrefs.GetFloat("SFXV"));
+    }
+
+    float NormalizeMixerValue(float value)
+    {
+        float scaleVal = (-40 - value) / (-40 - 0);
+        return scaleVal;
+    }
+
+    float DenormalizeSliderValue(float value)
+    {
+        float scaleVal = -40 - (value * -40f);
+        return scaleVal;
+    }
+    public void MusicSlide()
+    {
+        float denormalizedValue = DenormalizeSliderValue(MusicSlider.normalizedValue);
+        PlayerPrefs.SetFloat("AmbienceV", denormalizedValue);
+        _audioManager.MasterMixer.SetFloat("AmbienceV", denormalizedValue);
+    }
+    public void VoiceSlide()
+    {
+        float denormalizedValue = DenormalizeSliderValue(VoicesSlider.normalizedValue);
+        PlayerPrefs.SetFloat("VoicesV", denormalizedValue);
+        _audioManager.MasterMixer.SetFloat("VoicesV", denormalizedValue);
+    }
+    public void SfxSlide()
+    {
+        float denormalizedValue = DenormalizeSliderValue(SoundFxSlider.normalizedValue);
+        PlayerPrefs.SetFloat("SFXV", denormalizedValue);
+        _audioManager.MasterMixer.SetFloat("SFXV", denormalizedValue);
     }
 
 }

@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 464026}
+  - 33: {fileID: 3300800}
+  - 23: {fileID: 2378060}
+  - 95: {fileID: 9560664}
+  m_Layer: 0
+  m_Name: key 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &168788
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,16 +41,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &464026
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100564}
+  m_LocalRotation: {x: .00794049725, y: .00698587298, z: .0646985471, w: -.997848868}
+  m_LocalPosition: {x: -.376852125, y: -2.47378421, z: -.0193978138}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children: []
+  m_Father: {fileID: 482622}
+  m_RootOrder: 0
 --- !u!4 &482622
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168788}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: -17.4616737, y: 27.1717701, z: 9.71940613}
+  m_LocalRotation: {x: .669420898, y: .227762595, z: -.227762595, w: .669420779}
+  m_LocalPosition: {x: -6.62699986, y: .409999996, z: -5.80700016}
   m_LocalScale: {x: .00999999978, y: .00999999978, z: .00999999978}
-  m_Children: []
+  m_Children:
+  - {fileID: 464026}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2325646
@@ -41,7 +72,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -59,6 +90,37 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!23 &2378060
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100564}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: fd7e5895201a62c438de1ca97873391c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3300800
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100564}
+  m_Mesh: {fileID: 4300000, guid: 9095fd948a702534eb282457253c5931, type: 3}
 --- !u!33 &3317250
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -91,8 +153,25 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 35.7612305, y: 17.3514652, z: 2.48979187}
-  m_Center: {x: -3.67746353, y: .0479726791, z: .00840175152}
+  m_Size: {x: 50.9620056, y: 33.1876755, z: 2.48979211}
+  m_Center: {x: -3.12767029, y: 1.727247, z: .00840106793}
+--- !u!95 &9560664
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100564}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 9095fd948a702534eb282457253c5931, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9565650
 Animator:
   serializedVersion: 3
@@ -141,8 +220,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 17.8806152
-  m_Height: 17.3514652
+  m_Radius: 22.3116245
+  m_Height: 6.8603282
   m_Direction: 1
   m_Center: {x: -3.67746353, y: .0479726791, z: .00840175152}
 --- !u!1001 &100100000

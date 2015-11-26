@@ -40,6 +40,7 @@ public class UiController : MonoBehaviour
 		_pauseCanvas = GameObject.FindObjectOfType<PauseScreen> ().gameObject;
         anim = GetComponent<Animator>();
         arrowBut = GameObject.FindGameObjectWithTag("PokedexButton");
+        hotbarOpen = 0;
     }
 	
 	// Update is called once per frame
@@ -57,10 +58,7 @@ public class UiController : MonoBehaviour
     public void NewSignCreation(int id)
     {
 		//Debug.Log ("NewSignCreation");
-		_playerMovement.enabled = false;
-		_cameraManager.enabled = false;
-        CreateNewSymbol.SymbolID = id;
-        scrollRect.horizontalNormalizedPosition = 0f;
+
         if(hotbarOpen == 1)
         {
             anim.SetTrigger("MenuToggle");
@@ -69,6 +67,10 @@ public class UiController : MonoBehaviour
         {
             anim.SetTrigger("FullyEnter");
         }
+        _playerMovement.enabled = false;
+        _cameraManager.enabled = false;
+        CreateNewSymbol.SymbolID = id;
+        scrollRect.horizontalNormalizedPosition = 0f;
         menuIndicator.SetActive(false);
         MinBut.SetActive(false);
         anim.SetBool("CreatingSign", true);

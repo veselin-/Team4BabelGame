@@ -10,14 +10,7 @@ namespace Assets.Core.LevelSelector
 
         // Use this for initialization
         void Start () {
-            Time.timeScale = 1f;
-
-            var userLevels = Userlevels.GetInstance().GetUserLevels();
-            if (userLevels.FirstOrDefault() == "all")
-                return;
-
-            foreach (var levelButton in LevelButtons)
-                levelButton.GetComponent<Button>().interactable = userLevels.Contains(levelButton.name);
+            UpdateLevels();
         }
 
         public void LoadLevel(string SceneName)
@@ -31,6 +24,18 @@ namespace Assets.Core.LevelSelector
         public void BackToMainMenu()
         {
             Application.LoadLevel ("MainMenu");
+        }
+
+        public void UpdateLevels()
+        {
+            Time.timeScale = 1f;
+
+            var userLevels = Userlevels.GetInstance().GetUserLevels();
+            if (userLevels.FirstOrDefault() == "all")
+                return;
+
+            foreach (var levelButton in LevelButtons)
+                levelButton.GetComponent<Button>().interactable = userLevels.Contains(levelButton.name);
         }
     }
 }

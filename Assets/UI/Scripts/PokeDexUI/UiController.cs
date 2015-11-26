@@ -123,31 +123,33 @@ public class UiController : MonoBehaviour
         signText.enabled = false;
     }
 
-    public void OpenShop()
-    {
-        arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
-        anim.SetTrigger("MenuToggle");
-        _cameraManager.enabled = false;
-        _playerMovement.enabled = false;
-        _audioManager.PokedexBtnOpenPlay();
-        Time.timeScale = 0;
-        _pauseCanvas.SetActive(false);
-        closeUiBut.SetActive(true);
-        menuMask.GetComponent<ScrollRect>().enabled = true;
-        scrollRect.horizontalNormalizedPosition = 1f;
-        menuIndicator.SetActive(true);
-    }
+    //public void OpenShop()
+    //{
+    //    arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
+    //    anim.SetTrigger("MenuToggle");
+    //    _cameraManager.enabled = false;
+    //    _playerMovement.enabled = false;
+    //    _audioManager.PokedexBtnOpenPlay();
+    //    Time.timeScale = 0;
+    //    _pauseCanvas.SetActive(false);
+    //    closeUiBut.SetActive(true);
+    //    menuMask.GetComponent<ScrollRect>().enabled = true;
+    //    scrollRect.horizontalNormalizedPosition = 1f;
+    //    menuIndicator.SetActive(true);
+    //}
 
-    void AccesShop()
-    {
-        shopCanvas.SetActive(true);
-    }
+    //void AccesShop()
+    //{
+    //    shopCanvas.SetActive(true);
+    //}
 
     public void PokedexOpen()
     {
+        Debug.Log(hotbarOpen);
+      
         if (hotbarOpen == 2)
         {
-            if (arrowBut.transform.rotation.z == 180)
+            if (arrowBut.transform.rotation.z == 1)
             {
                 anim.SetTrigger("HalfExit");
                 hotbarOpen = 1;
@@ -164,9 +166,10 @@ public class UiController : MonoBehaviour
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
             anim.SetTrigger("MenuToggle");
+            _audioManager.PokedexBtnOpenPlay();
             _cameraManager.enabled = false;
             _playerMovement.enabled = false;
-            _audioManager.PokedexBtnOpenPlay();
+            Debug.Log("LANG TEXT WTF" + arrowBut.transform.rotation.z);
             Time.timeScale = 0;
             _pauseCanvas.SetActive(false);
             closeUiBut.SetActive(true);

@@ -79,20 +79,26 @@ public class UiController : MonoBehaviour
         signText.enabled = true;
         switch (id)
         {
+            // todo
             case 0:
-                signText.text = "Create a sign for CALL OVER";
+                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("phrases/CallOver");
                 break;
             case 1:
-                signText.text = "Create a sign for LEVER";
+                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("phrases/Lever");
                 break;
             case 2:
-                signText.text = "Create a sign for STICK";
+                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("phrases/Stick");
                 break;
             case 3:
-                signText.text = "Create a sign for FIREPIT";
+                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("phrases/Firepit");
                 break;
             case 4:
-                signText.text = "Create a sign for TRADE";
+                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("phrases/Trade");
                 break;
         }
         _playerMovement.enabled = false;

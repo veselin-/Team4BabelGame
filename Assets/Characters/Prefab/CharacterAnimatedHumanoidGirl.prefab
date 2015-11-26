@@ -395,22 +395,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &133248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 444008}
-  - 119: {fileID: 11906568}
-  m_Layer: 0
-  m_Name: BlobShadowProjector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &133798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,12 +1271,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.30584979, y: .0447699428, z: 1.48859835}
+  m_LocalPosition: {x: 1392.17993, y: 76.5266266, z: 1.48859835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 453108}
   - {fileID: 443508}
-  - {fileID: 444008}
   - {fileID: 411654}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1333,7 +1316,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 408516}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &411762
 Transform:
   m_ObjectHideFlags: 1
@@ -1694,18 +1677,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 408516}
   m_RootOrder: 1
---- !u!4 &444008
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133248}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: 2.00999999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 408516}
-  m_RootOrder: 2
 --- !u!4 &452530
 Transform:
   m_ObjectHideFlags: 1
@@ -2570,24 +2541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7d68150e960254da894de2798a3190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!119 &11906568
-Projector:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133248}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: .100000001
-  m_FarClipPlane: 50
-  m_FieldOfView: 30
-  m_AspectRatio: 1
-  m_Orthographic: 0
-  m_OrthographicSize: 2
-  m_Material: {fileID: 2100000, guid: e30ff3588e719f34bbf0c66f22d97487, type: 2}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!136 &13619544
 CapsuleCollider:
   m_ObjectHideFlags: 1

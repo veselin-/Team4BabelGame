@@ -49,6 +49,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         hintText.transform.position = transform.position + new Vector3(0, 50, 0);
         switch (gameObject.GetComponent<SymbolHandler>().ID)
         {
+            // TODO 
             case 0:
                 hintText.text = "A waving gesture for uniting people.";
                 break;

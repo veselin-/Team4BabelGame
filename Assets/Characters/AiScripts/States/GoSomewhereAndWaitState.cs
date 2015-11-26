@@ -36,6 +36,7 @@ namespace Assets.Characters.AiScripts.States
                     }
                     return;
                 case State.WaitSomeTime:
+                    _agent.ResetPath();
                     if (Time.time > _waitUntill)
                         _state = State.Done;
                     return;

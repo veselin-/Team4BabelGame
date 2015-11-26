@@ -152,11 +152,11 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         PlayerPrefsBool.SetBool("Pack (3)", false);
         PlayerPrefsBool.SetBool("Pack (4)", false);
         PlayerPrefsBool.SetBool("Pack (5)", false);
-        //PlayerPrefsBool.SetBool("Pack123", false);
-        //PlayerPrefsBool.SetBool("Pack456", false);
-        //PlayerPrefsBool.SetBool("PackAll", false);
+        PlayerPrefsBool.SetBool("Pack123", false);
+        PlayerPrefsBool.SetBool("Pack456", false);
+        PlayerPrefsBool.SetBool("PackAll", false);
         PlayerPrefs.SetInt("CurrencyAmount", CurrencyControl.currencyAmount * 0);
-
+        PlayerPrefsBool.SetBool("Level7", false);
         PlayerPrefsBool.SetBool("SevenElever", false);
         LeverPulls.leverpulls = 0;
 

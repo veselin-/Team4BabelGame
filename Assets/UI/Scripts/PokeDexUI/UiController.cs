@@ -16,6 +16,7 @@ public class UiController : MonoBehaviour
     public GameObject MinBut;
     public GameObject hintPanel;
     public GameObject menuIndicator;
+    public Text signText;
 
     //NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
@@ -67,6 +68,7 @@ public class UiController : MonoBehaviour
         {
             anim.SetTrigger("FullyEnter");
         }
+        signText.enabled = true;
         _playerMovement.enabled = false;
         _cameraManager.enabled = false;
         CreateNewSymbol.SymbolID = id;
@@ -92,6 +94,7 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1;
 		_pokedexButton.SetActive (true);
 		_pauseCanvas.SetActive (true);
+        signText.enabled = false;
     }
 
     public void OpenShop()

@@ -39,7 +39,7 @@ public class BackButtonHandler : MonoBehaviour {
         }
         else
         {
-            GameObject.FindObjectOfType<PauseScreen>().PausePanelBackBtn();
+            //GameObject.FindObjectOfType<PauseScreen>().PausePanelBackBtn();
         }
         
     }

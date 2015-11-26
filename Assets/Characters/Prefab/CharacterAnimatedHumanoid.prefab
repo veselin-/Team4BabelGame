@@ -432,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &127212
 GameObject:
   m_ObjectHideFlags: 1
@@ -779,6 +779,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &160678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 496428}
+  - 108: {fileID: 10877780}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &164064
 GameObject:
   m_ObjectHideFlags: 1
@@ -903,6 +919,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &175554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 456142}
+  - 119: {fileID: 11993524}
+  m_Layer: 0
+  m_Name: BlobLightProjector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &175724
 GameObject:
   m_ObjectHideFlags: 1
@@ -1671,13 +1703,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.19816661, y: .0703493953, z: 9.33015156}
+  m_LocalPosition: {x: 1.19816661, y: .0703493953, z: 14.4799995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495118}
   - {fileID: 456372}
   - {fileID: 430032}
   - {fileID: 401112}
+  - {fileID: 456142}
+  - {fileID: 496428}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &444806
@@ -1870,6 +1904,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 493390}
   m_RootOrder: 1
+--- !u!4 &456142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175554}
+  m_LocalRotation: {x: -.707106709, y: -2.30404609e-07, z: 2.3040468e-07, w: -.707106829}
+  m_LocalPosition: {x: 0, y: 3.14400005, z: .180999756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 443856}
+  m_RootOrder: 4
 --- !u!4 &456372
 Transform:
   m_ObjectHideFlags: 1
@@ -2229,6 +2275,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 461054}
   m_RootOrder: 0
+--- !u!4 &496428
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0149999997, y: 1.92999995, z: .527999997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 443856}
+  m_RootOrder: 5
 --- !u!4 &496740
 Transform:
   m_ObjectHideFlags: 1
@@ -3110,6 +3168,38 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!108 &10877780
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160678}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 1, g: .865517199, b: .625, a: 1}
+  m_Intensity: .879999995
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 2
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_Lightmapping: 4
+  m_BounceIntensity: .769999981
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11413736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3205,6 +3295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418b75c598a4e374eade55a9c8ae0855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tap: 0
 --- !u!114 &11495134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3235,6 +3326,24 @@ Projector:
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!119 &11993524
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175554}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 1.20000005
+  m_FarClipPlane: 3.48000002
+  m_FieldOfView: 54.9000015
+  m_AspectRatio: 1
+  m_Orthographic: 0
+  m_OrthographicSize: 2
+  m_Material: {fileID: 2100000, guid: c8c80c5b03f5c7e40b07eb2170e667e5, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!135 &13541796
 SphereCollider:
   m_ObjectHideFlags: 1

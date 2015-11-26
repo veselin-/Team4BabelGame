@@ -23,6 +23,14 @@ public class CombineSymbols : MonoBehaviour
 
 	private UiController _UiController;
 
+    public GameObject FeedbackSprite;
+
+    private Image image;
+    private bool feedbackRunning = false;
+
+    public Color feedbackColor1 = Color.red;
+    public Color feedbackColor2 = Color.blue;
+
     //NavMeshAgent navMesh;
     // Use this for initialization
 
@@ -47,12 +55,28 @@ public class CombineSymbols : MonoBehaviour
 
         audioManager = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
 		_UiController = GameObject.FindObjectOfType<UiController> ().GetComponent<UiController>();
+
+        image = GetComponent<Image>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+	    if (transform.childCount == 1)
+	    {
+	        if ((transform.childCount + transform.GetChild(0).childCount) >= 2 && !feedbackRunning)
+	        {
+	            StartCoroutine(FeedbackCoRoutine());
+	        }
+	    }
+
+	    if (transform.childCount == 0 && feedbackRunning)
+        {
+            StopAllCoroutines();
+        }
+
+
+    }
 
     public void Combine()
         //If two different syllables are present in the two slots it should create a new prefab with the two syllables pictures and sounds. TYhen it should play the sounds in order.
@@ -178,6 +202,43 @@ public class CombineSymbols : MonoBehaviour
         }
         Time.timeScale = 1;
         //navMesh.Resume();
+    }
+
+    void Feedback()
+    {
+        
+    }
+
+    IEnumerator FeedbackCoRoutine()
+    {
+        feedbackRunning = true;
+
+        float timer = 0;
+
+        while (image.color != feedbackColor1)
+        {
+            image.color = Color.Lerp(Color.white, feedbackColor1, timer);
+            timer += Time.unscaledDeltaTime;
+            if (transform.childCount <= 1)
+            {
+                break;
+            }
+                yield return new WaitForEndOfFrame();
+        }
+
+
+        if (transform.childCount >= 1)
+        {
+            while (transform.childCount + transform.GetChild(0).childCount >= 2)
+            {
+
+                image.color = Color.Lerp(feedbackColor1, feedbackColor2, Mathf.PingPong(Time.unscaledTime, 1f));
+                yield return new WaitForEndOfFrame();
+            }
+            image.color = Color.white;
+            
+        }
+        feedbackRunning = false;
     }
 
 }

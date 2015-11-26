@@ -3,6 +3,7 @@ using System.Collections;
 //using UnityEditor.AnimatedValues;
 using UnityEngine.UI;
 using Assets.Characters.Player.Scripts;
+using Assets.Core.Configuration;
 
 public class UiController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class UiController : MonoBehaviour
     public GameObject MinBut;
     public GameObject hintPanel;
     public GameObject menuIndicator;
+    public GameObject shopCanvas;
+    public Text signText;
 
     //NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
@@ -44,7 +47,7 @@ public class UiController : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         //if (menuMask.GetComponent<UiSnapScroll>().Pips[0].GetComponent<Image>().color == Color.black)
         //{
         //    arrowBut.SetActive(false);
@@ -53,6 +56,12 @@ public class UiController : MonoBehaviour
         //{
         //    arrowBut.SetActive(true);
         //}
+        //if (scrollRect.horizontalNormalizedPosition == 1f)
+        //{
+        //    GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateInfoDialog("Phrases/MockUpShop", "Phrases/ShopText", "Phrases/OKText", AccesShop);
+
+        //}
+        //Debug.Log("WTF");
     }
 
     public void NewSignCreation(int id)
@@ -66,6 +75,25 @@ public class UiController : MonoBehaviour
         else
         {
             anim.SetTrigger("FullyEnter");
+        }
+        signText.enabled = true;
+        switch (id)
+        {
+            case 0:
+                signText.text = "Create a sign for CALL OVER";
+                break;
+            case 1:
+                signText.text = "Create a sign for LEVER";
+                break;
+            case 2:
+                signText.text = "Create a sign for STICK";
+                break;
+            case 3:
+                signText.text = "Create a sign for FIREPIT";
+                break;
+            case 4:
+                signText.text = "Create a sign for TRADE";
+                break;
         }
         _playerMovement.enabled = false;
         _cameraManager.enabled = false;
@@ -92,11 +120,12 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1;
 		_pokedexButton.SetActive (true);
 		_pauseCanvas.SetActive (true);
+        signText.enabled = false;
     }
 
     public void OpenShop()
     {
-        arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
+        arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
         anim.SetTrigger("MenuToggle");
         _cameraManager.enabled = false;
         _playerMovement.enabled = false;
@@ -109,16 +138,21 @@ public class UiController : MonoBehaviour
         menuIndicator.SetActive(true);
     }
 
+    void AccesShop()
+    {
+        shopCanvas.SetActive(true);
+    }
+
     public void PokedexOpen()
     {
         if (hotbarOpen == 2)
         {
-            if (arrowBut.transform.rotation.z == 0)
+            if (arrowBut.transform.rotation.z == 180)
             {
                 anim.SetTrigger("HalfExit");
                 hotbarOpen = 1;
                 //HotbarPokedexOpen();
-                arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
+                arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
                 hintPanel.SetActive(false);
                 _pauseCanvas.SetActive(true);
                 closeUiBut.SetActive(false);
@@ -128,7 +162,7 @@ public class UiController : MonoBehaviour
                 Time.timeScale = 1;
                 return;
             }
-            arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
+            arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
             anim.SetTrigger("MenuToggle");
             _cameraManager.enabled = false;
             _playerMovement.enabled = false;
@@ -189,7 +223,7 @@ public class UiController : MonoBehaviour
         _cameraManager.enabled = true;
 		_playerMovement.enabled = true;
 		_audioManager.PokedexBtnClosePlay ();
-        arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
+        arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
         Time.timeScale = 1;
         hotbarOpen = 0;
 		_pauseCanvas.SetActive (true);

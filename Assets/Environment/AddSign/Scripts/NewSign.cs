@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Assets.Core.Configuration;
 
 public class NewSign : MonoBehaviour
 {
-
     public int ID;
     public Camera cam;
     private DatabaseManager databaseManager;
@@ -29,7 +29,7 @@ public class NewSign : MonoBehaviour
         if (other.tag != Constants.Tags.Player) return;
 
         _uiControl.NewSignCreation(ID);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
 

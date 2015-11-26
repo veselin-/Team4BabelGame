@@ -40,6 +40,7 @@ public class UiController : MonoBehaviour
 		_pauseCanvas = GameObject.FindObjectOfType<PauseScreen> ().gameObject;
         anim = GetComponent<Animator>();
         arrowBut = GameObject.FindGameObjectWithTag("PokedexButton");
+        hotbarOpen = 0;
     }
 	
 	// Update is called once per frame

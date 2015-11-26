@@ -5,10 +5,11 @@ using Assets.Core.LevelSelector;
 
 public class BuyLevelSeven : MonoBehaviour {
     public GameObject ls;
+    public int cost;
 	// Use this for initialization
 	void Start () {
         //wh = GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,12 +23,12 @@ public class BuyLevelSeven : MonoBehaviour {
 
     void UnlockLevelSeven()
     {
-        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= 20 && PlayerPrefsBool.GetBool("Level7") == false)
+        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool("Level7") == false)
         {
             PlayerPrefsBool.SetBool("Level7", true);
-            ls.GetComponent<LevelSelector>().UpdateLevels();
             Userlevels.GetInstance().AddUserLevel("7");
-            PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) - 20);
+            ls.GetComponent<LevelSelector>().UpdateLevels();
+            PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) - cost);
         }
 
     }

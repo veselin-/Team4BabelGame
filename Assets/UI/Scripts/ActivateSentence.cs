@@ -65,7 +65,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 hintText.text = "It looks like a pan.. but I wouldn't eat anything from it!";
                 break;
             case 5:
-                hintText.text = "Can be used to transport fluids.";
+                hintText.text = "Give or take!"; 
                 break;
             case 6:
                 hintText.text = "It can contain several buckets of water, looks like a birdbath.";
@@ -80,7 +80,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 hintText.text = "Can be opened with a certain shiny little object.";
                 break;
             case 10:
-                hintText.text = "Give or take!";
+                hintText.text = "Can be used to transport fluids.";
                 break;
         }
         _hold = true;

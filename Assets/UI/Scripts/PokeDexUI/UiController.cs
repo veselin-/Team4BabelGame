@@ -16,6 +16,7 @@ public class UiController : MonoBehaviour
     public GameObject MinBut;
     public GameObject hintPanel;
     public GameObject menuIndicator;
+    public GameObject shopCanvas;
     public Text signText;
 
     //NavMeshAgent navMeshP, navMeshS;
@@ -69,6 +70,24 @@ public class UiController : MonoBehaviour
             anim.SetTrigger("FullyEnter");
         }
         signText.enabled = true;
+        switch (id)
+        {
+            case 0:
+                signText.text = "Create a sign for CALL OVER";
+                break;
+            case 1:
+                signText.text = "Create a sign for LEVER";
+                break;
+            case 2:
+                signText.text = "Create a sign for STICK";
+                break;
+            case 3:
+                signText.text = "Create a sign for FIREPIT";
+                break;
+            case 4:
+                signText.text = "Create a sign for TRADE";
+                break;
+        }
         _playerMovement.enabled = false;
         _cameraManager.enabled = false;
         CreateNewSymbol.SymbolID = id;
@@ -116,34 +135,41 @@ public class UiController : MonoBehaviour
     {
         if (hotbarOpen == 2)
         {
-            if (arrowBut.transform.rotation.z == 0)
+            if(scrollRect.horizontalNormalizedPosition == 1f)
             {
-                anim.SetTrigger("HalfExit");
-                hotbarOpen = 1;
-                //HotbarPokedexOpen();
-                arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
-                hintPanel.SetActive(false);
-                _pauseCanvas.SetActive(true);
-                closeUiBut.SetActive(false);
-                _cameraManager.enabled = true;
-                _playerMovement.enabled = true;
-                scrollRect.horizontalNormalizedPosition = 0f;
-                Time.timeScale = 1;
-                return;
+                shopCanvas.SetActive(true);
             }
-            arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
-            anim.SetTrigger("MenuToggle");
-            _cameraManager.enabled = false;
-            _playerMovement.enabled = false;
-            _audioManager.PokedexBtnOpenPlay();
-            Time.timeScale = 0;
-            _pauseCanvas.SetActive(false);
-            closeUiBut.SetActive(true);
-            hintPanel.SetActive(true);
-            hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
-            //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
-            menuMask.GetComponent<ScrollRect>().enabled = true;
-            menuIndicator.SetActive(true);
+            else
+            {
+                if (arrowBut.transform.rotation.z == 0)
+                {
+                    anim.SetTrigger("HalfExit");
+                    hotbarOpen = 1;
+                    //HotbarPokedexOpen();
+                    arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
+                    hintPanel.SetActive(false);
+                    _pauseCanvas.SetActive(true);
+                    closeUiBut.SetActive(false);
+                    _cameraManager.enabled = true;
+                    _playerMovement.enabled = true;
+                    scrollRect.horizontalNormalizedPosition = 0f;
+                    Time.timeScale = 1;
+                    return;
+                }
+                arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
+                anim.SetTrigger("MenuToggle");
+                _cameraManager.enabled = false;
+                _playerMovement.enabled = false;
+                _audioManager.PokedexBtnOpenPlay();
+                Time.timeScale = 0;
+                _pauseCanvas.SetActive(false);
+                closeUiBut.SetActive(true);
+                hintPanel.SetActive(true);
+                hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
+                //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
+                menuMask.GetComponent<ScrollRect>().enabled = true;
+                menuIndicator.SetActive(true);
+            }
         }
     }
 

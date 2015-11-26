@@ -33,13 +33,14 @@ public class BackButtonHandler : MonoBehaviour {
     private void defaultAction()
     {
         //Application.LoadLevel(mainScene);
-        if (Time.timeScale == 1)
+        if (Time.timeScale > 0.9f)
         {
             GameObject.FindObjectOfType<PauseScreen>().PausePanelBtn();
         }
         else
         {
-            GameObject.FindObjectOfType<PauseScreen>().PausePanelBackBtn();
+            if(FindObjectOfType<PauseScreen>() != null)
+                FindObjectOfType<PauseScreen>().PausePanelBackBtn();
         }
         
     }

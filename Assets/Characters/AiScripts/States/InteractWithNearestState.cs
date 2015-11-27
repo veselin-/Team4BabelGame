@@ -100,18 +100,18 @@ namespace Assets.Characters.AiScripts.States
                     puh.PickUpItem(returnItem);
                     _agent.ResetPath();
 
-                    //   if (_interactGameObject.tag == Constants.Tags.Lever)
-                    //   {
-                    _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
-                 //   }
-                    //else if (_interactGameObject.tag == Constants.Tags.Brazier)
-                    //{
-                    //    _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
-                    //}
-                    //else
-                    //{
-                    //    _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
-                    //}
+                    if (_interactGameObject.tag == Constants.Tags.Lever)
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
+                    }
+                    else if (_interactGameObject.tag == Constants.Tags.Brazier)
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
+                    }
+                    else
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
+                    }
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;
                     return;

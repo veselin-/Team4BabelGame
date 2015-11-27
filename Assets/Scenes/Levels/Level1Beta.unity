@@ -3486,7 +3486,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24349506, guid: 54baf84db612b184388ffbd859b2084f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: fc829ab28245c9041a00a9df0afda550, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5d80bba5f2cb83e4aa6bdf6d0f44d7b2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5947,7 +5947,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: m_Volume
-      value: .400000006
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f7c7aa13f6d74524db878ff119b68a89, type: 3}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}

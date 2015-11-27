@@ -321,6 +321,7 @@ public class SideKickWayPoint : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.1f);
             }
+            speech.GetNextSpeech();
             sidekick.GetComponent<SidekickControls>().ExecuteAction(PlayerSpeekId);
         }
 

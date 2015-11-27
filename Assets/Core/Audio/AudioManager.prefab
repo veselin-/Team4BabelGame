@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 402314}
   - 82: {fileID: 8284472}
   m_Layer: 0
-  m_Name: UIBtnPokedexOpen
+  m_Name: UIBtnPokedexMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,6 +27,22 @@ GameObject:
   - 82: {fileID: 8261114}
   m_Layer: 0
   m_Name: Majbritt WAUH
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &112634
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 489978}
+  - 82: {fileID: 8288850}
+  m_Layer: 0
+  m_Name: UIBtnPokedexOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +384,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446256}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &402408
 Transform:
   m_ObjectHideFlags: 1
@@ -523,6 +539,7 @@ Transform:
   m_Children:
   - {fileID: 414162}
   - {fileID: 448106}
+  - {fileID: 489978}
   - {fileID: 402314}
   - {fileID: 494484}
   m_Father: {fileID: 407342}
@@ -618,6 +635,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 482382}
   m_RootOrder: 5
+--- !u!4 &489978
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 446256}
+  m_RootOrder: 2
 --- !u!4 &494484
 Transform:
   m_ObjectHideFlags: 1
@@ -629,7 +658,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446256}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!82 &8205190
 AudioSource:
   m_ObjectHideFlags: 1
@@ -711,7 +740,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7f65008e56a4d8c46be8eb27242520a5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a1a4e1c91df3e894082dafe93bc782f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -995,7 +1024,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6640b610a84712a44b812b1b850ad1c5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e9e3ea4b9f7dae747a55bc482834f7b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1492,7 +1521,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 71aae6a9433d09645a7cbe64acf2e11b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4f1aa67aeae59f64cb33c431c2e790a0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1624,6 +1653,77 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8288850
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112634}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24353568, guid: 54baf84db612b184388ffbd859b2084f,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: ee56b6c7ff7a66248bc93cba3eec1ba7, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11475872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1641,7 +1741,8 @@ MonoBehaviour:
   VoiceMixer: {fileID: 24100000, guid: aba5546c1551f15489efa5386d137519, type: 2}
   ClickBtn: {fileID: 8225292}
   SwipeBtn: {fileID: 8209636}
-  PokedexOpenBtn: {fileID: 8284472}
+  PokedexOpenBtn: {fileID: 8288850}
+  PokedexMiddleBtn: {fileID: 8284472}
   PokedexCloseBtn: {fileID: 8245576}
   PlayAmbience: 1
   NewThemeAmbienceSnapshots:

@@ -164,11 +164,12 @@ public class UiController : MonoBehaviour
                 _playerMovement.enabled = true;
                 scrollRect.horizontalNormalizedPosition = 0f;
                 Time.timeScale = 1;
+				_audioManager.PokedexBtnMiddlePlay();
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
             anim.SetTrigger("MenuToggle");
-            _audioManager.PokedexBtnOpenPlay();
+            _audioManager.PokedexBtnClosePlay();
             _cameraManager.enabled = false;
             _playerMovement.enabled = false;
             Time.timeScale = 0;
@@ -189,7 +190,7 @@ public class UiController : MonoBehaviour
             anim.SetTrigger("MenuToggle");
             _cameraManager.enabled = true;
             _playerMovement.enabled = true;
-            _audioManager.PokedexBtnOpenPlay();
+            _audioManager.PokedexBtnMiddlePlay();
             _pauseCanvas.SetActive(true);
             closeUiBut.SetActive(false);
             Time.timeScale = 1;
@@ -226,7 +227,7 @@ public class UiController : MonoBehaviour
         hintPanel.SetActive(false);
         _cameraManager.enabled = true;
 		_playerMovement.enabled = true;
-		_audioManager.PokedexBtnClosePlay ();
+		_audioManager.PokedexBtnOpenPlay ();
         arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
         Time.timeScale = 1;
         hotbarOpen = 0;

@@ -12,7 +12,8 @@ public class EndLevelScreen : MonoBehaviour {
 	public Text LevelCompleteText;
 	public string NextLevel;
 	private EndPoints ep;
-    public GameObject pokeDex, blackness;
+    public GameObject blackness;
+    private GameObject pokesprite;
 	// Use this for initialization
 	void Awake () {
 
@@ -21,6 +22,10 @@ public class EndLevelScreen : MonoBehaviour {
 		LevelCompleteText.text = "";
 	}
 	
+    void Start()
+    {
+        
+    }
 	// Update is called once per frame
 	void Update () {
 	
@@ -35,14 +40,14 @@ public class EndLevelScreen : MonoBehaviour {
     {
         if (shopOpen == 1)
         {
-            pokeDex.SetActive(false);
+            pokesprite.SetActive(false);
             blackness.SetActive(false);
             shopOpen = 0;
         }
         else
         {
             blackness.SetActive(true);
-            pokeDex.SetActive(true);
+            pokesprite.SetActive(true);
             shopOpen = 1;
         }
     }
@@ -113,10 +118,11 @@ public class EndLevelScreen : MonoBehaviour {
 
     void OnEnable()
     {
-		ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
+        pokesprite = GameObject.FindGameObjectWithTag("PokedexSprite");
+        ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
 		allOrbs = PlayerPrefs.GetInt ("CurrencyAmount");
 		foundOrbs = ep.orbs;
-        pokeDex.SetActive(false);
+        pokesprite.SetActive(false);
         UpdateOrbsUI();
     }
 

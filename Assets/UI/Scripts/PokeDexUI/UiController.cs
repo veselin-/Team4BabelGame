@@ -130,11 +130,11 @@ public class UiController : MonoBehaviour
 
     public void OpenShop()
     {
-        if (hotbarOpen == 2)
-        {
-            PokedexClose();
-        }
-        hotbarOpen = 2;
+        //if (hotbarOpen == 2)
+        //{
+        //    PokedexClose();
+        //}
+        //hotbarOpen = 2;
         anim.SetTrigger("FullyEnter");
         _audioManager.PokedexBtnOpenPlay();
         _cameraManager.enabled = false;

@@ -119,7 +119,7 @@ public class CombineSymbols : MonoBehaviour
             Destroy(transform.GetChild(0).gameObject);
             databaseManager.GetComponent<DatabaseManager>().AddSign(CreateNewSymbol.SymbolID, syllableIDs);
             databaseManager.GetComponent<DatabaseManager>().SaveSignsDb();
-            audioManager.StartPlayCoroutine(CreateNewSymbol.SymbolID);
+            audioManager.StartPlayMaleCoroutine(CreateNewSymbol.SymbolID);
 			_UiController.SignCreationDone();
 			_UiController.PokedexClose();
             text.text = "";

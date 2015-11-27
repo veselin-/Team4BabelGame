@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioMixer SoundFXMixer;
 	public AudioMixer VoiceMixer;
 
-	public AudioSource ClickBtn, SwipeBtn, PokedexOpenBtn, PokedexCloseBtn;
+	public AudioSource ClickBtn, SwipeBtn, PokedexOpenBtn, PokedexMiddleBtn, PokedexCloseBtn;
 
 	public bool PlayAmbience;
 
@@ -313,14 +313,14 @@ public class AudioManager : MonoBehaviour {
 	// male voices ------------------------------
 	public void MaleSyllabusSoundPlay(int index)
 	{
-		//MaleSyllabusList [index].Play ();
-		//GetMaleSyllabusByName (name).Play ();
+		Player.clip = MaleSyllabusList.Length > index ? MaleSyllabusList[index] : MaleSyllabusList.FirstOrDefault();
+		Player.Play();
 	}
 	
 	public void MaleSyllabusSoundStop(int index)
 	{
-		//MaleSyllabusList [index].Stop ();
-		//GetMaleSyllabusByName (name).Stop ();
+		Player.clip = MaleSyllabusList [index];
+		Player.Stop ();
 	}
 
 	/*
@@ -356,10 +356,15 @@ public class AudioManager : MonoBehaviour {
 		//GetFemaleSyllabusByName (name).Stop ();
 	}
 
-    public void StartPlayCoroutine(int id)
+    public void StartPlayMaleCoroutine(int id)
     {
-        StartCoroutine(FemaleSignPlay(id));
+		StartCoroutine(MaleSignPlay(id));
     }
+
+	public void StartPlayFemaleCoroutine(int id)
+	{
+		StartCoroutine(FemaleSignPlay(id));
+	}
 
     IEnumerator FemaleSignPlay(int id)
     {
@@ -374,9 +379,22 @@ public class AudioManager : MonoBehaviour {
             }
         }
         yield return new WaitForSeconds(1);
-
-
     }
+
+	IEnumerator MaleSignPlay(int id)
+	{
+		if (databaseManager.GetSign(id) != null)
+		{
+			Sign s = databaseManager.GetSign(id);
+			
+			foreach (int i in s.SyllableSequence)
+			{
+				MaleSyllabusSoundPlay(i);
+				yield return new WaitForSeconds(MaleSyllabusList[i].length);
+			}
+		}
+		yield return new WaitForSeconds(1);
+	}
 
 	public void ClickBtnPlay()
 	{
@@ -401,6 +419,11 @@ public class AudioManager : MonoBehaviour {
 	public void PokedexBtnOpenPlay()
 	{
 		PokedexOpenBtn.Play ();
+	}
+
+	public void PokedexBtnMiddlePlay()
+	{
+		PokedexMiddleBtn.Play ();
 	}
 
 	public void PokedexBtnClosePlay()

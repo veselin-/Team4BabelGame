@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour {
 
 	public AudioMixerSnapshot[] NewThemeAmbienceSnapshots;
 
+	public AudioClip FemaleNoSound;
+	public AudioClip[] JiberishList;
 	public AudioClip[] MaleSyllabusList;
 	public AudioClip[] FemaleSyllabusList;
 	
@@ -66,6 +68,7 @@ public class AudioManager : MonoBehaviour {
 	//private int _currentSignalSeconds = 0;
 
 	private AudioSource Player;
+	private AudioSource SideKick;
     private DatabaseManager databaseManager;
 
 	// Use this for initialization
@@ -75,7 +78,10 @@ public class AudioManager : MonoBehaviour {
 		{
 			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		}
-
+		if(GameObject.FindGameObjectWithTag("SideKick") != null)
+		{
+			SideKick = GameObject.FindGameObjectWithTag("SideKick").GetComponent<AudioSource>();
+		}
 		if (GameObject.FindGameObjectWithTag (Constants.Tags.DatabaseManager) != null) {
 			databaseManager = GameObject.FindGameObjectWithTag (Constants.Tags.DatabaseManager).GetComponent<DatabaseManager> ();
 		}
@@ -341,8 +347,8 @@ public class AudioManager : MonoBehaviour {
 	// female voices -----------------------------
 	public void FemaleSyllabusSoundPlay(int index)
 	{
-	        Player.clip = FemaleSyllabusList.Length > index ? FemaleSyllabusList[index] : FemaleSyllabusList.FirstOrDefault();
-	        Player.Play();
+	    SideKick.clip = FemaleSyllabusList.Length > index ? FemaleSyllabusList[index] : FemaleSyllabusList.FirstOrDefault();
+		SideKick.Play();
 	    
 	    //FemaleSyllabusList[index].Play();
 		//GetFemaleSyllabusByName (name).Play ();
@@ -350,8 +356,8 @@ public class AudioManager : MonoBehaviour {
 	
 	public void FemaleSyllabusSoundStop(int index)
 	{
-		Player.clip = FemaleSyllabusList [index];
-		Player.Stop ();
+		SideKick.clip = FemaleSyllabusList [index];
+		SideKick.Stop ();
 		//FemaleSyllabusList[index].Stop();
 		//GetFemaleSyllabusByName (name).Stop ();
 	}
@@ -430,7 +436,26 @@ public class AudioManager : MonoBehaviour {
 	{
 		PokedexCloseBtn.Play ();
 	}
-	
+
+	public void FemaleNoSoundPlay()
+	{
+		SideKick.clip = FemaleNoSound;
+		SideKick.Play ();
+	}
+
+	public void SidekickRandomJiberishPlay()
+	{
+		SideKick.clip = JiberishList[Random.Range(0, JiberishList.Length)];
+		SideKick.Play();
+	}
+
+	public void PlayerRandomJiberishPlay()
+	{
+		Player.clip = JiberishList[Random.Range(0, JiberishList.Length)];
+		Player.Play();
+	}
+
+
 	/*
 	private AudioSource GetFemaleSyllabusByName(string name)
 	{

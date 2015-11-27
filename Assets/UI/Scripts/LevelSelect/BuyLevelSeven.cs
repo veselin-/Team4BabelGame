@@ -27,8 +27,16 @@ public class BuyLevelSeven : MonoBehaviour {
         {
             PlayerPrefsBool.SetBool("Level7", true);
             Userlevels.GetInstance().AddUserLevel("7");
-            ls.GetComponent<LevelSelector>().UpdateLevels();
             PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) - cost);
+
+            if (ls != null)
+            {
+                ls.GetComponent<LevelSelector>().UpdateLevels();
+            }
+            else
+            {
+                Application.LoadLevel("Level3Beta");
+            }
         }
 
     }

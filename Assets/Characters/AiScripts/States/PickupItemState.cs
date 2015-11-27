@@ -25,7 +25,7 @@ namespace Assets.Characters.AiScripts.States
                 Vector3.Distance(_agent.transform.position, i.transform.position)).FirstOrDefault();
 
 
-			if (_pickupGoal == null) {
+			if (_pickupGoal == null || _pickupGoal.GetComponent<ICollectable>() == null) {
 				// sound
 				if(_agent.gameObject.tag == "SideKick")
 				{

@@ -712,7 +712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &156958549
 Transform:
   m_ObjectHideFlags: 0
@@ -732,7 +732,7 @@ Light:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 156958548}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: .86288029, b: .617647052, a: 1}
@@ -3080,7 +3080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TorchPrefab: {fileID: 120888, guid: b98606142d459a24f82ad78a85051a2f, type: 2}
   StickPrefab: {fileID: 193758, guid: 9f81346b918570040be243bdba4c0ed7, type: 2}
-  StartLighted: 1
+  StartLighted: 0
   InteractPoint:
   - {fileID: 1194638627}
   - {fileID: 1350992376}
@@ -3812,7 +3812,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24349506, guid: 54baf84db612b184388ffbd859b2084f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: fc829ab28245c9041a00a9df0afda550, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5d80bba5f2cb83e4aa6bdf6d0f44d7b2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .699999988
   m_Pitch: 1
@@ -4653,7 +4653,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 189928, guid: 5a54b23e027247c47a64316f11166517, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a54b23e027247c47a64316f11166517, type: 2}
@@ -10747,7 +10747,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
       propertyPath: m_Volume
-      value: .400000006
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
       propertyPath: m_Enabled
@@ -10756,6 +10756,22 @@ Prefab:
     - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
@@ -14494,11 +14510,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
       propertyPath: m_Volume
-      value: .400000006
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240554, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc6157f650cf38f4999dd4581500bf89, type: 2}
@@ -14721,6 +14753,22 @@ Prefab:
     - target: {fileID: 9517436, guid: ecf0d2ad2cc3a5049a403452b20f2b52, type: 2}
       propertyPath: m_UpdateMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 150862, guid: ecf0d2ad2cc3a5049a403452b20f2b52, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 154554, guid: ecf0d2ad2cc3a5049a403452b20f2b52, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10878346, guid: ecf0d2ad2cc3a5049a403452b20f2b52, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333642, guid: ecf0d2ad2cc3a5049a403452b20f2b52, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecf0d2ad2cc3a5049a403452b20f2b52, type: 2}
@@ -19706,11 +19754,11 @@ Prefab:
       objectReference: {fileID: 2097200004}
     - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: m_Volume
-      value: .300000012
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: rolloffMode
@@ -19718,7 +19766,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: MaxDistance
-      value: 80
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 20810168, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: m_CarveOnlyStationary
@@ -19754,6 +19802,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
       propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f7c7aa13f6d74524db878ff119b68a89, type: 3}
+    - target: {fileID: 8249434, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+      propertyPath: DopplerLevel
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -21481,7 +21537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TorchPrefab: {fileID: 120888, guid: b98606142d459a24f82ad78a85051a2f, type: 2}
   StickPrefab: {fileID: 193758, guid: 9f81346b918570040be243bdba4c0ed7, type: 2}
-  StartLighted: 1
+  StartLighted: 0
   InteractPoint:
   - {fileID: 382170572}
   - {fileID: 1211347913}

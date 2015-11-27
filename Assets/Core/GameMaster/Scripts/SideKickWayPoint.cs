@@ -177,7 +177,6 @@ public class SideKickWayPoint : MonoBehaviour
 
         while (sidekick.GetComponent<NavMeshAgent>().HasReachedTarget() == false)
         {
-            Debug.Log("Has reached target: " + sidekick.GetComponent<NavMeshAgent>().HasReachedTarget());
             yield return new WaitForSeconds(0.1f);
         }
 

@@ -23,8 +23,8 @@ namespace Assets.Core.GameMaster.Scripts
         // Use this for initialization
         void Awake ()
         {
-            var sidekick = (GameObject) Instantiate(SideKickPrefab, SidekickSpawnPoint.position, Quaternion.identity);
-            var player = (GameObject) Instantiate(CharactorPrefab, PlayerSpawnPoint.position, Quaternion.identity);
+            var sidekick = (GameObject) Instantiate(SideKickPrefab, SidekickSpawnPoint.position, SidekickSpawnPoint.rotation);
+            var player = (GameObject) Instantiate(CharactorPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
 
             sidekick.tag = Constants.Tags.SideKick;
             sidekick.name = Constants.Tags.SideKick;

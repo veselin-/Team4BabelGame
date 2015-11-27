@@ -53,19 +53,19 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		string level = Application.loadedLevelName;
 		if (level.Equals ("Tutorial1Beta")) {
-			return "Tutorial 1";
-		} else if (level.Equals ("Tutorial2Beta")) {
-			return "Tutorial 2";
-		} else if (level.Equals ("Tutorial3Beta")) {
-			return "Tutorial 3";
-		} else if (level.Equals ("Tutorial4Beta")) {
-			return "Tutorial 4";
-		} else if (level.Equals ("Level1Beta")) {
 			return "Level 1";
-		} else if (level.Equals ("Level2Beta")) {
+		} else if (level.Equals ("Tutorial2Beta")) {
 			return "Level 2";
-		} else if (level.Equals ("Level3Beta")) {
+		} else if (level.Equals ("Tutorial3Beta")) {
 			return "Level 3";
+		} else if (level.Equals ("Tutorial4Beta")) {
+			return "Level 6";
+		} else if (level.Equals ("Level1Beta")) {
+			return "Level 4";
+		} else if (level.Equals ("Level2Beta")) {
+			return "Level 5";
+		} else if (level.Equals ("Level3Beta")) {
+			return "Level 7";
 		} else {
 			return "Level";
         }

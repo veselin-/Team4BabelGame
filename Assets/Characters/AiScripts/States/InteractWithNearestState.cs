@@ -124,10 +124,6 @@ namespace Assets.Characters.AiScripts.States
                     {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
                     }
-                    else
-                    {
-                        _agent.gameObject.GetComponent<Animator>().SetTrigger("DoorLocked");
-                    }
 
                     var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
                     puh.PickUpItem(returnItem);

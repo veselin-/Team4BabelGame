@@ -66,7 +66,7 @@ public class CombineSymbols : MonoBehaviour
 	    {
 	        if ((transform.childCount + transform.GetChild(0).childCount) >= 2 && !feedbackRunning)
 	        {
-	            StartCoroutine(FeedbackCoRoutine());
+	            StartCoroutine(FeedbackCoRoutineAlpha());
 	        }
 	    }
 
@@ -240,6 +240,41 @@ public class CombineSymbols : MonoBehaviour
           //  image.color = Color.white;
 
             FeedbackSprite.color = Color.white;
+        }
+        feedbackRunning = false;
+    }
+
+    IEnumerator FeedbackCoRoutineAlpha()
+    {
+        feedbackRunning = true;
+
+        float timer = 0;
+
+        while (image.color.a > 1f)
+        {
+            // image.color = Color.Lerp(Color.white, feedbackColor1, timer);
+            FeedbackSprite.color = Color.Lerp(feedbackColor1, feedbackColor1 + Color.black, timer);
+            timer += Time.unscaledDeltaTime;
+            if (transform.childCount <= 1)
+            {
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+
+        if (transform.childCount >= 1)
+        {
+            while (transform.childCount + transform.GetChild(0).childCount >= 2)
+            {
+
+                //   image.color = Color.Lerp(feedbackColor1, feedbackColor2, Mathf.PingPong(Time.unscaledTime, 1f));
+                FeedbackSprite.color = Color.Lerp(feedbackColor1 + new Color(0,0,0,0.7f), feedbackColor1 + new Color(0, 0, 0, 1f), Mathf.PingPong(Time.unscaledTime, 1f));
+                yield return new WaitForEndOfFrame();
+            }
+            //  image.color = Color.white;
+
+            FeedbackSprite.color = Color.clear;
         }
         feedbackRunning = false;
     }

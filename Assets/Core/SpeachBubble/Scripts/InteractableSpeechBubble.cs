@@ -139,12 +139,9 @@ public class InteractableSpeechBubble : MonoBehaviour {
         if (_ConversationCounter >= 0 && _ConversationCounter < narrative.Count) {
 
 			// Narrative speech bubble
-			if (narrative [_ConversationCounter].isNarrativeSpeechActive) {
-
-				NarrativeSpeechBubble.gameObject.SetActive (true);
-				string tempText = narrative [_ConversationCounter].NarrativeSpeech;
-				tempText = AddNewLineToNarrative(tempText);
-				_NarrativeText.text = tempText;
+			if (narrative [_ConversationCounter].isNarrativeSpeechActive)
+			{
+			    StartCoroutine(ChangeNarativeSpeachBubble(narrative));
 			} else {
 				NarrativeSpeechBubble.gameObject.SetActive (false);
 			}
@@ -252,6 +249,18 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
         PlayerSignBubble.gameObject.SetActive(false);
 
+    }
+
+    IEnumerator ChangeNarativeSpeachBubble(List<SpeechHolder> narrative)
+    {
+        NarrativeSpeechBubble.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(.2f);
+
+        NarrativeSpeechBubble.gameObject.SetActive(true);
+        string tempText = narrative[_ConversationCounter].NarrativeSpeech;
+        tempText = AddNewLineToNarrative(tempText);
+        _NarrativeText.text = tempText;
     }
 
 }

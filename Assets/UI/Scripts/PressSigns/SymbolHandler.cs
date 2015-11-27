@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using Assets.Core.Configuration;
 using UnityEngine.EventSystems;
@@ -156,7 +156,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             //Debug.Log("second ER: " + twoSens);
             //Debug.Log("third ER: " + threeSens);
             //Debug.Log("third ER: " + fourSens);
-            am.StartPlayCoroutine(ID);
+            am.StartPlayMaleCoroutine(ID);
         }
     }
 

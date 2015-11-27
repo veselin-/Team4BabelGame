@@ -13,6 +13,9 @@ namespace Assets.Characters.Player.Scripts
         private NavMeshAgent _agent;
         private AiMovement _ai;
 
+        public GameObject MovementLight;
+        private GameObject movementLight;
+
         private UiController _uiControl;
 		private float _touchCounter = 0;
 		public bool _tap = false;			// detecting tap
@@ -23,6 +26,8 @@ namespace Assets.Characters.Player.Scripts
             _agent = GetComponent<NavMeshAgent>();
             _ai = GetComponent<AiMovement>();
             _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
+
+           movementLight = (GameObject)Instantiate(MovementLight, Vector3.zero, Quaternion.identity);
         }
 	
         // Update is called once per frame
@@ -94,6 +99,8 @@ namespace Assets.Characters.Player.Scripts
             }
             if(other.tag == Constants.Tags.Floor)
             {
+                movementLight.transform.position = hit.point;
+                movementLight.GetComponent<Animator>().SetTrigger("Light");
                 return new GoSomewhereAndWaitState(_agent, hit.point);
             }
             return null;

@@ -42,10 +42,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
     public GameObject SignPrefab;
 
     public int CurrentPlayerSignId;
+	AudioManager am;
 
     // Use this for initialization
     void Start ()
     {
+		am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
         CurrentPlayerSignId = -1;
         if (GameObject.FindGameObjectWithTag (Constants.Tags.Player)) {
 			player = GameObject.FindGameObjectWithTag (Constants.Tags.Player);
@@ -232,6 +234,8 @@ public class InteractableSpeechBubble : MonoBehaviour {
             nSign.GetComponent<SymbolHandler>().ID = i;
             nSign.GetComponent<SymbolHandler>().UpdateSymbol();
         }
+
+		am.StartPlayFemaleCoroutine (ids[0]);
 
         StartCoroutine(SignBubbleTimer(SidekickSignBubble));
     }

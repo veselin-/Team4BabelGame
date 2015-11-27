@@ -18,7 +18,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     float timeForHold = 0;
     private GameObject gameui;
     //DatabaseManager dm;
-    //AudioManager am;
+    AudioManager am;
 
     // Use this for initialization
     void Start ()
@@ -28,7 +28,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	    _sidekick = sideKick.GetComponent<SidekickControls>();
 	    isb = GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).GetComponent<InteractableSpeechBubble>();
         gameui = GameObject.FindGameObjectWithTag("GameUI");
-        //am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+        am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
         //dm = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
     }
 	
@@ -163,6 +163,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         {
             _sidekick.ExecuteAction(sentence.FirstOrDefault());
             isb.ActivatePlayerSignBubble(sentence);
+			am.StartPlayMaleCoroutine (gameObject.GetComponent<SymbolHandler>().ID);
             gameui.GetComponent<UiController>().PokedexClose();
         }
     }

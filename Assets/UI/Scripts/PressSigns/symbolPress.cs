@@ -193,6 +193,6 @@ public class symbolPress : MonoBehaviour
         //Debug.Log("second ER: " + second);
         //Debug.Log("third ER: " + third);
         //Debug.Log("childindex er nu: " + childIndex);
-        am.FemaleSyllabusSoundPlay(ID);
+        am.MaleSyllabusSoundPlay(ID);
     }
 }

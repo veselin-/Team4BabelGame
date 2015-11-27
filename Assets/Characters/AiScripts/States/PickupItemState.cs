@@ -23,6 +23,18 @@ namespace Assets.Characters.AiScripts.States
             var pickups = GameObject.FindGameObjectsWithTag(tag);
             _pickupGoal = pickups.OrderBy(i =>
                 Vector3.Distance(_agent.transform.position, i.transform.position)).FirstOrDefault();
+
+
+			if (_pickupGoal == null) {
+				// sound
+				if(_agent.gameObject.tag == "SideKick")
+				{
+					Debug.Log("Nothing to pick up"); // doesnt work
+					GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().FemaleNoSoundPlay();
+				}
+
+				_state = State.Done;
+			}
         }
 
         public PickupItemState(NavMeshAgent agent, GameObject item)

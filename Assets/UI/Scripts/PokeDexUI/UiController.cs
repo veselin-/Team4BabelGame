@@ -128,30 +128,27 @@ public class UiController : MonoBehaviour
         signText.enabled = false;
     }
 
-    //public void OpenShop()
-    //{
-    //    arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
-    //    anim.SetTrigger("MenuToggle");
-    //    _cameraManager.enabled = false;
-    //    _playerMovement.enabled = false;
-    //    _audioManager.PokedexBtnOpenPlay();
-    //    Time.timeScale = 0;
-    //    _pauseCanvas.SetActive(false);
-    //    closeUiBut.SetActive(true);
-    //    menuMask.GetComponent<ScrollRect>().enabled = true;
-    //    scrollRect.horizontalNormalizedPosition = 1f;
-    //    menuIndicator.SetActive(true);
-    //}
-
-    //void AccesShop()
-    //{
-    //    shopCanvas.SetActive(true);
-    //}
+    public void OpenShop()
+    {
+        //if (hotbarOpen == 2)
+        //{
+        //    PokedexClose();
+        //}
+        //hotbarOpen = 2;
+        anim.SetTrigger("FullyEnter");
+        _audioManager.PokedexBtnOpenPlay();
+        _cameraManager.enabled = false;
+        _playerMovement.enabled = false;
+        Time.timeScale = 0;
+        MinBut.SetActive(false);
+        arrowBut.SetActive(false);
+        _pauseCanvas.SetActive(false);
+        scrollRect.horizontalNormalizedPosition = 1f;
+        menuIndicator.SetActive(false);
+    }
 
     public void PokedexOpen()
-    {
-        Debug.Log(hotbarOpen);
-      
+    { 
         if (hotbarOpen == 2)
         {
             if (arrowBut.transform.rotation.z == 1)
@@ -165,16 +162,17 @@ public class UiController : MonoBehaviour
                 closeUiBut.SetActive(false);
                 _cameraManager.enabled = true;
                 _playerMovement.enabled = true;
+                menuMask.GetComponent<ScrollRect>().enabled = false;
                 scrollRect.horizontalNormalizedPosition = 0f;
                 Time.timeScale = 1;
+				_audioManager.PokedexBtnMiddlePlay();
                 return;
             }
             arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
             anim.SetTrigger("MenuToggle");
-            _audioManager.PokedexBtnOpenPlay();
+            _audioManager.PokedexBtnClosePlay();
             _cameraManager.enabled = false;
             _playerMovement.enabled = false;
-            Debug.Log("LANG TEXT WTF" + arrowBut.transform.rotation.z);
             Time.timeScale = 0;
             _pauseCanvas.SetActive(false);
             closeUiBut.SetActive(true);
@@ -193,7 +191,7 @@ public class UiController : MonoBehaviour
             anim.SetTrigger("MenuToggle");
             _cameraManager.enabled = true;
             _playerMovement.enabled = true;
-            _audioManager.PokedexBtnOpenPlay();
+            _audioManager.PokedexBtnMiddlePlay();
             _pauseCanvas.SetActive(true);
             closeUiBut.SetActive(false);
             Time.timeScale = 1;
@@ -230,7 +228,7 @@ public class UiController : MonoBehaviour
         hintPanel.SetActive(false);
         _cameraManager.enabled = true;
 		_playerMovement.enabled = true;
-		_audioManager.PokedexBtnClosePlay ();
+		_audioManager.PokedexBtnOpenPlay ();
         arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
         Time.timeScale = 1;
         hotbarOpen = 0;

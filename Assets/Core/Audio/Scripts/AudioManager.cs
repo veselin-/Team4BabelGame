@@ -15,12 +15,14 @@ public class AudioManager : MonoBehaviour {
 	public AudioMixer SoundFXMixer;
 	public AudioMixer VoiceMixer;
 
-	public AudioSource ClickBtn, SwipeBtn, PokedexOpenBtn, PokedexCloseBtn;
+	public AudioSource ClickBtn, SwipeBtn, PokedexOpenBtn, PokedexMiddleBtn, PokedexCloseBtn;
 
 	public bool PlayAmbience;
 
 	public AudioMixerSnapshot[] NewThemeAmbienceSnapshots;
 
+	public AudioClip FemaleNoSound;
+	public AudioClip[] JiberishList;
 	public AudioClip[] MaleSyllabusList;
 	public AudioClip[] FemaleSyllabusList;
 	
@@ -66,6 +68,7 @@ public class AudioManager : MonoBehaviour {
 	//private int _currentSignalSeconds = 0;
 
 	private AudioSource Player;
+	private AudioSource SideKick;
     private DatabaseManager databaseManager;
 
 	// Use this for initialization
@@ -75,7 +78,10 @@ public class AudioManager : MonoBehaviour {
 		{
 			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		}
-
+		if(GameObject.FindGameObjectWithTag("SideKick") != null)
+		{
+			SideKick = GameObject.FindGameObjectWithTag("SideKick").GetComponent<AudioSource>();
+		}
 		if (GameObject.FindGameObjectWithTag (Constants.Tags.DatabaseManager) != null) {
 			databaseManager = GameObject.FindGameObjectWithTag (Constants.Tags.DatabaseManager).GetComponent<DatabaseManager> ();
 		}
@@ -313,14 +319,14 @@ public class AudioManager : MonoBehaviour {
 	// male voices ------------------------------
 	public void MaleSyllabusSoundPlay(int index)
 	{
-		//MaleSyllabusList [index].Play ();
-		//GetMaleSyllabusByName (name).Play ();
+		Player.clip = MaleSyllabusList.Length > index ? MaleSyllabusList[index] : MaleSyllabusList.FirstOrDefault();
+		Player.Play();
 	}
 	
 	public void MaleSyllabusSoundStop(int index)
 	{
-		//MaleSyllabusList [index].Stop ();
-		//GetMaleSyllabusByName (name).Stop ();
+		Player.clip = MaleSyllabusList [index];
+		Player.Stop ();
 	}
 
 	/*
@@ -341,8 +347,8 @@ public class AudioManager : MonoBehaviour {
 	// female voices -----------------------------
 	public void FemaleSyllabusSoundPlay(int index)
 	{
-	        Player.clip = FemaleSyllabusList.Length > index ? FemaleSyllabusList[index] : FemaleSyllabusList.FirstOrDefault();
-	        Player.Play();
+	    SideKick.clip = FemaleSyllabusList.Length > index ? FemaleSyllabusList[index] : FemaleSyllabusList.FirstOrDefault();
+		SideKick.Play();
 	    
 	    //FemaleSyllabusList[index].Play();
 		//GetFemaleSyllabusByName (name).Play ();
@@ -350,16 +356,21 @@ public class AudioManager : MonoBehaviour {
 	
 	public void FemaleSyllabusSoundStop(int index)
 	{
-		Player.clip = FemaleSyllabusList [index];
-		Player.Stop ();
+		SideKick.clip = FemaleSyllabusList [index];
+		SideKick.Stop ();
 		//FemaleSyllabusList[index].Stop();
 		//GetFemaleSyllabusByName (name).Stop ();
 	}
 
-    public void StartPlayCoroutine(int id)
+    public void StartPlayMaleCoroutine(int id)
     {
-        StartCoroutine(FemaleSignPlay(id));
+		StartCoroutine(MaleSignPlay(id));
     }
+
+	public void StartPlayFemaleCoroutine(int id)
+	{
+		StartCoroutine(FemaleSignPlay(id));
+	}
 
     IEnumerator FemaleSignPlay(int id)
     {
@@ -374,9 +385,22 @@ public class AudioManager : MonoBehaviour {
             }
         }
         yield return new WaitForSeconds(1);
-
-
     }
+
+	IEnumerator MaleSignPlay(int id)
+	{
+		if (databaseManager.GetSign(id) != null)
+		{
+			Sign s = databaseManager.GetSign(id);
+			
+			foreach (int i in s.SyllableSequence)
+			{
+				MaleSyllabusSoundPlay(i);
+				yield return new WaitForSeconds(MaleSyllabusList[i].length);
+			}
+		}
+		yield return new WaitForSeconds(1);
+	}
 
 	public void ClickBtnPlay()
 	{
@@ -403,11 +427,35 @@ public class AudioManager : MonoBehaviour {
 		PokedexOpenBtn.Play ();
 	}
 
+	public void PokedexBtnMiddlePlay()
+	{
+		PokedexMiddleBtn.Play ();
+	}
+
 	public void PokedexBtnClosePlay()
 	{
 		PokedexCloseBtn.Play ();
 	}
-	
+
+	public void FemaleNoSoundPlay()
+	{
+		SideKick.clip = FemaleNoSound;
+		SideKick.Play ();
+	}
+
+	public void SidekickRandomJiberishPlay()
+	{
+		SideKick.clip = JiberishList[Random.Range(0, JiberishList.Length)];
+		SideKick.Play();
+	}
+
+	public void PlayerRandomJiberishPlay()
+	{
+		Player.clip = JiberishList[Random.Range(0, JiberishList.Length)];
+		Player.Play();
+	}
+
+
 	/*
 	private AudioSource GetFemaleSyllabusByName(string name)
 	{

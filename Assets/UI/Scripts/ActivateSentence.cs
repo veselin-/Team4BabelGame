@@ -18,7 +18,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     float timeForHold = 0;
     private GameObject gameui;
     //DatabaseManager dm;
-    //AudioManager am;
+    AudioManager am;
 
     // Use this for initialization
     void Start ()
@@ -28,7 +28,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	    _sidekick = sideKick.GetComponent<SidekickControls>();
 	    isb = GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).GetComponent<InteractableSpeechBubble>();
         gameui = GameObject.FindGameObjectWithTag("GameUI");
-        //am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
+        am = GameObject.FindGameObjectWithTag(Constants.Tags.AudioManager).GetComponent<AudioManager>();
         //dm = GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>();
     }
 	
@@ -49,39 +49,39 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         hintText.transform.position = transform.position + new Vector3(0, 50, 0);
         switch (gameObject.GetComponent<SymbolHandler>().ID)
         {
-            // TODO 
             case 0:
-                hintText.text = "A waving gesture for uniting people.";
+                hintText.text = LanguageManager.Instance.Get("hints/callOver");
                 break;
             case 1:
-                hintText.text = "If you tell a dog to sit it ***** put.";
+                hintText.text = LanguageManager.Instance.Get("hints/stay");
                 break;
             case 2:
-                hintText.text = "Requires pulling.. activates mechanism..";
+                hintText.text = LanguageManager.Instance.Get("hints/lever");
                 break;
             case 3:
-                hintText.text = "It’s brown and can be set on fire.";
+                hintText.text = LanguageManager.Instance.Get("hints/stick");
                 break;
             case 4:
-                hintText.text = "It looks like a pan.. but I wouldn't eat anything from it!";
+                hintText.text = LanguageManager.Instance.Get("hints/firepit");
                 break;
             case 5:
-                hintText.text = "Give or take!"; 
+
+                hintText.text = LanguageManager.Instance.Get("hints/trade");
                 break;
             case 6:
-                hintText.text = "It can contain several buckets of water, looks like a birdbath.";
+                hintText.text = LanguageManager.Instance.Get("hints/font");
                 break;
             case 7:
-                hintText.text = "An endless supply of water at your disposal!";
+                hintText.text = LanguageManager.Instance.Get("hints/pool");
                 break;
             case 8:
-                hintText.text = "It’s tiny, it’s shiny.. but it’s the only means to get out!";
+                hintText.text = LanguageManager.Instance.Get("hints/key");
                 break;
             case 9:
-                hintText.text = "Can be opened with a certain shiny little object.";
+                hintText.text = LanguageManager.Instance.Get("hints/door");
                 break;
             case 10:
-                hintText.text = "Can be used to transport fluids.";
+                hintText.text = LanguageManager.Instance.Get("hints/bucket");
                 break;
         }
         _hold = true;
@@ -92,37 +92,37 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         switch (gameObject.GetComponent<SymbolHandler>().ID)
         {
             case 0:
-                dicText.text = "A waving gesture for uniting people.";
+                dicText.text = LanguageManager.Instance.Get("hints/callOver");
                 break;
             case 1:
-                dicText.text = "If you tell a dog to sit it ***** put.";
+                dicText.text = LanguageManager.Instance.Get("hints/stay");
                 break;
             case 2:
-                dicText.text = "Requires pulling.. activates mechanism..";
+                dicText.text = LanguageManager.Instance.Get("hints/lever");
                 break;
             case 3:
-                dicText.text = "It’s brown and can be set on fire.";
+                dicText.text = LanguageManager.Instance.Get("hints/stick");
                 break;
             case 4:
-                dicText.text = "It looks like a pan.. but I wouldn't eat anything from it!";
+                dicText.text = LanguageManager.Instance.Get("hints/firepit");
                 break;
             case 5:
-                dicText.text = "Can be used to transport fluids.";
+                dicText.text = LanguageManager.Instance.Get("hints/trade");
                 break;
             case 6:
-                dicText.text = "It can contain several buckets of water, looks like a birdbath.";
+                dicText.text = LanguageManager.Instance.Get("hints/font");
                 break;
             case 7:
-                dicText.text = "An endless supply of water at your disposal!";
+                dicText.text = LanguageManager.Instance.Get("hints/pool");
                 break;
             case 8:
-                dicText.text = "It’s tiny, it’s shiny.. but it’s the only means to get out!";
+                dicText.text = LanguageManager.Instance.Get("hints/key");
                 break;
             case 9:
-                dicText.text = "Can be opened with a certain shiny little object.";
+                dicText.text = LanguageManager.Instance.Get("hints/door");
                 break;
             case 10:
-                dicText.text = "Give or take!";
+                dicText.text = LanguageManager.Instance.Get("hints/bucket");
                 break;
         }
     }
@@ -163,6 +163,7 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         {
             _sidekick.ExecuteAction(sentence.FirstOrDefault());
             isb.ActivatePlayerSignBubble(sentence);
+			am.StartPlayMaleCoroutine (gameObject.GetComponent<SymbolHandler>().ID);
             gameui.GetComponent<UiController>().PokedexClose();
         }
     }

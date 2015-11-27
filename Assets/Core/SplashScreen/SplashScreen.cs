@@ -39,6 +39,11 @@ public class SplashScreen : MonoBehaviour {
 		yield return new WaitForSeconds (SplashScreenStay);
 		Application.LoadLevel (sceneName);
 	}
+
+	public void SkipScreen()
+	{
+		Application.LoadLevel (NextSplashScreen.ToString());
+	}
 }
 
 // Async load

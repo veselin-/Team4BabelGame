@@ -103,8 +103,10 @@ namespace Assets.Environment.Scripts
         void StairsMovingOut()
         {
             if (GetComponent<AudioSource>() != null)
+			{
                 GetComponent<AudioSource>().Play();
-
+				Camera.main.GetComponent<PerlinShake>().PlayShake();
+			}
             obstacle.SetActive(false);
 
             anim.SetTrigger("ActivateStairs");
@@ -113,7 +115,10 @@ namespace Assets.Environment.Scripts
         void StairsMovingIn()
         {
             if (GetComponent<AudioSource>() != null)
+			{
                 GetComponent<AudioSource>().Play();
+				Camera.main.GetComponent<PerlinShake>().PlayShake();
+			}
 
             obstacle.SetActive(true);
             anim.SetTrigger("ActivateStairs");

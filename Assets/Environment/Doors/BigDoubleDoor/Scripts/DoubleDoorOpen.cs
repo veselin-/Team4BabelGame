@@ -70,6 +70,7 @@ namespace Assets.Environment.Scripts
                 {
 					if(!_objectIsShown){
 						GetComponent<AudioSource>().Play();
+						Camera.main.GetComponent<PerlinShake>().PlayShake();
 					}
                     _objectIsShown = true;
 

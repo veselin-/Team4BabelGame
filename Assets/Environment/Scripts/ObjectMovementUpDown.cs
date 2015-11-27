@@ -53,7 +53,10 @@ namespace Assets.Environment.Scripts
                 {
 					if(!_objectIsShown){
 						if(GetComponent<AudioSource>() != null)
+						{
 							GetComponent<AudioSource>().Play();
+							Camera.main.GetComponent<PerlinShake>().PlayShake();
+						}
 					}
                     _objectIsShown = true;
                     obstacle.SetActive(false);

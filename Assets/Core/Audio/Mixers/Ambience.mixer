@@ -31,7 +31,6 @@ AudioMixerController:
     - 6933ecbabbb473d469138ea641ec2e1b
     - b7df7276224add94281a7299d717ffd3
     - 3da530f76274a6840b89c802b12c5ef1
-    - 2a8f80986d114144eb6bd5876339b195
     name: View
   - guids:
     - 1c9fb0a801b68284bbda6a8ae1f74e2f
@@ -42,7 +41,6 @@ AudioMixerController:
     - 71773fb5604ea254ca35c4559c928eb9
     - b7df7276224add94281a7299d717ffd3
     - 3da530f76274a6840b89c802b12c5ef1
-    - 2a8f80986d114144eb6bd5876339b195
     name: Keynote
   - guids:
     - 69542ae0669213f49ae3791d0918942d
@@ -120,7 +118,6 @@ AudioMixerGroupController:
   - {fileID: 24326644}
   - {fileID: 24366462}
   - {fileID: 24304628}
-  - {fileID: 24379030}
   m_Volume: e51edfb397c45084796ab004faf4442b
   m_Pitch: 4abf86dacd34b404e93078a01384a728
   m_Effects:
@@ -250,23 +247,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!243 &24379030
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Theme 10
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 2a8f80986d114144eb6bd5876339b195
-  m_Children: []
-  m_Volume: 32814ebc255c8814fa6a71e875865631
-  m_Pitch: d2e99b9f473907f4797e90773dd8e463
-  m_Effects:
-  - {fileID: 24459822}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0
 --- !u!244 &24400002
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -302,19 +282,6 @@ AudioMixerEffectController:
   m_EffectID: cfa3a982a912e9747a3424d812c3f61a
   m_EffectName: Attenuation
   m_MixLevel: 7691d12bc3e55dc44adeb358bc50d1f7
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &24459822
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_EffectID: 5758e4368153de943938fb49133e1c7e
-  m_EffectName: Attenuation
-  m_MixLevel: 3263cf99c8283d442aba8343c23b2aed
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0

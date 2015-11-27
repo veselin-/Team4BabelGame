@@ -23,8 +23,11 @@ public class FrameController : MonoBehaviour
     [Tooltip("Must only be true for the last frame of the cinematic or it will break horribly.")]
     public bool IsEndFrame = false;
 
+    public AudioClip EnglishAudio;
+    public AudioClip DanishAudio;
+    
     public string LevelToLoad;
-
+    
     private Animator animator;
     private Text textBox;
     private AudioSource audio;
@@ -38,6 +41,10 @@ public class FrameController : MonoBehaviour
 	    textBox = GameObject.FindGameObjectWithTag("CinematicText").GetComponent<Text>();
 	    animator = GetComponent<Animator>();
 	    audio = GetComponent<AudioSource>();
+
+        // Localized audio
+	    var isDanish = PlayerPrefs.GetString("Language") == Constants.Languages.Danish;
+        audio.clip = isDanish ? DanishAudio : EnglishAudio;
 
 	    if (IsStartingFrame)
 	    {

@@ -80,24 +80,24 @@ public class UiController : MonoBehaviour
         switch (id)
         {
             case 0:
-                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
-                                LanguageManager.Instance.Get("phrases/CallOver");
+                signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("Phrases/CallOver");
                 break;
             case 1:
-                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
-                                LanguageManager.Instance.Get("phrases/Lever");
+                signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("Phrases/Lever");
                 break;
             case 2:
-                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
-                                LanguageManager.Instance.Get("phrases/Stick");
+                signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("Phrases/Stick");
                 break;
             case 3:
-                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
-                                LanguageManager.Instance.Get("phrases/Firepit");
+                signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("Phrases/Firepit");
                 break;
             case 5:
-                signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
-                                LanguageManager.Instance.Get("phrases/Trade");
+                signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
+                                LanguageManager.Instance.Get("Phrases/Trade");
                 break;
         }
         _playerMovement.enabled = false;

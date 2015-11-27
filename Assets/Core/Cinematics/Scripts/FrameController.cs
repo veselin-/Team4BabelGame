@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Core.Configuration;
 
 [RequireComponent(typeof(AudioSource))]
 public class FrameController : MonoBehaviour
@@ -28,7 +29,7 @@ public class FrameController : MonoBehaviour
     private Text textBox;
     private AudioSource audio;
 
-    [TextArea, Tooltip("Text in this field will appear in the bottom of the screen.")]
+    [TextArea, Tooltip("Write Phrases/... to get the correct version of the text.")]
     public string Text;
 
 	// Use this for initialization
@@ -66,7 +67,7 @@ public class FrameController : MonoBehaviour
 
         if (Text != String.Empty)
         {
-            textBox.text = Text;
+            textBox.text = LanguageManager.Instance.Get(Text);
         }
 
         if (audio.clip != null)

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Core.Configuration;
 using Assets.Core.GameMaster.Scripts;
 
 public class EndLevelScreen : MonoBehaviour {
@@ -70,8 +71,17 @@ public class EndLevelScreen : MonoBehaviour {
 
 	public void NextLevelBtn()
 	{
-		Application.LoadLevel (NextLevel);
-	}
+
+        if(NextLevel != "BuyLevelSeven") { 
+		    Application.LoadLevel (NextLevel);
+        }
+        else
+        {
+            var bls = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<BuyLevelSeven>();
+            bls.DoYouWannaBuy();
+        }
+
+    }
 
 	public void UpdateOrbsUI()
 	{

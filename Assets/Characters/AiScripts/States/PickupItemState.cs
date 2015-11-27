@@ -65,6 +65,7 @@ namespace Assets.Characters.AiScripts.States
                     {
                         var pickup = _pickupGoal.GetComponent<ICollectable>().PickUp();
                         _agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder().PickUpItem(pickup);
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
                     }
                     _waitUntil = Time.time + WaitingTime;
                     _agent.ResetPath();

@@ -7,11 +7,13 @@ public class EndLevelScreen : MonoBehaviour {
 
 
 	public Text AllOrbsText; 
-	private int allOrbs, foundOrbs;
+	private int allOrbs, foundOrbs, shopOpen;
 	public Text FoundOrbsText;
 	public Text LevelCompleteText;
 	public string NextLevel;
 	private EndPoints ep;
+    public GameObject blackness;
+    private GameObject pokesprite;
 	// Use this for initialization
 	void Awake () {
 
@@ -20,6 +22,10 @@ public class EndLevelScreen : MonoBehaviour {
 		LevelCompleteText.text = "";
 	}
 	
+    void Start()
+    {
+        
+    }
 	// Update is called once per frame
 	void Update () {
 	
@@ -29,6 +35,22 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		gameObject.SetActive (true);
 	}
+
+    public void ShowShop()
+    {
+        if (shopOpen == 1)
+        {
+            pokesprite.SetActive(false);
+            blackness.SetActive(false);
+            shopOpen = 0;
+        }
+        else
+        {
+            blackness.SetActive(true);
+            pokesprite.SetActive(true);
+            shopOpen = 1;
+        }
+    }
 
 	public void MainMenuBtn()
 	{
@@ -76,7 +98,7 @@ public class EndLevelScreen : MonoBehaviour {
 		yield return new WaitForSeconds(1f);
 
 		int numbers = 0;
-		while(numbers <= foundOrbs)
+		while(numbers < foundOrbs)
 		{
 			yield return new WaitForSeconds(0.01f);
 			numbers++;
@@ -86,7 +108,7 @@ public class EndLevelScreen : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 
 		numbers = 0;
-		while(numbers <= allOrbs)
+		while(numbers < allOrbs)
 		{
 			yield return new WaitForSeconds(0.001f);
 			numbers++;
@@ -96,10 +118,11 @@ public class EndLevelScreen : MonoBehaviour {
 
     void OnEnable()
     {
-		ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
+        pokesprite = GameObject.FindGameObjectWithTag("PokedexSprite");
+        ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
 		allOrbs = PlayerPrefs.GetInt ("CurrencyAmount");
 		foundOrbs = ep.orbs;
-
+        pokesprite.SetActive(false);
         UpdateOrbsUI();
     }
 

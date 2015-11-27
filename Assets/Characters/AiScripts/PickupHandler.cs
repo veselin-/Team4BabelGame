@@ -59,7 +59,7 @@ namespace Assets.Characters.AiScripts
                 mr.SetActive(false);
             if(_currentPickup == null || !_pickUps.ContainsKey(_currentPickup.tag)) return;
             _pickUps[_currentPickup.tag].SetActive(true);
-			//_pickUps[_currentPickup.tag].GetComponent<AudioSource>().Play();
+			_pickUps[_currentPickup.tag].GetComponent<AudioSource>().Play();
             if(_currentPickup.tag == Constants.Tags.Bucket)
                 _pickUps["Water"].SetActive(CurrentPickup.GetComponent<Bucket>().HasWaterInIt);
         }

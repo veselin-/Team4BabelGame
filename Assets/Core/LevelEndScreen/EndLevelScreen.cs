@@ -13,7 +13,7 @@ public class EndLevelScreen : MonoBehaviour {
 	public string NextLevel;
 	private EndPoints ep;
     public GameObject blackness;
-    private GameObject pokesprite;
+    private GameObject pokesprite, pokedex;
 	// Use this for initialization
 	void Awake () {
 
@@ -28,26 +28,37 @@ public class EndLevelScreen : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+    }
 
 	public void ShowEndLevelScreen()
 	{
 		gameObject.SetActive (true);
 	}
 
+    IEnumerator CloseShop()
+    {
+        Debug.Log("RUNNING ANIMATION");
+        yield return new WaitForEndOfFrame();
+        yield return !pokedex.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit");
+        Debug.Log("DONE WITH RUNNING ANIMATION");
+        pokesprite.SetActive(false);
+        blackness.SetActive(false);
+        shopOpen = 0;
+    }
+
     public void ShowShop()
     {
         if (shopOpen == 1)
         {
-            pokesprite.SetActive(false);
-            blackness.SetActive(false);
-            shopOpen = 0;
+            pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
+            StartCoroutine(CloseShop());
         }
         else
         {
             blackness.SetActive(true);
             pokesprite.SetActive(true);
+            pokedex.GetComponent<UiController>().OpenShop();
             shopOpen = 1;
         }
     }
@@ -119,6 +130,7 @@ public class EndLevelScreen : MonoBehaviour {
     void OnEnable()
     {
         pokesprite = GameObject.FindGameObjectWithTag("PokedexSprite");
+        pokedex = GameObject.FindGameObjectWithTag("GameUI");
         ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
 		allOrbs = PlayerPrefs.GetInt ("CurrencyAmount");
 		foundOrbs = ep.orbs;

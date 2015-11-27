@@ -98,11 +98,11 @@ namespace Assets.Characters.AiScripts.States
                     var puh = _agent.gameObject.GetComponent<PickupHandler>();
 
 
-                    if (_interactGameObject.tag == Constants.Tags.Lever)
+                    if (_interactGameObject.tag == Constants.Tags.Lever && _intaractableGoal.CanThisBeInteractedWith(puh.CurrentPickup))
                     {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("PullLever");
                     }
-                    else if (_interactGameObject.tag == Constants.Tags.Brazier)
+                    else if (_interactGameObject.tag == Constants.Tags.Brazier && _intaractableGoal.CanThisBeInteractedWith(puh.CurrentPickup))
                     {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
                     }
@@ -123,10 +123,6 @@ namespace Assets.Characters.AiScripts.States
                              _interactGameObject.tag == Constants.Tags.Stick)
                     {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
-                    }
-                    else
-                    {
-                        _agent.gameObject.GetComponent<Animator>().SetTrigger("DoorLocked");
                     }
 
                     var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);

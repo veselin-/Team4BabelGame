@@ -79,7 +79,6 @@ public class UiController : MonoBehaviour
         signText.enabled = true;
         switch (id)
         {
-            // todo
             case 0:
                 signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("phrases/CallOver");
@@ -96,7 +95,7 @@ public class UiController : MonoBehaviour
                 signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("phrases/Firepit");
                 break;
-            case 4:
+            case 5:
                 signText.text = LanguageManager.Instance.Get("phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("phrases/Trade");
                 break;

@@ -162,6 +162,7 @@ public class UiController : MonoBehaviour
                 closeUiBut.SetActive(false);
                 _cameraManager.enabled = true;
                 _playerMovement.enabled = true;
+                menuMask.GetComponent<ScrollRect>().enabled = false;
                 scrollRect.horizontalNormalizedPosition = 0f;
                 Time.timeScale = 1;
 				_audioManager.PokedexBtnMiddlePlay();

@@ -96,9 +96,7 @@ namespace Assets.Characters.AiScripts.States
                     return;
                 case State.Interact:
                     var puh = _agent.gameObject.GetComponent<PickupHandler>();
-                    var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
-                    puh.PickUpItem(returnItem);
-                    _agent.ResetPath();
+
 
                     if (_interactGameObject.tag == Constants.Tags.Lever)
                     {
@@ -108,10 +106,33 @@ namespace Assets.Characters.AiScripts.States
                     {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("LightFire");
                     }
-                    else
+                    else if(_interactGameObject.tag == Constants.Tags.Keyhole)
+                    {
+                        if (_intaractableGoal.CanThisBeInteractedWith(puh.CurrentPickup))
+                        {
+                            _agent.gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
+                            
+                        }
+                        else
+                        {
+                            _agent.gameObject.GetComponent<Animator>().SetTrigger("DoorLocked");
+                            
+                        }
+                    }
+                    else if (_interactGameObject.tag == Constants.Tags.Key ||
+                             _interactGameObject.tag == Constants.Tags.Stick)
                     {
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
                     }
+                    else
+                    {
+                        _agent.gameObject.GetComponent<Animator>().SetTrigger("DoorLocked");
+                    }
+
+                    var returnItem = _intaractableGoal.Interact(puh.CurrentPickup);
+                    puh.PickUpItem(returnItem);
+                    _agent.ResetPath();
+
                     _waitUntill = Time.time + WaitingTime;
                     _state = State.WaitSomeTime;
                     return;

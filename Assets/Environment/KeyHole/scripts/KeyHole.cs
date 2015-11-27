@@ -13,7 +13,7 @@ public class KeyHole : MonoBehaviour, IInteractable
 
     void Start()
     {
-        _oldColor = GetComponent<Renderer>().material.color;
+      //  _oldColor = GetComponent<Renderer>().material.color;
     }
 
     public bool HasBeenActivated()
@@ -25,7 +25,8 @@ public class KeyHole : MonoBehaviour, IInteractable
     {
         if (!CanThisBeInteractedWith(pickup)) return pickup;
 
-        StartCoroutine(ChangeColor());
+        _hasBeenPulled = true;
+        //   StartCoroutine(ChangeColor());
         Destroy(pickup);
         return null;
     }
@@ -39,11 +40,11 @@ public class KeyHole : MonoBehaviour, IInteractable
         return InteractPositionObject.transform.position;
     }
 
-    IEnumerator ChangeColor()
-    {
-        GetComponent<Renderer>().material.color = Color.red;
-        _hasBeenPulled = true;
-        yield return new WaitForSeconds(5);
-        GetComponent<Renderer>().material.color = _oldColor;
-    }
+    //IEnumerator ChangeColor()
+    //{
+    //    GetComponent<Renderer>().material.color = Color.red;
+    //    _hasBeenPulled = true;
+    //    yield return new WaitForSeconds(5);
+    //    GetComponent<Renderer>().material.color = _oldColor;
+    //}
 }

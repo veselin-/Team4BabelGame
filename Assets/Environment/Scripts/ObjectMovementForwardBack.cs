@@ -80,7 +80,7 @@ namespace Assets.Environment.Scripts
                     }
                     
                 
-                    }
+                }
                 yield return new WaitForSeconds(0.2f);
             }
         }

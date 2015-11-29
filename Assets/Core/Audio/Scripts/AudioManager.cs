@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioMixerSnapshot[] NewThemeAmbienceSnapshots;
 
 	public AudioClip FemaleNoSound;
-	public AudioClip[] JiberishList;
+	public AudioClip[] GibberishList;
 	public AudioClip[] MaleSyllabusList;
 	public AudioClip[] FemaleSyllabusList;
 	
@@ -443,15 +443,15 @@ public class AudioManager : MonoBehaviour {
 		SideKick.Play ();
 	}
 
-	public void SidekickRandomJiberishPlay()
+	public void SidekickRandomGibberishPlay()
 	{
-		SideKick.clip = JiberishList[Random.Range(0, JiberishList.Length)];
+		SideKick.clip = GibberishList[Random.Range(0, GibberishList.Length)];
 		SideKick.Play();
 	}
 
-	public void PlayerRandomJiberishPlay()
+	public void PlayerRandomGibberishPlay()
 	{
-		Player.clip = JiberishList[Random.Range(0, JiberishList.Length)];
+		Player.clip = GibberishList[Random.Range(0, GibberishList.Length)];
 		Player.Play();
 	}
 

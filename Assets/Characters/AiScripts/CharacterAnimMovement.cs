@@ -120,6 +120,10 @@ public class CharacterAnimMovement : MonoBehaviour {
         agent.updateRotation = true;
     }
 
+	public void PlayGibberish()
+	{
+		GameObject.FindGameObjectWithTag ("AudioManager").GetComponent<AudioManager> ().SidekickRandomGibberishPlay ();
+	}
 
     public void Footstep()
     {

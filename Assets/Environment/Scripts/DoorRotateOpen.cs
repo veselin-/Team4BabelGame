@@ -59,7 +59,7 @@ namespace Assets.Environment.Scripts
                 {
 					if(!_objectIsShown){
 						if(GetComponent<AudioSource>() != null)
-							GetComponent<AudioSource>().Play();
+							StartCoroutine(PlaySounds());  //GetComponent<AudioSource>().Play();
 					}
                     _objectIsShown = true;
                     //obstacle.SetActive(false);
@@ -73,5 +73,18 @@ namespace Assets.Environment.Scripts
                 yield return new WaitForSeconds(0.2f);
             }
         }
+
+		IEnumerator PlaySounds()
+		{
+			AudioSource[] sources = GetComponents<AudioSource> ();
+			sources[1].Play ();
+
+			yield return new WaitForSeconds(sources[1].clip.length / 3f);
+
+			sources[0].Play ();
+
+		}
+
     }
+
 }

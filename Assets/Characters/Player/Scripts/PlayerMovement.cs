@@ -16,7 +16,7 @@ namespace Assets.Characters.Player.Scripts
         public GameObject MovementLight;
         private GameObject movementLight;
 
-        private UiController _uiControl;
+      //  private UiController _uiControl;
 		private float _touchCounter = 0;
 		public bool _tap = false;			// detecting tap
 		private bool _canMove = false;		// allowing player to move
@@ -25,7 +25,7 @@ namespace Assets.Characters.Player.Scripts
         {
             _agent = GetComponent<NavMeshAgent>();
             _ai = GetComponent<AiMovement>();
-            _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
+        //    _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
 
            movementLight = (GameObject)Instantiate(MovementLight, Vector3.zero, Quaternion.identity);
         }

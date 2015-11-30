@@ -176,6 +176,12 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
         LoadData();
     }
 
+    public bool DoesSentenceAlreadyExcist(List<int> syllables, int id)
+    {
+        return _signsDatabase.Keys.Any(key => key != id && new HashSet<int>(_signsDatabase[key].SyllableSequence).SetEquals(new HashSet<int>(syllables)));
+    }
+
+
     private void LoadAlphabetDb()
     {
         var alphabetPath = GetFilePath(Constants.XmlFiles.Alphabet);
@@ -204,6 +210,7 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
             }
         _alphabetDbLoaded = true;
     }
+
 
 
     private void LoadsignsDb()

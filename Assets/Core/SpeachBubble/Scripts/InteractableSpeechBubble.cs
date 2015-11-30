@@ -257,10 +257,13 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
         yield return new WaitForSeconds(.2f);
 
-        NarrativeSpeechBubble.gameObject.SetActive(true);
-        string tempText = narrative[_ConversationCounter].NarrativeSpeech;
-        tempText = AddNewLineToNarrative(tempText);
-        _NarrativeText.text = tempText;
+        if (_ConversationCounter < narrative.Count)
+        {
+            NarrativeSpeechBubble.gameObject.SetActive(true);
+            string tempText = narrative[_ConversationCounter].NarrativeSpeech;
+            tempText = AddNewLineToNarrative(tempText);
+            _NarrativeText.text = tempText;
+        }
     }
 
 }

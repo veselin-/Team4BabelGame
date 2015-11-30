@@ -15,8 +15,10 @@ public class EndLevelScreen : MonoBehaviour {
 	private EndPoints ep;
     public GameObject blackness;
     private GameObject pokesprite, pokedex;
-	// Use this for initialization
-	void Awake () {
+    float waitForSec;
+    bool startTime = false;
+    // Use this for initialization
+    void Awake () {
 
 		AllOrbsText.text = "";
 		FoundOrbsText.text = "";
@@ -29,7 +31,18 @@ public class EndLevelScreen : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-
+        if (startTime)
+        {
+            waitForSec += Time.unscaledDeltaTime;
+            if(waitForSec >= 0.34f)
+            {
+                blackness.SetActive(false);
+                pokesprite.SetActive(false);
+                shopOpen = 0;
+                waitForSec = 0;
+                startTime = false;
+            }
+        }
     }
 
 	public void ShowEndLevelScreen()
@@ -37,23 +50,13 @@ public class EndLevelScreen : MonoBehaviour {
 		gameObject.SetActive (true);
 	}
 
-    IEnumerator CloseShop()
-    {
-        Debug.Log("RUNNING ANIMATION");
-        yield return new WaitForEndOfFrame();
-        yield return !pokedex.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit");
-        Debug.Log("DONE WITH RUNNING ANIMATION");
-        pokesprite.SetActive(false);
-        blackness.SetActive(false);
-        shopOpen = 0;
-    }
-
     public void ShowShop()
     {
         if (shopOpen == 1)
         {
             pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
-            StartCoroutine(CloseShop());
+            startTime = true;
+
         }
         else
         {

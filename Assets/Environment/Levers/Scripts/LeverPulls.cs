@@ -9,7 +9,7 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
         private Color _oldColor;
         private bool _hasBeenPulled;
         public bool Timelimit = false;
-        public int SecForLever = 5;
+        public float SecForLever = 5;
         public GameObject PlayerPos;
         public static int leverpulls = 0;
 

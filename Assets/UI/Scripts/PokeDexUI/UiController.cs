@@ -118,8 +118,6 @@ public class UiController : MonoBehaviour
 
     public void SignCreationDone()
     {
-        //Debug.Log ("SignCreationDone");
-        //_cameraManager.enabled = true;
         firstTime = false;
         anim.SetBool("CreatingSign", false);
         creation.SetActive(false);
@@ -133,11 +131,6 @@ public class UiController : MonoBehaviour
 
     public void OpenShop()
     {
-        //if (hotbarOpen == 2)
-        //{
-        //    PokedexClose();
-        //}
-        //hotbarOpen = 2;
         anim.SetTrigger("FullyEnter");
         _audioManager.PokedexBtnOpenPlay();
         _cameraManager.enabled = false;
@@ -158,7 +151,6 @@ public class UiController : MonoBehaviour
             {
                 anim.SetTrigger("HalfExit");
                 hotbarOpen = 1;
-                //HotbarPokedexOpen();
                 arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
                 hintPanel.SetActive(false);
                 _pauseCanvas.SetActive(true);
@@ -181,7 +173,6 @@ public class UiController : MonoBehaviour
             closeUiBut.SetActive(true);
             hintPanel.SetActive(true);
             hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
-            //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
             menuMask.GetComponent<ScrollRect>().enabled = true;
             menuIndicator.SetActive(true);
         }
@@ -239,4 +230,12 @@ public class UiController : MonoBehaviour
         MinBut.SetActive(false);
         menuIndicator.SetActive(true);
     }
+
+    //IEnumerator waitForAnim()
+    //{
+    //    while (anim.GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit"))
+    //    {
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //}
 }

@@ -16,21 +16,21 @@ public class ThreePacks : MonoBehaviour {
         IsBought();
     }
 
-    void Update()
-    {
-        if (PlayerPrefsBool.GetBool("Pack") == true)
-        {
-            APack(pack);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (1)") == true)
-        {
-            APack(pack1);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (2)") == true)
-        {
-            APack(pack2);
-        }
-    }
+    //void Update()
+    //{
+    //    if (PlayerPrefsBool.GetBool("Pack") == true)
+    //    {
+    //        APack(pack);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (1)") == true)
+    //    {
+    //        APack(pack1);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (2)") == true)
+    //    {
+    //        APack(pack2);
+    //    }
+    //}
 
     public void BuyThisItem()
     {
@@ -42,7 +42,7 @@ public class ThreePacks : MonoBehaviour {
         //    APack(pack2);
         //}
         //else 
-        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool("Pack") == false || PlayerPrefsBool.GetBool("Pack (1)") == false || PlayerPrefsBool.GetBool("Pack (2)") == false)
+        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && (PlayerPrefsBool.GetBool("Pack") == false || PlayerPrefsBool.GetBool("Pack (1)") == false || PlayerPrefsBool.GetBool("Pack (2)") == false))
         {
             PlayerPrefsBool.SetBool("Pack", true);
             PlayerPrefsBool.SetBool("Pack (1)", true);

@@ -43,7 +43,7 @@ public class hitBoxNewSign : MonoBehaviour
             _uiControl.NewSignCreation(ID);
             _playerInteract.ChangePlayerInteractState(true);
             _sideKickAgent.Resume();
-            Debug.Log("IM IN HERE");
+        //    Debug.Log("IM IN HERE");
             //_playerMovement.MovementSpeed = 0;
         }
     }

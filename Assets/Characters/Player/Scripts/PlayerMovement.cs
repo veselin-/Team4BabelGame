@@ -69,7 +69,7 @@ namespace Assets.Characters.Player.Scripts
 			
 			var ts = Input.touches;
 			
-			Debug.Log ("touches " + EventSystem.current.IsPointerOverGameObject());
+		//	Debug.Log ("touches " + EventSystem.current.IsPointerOverGameObject());
 
 			if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))
 			    || EventSystem.current.IsPointerOverGameObject())	return;

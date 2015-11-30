@@ -69,7 +69,7 @@ public class UiController : MonoBehaviour
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/CallOver");
                 break;
-            case 1:
+            case 2:
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Lever");
                 break;

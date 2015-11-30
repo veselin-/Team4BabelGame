@@ -35,7 +35,7 @@ public class hitThisBox : MonoBehaviour {
             _sideKickAgent.Resume();
             _player.Stop();
             _playerInteract.ChangePlayerInteractState(false);
-            Debug.Log("IM IN HERE");
+         //   Debug.Log("IM IN HERE");
             //_playerMovement.MovementSpeed = 0;
         }
     }

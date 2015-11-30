@@ -10,6 +10,8 @@ public class PauseScreen : MonoBehaviour {
 	public GameObject SettingsPanel;
 	public GameObject SettingsButton;
 	public GameObject GamePausedTxt;
+    public GameObject RightPausePanelButton;
+    public GameObject BottomPausePanelButton;
 
     public Text SoundTextOn, SoundTextOff, MusicTextOn, MusicTextOff, VoicesTextOn, VoicesTextOff, SoundFxTextOn, SoundFxTextOff;
 	private Animator pauseAnim;
@@ -45,9 +47,17 @@ public class PauseScreen : MonoBehaviour {
 	
 	}
 
+    public void ClosePausePanelBtn()
+    {
+        SettingsPanelBackBtn();
+        PausePanelBackBtn();
+    }
+
 	public void PausePanelBtn()
 	{
-		_player.enabled = false;
+	    RightPausePanelButton.SetActive(true);
+        BottomPausePanelButton.SetActive(true);
+        _player.enabled = false;
 		_pokedexButton.SetActive (false);
 		_cameraManager.enabled = false;
 		_audioManager.ClickBtnPlay ();
@@ -60,7 +70,9 @@ public class PauseScreen : MonoBehaviour {
 
 	public void PausePanelBackBtn()
 	{
-		_player.enabled = true;
+        RightPausePanelButton.SetActive(false);
+        BottomPausePanelButton.SetActive(false);
+        _player.enabled = true;
 		_pokedexButton.SetActive (true);
 		_cameraManager.enabled = true;
 		_audioManager.ClickBtnPlay ();

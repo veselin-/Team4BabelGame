@@ -90,7 +90,7 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		AllOrbsText.text = "0"; //"" + PlayerPrefs.GetInt ("CurrencyAmount").ToString();
 		FoundOrbsText.text = "0"; // + ep.orbs.ToString();
-		LevelCompleteText.text = GetLevelNumber() + "\n Complete";
+		LevelCompleteText.text = GetLevelNumber() + "\n" + LanguageManager.Instance.Get("Phrases/Complete");;
 
 		StartCoroutine (AnimateOrbs());
 	}
@@ -99,21 +99,21 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		string level = Application.loadedLevelName;
 		if (level.Equals ("Tutorial1Beta")) {
-			return "Level 1";
+			return LanguageManager.Instance.Get("Phrases/Level") + " 1";
 		} else if (level.Equals ("Tutorial2Beta")) {
-			return "Level 2";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 2";
 		} else if (level.Equals ("Tutorial3Beta")) {
-			return "Level 3";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 3";
 		} else if (level.Equals ("Tutorial4Beta")) {
-			return "Level 6";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 6";
 		} else if (level.Equals ("Level1Beta")) {
-			return "Level 4";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 4";
 		} else if (level.Equals ("Level2Beta")) {
-			return "Level 5";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 5";
 		} else if (level.Equals ("Level3Beta")) {
-			return "Level 7";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 7";
 		} else {
-			return "Level";
+            return LanguageManager.Instance.Get("Phrases/Level");
         }
     }
     

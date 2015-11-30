@@ -18,10 +18,10 @@ public class ShopItem : MonoBehaviour{
 
     void Update()
     {
-        if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
-        {
-            APack(packOfObjects);
-        }
+        //if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
+        //{
+        //    APack(packOfObjects);
+        //}
     }
 
     public void BuyThisItem()

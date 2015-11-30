@@ -29,7 +29,7 @@ namespace Assets.Characters.AiScripts.States
 				// sound
 				if(_agent.gameObject.tag == "SideKick")
 				{
-					Debug.Log("Nothing to pick up"); // doesnt work
+					//Debug.Log("Nothing to pick up"); // doesnt work
 					GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().FemaleNoSoundPlay();
 				}
 

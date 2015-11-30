@@ -78,12 +78,12 @@ public class UiSnapScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
 
             distanceNew = Mathf.Abs(startPos - s);
-            Debug.Log(distanceNew);
+          //  Debug.Log(distanceNew);
             if (distanceNew < distanceShortest)
             {
                 distanceShortest = distanceNew;
                 endPos = s;
-                Debug.Log(endPos);
+            //    Debug.Log(endPos);
             }
 
         }

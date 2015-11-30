@@ -35,19 +35,23 @@ public class NavAgentsAnimation : MonoBehaviour {
         if (Time.deltaTime > 1e-5f)
             velocity = smoothDeltaPosition / Time.deltaTime;
 
-        if (velocity.magnitude > 0.5f && agent.remainingDistance > agent.radius)
+        Debug.Log(velocity.magnitude);
+
+        if (velocity.magnitude > 0.2f && agent.remainingDistance > agent.radius)
         {
             anim.SetFloat("Speed", 1);
+            anim.SetBool("Moving", true);
         }
         else
         {
             anim.SetFloat("Speed", 0);
+            anim.SetBool("Moving", false);
         }
 
         // Update animation parameters
     //  anim.SetFloat("Direction", velocity.y);
 
-        Debug.Log(agent.desiredVelocity);
+     //   Debug.Log(agent.desiredVelocity);
 
     }
 

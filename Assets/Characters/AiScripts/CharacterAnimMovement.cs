@@ -25,7 +25,7 @@ public class CharacterAnimMovement : MonoBehaviour {
 
 	    footsteps = GetComponentInChildren<Footsteps>();
 
-		agent.updateRotation = true;
+		agent.updateRotation = false;
 		agent.updatePosition = true;
 		anim.applyRootMotion = true;
 	}
@@ -68,16 +68,35 @@ public class CharacterAnimMovement : MonoBehaviour {
 
 	void UpdateAnimator(Vector3 move)
 	{
+       // Debug.Log(move.magnitude);
 		// update the animator parameters
+
 		anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
 		anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 
+        Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Movement 0"));
+
 		// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
 		// which affects the movement speed because of the root motion.
-		if (move.magnitude > 0)
-		{
-			anim.speed = m_AnimSpeedMultiplier;
-		}
+	    if (agent.desiredVelocity.magnitude > 0)
+	    {
+	        anim.SetBool("Moving", true);
+	        anim.speed = m_AnimSpeedMultiplier;
+	    }
+	    else
+	    {
+            anim.SetBool("Moving", false);
+        }
+
+	    if (anim.GetCurrentAnimatorStateInfo(0).IsName("Movement 0"))
+	    {
+	        agent.updatePosition = true;
+	    }
+	    else
+	    {
+            agent.updatePosition = false;
+        }
+
 
 	}
 

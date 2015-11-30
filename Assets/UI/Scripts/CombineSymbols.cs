@@ -282,7 +282,7 @@ public class CombineSymbols : MonoBehaviour
             {
 
                 //   image.color = Color.Lerp(feedbackColor1, feedbackColor2, Mathf.PingPong(Time.unscaledTime, 1f));
-                FeedbackSprite.color = Color.Lerp(feedbackColor1 + new Color(0,0,0,0.7f), feedbackColor1 + new Color(0, 0, 0, 1f), Mathf.PingPong(Time.unscaledTime, 1f));
+                FeedbackSprite.color = Color.Lerp(feedbackColor1 + new Color(0,0,0,0.2f), feedbackColor1 + new Color(0, 0, 0, 1f), Mathf.PingPong(Time.unscaledTime*2, 1f));
                 yield return new WaitForEndOfFrame();
             }
             //  image.color = Color.white;

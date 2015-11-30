@@ -23,7 +23,7 @@ public class Orb : MonoBehaviour {
 			}
 
             
-            Debug.Log("WTF YOU ARE HITTING ME!?");
+       //     Debug.Log("WTF YOU ARE HITTING ME!?");
 			StartCoroutine(DestroyOrb());
         }
     }

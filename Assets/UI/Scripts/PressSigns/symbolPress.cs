@@ -64,10 +64,10 @@ public class symbolPress : MonoBehaviour
     {
         //if (count == 3)
         //{
-        //    Debug.Log("IM A CHILDE WITH A NEW PARENT");
+        //    //Debug.Log("IM A CHILDE WITH A NEW PARENT");
         //    if (sylBuf.transform.parent.transform.parent.transform == (slot.transform))
         //    {
-        //        Debug.Log("IM A CHILDE WITH A NEW PARENT");
+        //        //Debug.Log("IM A CHILDE WITH A NEW PARENT");
         //        sylBuf.transform.GetChild(0).transform.GetChild(0).SetParent(slot.transform.GetChild(0).transform);
         //    }
         //}
@@ -75,28 +75,28 @@ public class symbolPress : MonoBehaviour
         //transform.SetSiblingIndex(childIndex);
         //transform.localScale = Vector3.one;
         gameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-        //Debug.Log("CHANGE THE ALPHA BACK!");
+        ////Debug.Log("CHANGE THE ALPHA BACK!");
         count -= 1;
         first = false;
         second = false;
         third = false;
         moved = false;
-        //Debug.Log("COUNT IS DECREASING!!!: " + count);
-        //Debug.Log("childindex er nu: " + childIndex);
+        ////Debug.Log("COUNT IS DECREASING!!!: " + count);
+        ////Debug.Log("childindex er nu: " + childIndex);
         Destroy(sylBuf);
     }
 
     public void MoveSignBackInBookCombine()
     {
         sylBlack.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-        //Debug.Log("CHANGE THE ALPHA BACK!");
+        ////Debug.Log("CHANGE THE ALPHA BACK!");
         count -= 1;
         first = false;
         second = false;
         third = false;
         moved = false;
-        //Debug.Log("COUNT IS DECREASING!!!: " + count);
-        //Debug.Log("MINE BOOLS BLIVER OGSÅ SAT TIL FALSE!!!: " + third + second + first);
+        ////Debug.Log("COUNT IS DECREASING!!!: " + count);
+        ////Debug.Log("MINE BOOLS BLIVER OGSÅ SAT TIL FALSE!!!: " + third + second + first);
     }
 
     void PressedSymbol()
@@ -112,18 +112,18 @@ public class symbolPress : MonoBehaviour
             third = false;
             moved = false;
             Destroy(gameObject);
-            Debug.Log("JEG KOMMER ALDRIG HERIND");
+         //   //Debug.Log("JEG KOMMER ALDRIG HERIND");
             //count -= 1;
         }
         else if (count > 0 && (first || second || third) && moved && gameObject.GetComponent<Image>().color == new Color(0, 0, 0, 0.2f))
         {
             if (count == 3)
             {
-                //Debug.Log("COUNT ER 3!!!");
+                ////Debug.Log("COUNT ER 3!!!");
                 if (sylBuf.transform.parent.transform == (slot.transform))
                 {
                     sylBuf.transform.GetChild(0).SetParent(slot.transform);
-                    //Debug.Log("Jeg trykker på FØRSTE syl!!!");
+                    ////Debug.Log("Jeg trykker på FØRSTE syl!!!");
                 }
                 else if (sylBuf.transform.parent.transform.parent.transform == (slot.transform))
                 {
@@ -132,7 +132,7 @@ public class symbolPress : MonoBehaviour
                     what.SetParent(sylBuf.transform.parent.transform);
                     what.localScale = Vector3.one;
                     //slot.transform.GetChild(0).transform.GetChild(0).localScale = Vector3.one;
-                    //Debug.Log("Jeg trykker på ANDET syl!!!");
+                    ////Debug.Log("Jeg trykker på ANDET syl!!!");
                 }
             }
             else if (count == 2)
@@ -186,13 +186,13 @@ public class symbolPress : MonoBehaviour
                 moved = true;
             }
         }
-        Debug.Log("COUNT ER: " + count);
-        //Debug.Log("pressing on real syllable!");
-        //Debug.Log("moved ER: " + moved);
-        //Debug.Log("first ER: " + first);
-        //Debug.Log("second ER: " + second);
-        //Debug.Log("third ER: " + third);
-        //Debug.Log("childindex er nu: " + childIndex);
+      //  //Debug.Log("COUNT ER: " + count);
+        ////Debug.Log("pressing on real syllable!");
+        ////Debug.Log("moved ER: " + moved);
+        ////Debug.Log("first ER: " + first);
+        ////Debug.Log("second ER: " + second);
+        ////Debug.Log("third ER: " + third);
+        ////Debug.Log("childindex er nu: " + childIndex);
         am.MaleSyllabusSoundPlay(ID);
     }
 }

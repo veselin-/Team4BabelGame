@@ -16,7 +16,7 @@ namespace Assets.Characters.Player.Scripts
         public GameObject MovementLight;
         private GameObject movementLight;
 
-        private UiController _uiControl;
+      //  private UiController _uiControl;
 		private float _touchCounter = 0;
 		public bool _tap = false;			// detecting tap
 		private bool _canMove = false;		// allowing player to move
@@ -25,7 +25,7 @@ namespace Assets.Characters.Player.Scripts
         {
             _agent = GetComponent<NavMeshAgent>();
             _ai = GetComponent<AiMovement>();
-            _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
+        //    _uiControl = GameObject.FindGameObjectWithTag(Constants.Tags.GameUI).GetComponent<UiController>();
 
            movementLight = (GameObject)Instantiate(MovementLight, Vector3.zero, Quaternion.identity);
         }
@@ -69,7 +69,7 @@ namespace Assets.Characters.Player.Scripts
 			
 			var ts = Input.touches;
 			
-			Debug.Log ("touches " + EventSystem.current.IsPointerOverGameObject());
+		//	Debug.Log ("touches " + EventSystem.current.IsPointerOverGameObject());
 
 			if (ts.Length > 1 || (ts.Length > 0 && EventSystem.current.IsPointerOverGameObject(ts[0].fingerId))
 			    || EventSystem.current.IsPointerOverGameObject())	return;

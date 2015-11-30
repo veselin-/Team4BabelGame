@@ -96,7 +96,7 @@ public class SideKickWayPoint : MonoBehaviour
         while (sidekick == null)
         {
             sidekick = GameObject.FindGameObjectWithTag(Constants.Tags.SideKick);
-            Debug.Log(sidekick);
+         //   Debug.Log(sidekick);
         }
         sidekickMovement = sidekick.GetComponent<AiMovement>();
 
@@ -104,7 +104,7 @@ public class SideKickWayPoint : MonoBehaviour
         while (player == null)
         {
             player = GameObject.FindGameObjectWithTag(Constants.Tags.Player);
-            Debug.Log(player);
+         //   Debug.Log(player);
         }
 
         if (UseObstacle)
@@ -162,7 +162,7 @@ public class SideKickWayPoint : MonoBehaviour
             sidekickMovement.StrollSpeed = 0;
             sidekickMovement.AssignNewState(new GoSomewhereAndWaitState(sidekick.GetComponent<NavMeshAgent>(), transform.position));
            sidekickMovement.GetCurrentState().WaitingTime = WaitForSeconds ? WaitTime : float.MaxValue - Time.time*2;
-            Debug.Log("State assigned");
+        //    Debug.Log("State assigned");
        }
        StartCoroutine(ExecuteWaypoint());
 

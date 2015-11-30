@@ -35,7 +35,7 @@ namespace Assets.Core.GameMaster.Scripts
                 yield return new WaitForSeconds(0.5f);
               
             }
-            Debug.Log("room change");
+          //  Debug.Log("room change");
             Userlevels.GetInstance().AddUserLevel(GrandAccesToLevelId);
             endLevel.SetActive(true);
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
@@ -72,7 +72,7 @@ namespace Assets.Core.GameMaster.Scripts
         {
             isSidekickHere = other.tag != Constants.Tags.SideKick && isSidekickHere;
             isPlayerHere = other.tag != Constants.Tags.Player && isPlayerHere;
-            Debug.Log("someone left");
+          //  Debug.Log("someone left");
         }
     }
 } 

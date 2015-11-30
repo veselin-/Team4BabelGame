@@ -15,8 +15,7 @@ public class EndLevelScreen : MonoBehaviour {
 	private EndPoints ep;
     public GameObject blackness;
     private GameObject pokesprite, pokedex;
-    float waitForSec;
-    bool startTime = false;
+
     // Use this for initialization
     void Awake () {
 
@@ -31,18 +30,7 @@ public class EndLevelScreen : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        if (startTime)
-        {
-            waitForSec += Time.unscaledDeltaTime;
-            if(waitForSec >= 0.34f)
-            {
-                blackness.SetActive(false);
-                pokesprite.SetActive(false);
-                shopOpen = 0;
-                waitForSec = 0;
-                startTime = false;
-            }
-        }
+
     }
 
 	public void ShowEndLevelScreen()
@@ -50,13 +38,23 @@ public class EndLevelScreen : MonoBehaviour {
 		gameObject.SetActive (true);
 	}
 
+    IEnumerator waitForAnim()
+    {
+        while (!pokedex.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit"))
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        blackness.SetActive(false);
+        pokesprite.SetActive(false);
+        shopOpen = 0;
+    }
+
     public void ShowShop()
     {
         if (shopOpen == 1)
         {
             pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
-            startTime = true;
-
+            StartCoroutine(waitForAnim());
         }
         else
         {

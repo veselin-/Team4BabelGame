@@ -118,8 +118,6 @@ public class UiController : MonoBehaviour
 
     public void SignCreationDone()
     {
-        //Debug.Log ("SignCreationDone");
-        //_cameraManager.enabled = true;
         firstTime = false;
         anim.SetBool("CreatingSign", false);
         creation.SetActive(false);
@@ -133,11 +131,6 @@ public class UiController : MonoBehaviour
 
     public void OpenShop()
     {
-        //if (hotbarOpen == 2)
-        //{
-        //    PokedexClose();
-        //}
-        //hotbarOpen = 2;
         anim.SetTrigger("FullyEnter");
         _audioManager.PokedexBtnOpenPlay();
         _cameraManager.enabled = false;
@@ -157,33 +150,37 @@ public class UiController : MonoBehaviour
             if (arrowBut.transform.rotation.z == 1)
             {
                 anim.SetTrigger("HalfExit");
-                hotbarOpen = 1;
-                //HotbarPokedexOpen();
-                arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
-                hintPanel.SetActive(false);
-                _pauseCanvas.SetActive(true);
-                closeUiBut.SetActive(false);
-                _cameraManager.enabled = true;
-                _playerMovement.enabled = true;
-                menuMask.GetComponent<ScrollRect>().enabled = false;
-                scrollRect.horizontalNormalizedPosition = 0f;
-                Time.timeScale = 1;
-				_audioManager.PokedexBtnMiddlePlay();
-                return;
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+                {
+                    hotbarOpen = 1;
+                    arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    hintPanel.SetActive(false);
+                    _pauseCanvas.SetActive(true);
+                    closeUiBut.SetActive(false);
+                    _cameraManager.enabled = true;
+                    _playerMovement.enabled = true;
+                    menuMask.GetComponent<ScrollRect>().enabled = false;
+                    scrollRect.horizontalNormalizedPosition = 0f;
+                    Time.timeScale = 1;
+                    _audioManager.PokedexBtnMiddlePlay();
+                    return;
+                }
             }
-            arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
             anim.SetTrigger("MenuToggle");
-            _audioManager.PokedexBtnClosePlay();
-            _cameraManager.enabled = false;
-            _playerMovement.enabled = false;
-            Time.timeScale = 0;
-            _pauseCanvas.SetActive(false);
-            closeUiBut.SetActive(true);
-            hintPanel.SetActive(true);
-            hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
-            //Debug.Log("RESET TEKSTEN FOR HINTPANEL *************************************************");
-            menuMask.GetComponent<ScrollRect>().enabled = true;
-            menuIndicator.SetActive(true);
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+            {
+                arrowBut.transform.rotation = new Quaternion(0, 0, 180, 0);
+                _audioManager.PokedexBtnClosePlay();
+                _cameraManager.enabled = false;
+                _playerMovement.enabled = false;
+                Time.timeScale = 0;
+                _pauseCanvas.SetActive(false);
+                closeUiBut.SetActive(true);
+                hintPanel.SetActive(true);
+                hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
+                menuMask.GetComponent<ScrollRect>().enabled = true;
+                menuIndicator.SetActive(true);
+            }
         }
     }
 
@@ -192,16 +189,19 @@ public class UiController : MonoBehaviour
         if(hotbarOpen == 1)
         {
             anim.SetTrigger("MenuToggle");
-            _cameraManager.enabled = true;
-            _playerMovement.enabled = true;
-            _audioManager.PokedexBtnMiddlePlay();
-            _pauseCanvas.SetActive(true);
-            closeUiBut.SetActive(false);
-            Time.timeScale = 1;
-            menuMask.GetComponent<ScrollRect>().enabled = false;
-            menuMask.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0;
-            MinBut.SetActive(true);
-            hintPanel.SetActive(false);
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+            {
+                _cameraManager.enabled = true;
+                _playerMovement.enabled = true;
+                _audioManager.PokedexBtnMiddlePlay();
+                _pauseCanvas.SetActive(true);
+                closeUiBut.SetActive(false);
+                Time.timeScale = 1;
+                menuMask.GetComponent<ScrollRect>().enabled = false;
+                menuMask.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0;
+                MinBut.SetActive(true);
+                hintPanel.SetActive(false);
+            }
         }
     }
 
@@ -228,15 +228,41 @@ public class UiController : MonoBehaviour
     public void PokedexClose()
     {
         anim.SetTrigger("MenuExit");
-        hintPanel.SetActive(false);
-        _cameraManager.enabled = true;
-		_playerMovement.enabled = true;
-		_audioManager.PokedexBtnOpenPlay ();
-        arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
-        Time.timeScale = 1;
-        hotbarOpen = 0;
-		_pauseCanvas.SetActive (true);
-        MinBut.SetActive(false);
-        menuIndicator.SetActive(true);
+        if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+        {
+            hintPanel.SetActive(false);
+            _cameraManager.enabled = true;
+            _playerMovement.enabled = true;
+            _audioManager.PokedexBtnOpenPlay();
+            arrowBut.transform.rotation = new Quaternion(0, 0, 0, 0);
+            Time.timeScale = 1;
+            hotbarOpen = 0;
+            _pauseCanvas.SetActive(true);
+            MinBut.SetActive(false);
+            menuIndicator.SetActive(true);
+        }
     }
+
+    //IEnumerator FullyExit()
+    //{
+    //    while (anim.GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit"))
+    //    {
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //}
+
+    //IEnumerator FullyExit()
+    //{
+    //    while (anim.GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit"))
+    //    {
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //}
+
+    //PokeDexEnter -> hotbar
+    //PokeDexEnter 0 -> lukker hotbar
+    //PokeDexFullyEnter -> hotbar til helt op
+    //PokeDexFullyExit -> helt op til helt ned
+    //PokeDexHalfExit -> helt op til hotbar
+    //Hidden -> helt nede
 }

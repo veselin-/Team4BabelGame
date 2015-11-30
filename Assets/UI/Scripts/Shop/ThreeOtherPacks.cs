@@ -17,21 +17,21 @@ public class ThreeOtherPacks : MonoBehaviour
         IsBought();
     }
 
-    void Update()
-    {
-        if (PlayerPrefsBool.GetBool("Pac (3)") == true)
-        {
-            APack(pack3);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (4)") == true)
-        {
-            APack(pack4);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (5)") == true)
-        {
-            APack(pack5);
-        }
-    }
+    //void Update()
+    //{
+    //    if (PlayerPrefsBool.GetBool("Pac (3)") == true)
+    //    {
+    //        APack(pack3);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (4)") == true)
+    //    {
+    //        APack(pack4);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (5)") == true)
+    //    {
+    //        APack(pack5);
+    //    }
+    //}
 
     public void BuyThisItem()
     {
@@ -43,7 +43,7 @@ public class ThreeOtherPacks : MonoBehaviour
         //}
         //else 
         Debug.Log("FIX SÅ DEN HAKKER SINGLE PACKS AF");
-        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool("Pack (3)") == false || PlayerPrefsBool.GetBool("Pack (4)") == false || PlayerPrefsBool.GetBool("Pack (5)") == false)
+        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && (PlayerPrefsBool.GetBool("Pack (3)") == false || PlayerPrefsBool.GetBool("Pack (4)") == false || PlayerPrefsBool.GetBool("Pack (5)") == false))
         {
             PlayerPrefsBool.SetBool("Pack (3)", true);
             PlayerPrefsBool.SetBool("Pack (4)", true);

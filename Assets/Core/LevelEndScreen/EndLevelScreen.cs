@@ -73,13 +73,13 @@ public class EndLevelScreen : MonoBehaviour {
 	public void NextLevelBtn()
 	{
 
-        if(NextLevel != "BuyLevelSeven") { 
-		    Application.LoadLevel (NextLevel);
+        if(NextLevel == "Level3Beta" && !PlayerPrefsBool.GetBool("Level7")) {
+            var bls = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<BuyLevelSeven>();
+            bls.DoYouWannaBuy();
         }
         else
         {
-            var bls = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<BuyLevelSeven>();
-            bls.DoYouWannaBuy();
+            Application.LoadLevel(NextLevel);
         }
 
     }

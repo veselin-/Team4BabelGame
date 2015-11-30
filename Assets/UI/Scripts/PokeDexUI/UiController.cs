@@ -19,6 +19,7 @@ public class UiController : MonoBehaviour
     public GameObject menuIndicator;
     public GameObject shopCanvas;
     public Text signText;
+    public Image GlowPanel;
 
     //NavMeshAgent navMeshP, navMeshS;
 	private AudioManager _audioManager;
@@ -31,6 +32,7 @@ public class UiController : MonoBehaviour
 	private GameObject _pauseCanvas;
     private GameObject arrowBut;
     public static int hotbarOpen = 0;
+    bool firstTime = true;
 
     // Use this for initialization
     void Start () {
@@ -44,31 +46,17 @@ public class UiController : MonoBehaviour
         anim = GetComponent<Animator>();
         arrowBut = GameObject.FindGameObjectWithTag("PokedexButton");
         hotbarOpen = 0;
+        //firstTime = true;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        //if (menuMask.GetComponent<UiSnapScroll>().Pips[0].GetComponent<Image>().color == Color.black)
-        //{
-        //    arrowBut.SetActive(false);
-        //}
-        //else
-        //{
-        //    arrowBut.SetActive(true);
-        //}
-        //if (scrollRect.horizontalNormalizedPosition == 1f)
-        //{
-        //    GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateInfoDialog("Phrases/MockUpShop", "Phrases/ShopText", "Phrases/OKText", AccesShop);
 
-        //}
-        //Debug.Log("WTF");
     }
 
     public void NewSignCreation(int id)
     {
-		//Debug.Log ("NewSignCreation");
-
-        if(hotbarOpen == 1)
+        if(hotbarOpen >= 1)
         {
             anim.SetTrigger("MenuToggle");
         }
@@ -76,6 +64,8 @@ public class UiController : MonoBehaviour
         {
             anim.SetTrigger("FullyEnter");
         }
+        anim.SetBool("CreatingSign", true);
+        creation.SetActive(true);
         signText.enabled = true;
         switch (id)
         {
@@ -87,11 +77,11 @@ public class UiController : MonoBehaviour
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Lever");
                 break;
-            case 2:
+            case 3:
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Stick");
                 break;
-            case 3:
+            case 4:
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Firepit");
                 break;
@@ -106,18 +96,31 @@ public class UiController : MonoBehaviour
         scrollRect.horizontalNormalizedPosition = 0f;
         menuIndicator.SetActive(false);
         MinBut.SetActive(false);
-        anim.SetBool("CreatingSign", true);
-        creation.SetActive(true);
         slidePanel.SetActive(false);
         Time.timeScale = 0;
 		_pokedexButton.SetActive (false);
 		_pauseCanvas.SetActive (false);
+        if (firstTime && Application.loadedLevelName == "Tutorial2Beta")
+        {
+            StartCoroutine(FeedbackCoRoutineAlpha());
+        }
+    }
+
+    IEnumerator FeedbackCoRoutineAlpha()
+    {
+        while (firstTime)
+        {
+            GlowPanel.color = Color.Lerp(Color.white - new Color(0, 0, 0, 0.3f), Color.white - new Color(0, 0, 0, 1f), Mathf.PingPong(Time.unscaledTime, 1f));
+            yield return new WaitForEndOfFrame();
+        }
+        GlowPanel.color = Color.clear;
     }
 
     public void SignCreationDone()
     {
-		//Debug.Log ("SignCreationDone");
-		//_cameraManager.enabled = true;
+        //Debug.Log ("SignCreationDone");
+        //_cameraManager.enabled = true;
+        firstTime = false;
         anim.SetBool("CreatingSign", false);
         creation.SetActive(false);
         anim.SetTrigger("MenuExit");

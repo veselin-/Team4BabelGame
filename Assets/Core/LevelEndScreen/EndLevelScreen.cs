@@ -15,8 +15,10 @@ public class EndLevelScreen : MonoBehaviour {
 	private EndPoints ep;
     public GameObject blackness;
     private GameObject pokesprite, pokedex;
-	// Use this for initialization
-	void Awake () {
+    float waitForSec;
+    bool startTime = false;
+    // Use this for initialization
+    void Awake () {
 
 		AllOrbsText.text = "";
 		FoundOrbsText.text = "";
@@ -29,7 +31,18 @@ public class EndLevelScreen : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-
+        if (startTime)
+        {
+            waitForSec += Time.unscaledDeltaTime;
+            if(waitForSec >= 0.34f)
+            {
+                blackness.SetActive(false);
+                pokesprite.SetActive(false);
+                shopOpen = 0;
+                waitForSec = 0;
+                startTime = false;
+            }
+        }
     }
 
 	public void ShowEndLevelScreen()
@@ -37,23 +50,13 @@ public class EndLevelScreen : MonoBehaviour {
 		gameObject.SetActive (true);
 	}
 
-    IEnumerator CloseShop()
-    {
-        Debug.Log("RUNNING ANIMATION");
-        yield return new WaitForEndOfFrame();
-        yield return !pokedex.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit");
-        Debug.Log("DONE WITH RUNNING ANIMATION");
-        pokesprite.SetActive(false);
-        blackness.SetActive(false);
-        shopOpen = 0;
-    }
-
     public void ShowShop()
     {
         if (shopOpen == 1)
         {
             pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
-            StartCoroutine(CloseShop());
+            startTime = true;
+
         }
         else
         {
@@ -87,7 +90,7 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		AllOrbsText.text = "0"; //"" + PlayerPrefs.GetInt ("CurrencyAmount").ToString();
 		FoundOrbsText.text = "0"; // + ep.orbs.ToString();
-		LevelCompleteText.text = GetLevelNumber() + "\n Complete";
+		LevelCompleteText.text = GetLevelNumber() + "\n" + LanguageManager.Instance.Get("Phrases/Complete");;
 
 		StartCoroutine (AnimateOrbs());
 	}
@@ -96,21 +99,21 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 		string level = Application.loadedLevelName;
 		if (level.Equals ("Tutorial1Beta")) {
-			return "Level 1";
+			return LanguageManager.Instance.Get("Phrases/Level") + " 1";
 		} else if (level.Equals ("Tutorial2Beta")) {
-			return "Level 2";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 2";
 		} else if (level.Equals ("Tutorial3Beta")) {
-			return "Level 3";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 3";
 		} else if (level.Equals ("Tutorial4Beta")) {
-			return "Level 6";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 6";
 		} else if (level.Equals ("Level1Beta")) {
-			return "Level 4";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 4";
 		} else if (level.Equals ("Level2Beta")) {
-			return "Level 5";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 5";
 		} else if (level.Equals ("Level3Beta")) {
-			return "Level 7";
+            return LanguageManager.Instance.Get("Phrases/Level") + " 7";
 		} else {
-			return "Level";
+            return LanguageManager.Instance.Get("Phrases/Level");
         }
     }
     

@@ -74,7 +74,7 @@ public class CharacterAnimMovement : MonoBehaviour {
 		anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
 		anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 
-        Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Movement 0"));
+       // Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Movement 0"));
 
 		// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
 		// which affects the movement speed because of the root motion.

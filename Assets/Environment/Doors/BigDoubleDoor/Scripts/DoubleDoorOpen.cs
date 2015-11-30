@@ -26,7 +26,7 @@ namespace Assets.Environment.Scripts
 
         //public GameObject obstacle;
         //public int moveValue = 0;
-        public float degreeValue = 120;
+        float degreeValue = 135;
         public GameObject door, door2;
         // Use this for initialization
         void Start()
@@ -52,11 +52,11 @@ namespace Assets.Environment.Scripts
         void Update()
         {
             //transform.localPosition = Vector3.MoveTowards(transform.localPosition, _objectIsShown ? _endPosistion : _startPosition, Time.deltaTime * MovementSpeed);
-            if(door.transform.localEulerAngles.y <= 125)
+            if(door.transform.localEulerAngles.y <= 140)
             {
                 door.transform.eulerAngles = Vector3.MoveTowards(door.transform.eulerAngles, _objectIsShown ? _endRotation : _startRotation, Time.deltaTime * MovementSpeed);
             }
-            if (door2.transform.localEulerAngles.y >= 235)
+            if (door2.transform.localEulerAngles.y >= 220)
             {
                 door2.transform.eulerAngles = Vector3.MoveTowards(door2.transform.eulerAngles, _objectIsShown ? _endRotation2 : _startRotation2, Time.deltaTime * MovementSpeed);
             }

@@ -46,7 +46,7 @@ public class UiController : MonoBehaviour
         anim = GetComponent<Animator>();
         arrowBut = GameObject.FindGameObjectWithTag("PokedexButton");
         hotbarOpen = 0;
-        firstTime = true;
+        //firstTime = true;
     }
 	
 	// Update is called once per frame
@@ -56,7 +56,7 @@ public class UiController : MonoBehaviour
 
     public void NewSignCreation(int id)
     {
-        if(hotbarOpen == 1)
+        if(hotbarOpen >= 1)
         {
             anim.SetTrigger("MenuToggle");
         }
@@ -64,6 +64,8 @@ public class UiController : MonoBehaviour
         {
             anim.SetTrigger("FullyEnter");
         }
+        anim.SetBool("CreatingSign", true);
+        creation.SetActive(true);
         signText.enabled = true;
         switch (id)
         {
@@ -75,11 +77,11 @@ public class UiController : MonoBehaviour
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Lever");
                 break;
-            case 2:
+            case 3:
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Stick");
                 break;
-            case 3:
+            case 4:
                 signText.text = LanguageManager.Instance.Get("Phrases/CreateASignFor") +
                                 LanguageManager.Instance.Get("Phrases/Firepit");
                 break;
@@ -94,8 +96,6 @@ public class UiController : MonoBehaviour
         scrollRect.horizontalNormalizedPosition = 0f;
         menuIndicator.SetActive(false);
         MinBut.SetActive(false);
-        anim.SetBool("CreatingSign", true);
-        creation.SetActive(true);
         slidePanel.SetActive(false);
         Time.timeScale = 0;
 		_pokedexButton.SetActive (false);

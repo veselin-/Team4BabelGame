@@ -91,7 +91,7 @@ public class CombineSymbols : MonoBehaviour
         //Debug.Log("CHILDCOUNT OF PARENT+CHILD1+CHILD2: " + (transform.childCount + transform.GetChild(0).childCount + transform.GetChild(0).transform.GetChild(0).childCount));
         if(transform.childCount == 0)
         {
-            text.text = "You need at least 2 syllables.";
+            text.text = LanguageManager.Instance.Get("Phrases/AtLeastTwoSyl");
             return;
         }
         else if ((transform.childCount + transform.GetChild(0).childCount) >= 2)
@@ -102,6 +102,12 @@ public class CombineSymbols : MonoBehaviour
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
 
+                if (databaseManager.GetComponent<DatabaseManager>().DoesSentenceAlreadyExcist(syllableIDs, CreateNewSymbol.SymbolID))
+                {
+                    text.text = LanguageManager.Instance.Get("Phrases/AlreadyUsed");
+                    return;
+                }
+
                 transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
                 transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
                 transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
@@ -111,6 +117,13 @@ public class CombineSymbols : MonoBehaviour
             {
                 syllableIDs.Add(transform.GetChild(0).GetComponent<symbolPress>().ID);
                 syllableIDs.Add(transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().ID);
+
+
+                if (databaseManager.GetComponent<DatabaseManager>().DoesSentenceAlreadyExcist(syllableIDs, CreateNewSymbol.SymbolID))
+                {
+                    text.text = LanguageManager.Instance.Get("Phrases/AlreadyUsed");
+                    return;
+                }
 
                 transform.GetChild(0).transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
                 transform.GetChild(0).GetComponent<symbolPress>().MoveSignBackInBookCombine();
@@ -126,7 +139,7 @@ public class CombineSymbols : MonoBehaviour
         }
         else if(transform.childCount == 1)
         {
-			text.text = "You need at least 2 syllables.";
+			text.text = LanguageManager.Instance.Get("Phrases/AtLeastTwoSyl");
             //text.text = "Invalid combination. A sign must be at least two syllables.";
           //  Debug.Log("BOGEN ÅBNER MEN VED IKKE HVORFOR");
             return;

@@ -17,33 +17,33 @@ public class AllPacks : MonoBehaviour
         IsBought();
     }
 
-    void Update()
-    {
-        if(PlayerPrefsBool.GetBool("Pack") == true)
-        {
-            APack(pack);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (1)") == true)
-        {
-            APack(pack1);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (2)") == true)
-        {
-            APack(pack2);
-        }
-        if (PlayerPrefsBool.GetBool("Pac (3)") == true)
-        {
-            APack(pack3);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (4)") == true)
-        {
-            APack(pack4);
-        }
-        if (PlayerPrefsBool.GetBool("Pack (5)") == true)
-        {
-            APack(pack5);
-        }
-    }
+    //void Update()
+    //{
+    //    if (PlayerPrefsBool.GetBool("Pack") == true)
+    //    {
+    //        APack(pack);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (1)") == true)
+    //    {
+    //        APack(pack1);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (2)") == true)
+    //    {
+    //        APack(pack2);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pac (3)") == true)
+    //    {
+    //        APack(pack3);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (4)") == true)
+    //    {
+    //        APack(pack4);
+    //    }
+    //    if (PlayerPrefsBool.GetBool("Pack (5)") == true)
+    //    {
+    //        APack(pack5);
+    //    }
+    //}
 
     public void BuyThisItem()
     {
@@ -58,7 +58,7 @@ public class AllPacks : MonoBehaviour
         //}
         //else 
         Debug.Log("FIX SÅ DEN HAKKER SINGLE PACKS AF");
-        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool("Pack") == false || PlayerPrefsBool.GetBool("Pack (1)") == false || PlayerPrefsBool.GetBool("Pack (2)") == false || PlayerPrefsBool.GetBool("Pack (3)") == false || PlayerPrefsBool.GetBool("Pack (4)") == false || PlayerPrefsBool.GetBool("Pack (5)") == false)
+        if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && (PlayerPrefsBool.GetBool("Pack") == false || PlayerPrefsBool.GetBool("Pack (1)") == false || PlayerPrefsBool.GetBool("Pack (2)") == false || PlayerPrefsBool.GetBool("Pack (3)") == false || PlayerPrefsBool.GetBool("Pack (4)") == false || PlayerPrefsBool.GetBool("Pack (5)") == false))
         {
             PlayerPrefsBool.SetBool("Pack", true);
             PlayerPrefsBool.SetBool("Pack (1)", true);

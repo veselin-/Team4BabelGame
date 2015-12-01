@@ -37,6 +37,7 @@ namespace Assets.Core.GameMaster.Scripts
             }
           //  Debug.Log("room change");
             Userlevels.GetInstance().AddUserLevel(GrandAccesToLevelId);
+            GameObject.FindGameObjectWithTag(Constants.Tags.SpeechCanvas).SetActive(false);
             endLevel.SetActive(true);
 			endLevel.GetComponent<EndLevelScreen> ().NextLevel = NextLevelName;
 			if(GetComponent<AudioSource> () != null)

@@ -12,6 +12,17 @@ namespace Assets.Environment.Doors.BigDoubleDoor.Scripts
         public GameObject[] Interactables;
         public float MovementSpeed;
 
+        public bool FixActive {
+            set
+            {
+                var obstacles = GetComponentsInChildren<NavMeshObstacle>();
+                foreach (var o in obstacles)
+                {
+                    o.carving = !value;
+                }
+            }
+        }
+
         private List<IInteractable> _interactables;
 
         private bool _objectIsShown;

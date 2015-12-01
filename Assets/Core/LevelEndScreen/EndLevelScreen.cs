@@ -11,10 +11,11 @@ public class EndLevelScreen : MonoBehaviour {
 	private int allOrbs, foundOrbs, shopOpen;
 	public Text FoundOrbsText;
 	public Text LevelCompleteText;
+    public Text shopBut;
 	public string NextLevel;
 	private EndPoints ep;
     public GameObject blackness;
-    private GameObject pokesprite, pokedex;
+    private GameObject pokesprite, pokedex, closeuimask;
 
     // Use this for initialization
     void Awake () {
@@ -44,6 +45,7 @@ public class EndLevelScreen : MonoBehaviour {
         {
             yield return new WaitForEndOfFrame();
         }
+        shopBut.text = LanguageManager.Instance.Get("Phrases/Shop");
         blackness.SetActive(false);
         pokesprite.SetActive(false);
         shopOpen = 0;
@@ -60,9 +62,16 @@ public class EndLevelScreen : MonoBehaviour {
         {
             blackness.SetActive(true);
             pokesprite.SetActive(true);
+            //closeuimask.SetActive(true);
             pokedex.GetComponent<UiController>().OpenShop();
+            shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
             shopOpen = 1;
         }
+    }
+
+    public void ResetShop()
+    {
+        shopOpen = 0;
     }
 
 	public void MainMenuBtn()
@@ -142,9 +151,11 @@ public class EndLevelScreen : MonoBehaviour {
     {
         pokesprite = GameObject.FindGameObjectWithTag("PokedexSprite");
         pokedex = GameObject.FindGameObjectWithTag("GameUI");
+        //closeuimask = GameObject.FindGameObjectWithTag("CloseUIMask");
         ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
 		allOrbs = PlayerPrefs.GetInt ("CurrencyAmount");
-		foundOrbs = ep.orbs;
+        shopBut.text = LanguageManager.Instance.Get("Phrases/Shop");
+        foundOrbs = ep.orbs;
         pokesprite.SetActive(false);
         UpdateOrbsUI();
     }

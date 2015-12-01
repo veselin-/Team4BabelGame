@@ -125,21 +125,19 @@ public class UiController : MonoBehaviour
         signText.enabled = false;
         _playerMovement.enabled = true;
         _cameraManager.enabled = true;
+        hotbarOpen = 0;
     }
 
     public void OpenShop()
     {
         anim.SetTrigger("FullyEnter");
-        _audioManager.PokedexBtnOpenPlay();
-        _cameraManager.enabled = false;
-        _playerMovement.enabled = false;
-        Time.timeScale = 0;
-        MinBut.SetActive(false);
-        arrowBut.SetActive(false);
-        _pauseCanvas.SetActive(false);
-        scrollRect.horizontalNormalizedPosition = 1f;
-        menuIndicator.SetActive(false);
-        closeUiBut.SetActive(true);
+        StartCoroutine(PokedexFullyEnterShop());
+    }
+
+    public void CloseShop()
+    {
+        anim.SetTrigger("MenuExit");
+        StartCoroutine(FullyExitShop());
     }
 
     public void PokedexOpen()
@@ -195,7 +193,7 @@ public class UiController : MonoBehaviour
         _pauseCanvas.SetActive(true);
         MinBut.SetActive(false);
         menuIndicator.SetActive(true);
-        Debug.Log(hotbarOpen + "CLOSED");
+        //Debug.Log(hotbarOpen + "CLOSED");
         isStuffRunning = false;
     }
 
@@ -217,11 +215,41 @@ public class UiController : MonoBehaviour
         menuMask.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0;
         MinBut.SetActive(true);
         hintPanel.SetActive(false);
-        Debug.Log(hotbarOpen + "HOTBAR OPEN");
+        //Debug.Log(hotbarOpen + "HOTBAR OPEN");
         isStuffRunning = false;
     }
 
-    IEnumerator PokedexFullyEnter()
+    IEnumerator FullyExitShop()
+    {
+        isStuffRunning = true;
+        while (!anim.GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit"))
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        isStuffRunning = false;
+    }
+
+        IEnumerator PokedexFullyEnterShop()
+    {
+        isStuffRunning = true;
+        while (!anim.GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyEnter"))
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        _audioManager.PokedexBtnOpenPlay();
+        _cameraManager.enabled = false;
+        _playerMovement.enabled = false;
+        Time.timeScale = 0;
+        MinBut.SetActive(false);
+        arrowBut.SetActive(false);
+        _pauseCanvas.SetActive(false);
+        scrollRect.horizontalNormalizedPosition = 1f;
+        menuIndicator.SetActive(false);
+        //closeUiBut.SetActive(true);
+        isStuffRunning = false;
+    }
+
+        IEnumerator PokedexFullyEnter()
     {
         isStuffRunning = true;
         while (!anim.GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyEnter"))
@@ -240,7 +268,7 @@ public class UiController : MonoBehaviour
         hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
         menuMask.GetComponent<ScrollRect>().enabled = true;
         menuIndicator.SetActive(true);
-        Debug.Log(hotbarOpen + "FULLY OPEN");
+        //Debug.Log(hotbarOpen + "FULLY OPEN");
         isStuffRunning = false;
     }
 
@@ -262,7 +290,7 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1;
         hotbarOpen = 1;
         _audioManager.PokedexBtnMiddlePlay();
-        Debug.Log(hotbarOpen + "FULLY TO HOTBAR");
+        //Debug.Log(hotbarOpen + "FULLY TO HOTBAR");
         isStuffRunning = false;
     }
 
@@ -283,7 +311,7 @@ public class UiController : MonoBehaviour
         _pauseCanvas.SetActive(true);
         MinBut.SetActive(false);
         menuIndicator.SetActive(true);
-        Debug.Log(hotbarOpen + "CLOSED");
+        //Debug.Log(hotbarOpen + "CLOSED");
         isStuffRunning = false;
     }
         //PokeDexEnter -> hotbar

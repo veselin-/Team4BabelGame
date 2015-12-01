@@ -17,6 +17,7 @@ public class EndLevelScreen : MonoBehaviour {
 	private EndPoints ep;
     public GameObject blackness;
     private GameObject pokesprite, pokedex, closeuimask;
+    bool waitPLEASE = false;
 
     // Use this for initialization
     void Awake () {
@@ -42,6 +43,7 @@ public class EndLevelScreen : MonoBehaviour {
 
     IEnumerator waitForAnim()
     {
+        waitPLEASE = true;
         while (!pokedex.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyExit"))
         {
             yield return new WaitForEndOfFrame();
@@ -50,29 +52,30 @@ public class EndLevelScreen : MonoBehaviour {
         blackness.SetActive(false);
         pokesprite.SetActive(false);
         shopOpen = 0;
+        //Debug.Log(shopOpen);
+        waitPLEASE = false;
     }
 
     public void ShowShop()
     {
         if (shopOpen == 1)
         {
+            if (waitPLEASE)
+            {
+                return;
+            }
             pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
             StartCoroutine(waitForAnim());
         }
-        else
+        else if (shopOpen == 0)
         {
             blackness.SetActive(true);
             pokesprite.SetActive(true);
-            //closeuimask.SetActive(true);
             pokedex.GetComponent<UiController>().OpenShop();
             shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
             shopOpen = 1;
+            //Debug.Log(shopOpen);
         }
-    }
-
-    public void ResetShop()
-    {
-        shopOpen = 0;
     }
 
 	public void MainMenuBtn()
@@ -159,7 +162,6 @@ public class EndLevelScreen : MonoBehaviour {
     {
         pokesprite = GameObject.FindGameObjectWithTag("PokedexSprite");
         pokedex = GameObject.FindGameObjectWithTag("GameUI");
-        //closeuimask = GameObject.FindGameObjectWithTag("CloseUIMask");
         ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	
 		allOrbs = PlayerPrefs.GetInt ("CurrencyAmount");
         shopBut.text = LanguageManager.Instance.Get("Phrases/Shop");

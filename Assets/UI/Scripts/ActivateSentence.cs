@@ -47,7 +47,16 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     void ChangeHintText()
     {
         hintText.transform.position = transform.position + new Vector3(0, 50, 0);
-        switch (gameObject.GetComponent<SymbolHandler>().ID)
+        int id = gameObject.GetComponent<SymbolHandler>().ID;
+
+
+        if (GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>().GetSign(id) == null)
+        {
+            hintText.text = "";
+            return;
+        }
+
+        switch (id)
         {
             case 0:
                 hintText.text = LanguageManager.Instance.Get("hints/callOver");
@@ -89,7 +98,17 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     void ChangeDicText()
     {
-        switch (gameObject.GetComponent<SymbolHandler>().ID)
+        int id = gameObject.GetComponent<SymbolHandler>().ID;
+
+
+        if (GameObject.FindGameObjectWithTag(Constants.Tags.DatabaseManager).GetComponent<DatabaseManager>().GetSign(id) ==null)
+        {
+            dicText.text = "";
+            return;
+        }
+      
+
+        switch (id)
         {
             case 0:
                 dicText.text = LanguageManager.Instance.Get("hints/callOver");

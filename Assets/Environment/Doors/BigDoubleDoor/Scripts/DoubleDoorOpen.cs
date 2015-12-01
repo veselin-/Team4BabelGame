@@ -33,7 +33,7 @@ namespace Assets.Environment.Doors.BigDoubleDoor.Scripts
             set
             {
                 if (_objectIsShown != value && _anim != null)
-                    _anim.SetTrigger(value ? "DoorOpen" : "DoorClose");
+                    StartCoroutine(aa(value));
                 _objectIsShown = value;
             }
         }
@@ -59,7 +59,6 @@ namespace Assets.Environment.Doors.BigDoubleDoor.Scripts
                 {
 					if(!ObjectIsShown){
 						GetComponent<AudioSource>().Play();
-						Camera.main.GetComponent<PerlinShake>().PlayShake();
 					}
                     ObjectIsShown = true;
                 }
@@ -69,6 +68,12 @@ namespace Assets.Environment.Doors.BigDoubleDoor.Scripts
                 }
                 yield return new WaitForSeconds(0.2f);
             }
+        }
+
+        IEnumerator aa(bool val)
+        {
+            yield return new WaitForSeconds(2);
+            _anim.SetTrigger(val ? "DoorOpen" : "DoorClose");
         }
     }
 }

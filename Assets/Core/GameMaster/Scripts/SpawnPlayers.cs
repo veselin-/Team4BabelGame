@@ -1,5 +1,7 @@
-﻿using Assets.Characters.AiScripts;
+﻿using System.Collections;
+using Assets.Characters.AiScripts;
 using Assets.Characters.AiScripts.ScriptedBehaviours;
+using Assets.Characters.AiScripts.States;
 using Assets.Characters.Player.Scripts;
 using Assets.Characters.SideKick.Scripts;
 using Assets.Core.Configuration;
@@ -14,6 +16,11 @@ namespace Assets.Core.GameMaster.Scripts
         public Transform PlayerSpawnPoint;
         public Transform SidekickSpawnPoint;
 
+        public Transform goal;
+
+        private GameObject sidekick;
+        private GameObject player;
+        private int i = 0;
 
         /// <summary>
         /// This one should only be used, if the level recuires a scripted behaviour
@@ -23,33 +30,40 @@ namespace Assets.Core.GameMaster.Scripts
         // Use this for initialization
         void Awake ()
         {
-            var sidekick = (GameObject) Instantiate(SideKickPrefab, SidekickSpawnPoint.position, SidekickSpawnPoint.rotation);
-            var player = (GameObject) Instantiate(CharactorPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
+            sidekick = (GameObject) Instantiate(SideKickPrefab, SidekickSpawnPoint.position, SidekickSpawnPoint.rotation);
+            player = (GameObject) Instantiate(CharactorPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
 
             sidekick.tag = Constants.Tags.SideKick;
             sidekick.name = Constants.Tags.SideKick;
             sidekick.GetComponent<PlayerMovement>().enabled = false;
 
-            sidekick.GetComponent<AiMovement>().StrollSpeed = 0.3f;
-            sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 15;
+            sidekick.GetComponent<AiMovement>().StrollSpeed = 0f;
+            sidekick.GetComponent<AiMovement>().TimeBeforeStolling = 0;
             sidekick.GetComponent<NavMeshAgent>().avoidancePriority = 1;
 
-            player.GetComponent<SidekickControls>().enabled = false;
+            player.GetComponent<PlayerMovement>().enabled = false;
             player.name = Constants.Tags.Player;
             player.GetComponent<NavMeshAgent>().avoidancePriority = 2;
 
-            switch (Behaviour)
-            {
-                case ScriptedBehaviour.Toturial1:
-                    sidekick.AddComponent<Toturial01Behaviour>();
-                    break;
-                case ScriptedBehaviour.Toturial2:
-                    sidekick.AddComponent<Toturial02Behaviour>();
-                    break;
-                case ScriptedBehaviour.WaypointSystem:
-                    sidekick.AddComponent<WaypointSystem>();
-                    break;
-            }
+            StartCoroutine(test());
+        }
+
+        void Update()
+        {
+            //Application.CaptureScreenshot("./pics/" + i++ + ".png", 2);
+        }
+
+
+        IEnumerator test()
+        {
+
+            yield return new WaitForSeconds(1);
+
+            var s1 = new GoSomewhereAndWaitState(sidekick.GetComponent<NavMeshAgent>(), goal.position);
+            var s2 = new GoSomewhereAndWaitState(player.GetComponent<NavMeshAgent>(), goal.position);
+
+            sidekick.GetComponent<AiMovement>().AssignNewState(s1);
+            player.GetComponent<AiMovement>().AssignNewState(s2);
         }
 
         public enum ScriptedBehaviour

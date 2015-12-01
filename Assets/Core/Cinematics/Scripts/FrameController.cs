@@ -113,7 +113,7 @@ public class FrameController : MonoBehaviour
     {
        
 
-        yield return new WaitForEndOfFrame();
+     //   yield return new WaitForEndOfFrame();
 
         animator.SetTrigger(Animation);
 

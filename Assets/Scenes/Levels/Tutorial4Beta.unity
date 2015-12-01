@@ -4143,6 +4143,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11423666, guid: 96295ad7252839b4bae15a2d4ba635d4, type: 2}
+      propertyPath: WallDoor
+      value: 
+      objectReference: {fileID: 1935895894}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96295ad7252839b4bae15a2d4ba635d4, type: 2}
   m_IsPrefabParent: 0
@@ -5132,6 +5136,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22406162, guid: 5a54b23e027247c47a64316f11166517,
     type: 2}
   m_PrefabInternal: {fileID: 509464725}
+--- !u!114 &509464727 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11466418, guid: 5a54b23e027247c47a64316f11166517,
+    type: 2}
+  m_PrefabInternal: {fileID: 509464725}
+  m_Script: {fileID: 11500000, guid: 4e01a48fcb68f88428361344e9304de7, type: 3}
 --- !u!1 &509788116
 GameObject:
   m_ObjectHideFlags: 0
@@ -20942,6 +20952,10 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1935895894 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 147058, guid: 68e3e13c1a51a8f46999fd23838b8af5, type: 2}
+  m_PrefabInternal: {fileID: 1935895890}
 --- !u!1001 &1944292366
 Prefab:
   m_ObjectHideFlags: 0
@@ -23349,6 +23363,14 @@ Prefab:
     - target: {fileID: 22400290, guid: 29c1695ce1a97ca47a2970c659dcab23, type: 2}
       propertyPath: m_SizeDelta.y
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455566, guid: 29c1695ce1a97ca47a2970c659dcab23, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 509464727}
+    - target: {fileID: 11455566, guid: 29c1695ce1a97ca47a2970c659dcab23, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: ShowShop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29c1695ce1a97ca47a2970c659dcab23, type: 2}

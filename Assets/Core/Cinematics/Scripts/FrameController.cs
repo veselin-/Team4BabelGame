@@ -102,8 +102,10 @@ public class FrameController : MonoBehaviour
         {
             if (NextFrame != null)
             {
+				NextFrame.GetComponent<FrameController>().StartFrame();
+				yield return new WaitForEndOfFrame();
                 GetComponent<Image>().enabled = false;
-                NextFrame.GetComponent<FrameController>().StartFrame();
+            
             }
         }
         
@@ -117,9 +119,11 @@ public class FrameController : MonoBehaviour
 
         animator.SetTrigger(Animation);
 
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
 
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99)
+		//Debug.Log (animator.GetCurrentAnimatorStateInfo (0).normalizedTime);
+
+		while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime - (int)animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -138,10 +142,17 @@ public class FrameController : MonoBehaviour
         {
             if (NextFrame != null)
             {
-                
+
                 NextFrame.GetComponent<FrameController>().StartFrame();
-                yield return new WaitForEndOfFrame();
-                GetComponent<Image>().enabled = false;
+				yield return new WaitForEndOfFrame();
+                //yield return new WaitForEndOfFrame();
+				//yield return new WaitForEndOfFrame();
+				//yield return new WaitForEndOfFrame();
+				//yield return new WaitForEndOfFrame();
+				//yield return new WaitForEndOfFrame();
+				//yield return new WaitForEndOfFrame();
+				GetComponent<Image>().enabled = false;
+
 
             }
         }

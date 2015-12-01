@@ -8,7 +8,15 @@ public class CurrencyControl : MonoBehaviour {
     public Text amountText;
 
 	void Start () {
-        
+        //PlayerPrefsBool.SetBool("Pack", false);
+        //PlayerPrefsBool.SetBool("Pack (1)", false);
+        //PlayerPrefsBool.SetBool("Pack (2)", false);
+        //PlayerPrefsBool.SetBool("Pack (3)", false);
+        //PlayerPrefsBool.SetBool("Pack (4)", false);
+        //PlayerPrefsBool.SetBool("Pack (5)", false);
+        //PlayerPrefsBool.SetBool("Pack123", false);
+        //PlayerPrefsBool.SetBool("Pack456", false);
+        //PlayerPrefsBool.SetBool("PackAll", false);
     }
 	
 	void Update () {

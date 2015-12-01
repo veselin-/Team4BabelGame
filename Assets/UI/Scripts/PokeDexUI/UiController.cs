@@ -123,6 +123,8 @@ public class UiController : MonoBehaviour
 		_pokedexButton.SetActive (true);
 		_pauseCanvas.SetActive (true);
         signText.enabled = false;
+        _playerMovement.enabled = true;
+        _cameraManager.enabled = true;
     }
 
     public void OpenShop()
@@ -160,46 +162,6 @@ public class UiController : MonoBehaviour
             StartCoroutine(PokedexEnter());
         }
     }
-
-    //public void HotbarPokedexOpen()
-    //{
-    //    anim.SetTrigger("MenuToggle");
-    //    if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
-    //    {
-    //        hotbarOpen = 1;
-    //        _cameraManager.enabled = true;
-    //        _playerMovement.enabled = true;
-    //        _audioManager.PokedexBtnMiddlePlay();
-    //        _pauseCanvas.SetActive(true);
-    //        closeUiBut.SetActive(false);
-    //        Time.timeScale = 1;
-    //        menuMask.GetComponent<ScrollRect>().enabled = false;
-    //        menuMask.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0;
-    //        MinBut.SetActive(true);
-    //        hintPanel.SetActive(false);
-    //        Debug.Log(hotbarOpen);
-    //    }
-    //}
-
-    //public void hotbarOpenMinusOne()
-    //{
-    //    if(hotbarOpen > 0)
-    //    {
-    //        hotbarOpen -= 1;
-    //    }
-    //}
-
-    //public void hotbarOpenPlusOne()
-    //{
-    //    if (hotbarOpen >= 2)
-    //    {
-    //        hotbarOpen = 2;
-    //    }
-    //    else
-    //    {
-    //        hotbarOpen += 1;
-    //    }
-    //}
 
     public void PokedexClose()
     {
@@ -329,4 +291,4 @@ public class UiController : MonoBehaviour
         //PokeDexFullyExit -> helt op til helt ned
         //PokeDexHalfExit -> helt op til hotbar
         //Hidden -> helt nede
-    }
+}

@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Core.Configuration;
 using Assets.Core.InteractableObjects;
-using Assets.Core.LevelMaster;
 using UnityEngine;
 
-namespace Assets.Environment.Scripts
+namespace Assets.Environment.Doors.BigDoubleDoor.Scripts
 {
     public class DoubleDoorOpen : MonoBehaviour
     {
@@ -14,33 +12,37 @@ namespace Assets.Environment.Scripts
         public GameObject[] Interactables;
         public float MovementSpeed;
 
+        public bool FixActive {
+            set
+            {
+                var obstacles = GetComponentsInChildren<NavMeshObstacle>();
+                foreach (var o in obstacles)
+                {
+                    o.carving = !value;
+                }
+            }
+        }
+
         private List<IInteractable> _interactables;
 
-        //private Vector3 _startPosition;
-        //private Vector3 _endPosistion;
-        private Vector3 _startRotation;
-        private Vector3 _endRotation;
-        private Vector3 _startRotation2;
-        private Vector3 _endRotation2;
         private bool _objectIsShown;
+        private Animator _anim;
 
-        //public GameObject obstacle;
-        //public int moveValue = 0;
-        float degreeValue = 135;
-        public GameObject door, door2;
+        private bool ObjectIsShown {
+            get { return _objectIsShown; }
+            set
+            {
+                if (_objectIsShown != value && _anim != null)
+                    _anim.SetTrigger(value ? "DoorOpen" : "DoorClose");
+                _objectIsShown = value;
+            }
+        }
+
         // Use this for initialization
         void Start()
         {
-            // Sliding positions
-            //_startPosition = transform.localPosition;
-            //_endPosistion = new Vector3(_startPosition.x + transform.localScale.x + moveValue, _startPosition.y, _startPosition.z);
+            _anim = GetComponentInChildren<Animator>(); 
 
-            // Rotate positions
-            _startRotation = door.transform.eulerAngles;
-            _endRotation = new Vector3(_startRotation.x, _startRotation.y + degreeValue, _startRotation.z);
-
-            _startRotation2 = door2.transform.eulerAngles;
-            _endRotation2 = new Vector3(_startRotation2.x, _startRotation.y - degreeValue, _startRotation2.z);
             // Get all IInteractables
             _interactables = new List<IInteractable>();
             foreach (var interactable in Interactables)
@@ -49,38 +51,21 @@ namespace Assets.Environment.Scripts
             StartCoroutine(CheckForInputs());
         }
 
-        void Update()
-        {
-            //transform.localPosition = Vector3.MoveTowards(transform.localPosition, _objectIsShown ? _endPosistion : _startPosition, Time.deltaTime * MovementSpeed);
-            if(door.transform.localEulerAngles.y <= 140)
-            {
-                door.transform.eulerAngles = Vector3.MoveTowards(door.transform.eulerAngles, _objectIsShown ? _endRotation : _startRotation, Time.deltaTime * MovementSpeed);
-            }
-            if (door2.transform.localEulerAngles.y >= 220)
-            {
-                door2.transform.eulerAngles = Vector3.MoveTowards(door2.transform.eulerAngles, _objectIsShown ? _endRotation2 : _startRotation2, Time.deltaTime * MovementSpeed);
-            }
-        }
-
         IEnumerator CheckForInputs()
         {
             while (true)
             {
                 if (_interactables.All(i => i.HasBeenActivated()))
                 {
-					if(!_objectIsShown){
+					if(!ObjectIsShown){
 						GetComponent<AudioSource>().Play();
 						Camera.main.GetComponent<PerlinShake>().PlayShake();
 					}
-                    _objectIsShown = true;
-
-                    //obstacle.SetActive(false);
-                    //GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<RoomManager>().SetCurrentRoom(1);
+                    ObjectIsShown = true;
                 }
                 else
                 {
-                    _objectIsShown = false;
-                    //obstacle.SetActive(true);
+                    ObjectIsShown = false;
                 }
                 yield return new WaitForSeconds(0.2f);
             }

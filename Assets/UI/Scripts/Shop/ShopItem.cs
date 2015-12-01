@@ -18,19 +18,14 @@ public class ShopItem : MonoBehaviour{
 
     void Update()
     {
-        //if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
-        //{
-        //    APack(packOfObjects);
-        //}
+        if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
+        {
+            buyButton.sprite = purchased;
+        }
     }
 
     public void BuyThisItem()
     {
-        //if (PlayerPrefsBool.GetBool(packOfObjects.name) == true)
-        //{
-        //    APack(packOfObjects);
-        //}
-        //else 
         if(PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool(packOfObjects.name) == false)
         {
             PlayerPrefsBool.SetBool(packOfObjects.name, true);

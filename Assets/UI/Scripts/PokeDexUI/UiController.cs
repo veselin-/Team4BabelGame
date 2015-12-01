@@ -193,7 +193,7 @@ public class UiController : MonoBehaviour
         _pauseCanvas.SetActive(true);
         MinBut.SetActive(false);
         menuIndicator.SetActive(true);
-        Debug.Log(hotbarOpen + "CLOSED");
+        //Debug.Log(hotbarOpen + "CLOSED");
         isStuffRunning = false;
     }
 
@@ -215,7 +215,7 @@ public class UiController : MonoBehaviour
         menuMask.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0;
         MinBut.SetActive(true);
         hintPanel.SetActive(false);
-        Debug.Log(hotbarOpen + "HOTBAR OPEN");
+        //Debug.Log(hotbarOpen + "HOTBAR OPEN");
         isStuffRunning = false;
     }
 
@@ -268,7 +268,7 @@ public class UiController : MonoBehaviour
         hintPanel.transform.GetChild(0).GetComponent<Text>().text = "";
         menuMask.GetComponent<ScrollRect>().enabled = true;
         menuIndicator.SetActive(true);
-        Debug.Log(hotbarOpen + "FULLY OPEN");
+        //Debug.Log(hotbarOpen + "FULLY OPEN");
         isStuffRunning = false;
     }
 
@@ -290,7 +290,7 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1;
         hotbarOpen = 1;
         _audioManager.PokedexBtnMiddlePlay();
-        Debug.Log(hotbarOpen + "FULLY TO HOTBAR");
+        //Debug.Log(hotbarOpen + "FULLY TO HOTBAR");
         isStuffRunning = false;
     }
 
@@ -311,7 +311,7 @@ public class UiController : MonoBehaviour
         _pauseCanvas.SetActive(true);
         MinBut.SetActive(false);
         menuIndicator.SetActive(true);
-        Debug.Log(hotbarOpen + "CLOSED");
+        //Debug.Log(hotbarOpen + "CLOSED");
         isStuffRunning = false;
     }
         //PokeDexEnter -> hotbar

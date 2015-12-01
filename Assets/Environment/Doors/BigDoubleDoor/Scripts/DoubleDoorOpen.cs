@@ -21,7 +21,7 @@ namespace Assets.Environment.Doors.BigDoubleDoor.Scripts
             get { return _objectIsShown; }
             set
             {
-                if (_objectIsShown != value)
+                if (_objectIsShown != value && _anim != null)
                     _anim.SetTrigger(value ? "DoorOpen" : "DoorClose");
                 _objectIsShown = value;
             }

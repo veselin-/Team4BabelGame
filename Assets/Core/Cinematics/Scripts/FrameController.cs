@@ -111,12 +111,22 @@ public class FrameController : MonoBehaviour
 
     IEnumerator RunFrameWithAnimation()
     {
+       
+
+     //   yield return new WaitForEndOfFrame();
+
         animator.SetTrigger(Animation);
 
         yield return new WaitForEndOfFrame();
 
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+
         //yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        yield return new WaitForSeconds(FrameLength);
+       // yield return new WaitForSeconds(FrameLength);
 
 
         if (IsEndFrame)
@@ -128,9 +138,11 @@ public class FrameController : MonoBehaviour
         {
             if (NextFrame != null)
             {
-                GetComponent<Image>().enabled = false;
-                NextFrame.GetComponent<FrameController>().StartFrame();
                 
+                NextFrame.GetComponent<FrameController>().StartFrame();
+                yield return new WaitForEndOfFrame();
+                GetComponent<Image>().enabled = false;
+
             }
         }
 

@@ -46,6 +46,20 @@ namespace Assets.Characters.AiScripts
             UpdateDict();
         }
 
+        void Update()
+        {
+            
+                if (_currentPickup != null && _currentPickup.tag == Constants.Tags.Torch)
+                {
+                    anim.SetBool("Torch", true);
+                }
+                else
+                {
+                    anim.SetBool("Torch", false);
+                }
+            
+        }
+
         #region  Picking up stuff
         public void PickUpItem(GameObject pickup)
         {
@@ -67,14 +81,7 @@ namespace Assets.Characters.AiScripts
             if(_currentPickup.tag == Constants.Tags.Bucket)
                 _pickUps["Water"].SetActive(CurrentPickup.GetComponent<Bucket>().HasWaterInIt);
 
-            if (_currentPickup.tag == Constants.Tags.Torch)
-            {
-                anim.SetBool("Torch", true);
-            }
-            else
-            {
-                anim.SetBool("Torch", false);
-            }
+
         }
 
         public void DropCurrent()
@@ -92,6 +99,7 @@ namespace Assets.Characters.AiScripts
         #region Trading
         public GameObject Trade(GameObject tradeItem)
         {
+
             var old = CurrentPickup;
             CurrentPickup = tradeItem;
             return old;

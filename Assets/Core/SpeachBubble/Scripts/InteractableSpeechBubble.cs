@@ -7,8 +7,6 @@ using System.Text.RegularExpressions;
 
 public class InteractableSpeechBubble : MonoBehaviour {
 	
-	public RectTransform PlayerSpeechBubble;
-	public RectTransform SideKickSpeechBubble;
 	public RectTransform NarrativeSpeechBubble;
 
 
@@ -58,10 +56,10 @@ public class InteractableSpeechBubble : MonoBehaviour {
 		if (GameObject.FindGameObjectWithTag (Constants.Tags.SideKick)) {
 			sidekick = GameObject.FindGameObjectWithTag (Constants.Tags.SideKick);
 			_sidekickScreenPos = RectTransformUtility.WorldToScreenPoint (Camera.main, sidekick.transform.position);
-			SideKickSpeechBubble.transform.position = _sidekickScreenPos;
+			//SideKickSpeechBubble.transform.position = _sidekickScreenPos;
 		}
 
-		_PlayerText = PlayerSpeechBubble.transform.GetChild (0).GetComponent<Text>();
+		//_PlayerText = PlayerSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 		//_SideKickText = SideKickSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 		_NarrativeText = NarrativeSpeechBubble.transform.GetChild (0).GetComponent<Text>();
 
@@ -149,12 +147,12 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			// Bubble speech bubble
 			if (narrative [_ConversationCounter].isPlayerSpeechActive) {
 				
-				PlayerSpeechBubble.gameObject.SetActive (true);
+				//PlayerSpeechBubble.gameObject.SetActive (true);
 				string tempText =  narrative [_ConversationCounter].PlayerSpeech;
 				tempText = AddNewLines(tempText);
 				_PlayerText.text = tempText;
 			} else {
-				PlayerSpeechBubble.gameObject.SetActive (false);
+				//PlayerSpeechBubble.gameObject.SetActive (false);
 			}
 
 			/*
@@ -179,14 +177,14 @@ public class InteractableSpeechBubble : MonoBehaviour {
 			}
 			*/
 			//_hasSpeech = true;
-			_ConversationCounter++;
+	
 			//RandomBubblePos();
 
 
 		} else {
 			NarrativeSpeechBubble.gameObject.SetActive (false);
-			PlayerSpeechBubble.gameObject.SetActive (false);
-			SideKickSpeechBubble.gameObject.SetActive (false);
+			//PlayerSpeechBubble.gameObject.SetActive (false);
+			//SideKickSpeechBubble.gameObject.SetActive (false);
 			//_hasSpeech = false;
 		}
 
@@ -257,10 +255,14 @@ public class InteractableSpeechBubble : MonoBehaviour {
 
         yield return new WaitForSeconds(.2f);
 
-        NarrativeSpeechBubble.gameObject.SetActive(true);
-        string tempText = narrative[_ConversationCounter].NarrativeSpeech;
-        tempText = AddNewLineToNarrative(tempText);
-        _NarrativeText.text = tempText;
+        if (_ConversationCounter < narrative.Count)
+        {
+            NarrativeSpeechBubble.gameObject.SetActive(true);
+            string tempText = narrative[_ConversationCounter].NarrativeSpeech;
+            tempText = AddNewLineToNarrative(tempText);
+            _NarrativeText.text = tempText;
+            _ConversationCounter++;
+        }
     }
 
 }

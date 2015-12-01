@@ -84,7 +84,7 @@ public class EndLevelScreen : MonoBehaviour {
 	{
 	    if (Application.loadedLevelName == "Level3Beta")
 	    {
-	        GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateInfoDialog("phrases/LastLevelHeader", "phrases/LastLevelInfo", "phrases/LastLevelButton", MainMenuBtn);
+	        GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateInfoDialog("Phrases/LastLevelHeader", "Phrases/LastLevelInfo", "Phrases/LastLevelButton", MainMenuBtn);
             return;
 	    }
 

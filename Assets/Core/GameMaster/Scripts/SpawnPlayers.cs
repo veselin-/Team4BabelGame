@@ -59,11 +59,24 @@ namespace Assets.Core.GameMaster.Scripts
 
             yield return new WaitForSeconds(1);
 
-            var s1 = new GoSomewhereAndWaitState(sidekick.GetComponent<NavMeshAgent>(), goal.position);
-            var s2 = new GoSomewhereAndWaitState(player.GetComponent<NavMeshAgent>(), goal.position);
+            if (goal != null)
+            {
+                var s1 = new GoSomewhereAndWaitState(sidekick.GetComponent<NavMeshAgent>(), goal.position);
+                var s2 = new GoSomewhereAndWaitState(player.GetComponent<NavMeshAgent>(), goal.position);
 
-            sidekick.GetComponent<AiMovement>().AssignNewState(s1);
-            player.GetComponent<AiMovement>().AssignNewState(s2);
+                sidekick.GetComponent<AiMovement>().AssignNewState(s1);
+                player.GetComponent<AiMovement>().AssignNewState(s2);
+            }
+
+            yield return new WaitForSeconds(8);
+            if (Application.loadedLevelName != "Tutorial2Beta")
+            {
+                Application.LoadLevel(Application.loadedLevelName == "Level1Beta" ? "Tutorial1Beta" : "Tutorial2Beta");
+            }
+            else
+            {
+                Application.Quit();
+            }
         }
 
         public enum ScriptedBehaviour

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Runtime.Remoting.Messaging;
 using Assets.Core.Configuration;
 using Assets.Core.GameMaster.Scripts;
 
@@ -81,6 +82,11 @@ public class EndLevelScreen : MonoBehaviour {
 
 	public void NextLevelBtn()
 	{
+	    if (Application.loadedLevelName == "Level3Beta")
+	    {
+	        GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateInfoDialog("Phrases/LastLevelHeader", "Phrases/LastLevelInfo", "Phrases/LastLevelButton", MainMenuBtn);
+            return;
+	    }
 
         if(NextLevel == "Level3Beta" && !PlayerPrefsBool.GetBool("Level7")) {
             var bls = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<BuyLevelSeven>();
@@ -92,6 +98,8 @@ public class EndLevelScreen : MonoBehaviour {
         }
 
     }
+
+
 
 	public void UpdateOrbsUI()
 	{

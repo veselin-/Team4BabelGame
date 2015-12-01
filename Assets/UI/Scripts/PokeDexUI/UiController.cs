@@ -139,6 +139,7 @@ public class UiController : MonoBehaviour
         _pauseCanvas.SetActive(false);
         scrollRect.horizontalNormalizedPosition = 1f;
         menuIndicator.SetActive(false);
+        closeUiBut.SetActive(true);
     }
 
     public void PokedexOpen()

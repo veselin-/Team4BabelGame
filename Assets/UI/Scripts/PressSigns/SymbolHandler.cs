@@ -204,6 +204,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Syllable s1 = databaseManager.GetSyllable(s.SyllableSequence[0]);
             Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
             SetSyllables(s1.ImageName, s2.ImageName);
+            transform.parent.GetComponent<Image>().color = new Color32(94, 40, 40, 106);
             isMade = true;
         }
         else if (s.SyllableSequence.Count == 3)
@@ -212,6 +213,7 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
             Syllable s3 = databaseManager.GetSyllable(s.SyllableSequence[2]);
             SetSyllables(s1.ImageName, s2.ImageName, s3.ImageName);
+            transform.parent.GetComponent<Image>().color = new Color32(94, 40, 40, 106);
             isMade = true;
         }
     }

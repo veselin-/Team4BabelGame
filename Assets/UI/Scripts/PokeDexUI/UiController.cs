@@ -125,6 +125,7 @@ public class UiController : MonoBehaviour
         signText.enabled = false;
         _playerMovement.enabled = true;
         _cameraManager.enabled = true;
+        hotbarOpen = 0;
     }
 
     public void OpenShop()

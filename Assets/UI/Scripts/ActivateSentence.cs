@@ -180,7 +180,6 @@ public class ActivateSentence : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         }
         else
         {
-            //transform.parent.GetComponent<Renderer>().material.color = new Color(94, 40, 40);
             _sidekick.ExecuteAction(sentence.FirstOrDefault());
             isb.ActivatePlayerSignBubble(sentence);
 			am.StartPlayMaleCoroutine (gameObject.GetComponent<SymbolHandler>().ID);

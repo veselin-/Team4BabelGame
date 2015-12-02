@@ -6,17 +6,10 @@ public class CurrencyControl : MonoBehaviour {
 
     public static int currencyAmount;
     public Text amountText;
+    AudioManager am;
 
 	void Start () {
-        //PlayerPrefsBool.SetBool("Pack", false);
-        //PlayerPrefsBool.SetBool("Pack (1)", false);
-        //PlayerPrefsBool.SetBool("Pack (2)", false);
-        //PlayerPrefsBool.SetBool("Pack (3)", false);
-        //PlayerPrefsBool.SetBool("Pack (4)", false);
-        //PlayerPrefsBool.SetBool("Pack (5)", false);
-        //PlayerPrefsBool.SetBool("Pack123", false);
-        //PlayerPrefsBool.SetBool("Pack456", false);
-        //PlayerPrefsBool.SetBool("PackAll", false);
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 	
 	void Update () {
@@ -26,6 +19,7 @@ public class CurrencyControl : MonoBehaviour {
     public void EarnCurrency(int earned)
     {
         PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", currencyAmount) + earned);
+        am.ClickBtnPlay();
     }
 
     public void OpenInventory(GameObject can)

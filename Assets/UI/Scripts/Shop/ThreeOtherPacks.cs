@@ -10,9 +10,11 @@ public class ThreeOtherPacks : MonoBehaviour
     public Sprite purchased;
     public Text costText;
     public int cost;
+    AudioManager am;
 
     void Start()
     {
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         costText.text = "" + cost;
         IsBought();
     }
@@ -33,6 +35,7 @@ public class ThreeOtherPacks : MonoBehaviour
             PlayerPrefsBool.SetBool("Pack (4)", true);
             PlayerPrefsBool.SetBool("Pack (5)", true);
             PlayerPrefsBool.SetBool("Pack456", true);
+            am.ClickBtnPlay();
             IsBought();
             PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) - cost);
         }

@@ -42,6 +42,15 @@ public class DatabaseManager : MonoBehaviour, IDatabaseManager
     void Start()
     {
         _windowHandler = GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>();
+        //PlayerPrefsBool.SetBool("Pack", false);
+        //PlayerPrefsBool.SetBool("Pack (1)", false);
+        //PlayerPrefsBool.SetBool("Pack (2)", false);
+        //PlayerPrefsBool.SetBool("Pack (3)", false);
+        //PlayerPrefsBool.SetBool("Pack (4)", false);
+        //PlayerPrefsBool.SetBool("Pack (5)", false);
+        //PlayerPrefsBool.SetBool("Pack123", false);
+        //PlayerPrefsBool.SetBool("Pack456", false);
+        //PlayerPrefsBool.SetBool("PackAll", false);
     }
 
 

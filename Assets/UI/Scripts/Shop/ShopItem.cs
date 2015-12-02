@@ -10,9 +10,11 @@ public class ShopItem : MonoBehaviour{
     public Sprite purchased;
     public Text costText;
     public int cost;
+    AudioManager am;
 
 	void Start () {
         costText.text = "" + cost;
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         IsBought();
     }
 
@@ -29,6 +31,7 @@ public class ShopItem : MonoBehaviour{
         if(PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool(packOfObjects.name) == false)
         {
             PlayerPrefsBool.SetBool(packOfObjects.name, true);
+            am.ClickBtnPlay();
             IsBought();
             PlayerPrefs.SetInt("CurrencyAmount", PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) - cost);
         }

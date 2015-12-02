@@ -110,8 +110,22 @@ namespace Assets.Core.GameMaster.Scripts
                 player.GetComponent<AiMovement>().MovementSpeed = 0.7f;
 
                 yield return new WaitForSeconds(8);
-                Application.Quit();
 
+                Application.LoadLevel("Level3Beta");
+            }
+
+            if (Application.loadedLevelName == "Level3Beta")
+            {
+                yield return new WaitForSeconds(6);
+                Application.LoadLevel("Tutorial4Beta");
+            }
+
+            if (Application.loadedLevelName == "Tutorial4Beta")
+            {
+                sidekick.GetComponent<AiMovement>().MovementSpeed = 0.8f;
+                player.GetComponent<AiMovement>().MovementSpeed = 0.8f;
+                yield return new WaitForSeconds(10);
+                Application.Quit();
             }
 
 

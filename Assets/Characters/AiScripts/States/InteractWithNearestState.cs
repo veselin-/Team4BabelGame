@@ -30,6 +30,7 @@ namespace Assets.Characters.AiScripts.States
             var interactables = GameObject.FindGameObjectsWithTag(tag);
             if (interactables.Length < 1)
             {
+                GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().FemaleNoSoundPlay();
                 _state = State.Done;
                 return;
             }

@@ -18,6 +18,7 @@ public class EndLevelScreen : MonoBehaviour {
     public GameObject blackness;
     private GameObject pokesprite, pokedex, closeuimask;
     bool waitPLEASE = false;
+    AudioManager am;
 
     // Use this for initialization
     void Awake () {
@@ -48,6 +49,7 @@ public class EndLevelScreen : MonoBehaviour {
         {
             yield return new WaitForEndOfFrame();
         }
+        am.PokedexBtnOpenPlay();
         shopBut.text = LanguageManager.Instance.Get("Phrases/Shop");
         blackness.SetActive(false);
         pokesprite.SetActive(false);
@@ -160,6 +162,7 @@ public class EndLevelScreen : MonoBehaviour {
 
     void OnEnable()
     {
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         pokesprite = GameObject.FindGameObjectWithTag("PokedexSprite");
         pokedex = GameObject.FindGameObjectWithTag("GameUI");
         ep = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EndPoints>();	

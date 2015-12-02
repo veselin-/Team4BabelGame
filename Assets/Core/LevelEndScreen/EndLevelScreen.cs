@@ -50,33 +50,42 @@ public class EndLevelScreen : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         am.PokedexBtnOpenPlay();
+        pokesprite.SetActive(false);
         shopBut.text = LanguageManager.Instance.Get("Phrases/Shop");
         blackness.SetActive(false);
-        pokesprite.SetActive(false);
         shopOpen = 0;
-        //Debug.Log(shopOpen);
+        Debug.Log(shopOpen);
+        waitPLEASE = false;
+    }
+
+    IEnumerator waitForAnim2()
+    {
+        waitPLEASE = true;
+        blackness.SetActive(true);
+        pokesprite.SetActive(true);
+        while (!pokedex.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PokeDexFullyEnter"))
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        am.PokedexBtnOpenPlay();
+        pokedex.GetComponent<UiController>().OpenShop2();
+        shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
+        shopOpen = 1;
+        Debug.Log(shopOpen);
         waitPLEASE = false;
     }
 
     public void ShowShop()
     {
-        if (shopOpen == 1)
+        if (shopOpen == 1 && !waitPLEASE)
         {
-            if (waitPLEASE)
-            {
-                return;
-            }
             pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
             StartCoroutine(waitForAnim());
         }
-        else if (shopOpen == 0)
+        else if (shopOpen == 0 && !waitPLEASE)
         {
-            blackness.SetActive(true);
-            pokesprite.SetActive(true);
-            pokedex.GetComponent<UiController>().OpenShop();
-            shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
-            shopOpen = 1;
-            //Debug.Log(shopOpen);
+            pokedex.GetComponent<Animator>().SetTrigger("FullyEnter");
+            StartCoroutine(waitForAnim2());
         }
     }
 

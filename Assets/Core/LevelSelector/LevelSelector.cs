@@ -15,11 +15,15 @@ namespace Assets.Core.LevelSelector
 
         public void LoadLevel(string SceneName)
         {
+            GameObject sound = GameObject.FindObjectOfType<MainMenuSound>().gameObject;
+            Destroy(sound);
             if(!string.IsNullOrEmpty(SceneName))
             {
                 Application.LoadLevel (SceneName);
             }
         }
+
+
 
         public void BackToMainMenu()
         {

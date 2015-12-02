@@ -439,9 +439,15 @@ public class AudioManager : MonoBehaviour {
 
 	public void FemaleNoSoundPlay()
 	{
-		SideKick.clip = FemaleNoSound;
-		SideKick.Play ();
+	    StartCoroutine(NoSyllabus());
 	}
+
+    IEnumerator NoSyllabus()
+    {
+        yield return new WaitForSeconds(1f);
+        SideKick.clip = FemaleNoSound;
+        SideKick.Play();
+    }
 
 	public void SidekickRandomGibberishPlay()
 	{

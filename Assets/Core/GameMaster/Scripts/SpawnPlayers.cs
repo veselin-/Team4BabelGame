@@ -68,15 +68,55 @@ namespace Assets.Core.GameMaster.Scripts
                 player.GetComponent<AiMovement>().AssignNewState(s2);
             }
 
-            yield return new WaitForSeconds(8);
-            if (Application.loadedLevelName != "Tutorial2Beta")
+            if (Application.loadedLevelName == "Level1Beta")
             {
-                Application.LoadLevel(Application.loadedLevelName == "Level1Beta" ? "Tutorial1Beta" : "Tutorial2Beta");
+                yield return new WaitForSeconds(8);
+                Camera.main.GetComponent<Animator>().SetTrigger("What");
+                yield return new WaitForSeconds(6);
+                Application.LoadLevel("Tutorial1Beta");
+                yield break;
             }
-            else
+
+
+            if (Application.loadedLevelName == "Tutorial1Beta")
             {
+                yield return new WaitForSeconds(8);
+                Application.LoadLevel("Level2Beta");
+                yield break;
+            }
+
+            if (Application.loadedLevelName == "Level2Beta")
+            {
+                sidekick.GetComponent<AiMovement>().MovementSpeed = 0.7f;
+                player.GetComponent<AiMovement>().MovementSpeed = 0.7f;
+                player.GetComponentInChildren<Light>().enabled = false;
+                sidekick.GetComponentInChildren<Light>().enabled = false;
+                yield return new WaitForSeconds(10);
+                Application.LoadLevel("Tutorial2Beta");
+                yield break;
+            }
+
+
+            if (Application.loadedLevelName == "Tutorial2Beta")
+            {
+                yield return new WaitForSeconds(8);
+                Application.LoadLevel("Tutorial3Beta");
+                yield break;
+            }
+
+            if (Application.loadedLevelName == "Tutorial3Beta")
+            {
+                sidekick.GetComponent<AiMovement>().MovementSpeed = 0.7f;
+                player.GetComponent<AiMovement>().MovementSpeed = 0.7f;
+
+                yield return new WaitForSeconds(8);
                 Application.Quit();
+
             }
+
+
+
+
         }
 
         public enum ScriptedBehaviour

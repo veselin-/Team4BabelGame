@@ -12,6 +12,8 @@ namespace Assets.Characters.AiScripts
     {
         public Transform Pickups;
 
+        private Animator anim;
+
         private readonly Dictionary<string, GameObject> _pickUps 
             = new Dictionary<string, GameObject>();
         private GameObject _currentPickup;
@@ -31,6 +33,8 @@ namespace Assets.Characters.AiScripts
         // Use this for initialization
         void Start ()
         {
+            anim = GetComponent<Animator>();
+
             Transform root = transform;
             while (root.parent != null)
                 root = root.parent;
@@ -40,6 +44,20 @@ namespace Assets.Characters.AiScripts
                 _pickUps.Add(pickUp.name, pickUp.gameObject);
             }
             UpdateDict();
+        }
+
+        void Update()
+        {
+            
+                if (_currentPickup != null && _currentPickup.tag == Constants.Tags.Torch)
+                {
+                    anim.SetBool("Torch", true);
+                }
+                else
+                {
+                    anim.SetBool("Torch", false);
+                }
+            
         }
 
         #region  Picking up stuff
@@ -62,6 +80,8 @@ namespace Assets.Characters.AiScripts
 			_pickUps[_currentPickup.tag].GetComponent<AudioSource>().Play();
             if(_currentPickup.tag == Constants.Tags.Bucket)
                 _pickUps["Water"].SetActive(CurrentPickup.GetComponent<Bucket>().HasWaterInIt);
+
+
         }
 
         public void DropCurrent()
@@ -79,6 +99,7 @@ namespace Assets.Characters.AiScripts
         #region Trading
         public GameObject Trade(GameObject tradeItem)
         {
+
             var old = CurrentPickup;
             CurrentPickup = tradeItem;
             return old;

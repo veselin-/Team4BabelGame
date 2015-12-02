@@ -217,6 +217,36 @@ public class SymbolHandler : MonoBehaviour //DragHandler
             isMade = true;
         }
     }
+
+    public void UpdateSymbol1()
+    {
+        Sign s = databaseManager.GetSign(ID);
+        if (s == null)
+        {
+            SetSyllables(null, null, null);
+            Image1.color = Color.clear;
+            Image2.color = Color.clear;
+            Image3.color = Color.clear;
+            isMade = false;
+        }
+        else if (s.SyllableSequence.Count == 2)
+        {
+            Syllable s1 = databaseManager.GetSyllable(s.SyllableSequence[0]);
+            Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
+            SetSyllables(s1.ImageName, s2.ImageName);
+         //   transform.parent.GetComponent<Image>().color = new Color32(94, 40, 40, 106);
+            isMade = true;
+        }
+        else if (s.SyllableSequence.Count == 3)
+        {
+            Syllable s1 = databaseManager.GetSyllable(s.SyllableSequence[0]);
+            Syllable s2 = databaseManager.GetSyllable(s.SyllableSequence[1]);
+            Syllable s3 = databaseManager.GetSyllable(s.SyllableSequence[2]);
+            SetSyllables(s1.ImageName, s2.ImageName, s3.ImageName);
+         //   transform.parent.GetComponent<Image>().color = new Color32(94, 40, 40, 106);
+            isMade = true;
+        }
+    }
     //public override void InitializeSyllable()
     //{
 

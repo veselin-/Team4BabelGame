@@ -206,7 +206,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
             GameObject nSign = Instantiate(SignPrefab);
             nSign.transform.SetParent(PlayerSignBubble);
             nSign.GetComponent<SymbolHandler>().ID = i;
-            nSign.GetComponent<SymbolHandler>().UpdateSymbol();
+            nSign.GetComponent<SymbolHandler>().UpdateSymbol1();
         }
 
         StartCoroutine(SignBubbleTimer(PlayerSignBubble));
@@ -227,7 +227,7 @@ public class InteractableSpeechBubble : MonoBehaviour {
             GameObject nSign = Instantiate(SignPrefab);
             nSign.transform.SetParent(SidekickSignBubble);
             nSign.GetComponent<SymbolHandler>().ID = i;
-            nSign.GetComponent<SymbolHandler>().UpdateSymbol();
+            nSign.GetComponent<SymbolHandler>().UpdateSymbol1();
         }
 
 		am.StartPlayFemaleCoroutine (ids[0]);

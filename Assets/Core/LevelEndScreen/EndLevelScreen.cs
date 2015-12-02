@@ -52,7 +52,7 @@ public class EndLevelScreen : MonoBehaviour {
         blackness.SetActive(false);
         pokesprite.SetActive(false);
         shopOpen = 0;
-        Debug.Log(shopOpen);
+        //Debug.Log(shopOpen);
         waitPLEASE = false;
     }
 
@@ -74,7 +74,7 @@ public class EndLevelScreen : MonoBehaviour {
             pokedex.GetComponent<UiController>().OpenShop();
             shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
             shopOpen = 1;
-            Debug.Log(shopOpen);
+            //Debug.Log(shopOpen);
         }
     }
 

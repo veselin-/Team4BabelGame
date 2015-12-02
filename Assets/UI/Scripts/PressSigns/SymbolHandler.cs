@@ -172,20 +172,20 @@ public class SymbolHandler : MonoBehaviour //DragHandler
     public void SetSyllables(string syl1, string syl2)
     {
         Image1.sprite = databaseManager.GetImage(syl1);
-        Image1.color = Color.white;
+        Image1.color = Color.black;
         Image2.sprite = databaseManager.GetImage(syl2);
-        Image2.color = Color.white;
+        Image2.color = Color.black;
         Image3.color = Color.clear;
     }
 
     public void SetSyllables(string syl1, string syl2, string syl3)
     {
         Image1.sprite = databaseManager.GetImage(syl1);
-        Image1.color = Color.white;
+        Image1.color = Color.black;
         Image2.sprite = databaseManager.GetImage(syl2);
-        Image2.color = Color.white;
+        Image2.color = Color.black;
         Image3.sprite = databaseManager.GetImage(syl3);
-        Image3.color = Color.white;
+        Image3.color = Color.black;
     }
 
     public void UpdateSymbol()

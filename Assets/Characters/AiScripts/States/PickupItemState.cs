@@ -56,21 +56,32 @@ namespace Assets.Characters.AiScripts.States
                     return;
                 case State.GoToPickup:
                     if(_agent.HasReachedTarget())
-                        _state = State.Pickup;
+                        _state = State.PickupAnim;
                     return;
-                case State.Pickup:
+                case State.PickupAnim: //1.1
                     if(_pickupGoal.GetComponent<ICollectable>() == null)
                         throw new Exception("You cannot make the AI pick up an item, without it having a ICollectable script attached!");
-                    if (Vector3.Distance(_pickupGoal.transform.position, _agent.transform.position) < 2)
+                    if(Vector3.Distance(_pickupGoal.transform.position, _agent.transform.position) < 2)
+                        _agent.ResetPath();
+                    if (Vector3.Distance(_pickupGoal.transform.position, _agent.transform.position) < 2 && _agent.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("StandingStill"))
                     {
-                        var pickup = _pickupGoal.GetComponent<ICollectable>().PickUp();
-                        _agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder().PickUpItem(pickup);
                         _agent.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
+                        _state = State.PickupAction;
+                        _waitUntil = Time.time + 1.2f;
                     }
-                    _waitUntil = Time.time + WaitingTime;
-                    _agent.ResetPath();
-                    _state = State.Wait;
                     return;
+                    case State.PickupAction:
+                        if (_pickupGoal.GetComponent<ICollectable>() == null)
+                            throw new Exception("You cannot make the AI pick up an item, without it having a ICollectable script attached!");
+                        if (_waitUntil < Time.time)
+                        {
+                            var pickup = _pickupGoal.GetComponent<ICollectable>().PickUp();
+                            _agent.gameObject.GetComponent<AiMovement>().FindPickUpHandeder().PickUpItem(pickup);
+                            _waitUntil = Time.time + WaitingTime;
+                            _agent.ResetPath();
+                            _state = State.Wait;
+                        }
+                        return;
                 case State.Wait:
                     if (Time.time > _waitUntil)
                     {
@@ -89,7 +100,7 @@ namespace Assets.Characters.AiScripts.States
         
         enum State
         {
-            Neutral, GoToPickup, Pickup, Wait, Done
+            Neutral, GoToPickup, PickupAnim, PickupAction, Wait, Done
         }
     }
 }

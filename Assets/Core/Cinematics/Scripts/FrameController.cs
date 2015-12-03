@@ -95,8 +95,8 @@ public class FrameController : MonoBehaviour
         if (IsEndFrame)
         {
          //   Debug.Log("Loading Level");
-           // Application.LoadLevel(LevelToLoad);
-            GameObject.FindGameObjectWithTag("SkipButton").GetComponent<SkipButton>().ActivateScene();
+            Application.LoadLevel(LevelToLoad);
+          //  GameObject.FindGameObjectWithTag("SkipButton").GetComponent<SkipButton>().ActivateScene();
 
         }
         else
@@ -136,8 +136,8 @@ public class FrameController : MonoBehaviour
 
         if (IsEndFrame)
         {
-            GameObject.FindGameObjectWithTag("SkipButton").GetComponent<SkipButton>().ActivateScene();
-           // Application.LoadLevel(LevelToLoad);
+           // GameObject.FindGameObjectWithTag("SkipButton").GetComponent<SkipButton>().ActivateScene();
+            Application.LoadLevel(LevelToLoad);
            // Debug.Log("Loading Level");
         }
         else

@@ -12,7 +12,7 @@ public class SkipButton : MonoBehaviour
     void Start()
     {
         currentScene = Application.loadedLevelName;
-        StartLoading();
+     //   StartLoading();
     }
 
     public void StartLoading()
@@ -36,8 +36,8 @@ public class SkipButton : MonoBehaviour
 
     public void Skip()
     {
-        //   var currentScene = Application.loadedLevelName;
-        //   Application.LoadLevel(currentScene == "Cinematic1" ? "Tutorial1Beta" : "Tutorial2Beta");
-        async.allowSceneActivation = true;
+          var currentScene = Application.loadedLevelName;
+           Application.LoadLevel(currentScene == "Cinematic1" ? "Tutorial1Beta" : "Tutorial2Beta");
+      // async.allowSceneActivation = true;
     }
 }

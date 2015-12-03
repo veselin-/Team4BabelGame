@@ -53,6 +53,7 @@ namespace Assets.Environment.Levers.LeverExample.Scripts
             {
                 yield return new WaitForSeconds(SecForLever);
                 GetComponentInChildren<Animator>().SetTrigger("PullLever");
+                yield return new WaitForSeconds(1f);
                 _hasBeenPulled = false;
             }
         }

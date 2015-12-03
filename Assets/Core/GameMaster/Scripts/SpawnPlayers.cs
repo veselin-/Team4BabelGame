@@ -17,6 +17,7 @@ namespace Assets.Core.GameMaster.Scripts
         public Transform SidekickSpawnPoint;
 
         public Transform goal;
+        public Transform goal1;
 
         private GameObject sidekick;
         private GameObject player;
@@ -70,6 +71,8 @@ namespace Assets.Core.GameMaster.Scripts
 
             if (Application.loadedLevelName == "Level1Beta")
             {
+                var s2 = new GoSomewhereAndWaitState(player.GetComponent<NavMeshAgent>(), goal1.position);
+                player.GetComponent<AiMovement>().AssignNewState(s2);
                 yield return new WaitForSeconds(8);
                 Camera.main.GetComponent<Animator>().SetTrigger("What");
                 yield return new WaitForSeconds(6);
@@ -80,7 +83,7 @@ namespace Assets.Core.GameMaster.Scripts
 
             if (Application.loadedLevelName == "Tutorial1Beta")
             {
-                yield return new WaitForSeconds(8);
+                yield return new WaitForSeconds(50);
                 Application.LoadLevel("Level2Beta");
                 yield break;
             }
@@ -122,8 +125,8 @@ namespace Assets.Core.GameMaster.Scripts
 
             if (Application.loadedLevelName == "Tutorial4Beta")
             {
-                sidekick.GetComponent<AiMovement>().MovementSpeed = 0.8f;
-                player.GetComponent<AiMovement>().MovementSpeed = 0.8f;
+                sidekick.GetComponent<AiMovement>().MovementSpeed = 1f;
+                player.GetComponent<AiMovement>().MovementSpeed = 1f;
                 yield return new WaitForSeconds(10);
                 Application.Quit();
             }

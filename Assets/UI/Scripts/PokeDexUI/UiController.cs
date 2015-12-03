@@ -134,6 +134,18 @@ public class UiController : MonoBehaviour
         StartCoroutine(PokedexFullyEnterShop());
     }
 
+    public void OpenShop2()
+    {
+        _cameraManager.enabled = false;
+        _playerMovement.enabled = false;
+        Time.timeScale = 0;
+        MinBut.SetActive(false);
+        arrowBut.SetActive(false);
+        _pauseCanvas.SetActive(false);
+        scrollRect.horizontalNormalizedPosition = 1f;
+        menuIndicator.SetActive(false);
+    }
+
     public void CloseShop()
     {
         anim.SetTrigger("MenuExit");

@@ -21,6 +21,11 @@ public class BuyLevelSeven : MonoBehaviour {
         GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateConfirmDialog("Phrases/LevelSeven", "Phrases/BuyLevel", "Phrases/BuyText", "Phrases/BackText", UnlockLevelSeven, null);
     }
 
+    public void NotEnoughOrbs()
+    {
+        GameObject.FindGameObjectWithTag(Constants.Tags.WindowManager).GetComponent<WindowHandler>().CreateInfoDialog("Phrases/LevelSeven", "Phrases/CantBuyLevel", "Phrases/OKText", null);
+    }
+
     void UnlockLevelSeven()
     {
         if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= cost && PlayerPrefsBool.GetBool("Level7") == false)

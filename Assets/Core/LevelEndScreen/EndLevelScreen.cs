@@ -104,7 +104,15 @@ public class EndLevelScreen : MonoBehaviour {
 
         if(NextLevel == "Level3Beta" && !PlayerPrefsBool.GetBool("Level7")) {
             var bls = GameObject.FindGameObjectWithTag(Constants.Tags.GameMaster).GetComponent<BuyLevelSeven>();
-            bls.DoYouWannaBuy();
+            if (PlayerPrefs.GetInt("CurrencyAmount", CurrencyControl.currencyAmount) >= bls.cost)
+            {
+                bls.DoYouWannaBuy();
+            }
+            else
+            {
+                bls.NotEnoughOrbs();
+            }
+         
         }
         else
         {

@@ -50,6 +50,7 @@ public class EndLevelScreen : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         am.PokedexBtnOpenPlay();
+        GameObject.FindGameObjectWithTag(Constants.Tags.Pokedex).GetComponentsInChildren<ScrollRect>(true)[0].enabled = true;
         pokesprite.SetActive(false);
         shopBut.text = LanguageManager.Instance.Get("Phrases/Shop");
         blackness.SetActive(false);
@@ -70,6 +71,7 @@ public class EndLevelScreen : MonoBehaviour {
         am.PokedexBtnOpenPlay();
         pokedex.GetComponent<UiController>().OpenShop2();
         shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
+        GameObject.FindGameObjectWithTag(Constants.Tags.Pokedex).GetComponentsInChildren<ScrollRect>(true)[0].enabled = false;
         shopOpen = 1;
         Debug.Log(shopOpen);
         waitPLEASE = false;

@@ -34,6 +34,7 @@ namespace Assets.Core.Configuration
             public const string Wall = "Wall";
             public const string TorchHolder = "TorchHolder";
             public const string SysWaypoint = "SysWaypoints";
+            public const string Pokedex = "PokedexSprite";
         }
 
         public class XmlFiles

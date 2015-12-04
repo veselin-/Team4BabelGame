@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour {
 	private Transform _cameraHolder;
 	private Transform _cameraZoom;
 	
-	public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
+	private float perspectiveZoomSpeed = 5f;        // The rate of change of the field of view in perspective mode.
 	private Vector3 pinchZ = Vector3.zero;
 	public float MaxPinch = 7f;
 	public float MinPinch = -30f;
@@ -26,7 +26,7 @@ public class CameraManager : MonoBehaviour {
 	private float _normalizeDragSpeed;
 
 	// ROTATION GESTURE
-	public float rotationSpeed = 2f;
+	private float rotationSpeed = 5f;
 	// END ROTATION
 	
 	Vector3 hit_position = Vector3.zero;

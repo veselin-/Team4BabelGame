@@ -136,6 +136,7 @@ public class UiController : MonoBehaviour
 
     public void OpenShop2()
     {
+        hotbarOpen = 0;
         _cameraManager.enabled = false;
         _playerMovement.enabled = false;
         Time.timeScale = 0;

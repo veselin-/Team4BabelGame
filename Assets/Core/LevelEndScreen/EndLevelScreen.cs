@@ -4,6 +4,7 @@ using System.Collections;
 using System.Runtime.Remoting.Messaging;
 using Assets.Core.Configuration;
 using Assets.Core.GameMaster.Scripts;
+using Assets.UI.Scripts;
 
 public class EndLevelScreen : MonoBehaviour {
 
@@ -30,7 +31,10 @@ public class EndLevelScreen : MonoBehaviour {
 	
     void Start()
     {
-        
+        if (UiController.hotbarOpen >= 1)
+        {
+            pokedex.GetComponent<Animator>().SetTrigger("MenuExit");
+        }
     }
 	// Update is called once per frame
 	void Update () {
@@ -71,7 +75,7 @@ public class EndLevelScreen : MonoBehaviour {
         am.PokedexBtnOpenPlay();
         pokedex.GetComponent<UiController>().OpenShop2();
         shopBut.text = LanguageManager.Instance.Get("Phrases/BackText");
-        GameObject.FindGameObjectWithTag(Constants.Tags.Pokedex).GetComponentsInChildren<ScrollRect>(true)[0].enabled = false;
+        //GameObject.FindGameObjectWithTag(Constants.Tags.Pokedex).GetComponentsInChildren<ScrollRect>(true)[0].enabled = false;
         shopOpen = 1;
         Debug.Log(shopOpen);
         waitPLEASE = false;
@@ -190,6 +194,7 @@ public class EndLevelScreen : MonoBehaviour {
         foundOrbs = ep.orbs;
         pokesprite.SetActive(false);
         UpdateOrbsUI();
+
     }
 
 }
